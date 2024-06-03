@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("SignalRGB-CompGen"),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+1e3e1263dc7fda2f66b4f80f19d856a965656b26"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a392c0d0a9b3d896c7eca58b851bd58112faee71"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("SignalRGB-CompGen"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("SignalRGB-CompGen"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _

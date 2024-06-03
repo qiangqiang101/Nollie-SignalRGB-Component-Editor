@@ -60,4 +60,9 @@ Module Helper
         End Try
     End Function
 
+    <Extension>
+    Public Function ToPoint(pointf As PointF) As Point
+        Return New Point(CInt(pointf.X), CInt(pointf.Y))
+    End Function
+
 End Module

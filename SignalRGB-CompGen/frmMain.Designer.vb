@@ -23,10 +23,10 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         RightPanel = New Panel()
+        btnChangeImage = New Button()
+        txtLedCount = New TextBox()
         Label8 = New Label()
-        numLedCount = New NumericUpDown()
         lblCursorLocation = New Label()
         Label7 = New Label()
         pbImage = New PictureBox()
@@ -52,14 +52,15 @@ Partial Class frmMain
         ExitToolStripMenuItem = New ToolStripMenuItem()
         tsmiHelp = New ToolStripMenuItem()
         SplitContainer1 = New SplitContainer()
+        Label9 = New Label()
         Timer1 = New Timer(components)
         RightPanel.SuspendLayout()
-        CType(numLedCount, ComponentModel.ISupportInitialize).BeginInit()
         CType(pbImage, ComponentModel.ISupportInitialize).BeginInit()
         CType(numHeight, ComponentModel.ISupportInitialize).BeginInit()
         CType(numWidth, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
+        SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
         SplitContainer1.SuspendLayout()
         SuspendLayout()
@@ -67,8 +68,9 @@ Partial Class frmMain
         ' RightPanel
         ' 
         RightPanel.BorderStyle = BorderStyle.FixedSingle
+        RightPanel.Controls.Add(btnChangeImage)
+        RightPanel.Controls.Add(txtLedCount)
         RightPanel.Controls.Add(Label8)
-        RightPanel.Controls.Add(numLedCount)
         RightPanel.Controls.Add(lblCursorLocation)
         RightPanel.Controls.Add(Label7)
         RightPanel.Controls.Add(pbImage)
@@ -88,8 +90,27 @@ Partial Class frmMain
         RightPanel.Dock = DockStyle.Fill
         RightPanel.Location = New Point(0, 0)
         RightPanel.Name = "RightPanel"
-        RightPanel.Size = New Size(218, 491)
+        RightPanel.Size = New Size(275, 729)
         RightPanel.TabIndex = 0
+        ' 
+        ' btnChangeImage
+        ' 
+        btnChangeImage.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        btnChangeImage.Location = New Point(3, 509)
+        btnChangeImage.Name = "btnChangeImage"
+        btnChangeImage.Size = New Size(267, 23)
+        btnChangeImage.TabIndex = 8
+        btnChangeImage.Text = "Select Image"
+        btnChangeImage.UseVisualStyleBackColor = True
+        ' 
+        ' txtLedCount
+        ' 
+        txtLedCount.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtLedCount.Location = New Point(75, 201)
+        txtLedCount.Name = "txtLedCount"
+        txtLedCount.ReadOnly = True
+        txtLedCount.Size = New Size(187, 23)
+        txtLedCount.TabIndex = 7
         ' 
         ' Label8
         ' 
@@ -100,26 +121,15 @@ Partial Class frmMain
         Label8.TabIndex = 17
         Label8.Text = "LED Count"
         ' 
-        ' numLedCount
-        ' 
-        numLedCount.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        numLedCount.Location = New Point(75, 201)
-        numLedCount.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
-        numLedCount.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        numLedCount.Name = "numLedCount"
-        numLedCount.Size = New Size(130, 23)
-        numLedCount.TabIndex = 7
-        numLedCount.Value = New Decimal(New Integer() {1, 0, 0, 0})
-        ' 
         ' lblCursorLocation
         ' 
         lblCursorLocation.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        lblCursorLocation.Location = New Point(3, 460)
+        lblCursorLocation.Location = New Point(3, 628)
         lblCursorLocation.Name = "lblCursorLocation"
-        lblCursorLocation.Size = New Size(210, 21)
+        lblCursorLocation.Size = New Size(267, 91)
         lblCursorLocation.TabIndex = 15
-        lblCursorLocation.Text = "LED Position: 0, 0"
-        lblCursorLocation.TextAlign = ContentAlignment.MiddleCenter
+        lblCursorLocation.Text = "Position: 0, 0"
+        lblCursorLocation.TextAlign = ContentAlignment.BottomCenter
         ' 
         ' Label7
         ' 
@@ -127,17 +137,17 @@ Partial Class frmMain
         Label7.BorderStyle = BorderStyle.Fixed3D
         Label7.Location = New Point(3, 231)
         Label7.Name = "Label7"
-        Label7.Size = New Size(210, 2)
+        Label7.Size = New Size(267, 2)
         Label7.TabIndex = 14
         ' 
         ' pbImage
         ' 
         pbImage.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         pbImage.BorderStyle = BorderStyle.FixedSingle
-        pbImage.Image = CType(resources.GetObject("pbImage.Image"), Image)
+        pbImage.Image = My.Resources.Resources._1
         pbImage.Location = New Point(3, 236)
         pbImage.Name = "pbImage"
-        pbImage.Size = New Size(210, 210)
+        pbImage.Size = New Size(267, 267)
         pbImage.SizeMode = PictureBoxSizeMode.Zoom
         pbImage.TabIndex = 13
         pbImage.TabStop = False
@@ -158,7 +168,7 @@ Partial Class frmMain
         cmbType.FormattingEnabled = True
         cmbType.Location = New Point(75, 114)
         cmbType.Name = "cmbType"
-        cmbType.Size = New Size(130, 23)
+        cmbType.Size = New Size(187, 23)
         cmbType.TabIndex = 4
         ' 
         ' Label5
@@ -175,7 +185,7 @@ Partial Class frmMain
         txtProduct.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         txtProduct.Location = New Point(75, 85)
         txtProduct.Name = "txtProduct"
-        txtProduct.Size = New Size(130, 23)
+        txtProduct.Size = New Size(187, 23)
         txtProduct.TabIndex = 3
         ' 
         ' Label4
@@ -192,7 +202,7 @@ Partial Class frmMain
         txtBrand.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         txtBrand.Location = New Point(75, 56)
         txtBrand.Name = "txtBrand"
-        txtBrand.Size = New Size(130, 23)
+        txtBrand.Size = New Size(187, 23)
         txtBrand.TabIndex = 2
         ' 
         ' Label3
@@ -209,7 +219,7 @@ Partial Class frmMain
         txtName.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         txtName.Location = New Point(75, 27)
         txtName.Name = "txtName"
-        txtName.Size = New Size(130, 23)
+        txtName.Size = New Size(187, 23)
         txtName.TabIndex = 1
         ' 
         ' Label2
@@ -237,9 +247,9 @@ Partial Class frmMain
         numHeight.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numHeight.Name = "numHeight"
-        numHeight.Size = New Size(130, 23)
+        numHeight.Size = New Size(187, 23)
         numHeight.TabIndex = 6
-        numHeight.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        numHeight.Value = New Decimal(New Integer() {5, 0, 0, 0})
         ' 
         ' numWidth
         ' 
@@ -248,16 +258,16 @@ Partial Class frmMain
         numWidth.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
         numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numWidth.Name = "numWidth"
-        numWidth.Size = New Size(130, 23)
+        numWidth.Size = New Size(187, 23)
         numWidth.TabIndex = 5
-        numWidth.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        numWidth.Value = New Decimal(New Integer() {5, 0, 0, 0})
         ' 
         ' MenuStrip1
         ' 
         MenuStrip1.Items.AddRange(New ToolStripItem() {tsmiFile, tsmiHelp})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
-        MenuStrip1.Size = New Size(216, 24)
+        MenuStrip1.Size = New Size(273, 24)
         MenuStrip1.TabIndex = 0
         MenuStrip1.Text = "MenuStrip1"
         ' 
@@ -320,12 +330,28 @@ Partial Class frmMain
         SplitContainer1.Location = New Point(0, 0)
         SplitContainer1.Name = "SplitContainer1"
         ' 
+        ' SplitContainer1.Panel1
+        ' 
+        SplitContainer1.Panel1.BackColor = SystemColors.ControlDark
+        SplitContainer1.Panel1.Controls.Add(Label9)
+        ' 
         ' SplitContainer1.Panel2
         ' 
         SplitContainer1.Panel2.Controls.Add(RightPanel)
-        SplitContainer1.Size = New Size(804, 491)
-        SplitContainer1.SplitterDistance = 582
+        SplitContainer1.Size = New Size(1008, 729)
+        SplitContainer1.SplitterDistance = 729
         SplitContainer1.TabIndex = 3
+        ' 
+        ' Label9
+        ' 
+        Label9.Dock = DockStyle.Bottom
+        Label9.ForeColor = Color.White
+        Label9.Location = New Point(0, 714)
+        Label9.Name = "Label9"
+        Label9.Size = New Size(729, 15)
+        Label9.TabIndex = 0
+        Label9.Text = "Left Click: Move LED     Middle Click: Move Map     Mouse Scroll: Zoom     Right Click: Menu     Spacebar: Add LED     Delete: Remove LED"
+        Label9.TextAlign = ContentAlignment.BottomCenter
         ' 
         ' Timer1
         ' 
@@ -335,7 +361,7 @@ Partial Class frmMain
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(804, 491)
+        ClientSize = New Size(1008, 729)
         Controls.Add(SplitContainer1)
         MainMenuStrip = MenuStrip1
         Name = "frmMain"
@@ -343,12 +369,12 @@ Partial Class frmMain
         Text = "Untitled - Nollie SignalRGB Custom Component Editor"
         RightPanel.ResumeLayout(False)
         RightPanel.PerformLayout()
-        CType(numLedCount, ComponentModel.ISupportInitialize).EndInit()
         CType(pbImage, ComponentModel.ISupportInitialize).EndInit()
         CType(numHeight, ComponentModel.ISupportInitialize).EndInit()
         CType(numWidth, ComponentModel.ISupportInitialize).EndInit()
         MenuStrip1.ResumeLayout(False)
         MenuStrip1.PerformLayout()
+        SplitContainer1.Panel1.ResumeLayout(False)
         SplitContainer1.Panel2.ResumeLayout(False)
         CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
         SplitContainer1.ResumeLayout(False)
@@ -383,6 +409,8 @@ Partial Class frmMain
     Friend WithEvents tsmiHelp As ToolStripMenuItem
     Friend WithEvents tsmiSaveAs As ToolStripMenuItem
     Friend WithEvents Label8 As Label
-    Friend WithEvents numLedCount As NumericUpDown
+    Friend WithEvents txtLedCount As TextBox
+    Friend WithEvents Label9 As Label
+    Friend WithEvents btnChangeImage As Button
 
 End Class
