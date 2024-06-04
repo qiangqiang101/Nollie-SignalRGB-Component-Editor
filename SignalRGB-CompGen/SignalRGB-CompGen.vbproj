@@ -4,15 +4,37 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net8.0-windows</TargetFramework>
     <RootNamespace>SignalRGB_CompGen</RootNamespace>
-    <StartupObject>Sub Main</StartupObject>
+    <StartupObject>SignalRGB_CompGen.My.MyApplication</StartupObject>
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
+    <AssemblyName>compgen</AssemblyName>
+    <ApplicationIcon>1.ico</ApplicationIcon>
+    <Version>1.0</Version>
+    <Authors>I'm Not MentaL</Authors>
+    <Company>Haikou Nuoli Trading Co., Ltd.</Company>
+    <PackageProjectUrl>https://nolliergb.cn</PackageProjectUrl>
+    <PackageIcon>nollie.png</PackageIcon>
+    <RepositoryUrl>https://github.com/qiangqiang101/SignalRGB-CompGen</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+    <AssemblyVersion>1.1</AssemblyVersion>
+    <FileVersion>1.1</FileVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="1.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Import Include="System.Data" />
     <Import Include="System.Drawing" />
     <Import Include="System.Windows.Forms" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\Admin\Pictures\nollie.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

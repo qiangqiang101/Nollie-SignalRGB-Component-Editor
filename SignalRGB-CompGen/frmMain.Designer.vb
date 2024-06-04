@@ -23,6 +23,7 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         RightPanel = New Panel()
         btnChangeImage = New Button()
         txtLedCount = New TextBox()
@@ -51,8 +52,13 @@ Partial Class frmMain
         ToolStripSeparator1 = New ToolStripSeparator()
         ExitToolStripMenuItem = New ToolStripMenuItem()
         tsmiHelp = New ToolStripMenuItem()
+        tsmiControls = New ToolStripMenuItem()
+        ToolStripSeparator2 = New ToolStripSeparator()
+        tsmiSRGB = New ToolStripMenuItem()
+        tsmiNollie = New ToolStripMenuItem()
+        tsmiMentaL = New ToolStripMenuItem()
+        tsmiBuy = New ToolStripMenuItem()
         SplitContainer1 = New SplitContainer()
-        Label9 = New Label()
         Timer1 = New Timer(components)
         RightPanel.SuspendLayout()
         CType(pbImage, ComponentModel.ISupportInitialize).BeginInit()
@@ -60,7 +66,6 @@ Partial Class frmMain
         CType(numWidth, ComponentModel.ISupportInitialize).BeginInit()
         MenuStrip1.SuspendLayout()
         CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
-        SplitContainer1.Panel1.SuspendLayout()
         SplitContainer1.Panel2.SuspendLayout()
         SplitContainer1.SuspendLayout()
         SuspendLayout()
@@ -244,7 +249,7 @@ Partial Class frmMain
         ' 
         numHeight.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         numHeight.Location = New Point(75, 172)
-        numHeight.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        numHeight.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numHeight.Name = "numHeight"
         numHeight.Size = New Size(187, 23)
@@ -255,7 +260,7 @@ Partial Class frmMain
         ' 
         numWidth.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         numWidth.Location = New Point(75, 143)
-        numWidth.Maximum = New Decimal(New Integer() {10000, 0, 0, 0})
+        numWidth.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numWidth.Name = "numWidth"
         numWidth.Size = New Size(187, 23)
@@ -320,9 +325,46 @@ Partial Class frmMain
         ' 
         ' tsmiHelp
         ' 
+        tsmiHelp.DropDownItems.AddRange(New ToolStripItem() {tsmiControls, ToolStripSeparator2, tsmiSRGB, tsmiNollie, tsmiMentaL, tsmiBuy})
         tsmiHelp.Name = "tsmiHelp"
-        tsmiHelp.Size = New Size(24, 20)
-        tsmiHelp.Text = "?"
+        tsmiHelp.Size = New Size(44, 20)
+        tsmiHelp.Text = "Help"
+        ' 
+        ' tsmiControls
+        ' 
+        tsmiControls.Name = "tsmiControls"
+        tsmiControls.ShortcutKeys = Keys.F1
+        tsmiControls.Size = New Size(227, 22)
+        tsmiControls.Text = "Controls"
+        ' 
+        ' ToolStripSeparator2
+        ' 
+        ToolStripSeparator2.Name = "ToolStripSeparator2"
+        ToolStripSeparator2.Size = New Size(224, 6)
+        ' 
+        ' tsmiSRGB
+        ' 
+        tsmiSRGB.Name = "tsmiSRGB"
+        tsmiSRGB.Size = New Size(227, 22)
+        tsmiSRGB.Text = "Visit SignalRGB Website"
+        ' 
+        ' tsmiNollie
+        ' 
+        tsmiNollie.Name = "tsmiNollie"
+        tsmiNollie.Size = New Size(227, 22)
+        tsmiNollie.Text = "Visit Nollie Website"
+        ' 
+        ' tsmiMentaL
+        ' 
+        tsmiMentaL.Name = "tsmiMentaL"
+        tsmiMentaL.Size = New Size(227, 22)
+        tsmiMentaL.Text = "Visit I'm Not MentaL Website"
+        ' 
+        ' tsmiBuy
+        ' 
+        tsmiBuy.Name = "tsmiBuy"
+        tsmiBuy.Size = New Size(227, 22)
+        tsmiBuy.Text = "Buy Nollie32"
         ' 
         ' SplitContainer1
         ' 
@@ -333,7 +375,6 @@ Partial Class frmMain
         ' SplitContainer1.Panel1
         ' 
         SplitContainer1.Panel1.BackColor = SystemColors.ControlDark
-        SplitContainer1.Panel1.Controls.Add(Label9)
         ' 
         ' SplitContainer1.Panel2
         ' 
@@ -341,17 +382,6 @@ Partial Class frmMain
         SplitContainer1.Size = New Size(1008, 729)
         SplitContainer1.SplitterDistance = 729
         SplitContainer1.TabIndex = 3
-        ' 
-        ' Label9
-        ' 
-        Label9.Dock = DockStyle.Bottom
-        Label9.ForeColor = Color.White
-        Label9.Location = New Point(0, 714)
-        Label9.Name = "Label9"
-        Label9.Size = New Size(729, 15)
-        Label9.TabIndex = 0
-        Label9.Text = "Left Click: Move LED     Middle Click: Move Map     Mouse Scroll: Zoom     Right Click: Menu     Spacebar: Add LED     Delete: Remove LED"
-        Label9.TextAlign = ContentAlignment.BottomCenter
         ' 
         ' Timer1
         ' 
@@ -363,10 +393,11 @@ Partial Class frmMain
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1008, 729)
         Controls.Add(SplitContainer1)
+        Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MainMenuStrip = MenuStrip1
         Name = "frmMain"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Untitled - Nollie SignalRGB Custom Component Editor"
+        Text = "Untitled - Nollie x SignalRGB Custom Component Editor"
         RightPanel.ResumeLayout(False)
         RightPanel.PerformLayout()
         CType(pbImage, ComponentModel.ISupportInitialize).EndInit()
@@ -374,7 +405,6 @@ Partial Class frmMain
         CType(numWidth, ComponentModel.ISupportInitialize).EndInit()
         MenuStrip1.ResumeLayout(False)
         MenuStrip1.PerformLayout()
-        SplitContainer1.Panel1.ResumeLayout(False)
         SplitContainer1.Panel2.ResumeLayout(False)
         CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
         SplitContainer1.ResumeLayout(False)
@@ -410,7 +440,12 @@ Partial Class frmMain
     Friend WithEvents tsmiSaveAs As ToolStripMenuItem
     Friend WithEvents Label8 As Label
     Friend WithEvents txtLedCount As TextBox
-    Friend WithEvents Label9 As Label
     Friend WithEvents btnChangeImage As Button
+    Friend WithEvents tsmiControls As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents tsmiSRGB As ToolStripMenuItem
+    Friend WithEvents tsmiNollie As ToolStripMenuItem
+    Friend WithEvents tsmiMentaL As ToolStripMenuItem
+    Friend WithEvents tsmiBuy As ToolStripMenuItem
 
 End Class

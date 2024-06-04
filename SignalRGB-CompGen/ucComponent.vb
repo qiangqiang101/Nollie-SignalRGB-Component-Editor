@@ -54,6 +54,7 @@ Public Class ucComponent
             Return points
         End Get
     End Property
+    Private IsDragging As Boolean = False
 
     Public Sub AddLed(index As Integer, mindex As Integer, name As String, point As Point)
         LEDs.Add(New Led(mindex, name, point) With {.Index = index})
@@ -93,9 +94,11 @@ Public Class ucComponent
         End If
     End Function
 
-    Public Function SelectedItem() As Led
+    Public Function ItemOnHover() As Led
         Return LEDs.FirstOrDefault(Function(x) x.LedCoordinates = _ledPos)
     End Function
+
+    Public SelectedItem As Led = Nothing
 
     Public Sub RemoveLed(led As Led)
         LEDs.Remove(led)
@@ -138,6 +141,9 @@ Public Class ucComponent
 
         Dim matrix(_Width - 1, _Height - 1) As Integer
         Dim count As Integer = 0
+        'Dim led As Led = Nothing
+        'Dim ledIndex As Integer = -1
+        Dim dragRect As RectangleF = Nothing
         For row As Integer = 0 To matrix.GetUpperBound(0)
             For col As Integer = 0 To matrix.GetUpperBound(1)
 
@@ -163,9 +169,8 @@ Public Class ucComponent
                     End If
 
                     If LedCoordinatesPoints.Contains(New Point(row, col)) Then
-
-                        Dim ledIndex As Integer = LEDs.FindIndex(Function(xy) xy.LedCoordinates.X = row AndAlso xy.LedCoordinates.Y = col)
-                        Dim led As Led = LEDs.Find(Function(z) z.MappingIndex = ledIndex)
+                        Dim ledIndex = LEDs.FindIndex(Function(xy) xy.LedCoordinates.X = row AndAlso xy.LedCoordinates.Y = col)
+                        Dim led = LEDs.Find(Function(z) z.MappingIndex = ledIndex)
                         'Update LED Index if it has no value.
                         If Not led.Index.HasValue Then
                             Dim idx = LEDs.IndexOf(led)
@@ -173,35 +178,36 @@ Public Class ucComponent
                             LEDs(idx) = led
                         End If
 
-                        If renderRect.Contains(PointToClient(Control.MousePosition)) Then
-                            Using sb2 As New SolidBrush(Color.LightGreen)
+                        If led = SelectedItem Then
+                            dragRect = r
+                            Using sb2 As New SolidBrush(Color.LightBlue)
                                 g.FillRectangle(sb2, r)
                             End Using
-                            Using sb2 As New SolidBrush(Color.Green)
+                            Using sb2 As New SolidBrush(Color.Blue)
                                 g.DrawString(ledIndex, Font, sb2, renderRect, sf)
                             End Using
-                            'Dim si = SelectedItem()
-                            'If si IsNot Nothing Then
-                            '    Dim info = $"Index: {si.Index}{vbCrLf}Name: {si.LedName}{vbCrLf}Mapping Index: {si.MappingIndex}{vbCrLf}Position: {si.LedCoordinates.X}, {si.LedCoordinates.Y}"
-                            '    Dim point As New Point(renderRect.X, renderRect.Y - renderRect.Height)
-
-                            '    tooltip.Text = info
-                            '    tooltip.Location = point
-                            '    If Not tooltip.Visible Then tooltip.Show()
-                            'End If
                         Else
-                            Using sb2 As New SolidBrush(Color.Green)
-                                g.FillRectangle(sb2, r)
-                            End Using
-                            Using sb2 As New SolidBrush(Color.Black)
-                                g.DrawString(ledIndex, Font, sb2, renderRect, sf)
-                            End Using
+                            If renderRect.Contains(PointToClient(Control.MousePosition)) Then
+                                Using sb2 As New SolidBrush(Color.LightGreen)
+                                    g.FillRectangle(sb2, r)
+                                End Using
+                                Using sb2 As New SolidBrush(Color.Green)
+                                    g.DrawString(ledIndex, Font, sb2, renderRect, sf)
+                                End Using
+                            Else
+                                Using sb2 As New SolidBrush(Color.Green)
+                                    g.FillRectangle(sb2, r)
+                                End Using
+                                Using sb2 As New SolidBrush(Color.Black)
+                                    g.DrawString(ledIndex, Font, sb2, renderRect, sf)
+                                End Using
+                            End If
                         End If
                     Else
                         g.FillRectangle(sb, r)
-                        '    Using sb2 As New SolidBrush(Color.White)
-                        '        g.DrawString(index, Font, sb2, renderRect, sf)
-                        '    End Using
+                        'Using sb2 As New SolidBrush(Color.White)
+                        '    g.DrawString(index, Font, sb2, renderRect, sf)
+                        'End Using
                     End If
 
                     Using pen As New Pen(Color.Black, 1.0F)
@@ -212,6 +218,48 @@ Public Class ucComponent
                 If count >= LedCount Then count = 0
             Next
         Next
+
+        If IsDragging Then
+            'If led = SelectedItem Then
+            Dim cursor = PointToClient(Control.MousePosition)
+            Dim dr As New RectangleF(cursor.X - dragRect.Width / 2, cursor.Y - dragRect.Height / 2, dragRect.Width, dragRect.Height)
+            Using sb As New SolidBrush(Color.FromArgb(125, Color.LightBlue))
+                g.FillRectangle(sb, dr)
+            End Using
+            Using sb2 As New SolidBrush(Color.Blue)
+                g.DrawString(SelectedItem.Index, Font, sb2, dr, sf)
+            End Using
+            Using pen As New Pen(Color.White, 1.0F)
+                g.DrawRectangle(pen, dr)
+            End Using
+            'End If
+        End If
+
+        If ItemOnHover() <> Nothing Then
+            Dim itm = ItemOnHover()
+            Dim info = $"Index: {itm.MappingIndex}{vbCrLf}Name: {itm.LedName}{vbCrLf}Position: {itm.LedCoordinates.X}, {itm.LedCoordinates.Y}"
+            Dim infoSize = TextRenderer.MeasureText(g, info, Font)
+            Dim cursor = PointToClient(Control.MousePosition)
+            Using sb As New SolidBrush(Color.LightGoldenrodYellow)
+                Dim rect As Rectangle
+                If itm.LedCoordinates.X >= (numCols - 2) AndAlso itm.LedCoordinates.Y >= (numRows - 2) Then
+                    rect = New Rectangle(cursor.X - infoSize.Width - 30, cursor.Y - infoSize.Height - 30, infoSize.Width + 15, infoSize.Height + 15)
+                ElseIf itm.LedCoordinates.X >= (numCols - 2) Then
+                    rect = New Rectangle(cursor.X - infoSize.Width - 30, cursor.Y, infoSize.Width + 15, infoSize.Height + 15)
+                ElseIf itm.LedCoordinates.Y >= (numRows - 2) Then
+                    rect = New Rectangle(cursor.X, cursor.Y - infoSize.Height - 30, infoSize.Width + 15, infoSize.Height + 15)
+                Else
+                    rect = New Rectangle(cursor.X + 10, cursor.Y, infoSize.Width + 15, infoSize.Height + 15)
+                End If
+                g.FillRoundedRectangle(sb, rect, 10)
+                Using sb2 As New SolidBrush(ForeColor)
+                    g.DrawString(info, Font, sb2, rect, sf)
+                End Using
+                Using pen As New Pen(Color.Black, 1.0F)
+                    g.DrawRoundedRectangle(pen, rect, 10)
+                End Using
+            End Using
+        End If
     End Sub
 
     Private Sub ucComponent_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
@@ -233,9 +281,34 @@ Public Class ucComponent
     End Sub
 
     Private Sub ucComponent_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
-        If e.Button = MouseButtons.Right Then
-            ContextMenuStrip1.Show(MousePosition)
-        End If
+        Select Case e.Button
+            Case MouseButtons.Right
+                ContextMenuStrip1.Show(MousePosition)
+            Case MouseButtons.Left
+                If Not IsDragging Then SelectedItem = ItemOnHover()
+        End Select
+    End Sub
+
+    Private Sub ucComponent_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
+        Select Case e.Button
+            Case MouseButtons.Left
+                If ItemOnHover() <> Nothing Then
+                    IsDragging = True
+                    SelectedItem = ItemOnHover()
+                End If
+        End Select
+    End Sub
+
+    Private Sub ucComponent_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
+        Select Case e.Button
+            Case MouseButtons.Left
+                IsDragging = False
+                If SelectedItem <> Nothing Then
+                    Dim idx = LEDs.IndexOf(SelectedItem)
+                    SelectedItem.LedCoordinates = _ledPos
+                    LEDs(idx) = SelectedItem
+                End If
+        End Select
     End Sub
 
     Private Sub tsmiAddLed_Click(sender As Object, e As EventArgs) Handles tsmiAddLed.Click
@@ -284,4 +357,5 @@ Public Class ucComponent
             Invalidate()
         End If
     End Sub
+
 End Class

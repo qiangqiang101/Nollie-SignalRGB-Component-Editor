@@ -2,6 +2,7 @@
 Imports System.Drawing.Imaging
 Imports System.Runtime.InteropServices
 Imports System.Security.Cryptography
+Imports System.Security.Policy
 Imports Microsoft.Win32.SafeHandles
 Imports Newtonsoft.Json
 
@@ -13,15 +14,7 @@ Public Class frmMain
     Dim mouseHandler As MouseHandler = Nothing
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        If ucCompoment IsNot Nothing Then
-            If ucCompoment.SelectedItem IsNot Nothing Then
-                Dim si = ucCompoment.SelectedItem
-                Dim info = $"Index: {si.Index}{vbCrLf}Name: {si.LedName}{vbCrLf}Mapping Index: {si.MappingIndex}{vbCrLf}Position: {si.LedCoordinates.X}, {si.LedCoordinates.Y}"
-                lblCursorLocation.Text = info
-            Else
-                lblCursorLocation.Text = $"Position: {ucCompoment.MousePos.X}, {ucCompoment.MousePos.Y}"
-            End If
-        End If
+        lblCursorLocation.Text = $"Position: {ucCompoment.MousePos.X}, {ucCompoment.MousePos.Y}"
     End Sub
 
     Private Sub tsmiOpen_Click(sender As Object, e As EventArgs) Handles tsmiOpen.Click
@@ -65,7 +58,7 @@ Public Class frmMain
             cmbType.SelectedValue = Component.Type
             pbImage.Image = Component.ToImage
 
-            Text = $"{FileName} - Nollie SignalRGB Custom Component Editor"
+            Text = $"{FileName} - Nollie x SignalRGB Custom Component Editor"
         End If
     End Sub
 
@@ -119,7 +112,7 @@ Public Class frmMain
         If sfd.ShowDialog <> DialogResult.Cancel Then
             Save(sfd.FileName)
             FileName = sfd.FileName
-            Text = $"{FileName} - Nollie SignalRGB Custom Component Editor"
+            Text = $"{FileName} - Nollie x SignalRGB Custom Component Editor"
         End If
     End Sub
 
@@ -166,10 +159,6 @@ Public Class frmMain
         Close()
     End Sub
 
-    Private Sub tsmiHelp_Click(sender As Object, e As EventArgs) Handles tsmiHelp.Click
-        Process.Start(New ProcessStartInfo() With {.FileName = "https://nolliergb.cn", .UseShellExecute = True})
-    End Sub
-
     Private Sub btnChangeImage_Click(sender As Object, e As EventArgs) Handles btnChangeImage.Click
         Dim ofd As New OpenFileDialog()
         With ofd
@@ -196,7 +185,7 @@ Public Class frmMain
             ucCompoment.Dispose()
         End If
         FileName = Nothing
-        Text = "Untitled - Nollie SignalRGB Custom Component Editor"
+        Text = "Untitled - Nollie x SignalRGB Custom Component Editor"
 
         txtBrand.Clear()
         txtProduct.Clear()
@@ -213,5 +202,34 @@ Public Class frmMain
         ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
         ucCompoment.BringToFront()
         mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
+    End Sub
+
+    Private Sub PrepareGraphics(g As Graphics)
+        g.SmoothingMode = Drawing2D.SmoothingMode.HighSpeed
+        g.CompositingQuality = Drawing2D.CompositingQuality.HighSpeed
+        g.InterpolationMode = Drawing2D.InterpolationMode.Low
+        g.PixelOffsetMode = Drawing2D.PixelOffsetMode.HighSpeed
+    End Sub
+
+    Private Sub tsmiControls_Click(sender As Object, e As EventArgs) Handles tsmiControls.Click
+        Dim n = vbCrLf
+        Dim helpText = $"Mouse Controls: {n}Left Mouse Click: Select LED/Move LED{n}Middle Mouse Click: Move Map{n}Mouse Scroll: Zoom{n}Mouse Right Click: Show Menu{n}{n}Keyboard Controls: {n}Spacebar: Add LED on Mouse Position{n}Delete: Remove last LED"
+        MsgBox(helpText, MsgBoxStyle.Information, "Help")
+    End Sub
+
+    Private Sub tsmiNollie_Click(sender As Object, e As EventArgs) Handles tsmiNollie.Click
+        Process.Start(New ProcessStartInfo() With {.FileName = "https://nolliergb.com", .UseShellExecute = True})
+    End Sub
+
+    Private Sub tsmiSRGB_Click(sender As Object, e As EventArgs) Handles tsmiSRGB.Click
+        Process.Start(New ProcessStartInfo() With {.FileName = "https://signalrgb.com", .UseShellExecute = True})
+    End Sub
+
+    Private Sub tsmiMentaL_Click(sender As Object, e As EventArgs) Handles tsmiMentaL.Click
+        Process.Start(New ProcessStartInfo() With {.FileName = "https://imnotmental.com", .UseShellExecute = True})
+    End Sub
+
+    Private Sub tsmiBuy_Click(sender As Object, e As EventArgs) Handles tsmiBuy.Click
+        Process.Start(New ProcessStartInfo() With {.FileName = "https://nolliergb.cn/products/nollie32-argb-kontroler-5-v3pin-argb-interfejs-obsluguje-signalrgb-openrgb", .UseShellExecute = True})
     End Sub
 End Class
