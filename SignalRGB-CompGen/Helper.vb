@@ -7,7 +7,12 @@ Module Helper
 
     Public TypeDropdownList As New List(Of DropdownListItem(Of String)) From {
         New DropdownListItem(Of String)("AIO", "aio"), New DropdownListItem(Of String)("Cable", "cable"), New DropdownListItem(Of String)("Case", "case"),
-        New DropdownListItem(Of String)("Chair", "chair"), New DropdownListItem(Of String)("Fan", "fan"), New DropdownListItem(Of String)("Custom", "custom")}
+        New DropdownListItem(Of String)("Chair", "chair"), New DropdownListItem(Of String)("Fan", "fan"), New DropdownListItem(Of String)("Custom", "custom"),
+        New DropdownListItem(Of String)("Strip", "strip"), New DropdownListItem(Of String)("Water Block", "water block"), New DropdownListItem(Of String)("Tower", "tower"),
+        New DropdownListItem(Of String)("Heatsink", "heatsink"), New DropdownListItem(Of String)("Desk", "desk")}
+    Public DirectionDropdownList As New List(Of DropdownListItem(Of eDirection)) From {
+        New DropdownListItem(Of eDirection)("Top", eDirection.Top), New DropdownListItem(Of eDirection)("Right", eDirection.Right),
+        New DropdownListItem(Of eDirection)("Bottom", eDirection.Bottom), New DropdownListItem(Of eDirection)("Left", eDirection.Left)}
 
     <Extension>
     Public Function StringToBase64(text As String) As String
@@ -125,3 +130,15 @@ Module Helper
     End Function
 
 End Module
+
+Public Enum eMode
+    Add
+    Remove
+End Enum
+
+Public Enum eDirection
+    Top
+    Right
+    Bottom
+    Left
+End Enum

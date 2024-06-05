@@ -42,3 +42,4 @@ C:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Release\
 C:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Release\net8.0-windows\compgen.pdb
 C:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB-CompGen.genruntimeconfig.cache
 C:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Release\net8.0-windows\ref\compgen.dll
+E:\Users\Admin\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.frmMulti.resources

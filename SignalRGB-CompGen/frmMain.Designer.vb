@@ -28,7 +28,6 @@ Partial Class frmMain
         btnChangeImage = New Button()
         txtLedCount = New TextBox()
         Label8 = New Label()
-        lblCursorLocation = New Label()
         Label7 = New Label()
         pbImage = New PictureBox()
         Label6 = New Label()
@@ -60,6 +59,8 @@ Partial Class frmMain
         tsmiBuy = New ToolStripMenuItem()
         SplitContainer1 = New SplitContainer()
         Timer1 = New Timer(components)
+        StatusStrip1 = New StatusStrip()
+        tsslPosition = New ToolStripStatusLabel()
         RightPanel.SuspendLayout()
         CType(pbImage, ComponentModel.ISupportInitialize).BeginInit()
         CType(numHeight, ComponentModel.ISupportInitialize).BeginInit()
@@ -68,15 +69,16 @@ Partial Class frmMain
         CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
         SplitContainer1.Panel2.SuspendLayout()
         SplitContainer1.SuspendLayout()
+        StatusStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' RightPanel
         ' 
         RightPanel.BorderStyle = BorderStyle.FixedSingle
+        RightPanel.Controls.Add(StatusStrip1)
         RightPanel.Controls.Add(btnChangeImage)
         RightPanel.Controls.Add(txtLedCount)
         RightPanel.Controls.Add(Label8)
-        RightPanel.Controls.Add(lblCursorLocation)
         RightPanel.Controls.Add(Label7)
         RightPanel.Controls.Add(pbImage)
         RightPanel.Controls.Add(Label6)
@@ -125,16 +127,6 @@ Partial Class frmMain
         Label8.Size = New Size(63, 15)
         Label8.TabIndex = 17
         Label8.Text = "LED Count"
-        ' 
-        ' lblCursorLocation
-        ' 
-        lblCursorLocation.Anchor = AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        lblCursorLocation.Location = New Point(3, 628)
-        lblCursorLocation.Name = "lblCursorLocation"
-        lblCursorLocation.Size = New Size(267, 91)
-        lblCursorLocation.TabIndex = 15
-        lblCursorLocation.Text = "Position: 0, 0"
-        lblCursorLocation.TextAlign = ContentAlignment.BottomCenter
         ' 
         ' Label7
         ' 
@@ -249,7 +241,7 @@ Partial Class frmMain
         ' 
         numHeight.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         numHeight.Location = New Point(75, 172)
-        numHeight.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        numHeight.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
         numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numHeight.Name = "numHeight"
         numHeight.Size = New Size(187, 23)
@@ -260,7 +252,7 @@ Partial Class frmMain
         ' 
         numWidth.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         numWidth.Location = New Point(75, 143)
-        numWidth.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        numWidth.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
         numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numWidth.Name = "numWidth"
         numWidth.Size = New Size(187, 23)
@@ -387,8 +379,24 @@ Partial Class frmMain
         ' 
         Timer1.Enabled = True
         ' 
+        ' StatusStrip1
+        ' 
+        StatusStrip1.Items.AddRange(New ToolStripItem() {tsslPosition})
+        StatusStrip1.Location = New Point(0, 705)
+        StatusStrip1.Name = "StatusStrip1"
+        StatusStrip1.Size = New Size(273, 22)
+        StatusStrip1.TabIndex = 18
+        StatusStrip1.Text = "StatusStrip1"
+        ' 
+        ' tsslPosition
+        ' 
+        tsslPosition.Name = "tsslPosition"
+        tsslPosition.Size = New Size(74, 17)
+        tsslPosition.Text = "Position: 0, 0"
+        ' 
         ' frmMain
         ' 
+        AllowDrop = True
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1008, 729)
@@ -408,6 +416,8 @@ Partial Class frmMain
         SplitContainer1.Panel2.ResumeLayout(False)
         CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
         SplitContainer1.ResumeLayout(False)
+        StatusStrip1.ResumeLayout(False)
+        StatusStrip1.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -429,7 +439,6 @@ Partial Class frmMain
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents Label7 As Label
     Friend WithEvents pbImage As PictureBox
-    Friend WithEvents lblCursorLocation As Label
     Friend WithEvents Timer1 As Timer
     Friend WithEvents tsmiNew As ToolStripMenuItem
     Friend WithEvents tsmiOpen As ToolStripMenuItem
@@ -447,5 +456,7 @@ Partial Class frmMain
     Friend WithEvents tsmiNollie As ToolStripMenuItem
     Friend WithEvents tsmiMentaL As ToolStripMenuItem
     Friend WithEvents tsmiBuy As ToolStripMenuItem
+    Friend WithEvents StatusStrip1 As StatusStrip
+    Friend WithEvents tsslPosition As ToolStripStatusLabel
 
 End Class

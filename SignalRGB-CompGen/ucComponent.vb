@@ -63,36 +63,47 @@ Public Class ucComponent
         RaiseEvent LEDsChanged(Me, New EventArgs())
     End Sub
 
-    Public Sub AddLeds(quantities As Integer)
+    Public Sub AddLeds(quantities As Integer, _pos As Point, Optional direction As eDirection = eDirection.Right)
         If LEDs.Count = 0 Then
             For i As Integer = 0 To quantities - 1
                 Dim index = i
                 Dim name = $"Led{i + 1}"
-                Dim pos = GetNextPointFrom(_ledPos, i)
+                Dim pos = GetNextPointFrom(_pos, i, direction)
                 AddLed(index, index, name, pos)
-            Next
+            Next i
         Else
             Dim lastLed As Led = LEDs.Last
             For i As Integer = 0 To quantities - 1
                 Dim index = If(lastLed.Index.HasValue, lastLed.Index.Value + i + 1, lastLed.MappingIndex + i + 1)
                 Dim mindex = lastLed.MappingIndex + i + 1
                 Dim name = $"Led{mindex + i + 1}"
-                Dim pos = GetNextPointFrom(_ledPos, i)
+                Dim pos = GetNextPointFrom(_pos, i, direction)
                 AddLed(index, index, name, pos)
-            Next
+            Next i
         End If
     End Sub
 
-    Private Function GetNextPointFrom(pos As Point, offset As Integer) As Point
-        If pos.X >= numCols AndAlso pos.Y >= numRows Then
-            Return Point.Empty
-        Else
-            If pos.X >= numCols Then
-                Return New Point(pos.X, pos.Y + offset)
-            Else
+    Private Function GetNextPointFrom(pos As Point, offset As Integer, Optional direction As eDirection = eDirection.Right) As Point
+        Select Case direction
+            Case eDirection.Top
+                Dim newPos = New Point(pos.X, pos.Y - offset)
+                If newPos.Y < 0 Then
+                    Return New Point(newPos.X, 0)
+                Else
+                    Return newPos
+                End If
+            Case eDirection.Right
                 Return New Point(pos.X + offset, pos.Y)
-            End If
-        End If
+            Case eDirection.Bottom
+                Return New Point(pos.X, pos.Y + offset)
+            Case eDirection.Left
+                Dim newPos = New Point(pos.X - offset, pos.Y)
+                If newPos.X < 0 Then
+                    Return New Point(0, newPos.Y)
+                Else
+                    Return newPos
+                End If
+        End Select
     End Function
 
     Public Function ItemOnHover() As Led
@@ -284,8 +295,17 @@ Public Class ucComponent
         Select Case e.Button
             Case MouseButtons.Right
                 ContextMenuStrip1.Show(MousePosition)
+                ContextMenuStrip1.Tag = _ledPos
             Case MouseButtons.Left
                 If Not IsDragging Then SelectedItem = ItemOnHover()
+        End Select
+    End Sub
+
+    Private Sub ucComponent_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Me.MouseDoubleClick
+        Select Case e.Button
+            Case MouseButtons.Left
+                If SelectedItem = Nothing Then AddLeds(1, _ledPos)
+                Invalidate()
         End Select
     End Sub
 
@@ -312,37 +332,14 @@ Public Class ucComponent
     End Sub
 
     Private Sub tsmiAddLed_Click(sender As Object, e As EventArgs) Handles tsmiAddLed.Click
-        AddLeds(1)
+        AddLeds(1, CType(ContextMenuStrip1.Tag, Point))
         Invalidate()
-    End Sub
-
-    Private Sub ToolStripTextBox_TextChanged(sender As Object, e As EventArgs) Handles tstxtAddLedQty.TextChanged, tstxtRemoveLedQty.TextChanged
-        If Not IsNumeric(tstxtAddLedQty.Text) Then
-            CType(sender, ToolStripTextBox).Clear()
-        End If
-    End Sub
-
-    Private Sub tsmiAddLedsConfirm_Click(sender As Object, e As EventArgs) Handles tsmiAddLedsConfirm.Click
-        If IsNumeric(tstxtAddLedQty.Text) Then
-            AddLeds(CInt(tstxtAddLedQty.Text))
-            Invalidate()
-        End If
     End Sub
 
     Private Sub tsmiRemoveLed_Click(sender As Object, e As EventArgs) Handles tsmiRemoveLed.Click
         If LEDs.Count <> 0 Then
             RemoveLed(LEDs.Last)
             Invalidate()
-        End If
-    End Sub
-
-    Private Sub tsmiRemoveLedConfirm_Click(sender As Object, e As EventArgs) Handles tsmiRemoveLedConfirm.Click
-        If IsNumeric(tstxtRemoveLedQty.Text) Then
-            Dim lastNthLeds = LEDs.OrderByDescending(Function(x) x.MappingIndex).Take(CInt(tstxtRemoveLedQty.Text))
-            For Each led In lastNthLeds
-                RemoveLed(led)
-                Invalidate()
-            Next
         End If
     End Sub
 
@@ -353,9 +350,19 @@ Public Class ucComponent
                 Invalidate()
             End If
         ElseIf e.KeyCode = Keys.Space Then
-            AddLeds(1)
+            AddLeds(1, _ledPos)
             Invalidate()
         End If
     End Sub
 
+    Private Sub tsmiAddLeds_Click(sender As Object, e As EventArgs) Handles tsmiAddLeds.Click
+        Dim max = numRows * numCols - LEDs.Count
+        Dim fmt As New frmMulti(eMode.Add, max, Me, CType(ContextMenuStrip1.Tag, Point))
+        fmt.Show()
+    End Sub
+
+    Private Sub tsmiRemoveLastLEDs_Click(sender As Object, e As EventArgs) Handles tsmiRemoveLastLEDs.Click
+        Dim fmt As New frmMulti(eMode.Remove, LEDs.Count, Me, CType(ContextMenuStrip1.Tag, Point))
+        fmt.Show()
+    End Sub
 End Class

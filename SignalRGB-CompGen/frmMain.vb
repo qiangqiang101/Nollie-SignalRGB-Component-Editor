@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing.Imaging
+Imports System.IO
 Imports System.Runtime.InteropServices
 Imports System.Security.Cryptography
 Imports System.Security.Policy
@@ -14,7 +15,7 @@ Public Class frmMain
     Dim mouseHandler As MouseHandler = Nothing
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        lblCursorLocation.Text = $"Position: {ucCompoment.MousePos.X}, {ucCompoment.MousePos.Y}"
+        tsslPosition.Text = $"Position: {ucCompoment.MousePos.X}, {ucCompoment.MousePos.Y}"
     End Sub
 
     Private Sub tsmiOpen_Click(sender As Object, e As EventArgs) Handles tsmiOpen.Click
@@ -43,7 +44,8 @@ Public Class frmMain
             Next
 
             ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.FixedSingle,
-                .Size = New Size(Component.Width * 50, Component.Height * 50), .LEDs = LEDs, .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
+                .Size = New Size((Component.Width * 50) + ucCompoment.Margin.All, (Component.Height * 50) + ucCompoment.Margin.All), .LEDs = LEDs,
+                .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
             SplitContainer1.Panel1.Controls.Add(ucCompoment)
             ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
             ucCompoment.BringToFront()
@@ -55,7 +57,7 @@ Public Class frmMain
             numWidth.Value = Component.Width
             numHeight.Value = Component.Height
             txtLedCount.Text = Component.LedCount
-            cmbType.SelectedValue = Component.Type
+            cmbType.SelectedValue = Component.Type.ToLower
             pbImage.Image = Component.ToImage
 
             Text = $"{FileName} - Nollie x SignalRGB Custom Component Editor"
@@ -128,7 +130,7 @@ Public Class frmMain
         End With
 
         ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.FixedSingle, .Location = New Point(0, 0),
-            .Size = New Size(400, 400), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
+            .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
         SplitContainer1.Panel1.Controls.Add(ucCompoment)
         ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
         ucCompoment.BringToFront()
@@ -197,23 +199,16 @@ Public Class frmMain
         pbImage.Image = My.Resources._1
 
         ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.FixedSingle,
-            .Size = New Size(400, 400), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
+            .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
         SplitContainer1.Panel1.Controls.Add(ucCompoment)
         ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
         ucCompoment.BringToFront()
         mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
     End Sub
 
-    Private Sub PrepareGraphics(g As Graphics)
-        g.SmoothingMode = Drawing2D.SmoothingMode.HighSpeed
-        g.CompositingQuality = Drawing2D.CompositingQuality.HighSpeed
-        g.InterpolationMode = Drawing2D.InterpolationMode.Low
-        g.PixelOffsetMode = Drawing2D.PixelOffsetMode.HighSpeed
-    End Sub
-
     Private Sub tsmiControls_Click(sender As Object, e As EventArgs) Handles tsmiControls.Click
         Dim n = vbCrLf
-        Dim helpText = $"Mouse Controls: {n}Left Mouse Click: Select LED/Move LED{n}Middle Mouse Click: Move Map{n}Mouse Scroll: Zoom{n}Mouse Right Click: Show Menu{n}{n}Keyboard Controls: {n}Spacebar: Add LED on Mouse Position{n}Delete: Remove last LED"
+        Dim helpText = $"Mouse Controls: {n}Left Click: Select LED/Move LED{n}Left Double Click: Add LED{n}Middle Click: Move Map{n}Scroll: Zoom{n}Right Click: Show Menu{n}{n}Keyboard Controls: {n}Spacebar: Add LED on Mouse Position{n}Delete: Remove last LED"
         MsgBox(helpText, MsgBoxStyle.Information, "Help")
     End Sub
 
@@ -231,5 +226,53 @@ Public Class frmMain
 
     Private Sub tsmiBuy_Click(sender As Object, e As EventArgs) Handles tsmiBuy.Click
         Process.Start(New ProcessStartInfo() With {.FileName = "https://nolliergb.cn/products/nollie32-argb-kontroler-5-v3pin-argb-interfejs-obsluguje-signalrgb-openrgb", .UseShellExecute = True})
+    End Sub
+
+    Private Sub frmMain_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
+        Dim files As String() = e.Data.GetData(DataFormats.FileDrop)
+        Dim firstFile = files.FirstOrDefault
+
+        If firstFile <> Nothing Then
+            If Path.GetExtension(files.FirstOrDefault).ToLower() = ".json" Then
+                If ucCompoment IsNot Nothing Then
+                    Controls.Remove(ucCompoment)
+                    ucCompoment.Dispose()
+                End If
+                FileName = firstFile
+                Component = Component.Load(FileName)
+
+                Dim LEDs As New List(Of Led)
+                For i As Integer = 0 To Component.LedCoordinates.Count - 1
+                    Dim name As String = Component.LedNames(i)
+                    Dim index As Integer = Component.LedMapping(i)
+                    Dim point As Integer() = Component.LedCoordinates(i)
+                    LEDs.Add(New Led(index, name, New Point(point(0), point(1))))
+                Next
+
+                ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.FixedSingle,
+                    .Size = New Size((Component.Width * 50) + ucCompoment.Margin.All, (Component.Height * 50) + ucCompoment.Margin.All), .LEDs = LEDs,
+                    .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
+                SplitContainer1.Panel1.Controls.Add(ucCompoment)
+                ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
+                ucCompoment.BringToFront()
+                mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
+
+                txtBrand.Text = Component.Brand
+                txtProduct.Text = Component.ProductName
+                txtName.Text = Component.DisplayName
+                numWidth.Value = Component.Width
+                numHeight.Value = Component.Height
+                txtLedCount.Text = Component.LedCount
+                cmbType.SelectedValue = Component.Type.ToLower
+                pbImage.Image = Component.ToImage
+
+                Text = $"{FileName} - Nollie x SignalRGB Custom Component Editor"
+            End If
+        End If
+
+    End Sub
+
+    Private Sub frmMain_DragEnter(sender As Object, e As DragEventArgs) Handles Me.DragEnter
+        If e.Data.GetDataPresent(DataFormats.FileDrop) Then e.Effect = DragDropEffects.Copy
     End Sub
 End Class
