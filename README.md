@@ -11,7 +11,7 @@
 [![Follow on Patreon](https://img.shields.io/badge/Donate-Patreon-orange)](https://www.patreon.com/imnotmental)
 
 Yet another SignalRGB Component Generator + Editor coded with Visual Basic
-![image](https://github.com/qiangqiang101/SignalRGB-CompGen/assets/11488961/057a28f2-805a-41de-bd70-30a9a35ee95e)
+![image](https://github.com/qiangqiang101/SignalRGB-CompGen/assets/11488961/29d53007-ec51-452f-9ff7-c48223ff4587)
 
 # Download
 [Github](https://github.com/qiangqiang101/SignalRGB-CompGen/releases)
