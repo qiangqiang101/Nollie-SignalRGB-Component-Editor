@@ -56,8 +56,6 @@ Public Class ucComponent
         End Get
     End Property
     Private IsDragging As Boolean = False
-    Private IsDrawingRectangle As Boolean = False
-    Private SelectRectangle As Rectangle = New Rectangle()
 
     Public Sub AddLed(index As Integer, mindex As Integer, name As String, point As Point)
         LEDs.Add(New Led(mindex, name, point) With {.Index = index})
@@ -102,7 +100,6 @@ Public Class ucComponent
     End Function
 
     Public SelectedItem As Led = Nothing
-    Public SelectedItems As Led() = Nothing
 
     Public Sub RemoveLed(led As Led)
         LEDs.Remove(led)
@@ -181,59 +178,31 @@ Public Class ucComponent
                             LEDs(idx) = led
                         End If
 
-                        If led <> Nothing Then
-                            If SelectedItems.Contains(led) Then
-                                dragRect = r
-                                Using sb2 As New SolidBrush(Color.LightBlue)
+                        If led = SelectedItem Then
+                            dragRect = r
+                            Using sb2 As New SolidBrush(Color.LightBlue)
+                                g.FillRectangle(sb2, r)
+                            End Using
+                            Using sb2 As New SolidBrush(Color.Blue)
+                                g.DrawString(ledIndex, Font, sb2, renderRect, sf)
+                            End Using
+                        Else
+                            If renderRect.Contains(PointToClient(Control.MousePosition)) Then
+                                Using sb2 As New SolidBrush(Color.LightGreen)
                                     g.FillRectangle(sb2, r)
                                 End Using
-                                Using sb2 As New SolidBrush(Color.Blue)
+                                Using sb2 As New SolidBrush(Color.Green)
                                     g.DrawString(ledIndex, Font, sb2, renderRect, sf)
                                 End Using
                             Else
-                                If renderRect.Contains(PointToClient(Control.MousePosition)) Then
-                                    Using sb2 As New SolidBrush(Color.LightGreen)
-                                        g.FillRectangle(sb2, r)
-                                    End Using
-                                    Using sb2 As New SolidBrush(Color.Green)
-                                        g.DrawString(ledIndex, Font, sb2, renderRect, sf)
-                                    End Using
-                                Else
-                                    Using sb2 As New SolidBrush(Color.Green)
-                                        g.FillRectangle(sb2, r)
-                                    End Using
-                                    Using sb2 As New SolidBrush(Color.Black)
-                                        g.DrawString(ledIndex, Font, sb2, renderRect, sf)
-                                    End Using
-                                End If
+                                Using sb2 As New SolidBrush(Color.Green)
+                                    g.FillRectangle(sb2, r)
+                                End Using
+                                Using sb2 As New SolidBrush(Color.Black)
+                                    g.DrawString(ledIndex, Font, sb2, renderRect, sf)
+                                End Using
                             End If
                         End If
-
-                        'If led = SelectedItem Then
-                        '    dragRect = r
-                        '    Using sb2 As New SolidBrush(Color.LightBlue)
-                        '        g.FillRectangle(sb2, r)
-                        '    End Using
-                        '    Using sb2 As New SolidBrush(Color.Blue)
-                        '        g.DrawString(ledIndex, Font, sb2, renderRect, sf)
-                        '    End Using
-                        'Else
-                        '    If renderRect.Contains(PointToClient(Control.MousePosition)) Then
-                        '        Using sb2 As New SolidBrush(Color.LightGreen)
-                        '            g.FillRectangle(sb2, r)
-                        '        End Using
-                        '        Using sb2 As New SolidBrush(Color.Green)
-                        '            g.DrawString(ledIndex, Font, sb2, renderRect, sf)
-                        '        End Using
-                        '    Else
-                        '        Using sb2 As New SolidBrush(Color.Green)
-                        '            g.FillRectangle(sb2, r)
-                        '        End Using
-                        '        Using sb2 As New SolidBrush(Color.Black)
-                        '            g.DrawString(ledIndex, Font, sb2, renderRect, sf)
-                        '        End Using
-                        '    End If
-                        'End If
                     Else
                         g.FillRectangle(sb, r)
                         'Using sb2 As New SolidBrush(Color.White)
@@ -251,6 +220,7 @@ Public Class ucComponent
         Next
 
         If IsDragging Then
+            'If led = SelectedItem Then
             Dim cursor = PointToClient(Control.MousePosition)
             Dim dr As New RectangleF(cursor.X - dragRect.Width / 2, cursor.Y - dragRect.Height / 2, dragRect.Width, dragRect.Height)
             Using sb As New SolidBrush(Color.FromArgb(125, Color.LightBlue))
@@ -262,6 +232,7 @@ Public Class ucComponent
             Using pen As New Pen(Color.White, 1.0F)
                 g.DrawRectangle(pen, dr)
             End Using
+            'End If
         End If
 
         If ItemOnHover() <> Nothing Then
@@ -289,12 +260,6 @@ Public Class ucComponent
                 End Using
             End Using
         End If
-
-        If IsDrawingRectangle Then
-            Using sb As New SolidBrush(Color.FromArgb(100, Color.LightBlue))
-                g.FillRectangle(sb, SelectRectangle)
-            End Using
-        End If
     End Sub
 
     Private Sub ucComponent_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
@@ -313,14 +278,6 @@ Public Class ucComponent
 
     Private Sub ucComponent_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
         Invalidate()
-        If IsDrawingRectangle Then
-            If e.Button = MouseButtons.Left Then
-                ControlPaint.DrawReversibleFrame(RectangleToScreen(SelectRectangle), Color.FromArgb(125, Color.LightBlue), FrameStyle.Dashed)
-                SelectRectangle.Width = e.X - SelectRectangle.X
-                SelectRectangle.Height = e.Y - SelectRectangle.Y
-                ControlPaint.DrawReversibleFrame(RectangleToScreen(SelectRectangle), Color.FromArgb(125, Color.LightBlue), FrameStyle.Dashed)
-            End If
-        End If
     End Sub
 
     Private Sub ucComponent_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
@@ -328,10 +285,7 @@ Public Class ucComponent
             Case MouseButtons.Right
                 ContextMenuStrip1.Show(MousePosition)
             Case MouseButtons.Left
-                If Not IsDragging Then
-                    SelectedItem = ItemOnHover()
-                    SelectedItems = {ItemOnHover()}
-                End If
+                If Not IsDragging Then SelectedItem = ItemOnHover()
         End Select
     End Sub
 
@@ -341,13 +295,6 @@ Public Class ucComponent
                 If ItemOnHover() <> Nothing Then
                     IsDragging = True
                     SelectedItem = ItemOnHover()
-                    SelectedItems = {ItemOnHover()}
-                Else
-                    SelectRectangle.Location = e.Location
-                    SelectRectangle.Size = New Size(0, 0)
-                    IsDrawingRectangle = True
-                    SelectedItem = Nothing
-                    SelectedItems = Nothing
                 End If
         End Select
     End Sub
@@ -360,19 +307,6 @@ Public Class ucComponent
                     Dim idx = LEDs.IndexOf(SelectedItem)
                     SelectedItem.LedCoordinates = _ledPos
                     LEDs(idx) = SelectedItem
-                End If
-                If IsDrawingRectangle Then
-                    If e.Y < SelectRectangle.Y Then
-                        SelectRectangle.Location = If(SelectRectangle.Location.X > e.X, New Point(e.X, e.Y), New Point(SelectRectangle.X, e.Y))
-                        SelectRectangle.Size = New Size(Math.Abs(SelectRectangle.Width), Math.Abs(SelectRectangle.Height))
-                    Else
-                        If SelectRectangle.Location.X > SelectRectangle.Right Then
-                            SelectRectangle.Location = New Point(e.X, SelectRectangle.Y)
-                            SelectRectangle.Size = New Size(Math.Abs(SelectRectangle.Width), Math.Abs(SelectRectangle.Height))
-                        End If
-                    End If
-
-                    IsDrawingRectangle = False
                 End If
         End Select
     End Sub
