@@ -42,19 +42,19 @@ Partial Class ucComponent
         ' 
         ContextMenuStrip1.Items.AddRange(New ToolStripItem() {tsmiAddLed, tsmiAddLeds, ToolStripSeparator1, tsmiRemoveLed, RemoveLastLEDsToolStripMenuItem})
         ContextMenuStrip1.Name = "ContextMenuStrip1"
-        ContextMenuStrip1.Size = New Size(181, 120)
+        ContextMenuStrip1.Size = New Size(167, 98)
         ' 
         ' tsmiAddLed
         ' 
         tsmiAddLed.Name = "tsmiAddLed"
-        tsmiAddLed.Size = New Size(180, 22)
+        tsmiAddLed.Size = New Size(166, 22)
         tsmiAddLed.Text = "Add LED"
         ' 
         ' tsmiAddLeds
         ' 
         tsmiAddLeds.DropDownItems.AddRange(New ToolStripItem() {tstxtAddLedQty, ToolStripSeparator2, tsmiAddLedsConfirm})
         tsmiAddLeds.Name = "tsmiAddLeds"
-        tsmiAddLeds.Size = New Size(180, 22)
+        tsmiAddLeds.Size = New Size(166, 22)
         tsmiAddLeds.Text = "Add LEDs"
         ' 
         ' tstxtAddLedQty
@@ -77,19 +77,19 @@ Partial Class ucComponent
         ' ToolStripSeparator1
         ' 
         ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(177, 6)
+        ToolStripSeparator1.Size = New Size(163, 6)
         ' 
         ' tsmiRemoveLed
         ' 
         tsmiRemoveLed.Name = "tsmiRemoveLed"
-        tsmiRemoveLed.Size = New Size(180, 22)
+        tsmiRemoveLed.Size = New Size(166, 22)
         tsmiRemoveLed.Text = "Remove last LED"
         ' 
         ' RemoveLastLEDsToolStripMenuItem
         ' 
         RemoveLastLEDsToolStripMenuItem.DropDownItems.AddRange(New ToolStripItem() {tstxtRemoveLedQty, ToolStripSeparator3, tsmiRemoveLedConfirm})
         RemoveLastLEDsToolStripMenuItem.Name = "RemoveLastLEDsToolStripMenuItem"
-        RemoveLastLEDsToolStripMenuItem.Size = New Size(180, 22)
+        RemoveLastLEDsToolStripMenuItem.Size = New Size(166, 22)
         RemoveLastLEDsToolStripMenuItem.Text = "Remove last LEDs"
         ' 
         ' tstxtRemoveLedQty
@@ -101,18 +101,19 @@ Partial Class ucComponent
         ' ToolStripSeparator3
         ' 
         ToolStripSeparator3.Name = "ToolStripSeparator3"
-        ToolStripSeparator3.Size = New Size(177, 6)
+        ToolStripSeparator3.Size = New Size(157, 6)
         ' 
         ' tsmiRemoveLedConfirm
         ' 
         tsmiRemoveLedConfirm.Name = "tsmiRemoveLedConfirm"
-        tsmiRemoveLedConfirm.Size = New Size(180, 22)
+        tsmiRemoveLedConfirm.Size = New Size(160, 22)
         tsmiRemoveLedConfirm.Text = "Confirm"
         ' 
         ' ucComponent
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
+        Margin = New Padding(100)
         Name = "ucComponent"
         ContextMenuStrip1.ResumeLayout(False)
         ResumeLayout(False)

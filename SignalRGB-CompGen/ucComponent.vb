@@ -1,4 +1,5 @@
 ﻿Imports System.Drawing.Drawing2D
+Imports System.Drawing.Printing
 Imports System.Security.Cryptography.Pkcs
 Imports Windows.Win32.System
 
@@ -136,13 +137,12 @@ Public Class ucComponent
         g.Clear(BackColor)
         Dim sf As StringFormat = New StringFormat() With {.Alignment = StringAlignment.Center, .LineAlignment = StringAlignment.Center, .FormatFlags = StringFormatFlags.FitBlackBox}
 
-        Dim rectSize As New SizeF(Width / _Width, Height / _Height)
+        Dim rectSize As New SizeF((Width - (Margin.Left + Margin.Right)) / _Width, (Height - (Margin.Top + Margin.Bottom)) / _Height)
         If rectSize.Width > rectSize.Height Then rectSize.Width = rectSize.Height Else rectSize.Height = rectSize.Width
 
         Dim matrix(_Width - 1, _Height - 1) As Integer
         Dim count As Integer = 0
-        'Dim led As Led = Nothing
-        'Dim ledIndex As Integer = -1
+
         Dim dragRect As RectangleF = Nothing
         For row As Integer = 0 To matrix.GetUpperBound(0)
             For col As Integer = 0 To matrix.GetUpperBound(1)
@@ -151,17 +151,17 @@ Public Class ucComponent
                     numRows = matrix.GetUpperBound(1) + 1
                     numCols = matrix.GetUpperBound(0) + 1
 
-                    Dim x As Single = rectSize.Width * row
-                    Dim y As Single = rectSize.Height * col
+                    Dim x As Single = (rectSize.Width * row) + Margin.Left
+                    Dim y As Single = (rectSize.Height * col) + Margin.Top
                     Dim w As Single = rectSize.Width
                     Dim h As Single = rectSize.Height
                     Dim p As Single = 3.0F
                     Dim r As New RectangleF(x + p, y + p, w - p, h - p)
                     Dim index As Integer = col * numCols + row
 
-                    Dim approximatelySize As New Size((numCols * rectSize.Width) + (p * 3), (numRows * rectSize.Height) + (p * 3))
-                    If Width > approximatelySize.Width Then Width = approximatelySize.Width
-                    If Height > approximatelySize.Height Then Height = approximatelySize.Height
+                    Dim approximatelySize As New Size((numCols * rectSize.Width) + (p * 3) + Margin.Left + Margin.Right, (numRows * rectSize.Height) + (p * 3) + Margin.Top + Margin.Bottom)
+                    If Width > approximatelySize.Width Then Width = approximatelySize.Width + (Margin.Right)
+                    If Height > approximatelySize.Height Then Height = approximatelySize.Height + (Margin.Bottom)
 
                     Dim renderRect As New RectangleF(x, y, rectSize.Width, rectSize.Height)
                     If renderRect.Contains(PointToClient(Control.MousePosition)) Then
