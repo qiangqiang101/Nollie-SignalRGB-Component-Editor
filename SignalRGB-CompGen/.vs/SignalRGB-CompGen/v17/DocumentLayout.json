@@ -1,49 +1,57 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\",
+  "WorkspaceRootPath": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\signalrgb-compgen.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\frmgenerator.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:frmgenerator.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\my project\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}",
+      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:my project\\resources.resx||{FF4D6ACA-9352-4A5F-821E-F4D6EBDCAB11}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\signalrgb-compgen.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:signalrgb-compgen.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|e:\\users\\admin\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\helper.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:frmmain.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\helper.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:helper.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\component.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\component.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:component.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\mousehandler.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\mousehandler.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:mousehandler.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\uccomponent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\uccomponent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:uccomponent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\uccomponent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\uccomponent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:uccomponent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\led.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\wepro\\documents\\github\\signalrgb-compgen\\signalrgb-compgen\\led.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:led.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     }
   ],
@@ -54,15 +62,39 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "Resources.resx",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\My Project\\Resources.resx",
+              "RelativeDocumentMoniker": "My Project\\Resources.resx",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\My Project\\Resources.resx",
+              "RelativeToolTip": "My Project\\Resources.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2024-06-07T03:16:42.843Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmGenerator.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmGenerator.vb",
+              "RelativeDocumentMoniker": "frmGenerator.vb",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmGenerator.vb [Design]",
+              "RelativeToolTip": "frmGenerator.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-06-07T02:53:32.341Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "frmMain.vb",
-              "DocumentMoniker": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMain.vb",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMain.vb",
               "RelativeDocumentMoniker": "frmMain.vb",
-              "ToolTip": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMain.vb",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMain.vb",
               "RelativeToolTip": "frmMain.vb",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAAjAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
@@ -71,11 +103,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "ucComponent.vb",
-              "DocumentMoniker": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\ucComponent.vb",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\ucComponent.vb",
               "RelativeDocumentMoniker": "ucComponent.vb",
-              "ToolTip": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\ucComponent.vb",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\ucComponent.vb",
               "RelativeToolTip": "ucComponent.vb",
               "ViewState": "AQIAABsBAAAAAAAAAAAAABQAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
@@ -83,11 +115,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Component.vb",
-              "DocumentMoniker": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\Component.vb",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\Component.vb",
               "RelativeDocumentMoniker": "Component.vb",
-              "ToolTip": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\Component.vb",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\Component.vb",
               "RelativeToolTip": "Component.vb",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABAAAAAfAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
@@ -95,22 +127,22 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "frmMulti.vb [Design]",
-              "DocumentMoniker": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMulti.vb",
+              "DocumentIndex": 11,
+              "Title": "frmMulti.vb",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMulti.vb",
               "RelativeDocumentMoniker": "frmMulti.vb",
-              "ToolTip": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMulti.vb [Design]",
-              "RelativeToolTip": "frmMulti.vb [Design]",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMulti.vb",
+              "RelativeToolTip": "frmMulti.vb",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-06-05T12:39:33.153Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "frmMulti.vb",
-              "DocumentMoniker": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMulti.vb",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMulti.vb",
               "RelativeDocumentMoniker": "frmMulti.vb",
-              "ToolTip": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMulti.vb",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMulti.vb",
               "RelativeToolTip": "frmMulti.vb",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAACIAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
@@ -118,24 +150,23 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 5,
               "Title": "Helper.vb",
-              "DocumentMoniker": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\Helper.vb",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\Helper.vb",
               "RelativeDocumentMoniker": "Helper.vb",
-              "ToolTip": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\Helper.vb",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\Helper.vb",
               "RelativeToolTip": "Helper.vb",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAABuAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-06-01T15:07:49.238Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-06-01T15:07:49.238Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "frmMain.vb [Design]",
-              "DocumentMoniker": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMain.vb",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMain.vb",
               "RelativeDocumentMoniker": "frmMain.vb",
-              "ToolTip": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMain.vb [Design]",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\frmMain.vb [Design]",
               "RelativeToolTip": "frmMain.vb [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-06-05T12:30:50.687Z",
@@ -143,11 +174,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 7,
               "Title": "MouseHandler.vb",
-              "DocumentMoniker": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\MouseHandler.vb",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\MouseHandler.vb",
               "RelativeDocumentMoniker": "MouseHandler.vb",
-              "ToolTip": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\MouseHandler.vb",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\MouseHandler.vb",
               "RelativeToolTip": "MouseHandler.vb",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAAA8AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
@@ -155,11 +186,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "Led.vb",
-              "DocumentMoniker": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\Led.vb",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\Led.vb",
               "RelativeDocumentMoniker": "Led.vb",
-              "ToolTip": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\Led.vb",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\Led.vb",
               "RelativeToolTip": "Led.vb",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
@@ -167,11 +198,11 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "SignalRGB-CompGen",
-              "DocumentMoniker": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\SignalRGB-CompGen.vbproj",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\SignalRGB-CompGen.vbproj",
               "RelativeDocumentMoniker": "SignalRGB-CompGen.vbproj",
-              "ToolTip": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\SignalRGB-CompGen.vbproj",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\SignalRGB-CompGen.vbproj",
               "RelativeToolTip": "SignalRGB-CompGen.vbproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003380|",
               "WhenOpened": "2024-06-04T16:46:58.584Z",
@@ -179,12 +210,12 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "ucComponent.vb [Design]",
-              "DocumentMoniker": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\ucComponent.vb",
+              "DocumentIndex": 9,
+              "Title": "ucComponent.vb",
+              "DocumentMoniker": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\ucComponent.vb",
               "RelativeDocumentMoniker": "ucComponent.vb",
-              "ToolTip": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\ucComponent.vb [Design]",
-              "RelativeToolTip": "ucComponent.vb [Design]",
+              "ToolTip": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\ucComponent.vb",
+              "RelativeToolTip": "ucComponent.vb",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2024-06-02T12:09:00.82Z"
             }

@@ -4,6 +4,9 @@
     <_LastSelectedProfileId>E:\Users\Admin\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\My Project\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Update="frmGenerator.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmMulti.vb">
       <SubType>Form</SubType>
     </Compile>
