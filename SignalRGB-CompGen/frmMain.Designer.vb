@@ -25,21 +25,23 @@ Partial Class frmMain
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         RightPanel = New Panel()
+        StatusStrip1 = New StatusStrip()
+        tsslPosition = New ToolStripStatusLabel()
         btnChangeImage = New Button()
         txtLedCount = New TextBox()
-        Label8 = New Label()
+        lblLedCount = New Label()
         Label7 = New Label()
         pbImage = New PictureBox()
-        Label6 = New Label()
+        lblType = New Label()
         cmbType = New ComboBox()
-        Label5 = New Label()
+        lblProduct = New Label()
         txtProduct = New TextBox()
-        Label4 = New Label()
+        lblVendor = New Label()
         txtBrand = New TextBox()
-        Label3 = New Label()
+        lblName = New Label()
         txtName = New TextBox()
-        Label2 = New Label()
-        Label1 = New Label()
+        lblHeight = New Label()
+        lblWidth = New Label()
         numHeight = New NumericUpDown()
         numWidth = New NumericUpDown()
         MenuStrip1 = New MenuStrip()
@@ -49,7 +51,8 @@ Partial Class frmMain
         tsmiSave = New ToolStripMenuItem()
         tsmiSaveAs = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
-        ExitToolStripMenuItem = New ToolStripMenuItem()
+        tsmiExit = New ToolStripMenuItem()
+        tsmiSettings = New ToolStripMenuItem()
         tsmiHelp = New ToolStripMenuItem()
         tsmiControls = New ToolStripMenuItem()
         ToolStripSeparator2 = New ToolStripSeparator()
@@ -59,9 +62,8 @@ Partial Class frmMain
         tsmiBuy = New ToolStripMenuItem()
         SplitContainer1 = New SplitContainer()
         Timer1 = New Timer(components)
-        StatusStrip1 = New StatusStrip()
-        tsslPosition = New ToolStripStatusLabel()
         RightPanel.SuspendLayout()
+        StatusStrip1.SuspendLayout()
         CType(pbImage, ComponentModel.ISupportInitialize).BeginInit()
         CType(numHeight, ComponentModel.ISupportInitialize).BeginInit()
         CType(numWidth, ComponentModel.ISupportInitialize).BeginInit()
@@ -69,7 +71,6 @@ Partial Class frmMain
         CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
         SplitContainer1.Panel2.SuspendLayout()
         SplitContainer1.SuspendLayout()
-        StatusStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' RightPanel
@@ -78,19 +79,19 @@ Partial Class frmMain
         RightPanel.Controls.Add(StatusStrip1)
         RightPanel.Controls.Add(btnChangeImage)
         RightPanel.Controls.Add(txtLedCount)
-        RightPanel.Controls.Add(Label8)
+        RightPanel.Controls.Add(lblLedCount)
         RightPanel.Controls.Add(Label7)
         RightPanel.Controls.Add(pbImage)
-        RightPanel.Controls.Add(Label6)
+        RightPanel.Controls.Add(lblType)
         RightPanel.Controls.Add(cmbType)
-        RightPanel.Controls.Add(Label5)
+        RightPanel.Controls.Add(lblProduct)
         RightPanel.Controls.Add(txtProduct)
-        RightPanel.Controls.Add(Label4)
+        RightPanel.Controls.Add(lblVendor)
         RightPanel.Controls.Add(txtBrand)
-        RightPanel.Controls.Add(Label3)
+        RightPanel.Controls.Add(lblName)
         RightPanel.Controls.Add(txtName)
-        RightPanel.Controls.Add(Label2)
-        RightPanel.Controls.Add(Label1)
+        RightPanel.Controls.Add(lblHeight)
+        RightPanel.Controls.Add(lblWidth)
         RightPanel.Controls.Add(numHeight)
         RightPanel.Controls.Add(numWidth)
         RightPanel.Controls.Add(MenuStrip1)
@@ -99,6 +100,21 @@ Partial Class frmMain
         RightPanel.Name = "RightPanel"
         RightPanel.Size = New Size(275, 729)
         RightPanel.TabIndex = 0
+        ' 
+        ' StatusStrip1
+        ' 
+        StatusStrip1.Items.AddRange(New ToolStripItem() {tsslPosition})
+        StatusStrip1.Location = New Point(0, 705)
+        StatusStrip1.Name = "StatusStrip1"
+        StatusStrip1.Size = New Size(273, 22)
+        StatusStrip1.TabIndex = 18
+        StatusStrip1.Text = "StatusStrip1"
+        ' 
+        ' tsslPosition
+        ' 
+        tsslPosition.Name = "tsslPosition"
+        tsslPosition.Size = New Size(74, 17)
+        tsslPosition.Text = "Position: 0, 0"
         ' 
         ' btnChangeImage
         ' 
@@ -119,14 +135,14 @@ Partial Class frmMain
         txtLedCount.Size = New Size(187, 23)
         txtLedCount.TabIndex = 7
         ' 
-        ' Label8
+        ' lblLedCount
         ' 
-        Label8.AutoSize = True
-        Label8.Location = New Point(3, 203)
-        Label8.Name = "Label8"
-        Label8.Size = New Size(63, 15)
-        Label8.TabIndex = 17
-        Label8.Text = "LED Count"
+        lblLedCount.AutoSize = True
+        lblLedCount.Location = New Point(3, 203)
+        lblLedCount.Name = "lblLedCount"
+        lblLedCount.Size = New Size(63, 15)
+        lblLedCount.TabIndex = 17
+        lblLedCount.Text = "LED Count"
         ' 
         ' Label7
         ' 
@@ -149,14 +165,14 @@ Partial Class frmMain
         pbImage.TabIndex = 13
         pbImage.TabStop = False
         ' 
-        ' Label6
+        ' lblType
         ' 
-        Label6.AutoSize = True
-        Label6.Location = New Point(3, 117)
-        Label6.Name = "Label6"
-        Label6.Size = New Size(31, 15)
-        Label6.TabIndex = 12
-        Label6.Text = "Type"
+        lblType.AutoSize = True
+        lblType.Location = New Point(3, 117)
+        lblType.Name = "lblType"
+        lblType.Size = New Size(31, 15)
+        lblType.TabIndex = 12
+        lblType.Text = "Type"
         ' 
         ' cmbType
         ' 
@@ -168,14 +184,14 @@ Partial Class frmMain
         cmbType.Size = New Size(187, 23)
         cmbType.TabIndex = 4
         ' 
-        ' Label5
+        ' lblProduct
         ' 
-        Label5.AutoSize = True
-        Label5.Location = New Point(3, 88)
-        Label5.Name = "Label5"
-        Label5.Size = New Size(49, 15)
-        Label5.TabIndex = 10
-        Label5.Text = "Product"
+        lblProduct.AutoSize = True
+        lblProduct.Location = New Point(3, 88)
+        lblProduct.Name = "lblProduct"
+        lblProduct.Size = New Size(49, 15)
+        lblProduct.TabIndex = 10
+        lblProduct.Text = "Product"
         ' 
         ' txtProduct
         ' 
@@ -185,14 +201,14 @@ Partial Class frmMain
         txtProduct.Size = New Size(187, 23)
         txtProduct.TabIndex = 3
         ' 
-        ' Label4
+        ' lblVendor
         ' 
-        Label4.AutoSize = True
-        Label4.Location = New Point(3, 59)
-        Label4.Name = "Label4"
-        Label4.Size = New Size(44, 15)
-        Label4.TabIndex = 8
-        Label4.Text = "Vendor"
+        lblVendor.AutoSize = True
+        lblVendor.Location = New Point(3, 59)
+        lblVendor.Name = "lblVendor"
+        lblVendor.Size = New Size(44, 15)
+        lblVendor.TabIndex = 8
+        lblVendor.Text = "Vendor"
         ' 
         ' txtBrand
         ' 
@@ -202,14 +218,14 @@ Partial Class frmMain
         txtBrand.Size = New Size(187, 23)
         txtBrand.TabIndex = 2
         ' 
-        ' Label3
+        ' lblName
         ' 
-        Label3.AutoSize = True
-        Label3.Location = New Point(3, 30)
-        Label3.Name = "Label3"
-        Label3.Size = New Size(39, 15)
-        Label3.TabIndex = 6
-        Label3.Text = "Name"
+        lblName.AutoSize = True
+        lblName.Location = New Point(3, 30)
+        lblName.Name = "lblName"
+        lblName.Size = New Size(39, 15)
+        lblName.TabIndex = 6
+        lblName.Text = "Name"
         ' 
         ' txtName
         ' 
@@ -219,23 +235,23 @@ Partial Class frmMain
         txtName.Size = New Size(187, 23)
         txtName.TabIndex = 1
         ' 
-        ' Label2
+        ' lblHeight
         ' 
-        Label2.AutoSize = True
-        Label2.Location = New Point(3, 174)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(43, 15)
-        Label2.TabIndex = 4
-        Label2.Text = "Height"
+        lblHeight.AutoSize = True
+        lblHeight.Location = New Point(3, 174)
+        lblHeight.Name = "lblHeight"
+        lblHeight.Size = New Size(43, 15)
+        lblHeight.TabIndex = 4
+        lblHeight.Text = "Height"
         ' 
-        ' Label1
+        ' lblWidth
         ' 
-        Label1.AutoSize = True
-        Label1.Location = New Point(3, 145)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(39, 15)
-        Label1.TabIndex = 3
-        Label1.Text = "Width"
+        lblWidth.AutoSize = True
+        lblWidth.Location = New Point(3, 145)
+        lblWidth.Name = "lblWidth"
+        lblWidth.Size = New Size(39, 15)
+        lblWidth.TabIndex = 3
+        lblWidth.Text = "Width"
         ' 
         ' numHeight
         ' 
@@ -261,7 +277,7 @@ Partial Class frmMain
         ' 
         ' MenuStrip1
         ' 
-        MenuStrip1.Items.AddRange(New ToolStripItem() {tsmiFile, tsmiHelp})
+        MenuStrip1.Items.AddRange(New ToolStripItem() {tsmiFile, tsmiSettings, tsmiHelp})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Size = New Size(273, 24)
@@ -270,7 +286,7 @@ Partial Class frmMain
         ' 
         ' tsmiFile
         ' 
-        tsmiFile.DropDownItems.AddRange(New ToolStripItem() {tsmiNew, tsmiOpen, tsmiSave, tsmiSaveAs, ToolStripSeparator1, ExitToolStripMenuItem})
+        tsmiFile.DropDownItems.AddRange(New ToolStripItem() {tsmiNew, tsmiOpen, tsmiSave, tsmiSaveAs, ToolStripSeparator1, tsmiExit})
         tsmiFile.Name = "tsmiFile"
         tsmiFile.Size = New Size(37, 20)
         tsmiFile.Text = "File"
@@ -308,12 +324,18 @@ Partial Class frmMain
         ToolStripSeparator1.Name = "ToolStripSeparator1"
         ToolStripSeparator1.Size = New Size(183, 6)
         ' 
-        ' ExitToolStripMenuItem
+        ' tsmiExit
         ' 
-        ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
-        ExitToolStripMenuItem.ShortcutKeys = Keys.Alt Or Keys.F4
-        ExitToolStripMenuItem.Size = New Size(186, 22)
-        ExitToolStripMenuItem.Text = "Exit"
+        tsmiExit.Name = "tsmiExit"
+        tsmiExit.ShortcutKeys = Keys.Alt Or Keys.F4
+        tsmiExit.Size = New Size(186, 22)
+        tsmiExit.Text = "Exit"
+        ' 
+        ' tsmiSettings
+        ' 
+        tsmiSettings.Name = "tsmiSettings"
+        tsmiSettings.Size = New Size(61, 20)
+        tsmiSettings.Text = "Settings"
         ' 
         ' tsmiHelp
         ' 
@@ -379,21 +401,6 @@ Partial Class frmMain
         ' 
         Timer1.Enabled = True
         ' 
-        ' StatusStrip1
-        ' 
-        StatusStrip1.Items.AddRange(New ToolStripItem() {tsslPosition})
-        StatusStrip1.Location = New Point(0, 705)
-        StatusStrip1.Name = "StatusStrip1"
-        StatusStrip1.Size = New Size(273, 22)
-        StatusStrip1.TabIndex = 18
-        StatusStrip1.Text = "StatusStrip1"
-        ' 
-        ' tsslPosition
-        ' 
-        tsslPosition.Name = "tsslPosition"
-        tsslPosition.Size = New Size(74, 17)
-        tsslPosition.Text = "Position: 0, 0"
-        ' 
         ' frmMain
         ' 
         AllowDrop = True
@@ -408,6 +415,8 @@ Partial Class frmMain
         Text = "Untitled - Nollie x SignalRGB Custom Component Editor"
         RightPanel.ResumeLayout(False)
         RightPanel.PerformLayout()
+        StatusStrip1.ResumeLayout(False)
+        StatusStrip1.PerformLayout()
         CType(pbImage, ComponentModel.ISupportInitialize).EndInit()
         CType(numHeight, ComponentModel.ISupportInitialize).EndInit()
         CType(numWidth, ComponentModel.ISupportInitialize).EndInit()
@@ -416,8 +425,6 @@ Partial Class frmMain
         SplitContainer1.Panel2.ResumeLayout(False)
         CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
         SplitContainer1.ResumeLayout(False)
-        StatusStrip1.ResumeLayout(False)
-        StatusStrip1.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -425,16 +432,16 @@ Partial Class frmMain
     Friend WithEvents numWidth As NumericUpDown
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents tsmiFile As ToolStripMenuItem
-    Friend WithEvents Label3 As Label
+    Friend WithEvents lblName As Label
     Friend WithEvents txtName As TextBox
-    Friend WithEvents Label2 As Label
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblHeight As Label
+    Friend WithEvents lblWidth As Label
     Friend WithEvents numHeight As NumericUpDown
-    Friend WithEvents Label6 As Label
+    Friend WithEvents lblType As Label
     Friend WithEvents cmbType As ComboBox
-    Friend WithEvents Label5 As Label
+    Friend WithEvents lblProduct As Label
     Friend WithEvents txtProduct As TextBox
-    Friend WithEvents Label4 As Label
+    Friend WithEvents lblVendor As Label
     Friend WithEvents txtBrand As TextBox
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents Label7 As Label
@@ -444,10 +451,10 @@ Partial Class frmMain
     Friend WithEvents tsmiOpen As ToolStripMenuItem
     Friend WithEvents tsmiSave As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents tsmiExit As ToolStripMenuItem
     Friend WithEvents tsmiHelp As ToolStripMenuItem
     Friend WithEvents tsmiSaveAs As ToolStripMenuItem
-    Friend WithEvents Label8 As Label
+    Friend WithEvents lblLedCount As Label
     Friend WithEvents txtLedCount As TextBox
     Friend WithEvents btnChangeImage As Button
     Friend WithEvents tsmiControls As ToolStripMenuItem
@@ -458,5 +465,6 @@ Partial Class frmMain
     Friend WithEvents tsmiBuy As ToolStripMenuItem
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents tsslPosition As ToolStripStatusLabel
+    Friend WithEvents tsmiSettings As ToolStripMenuItem
 
 End Class

@@ -32,6 +32,8 @@
     End Sub
 
     Private Sub frmMulti_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Translate()
+
         With cmbDirection
             .DataSource = DirectionDropdownList
             .DisplayMember = "Text"
@@ -41,11 +43,19 @@
 
         numAmount.Maximum = MaximumLED
         If Mode = eMode.Add Then
-            Text = "Add LEDs"
+            Text = Translation.Localization.AddLEDs
         Else
-            Text = "Remove LEDs"
-            Label2.Visible = False
+            Text = Translation.Localization.RemoveLastLEDs
+            lblDirection.Visible = False
             cmbDirection.Visible = False
         End If
+    End Sub
+
+    Private Sub Translate()
+        Dim loc = Translation.Localization
+
+        lblNumOfLeds.Text = loc.NumberOfLEDs
+        lblDirection.Text = loc.Direction
+        btnOK.Text = loc.Confirm
     End Sub
 End Class

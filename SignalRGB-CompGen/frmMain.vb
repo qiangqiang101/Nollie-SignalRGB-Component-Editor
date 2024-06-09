@@ -15,7 +15,9 @@ Public Class frmMain
     Dim mouseHandler As MouseHandler = Nothing
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
-        tsslPosition.Text = $"Position: {ucCompoment.MousePos.X}, {ucCompoment.MousePos.Y}"
+        If ucCompoment IsNot Nothing Then
+            tsslPosition.Text = String.Format(Translation.Localization.Position, ucCompoment.MousePos.X, ucCompoment.MousePos.Y)
+        End If
     End Sub
 
     Private Sub tsmiOpen_Click(sender As Object, e As EventArgs) Handles tsmiOpen.Click
@@ -24,7 +26,7 @@ Public Class frmMain
             .DefaultExt = "json"
             .InitialDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\WhirlwindFX\Components"
             .Filter = "Json file|*.JSON|All files|*.*"
-            .Title = "Select component file..."
+            .Title = Translation.Localization.SelectComponentFile
             .Multiselect = False
         End With
         If ofd.ShowDialog <> DialogResult.Cancel Then
@@ -60,7 +62,7 @@ Public Class frmMain
             cmbType.SelectedValue = Component.Type.ToLower
             pbImage.Image = Component.ToImage
 
-            Text = $"{FileName} - Nollie x SignalRGB Custom Component Editor"
+            Text = String.Format(Translation.Localization.Title, FileName)
         End If
     End Sub
 
@@ -109,18 +111,21 @@ Public Class frmMain
             .DefaultExt = "json"
             .InitialDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\WhirlwindFX\Components"
             .Filter = "Json file|*.JSON|All files|*.*"
-            .Title = "Save component file as..."
+            .Title = Translation.Localization.SaveComponentFileAs
         End With
         If sfd.ShowDialog <> DialogResult.Cancel Then
             Save(sfd.FileName)
             FileName = sfd.FileName
-            Text = $"{FileName} - Nollie x SignalRGB Custom Component Editor"
+            Text = String.Format(Translation.Localization.Title, FileName)
         End If
     End Sub
 
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
-        'AllocConsole()
         DoubleBuffered = True
+
+        If File.Exists(SettingFile) Then Setting = New MySettings().Load(SettingFile)
+        Translate()
+        If Setting.Debug Then AllocConsole()
 
         With cmbType
             .DataSource = TypeDropdownList
@@ -135,6 +140,51 @@ Public Class frmMain
         ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
         ucCompoment.BringToFront()
         mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
+    End Sub
+
+    Private Sub Translate()
+        If File.Exists($"{Setting.Language}.json") Then
+            Translation = New MyLanguage().Load($"{Setting.Language}.json")
+            Dim loc = Translation.Localization
+
+            DirectionDropdownList.Clear()
+            DirectionDropdownList.AddRange({
+                                           New DropdownListItem(Of eDirection)(loc.Top, eDirection.Top), New DropdownListItem(Of eDirection)(loc.Right, eDirection.Right),
+                                           New DropdownListItem(Of eDirection)(loc.Bottom, eDirection.Bottom), New DropdownListItem(Of eDirection)(loc.Left, eDirection.Left)
+                                           })
+            TypeDropdownList.Clear()
+            TypeDropdownList.AddRange({
+                                      New DropdownListItem(Of String)(loc.AIO, "aio"), New DropdownListItem(Of String)(loc.Cable, "cable"), New DropdownListItem(Of String)(loc.Case, "case"),
+                                      New DropdownListItem(Of String)(loc.Chair, "chair"), New DropdownListItem(Of String)(loc.Fan, "fan"), New DropdownListItem(Of String)(loc.Custom, "custom"),
+                                      New DropdownListItem(Of String)(loc.Strip, "strip"), New DropdownListItem(Of String)(loc.WaterBlock, "water block"), New DropdownListItem(Of String)(loc.Tower, "tower"),
+                                      New DropdownListItem(Of String)(loc.Heatsink, "heatsink"), New DropdownListItem(Of String)(loc.Desk, "desk")})
+
+            Text = String.Format(loc.Title, loc.Untitled)
+
+            tsmiFile.Text = loc.File
+            tsmiNew.Text = loc.[New]
+            tsmiOpen.Text = loc.Open
+            tsmiSave.Text = loc.Save
+            tsmiSaveAs.Text = loc.SaveAs
+            tsmiExit.Text = loc.Exit
+            tsmiSettings.Text = loc.Settings
+            tsmiHelp.Text = loc.Help
+            tsmiControls.Text = loc.Controls
+            tsmiSRGB.Text = loc.VisitSignalRGB
+            tsmiNollie.Text = loc.VisitNollie
+            tsmiMentaL.Text = loc.VisitMentaL
+            tsmiBuy.Text = loc.BuyNollie
+
+            lblName.Text = loc.Name
+            lblVendor.Text = loc.Vendor
+            lblProduct.Text = loc.Product
+            lblType.Text = loc.Type
+            lblWidth.Text = loc.Width
+            lblHeight.Text = loc.Height
+            lblLedCount.Text = loc.LEDCount
+            btnChangeImage.Text = loc.SelectImage
+            tsslPosition.Text = String.Format(loc.Position, 0, 0)
+        End If
     End Sub
 
     Private Sub numWidth_ValueChanged(sender As Object, e As EventArgs) Handles numWidth.ValueChanged
@@ -157,7 +207,7 @@ Public Class frmMain
     Public Shared Function AllocConsole() As Boolean
     End Function
 
-    Private Sub ExitToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ExitToolStripMenuItem.Click
+    Private Sub tsmiExit_Click(sender As Object, e As EventArgs) Handles tsmiExit.Click
         Close()
     End Sub
 
@@ -173,7 +223,7 @@ Public Class frmMain
             Next c
             .Filter = String.Format("{0}{1}{2} ({3})|{3}", ofd.Filter, sep, "All Files", "*.*")
             .InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
-            .Title = "Select image file..."
+            .Title = Translation.Localization.SelectImageFile
             .Multiselect = False
         End With
         If ofd.ShowDialog <> DialogResult.Cancel Then
@@ -187,7 +237,7 @@ Public Class frmMain
             ucCompoment.Dispose()
         End If
         FileName = Nothing
-        Text = "Untitled - Nollie x SignalRGB Custom Component Editor"
+        Text = String.Format(Translation.Localization.Title, Translation.Localization.Untitled)
 
         txtBrand.Clear()
         txtProduct.Clear()
@@ -207,9 +257,7 @@ Public Class frmMain
     End Sub
 
     Private Sub tsmiControls_Click(sender As Object, e As EventArgs) Handles tsmiControls.Click
-        Dim n = vbCrLf
-        Dim helpText = $"Mouse Controls: {n}Left Click: Select LED/Move LED{n}Left Double Click: Add LED{n}Middle Click: Move Map{n}Scroll: Zoom{n}Right Click: Show Menu{n}{n}Keyboard Controls: {n}Spacebar: Add LED on Mouse Position{n}Delete: Remove last LED"
-        MsgBox(helpText, MsgBoxStyle.Information, "Help")
+        MsgBox(String.Format(Translation.Localization.ControlMsg, vbCrLf), MsgBoxStyle.Information, Translation.Localization.Controls)
     End Sub
 
     Private Sub tsmiNollie_Click(sender As Object, e As EventArgs) Handles tsmiNollie.Click
@@ -266,7 +314,7 @@ Public Class frmMain
                 cmbType.SelectedValue = Component.Type.ToLower
                 pbImage.Image = Component.ToImage
 
-                Text = $"{FileName} - Nollie x SignalRGB Custom Component Editor"
+                Text = String.Format(Translation.Localization.Title, FileName)
             End If
         End If
 
@@ -274,5 +322,9 @@ Public Class frmMain
 
     Private Sub frmMain_DragEnter(sender As Object, e As DragEventArgs) Handles Me.DragEnter
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then e.Effect = DragDropEffects.Copy
+    End Sub
+
+    Private Sub tsmiSettings_Click(sender As Object, e As EventArgs) Handles tsmiSettings.Click
+        frmSettings.Show()
     End Sub
 End Class

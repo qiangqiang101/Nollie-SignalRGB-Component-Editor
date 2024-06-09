@@ -24,28 +24,31 @@ Partial Class frmMulti
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMulti))
         numAmount = New NumericUpDown()
-        Label1 = New Label()
+        lblNumOfLeds = New Label()
         btnOK = New Button()
         cmbDirection = New ComboBox()
-        Label2 = New Label()
+        lblDirection = New Label()
         CType(numAmount, ComponentModel.ISupportInitialize).BeginInit()
         SuspendLayout()
         ' 
         ' numAmount
         ' 
         numAmount.Location = New Point(128, 12)
+        numAmount.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        numAmount.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numAmount.Name = "numAmount"
         numAmount.Size = New Size(144, 23)
         numAmount.TabIndex = 0
+        numAmount.Value = New Decimal(New Integer() {1, 0, 0, 0})
         ' 
-        ' Label1
+        ' lblNumOfLeds
         ' 
-        Label1.AutoSize = True
-        Label1.Location = New Point(12, 14)
-        Label1.Name = "Label1"
-        Label1.Size = New Size(93, 15)
-        Label1.TabIndex = 1
-        Label1.Text = "Number of LEDs"
+        lblNumOfLeds.AutoSize = True
+        lblNumOfLeds.Location = New Point(12, 14)
+        lblNumOfLeds.Name = "lblNumOfLeds"
+        lblNumOfLeds.Size = New Size(93, 15)
+        lblNumOfLeds.TabIndex = 1
+        lblNumOfLeds.Text = "Number of LEDs"
         ' 
         ' btnOK
         ' 
@@ -65,14 +68,14 @@ Partial Class frmMulti
         cmbDirection.Size = New Size(144, 23)
         cmbDirection.TabIndex = 1
         ' 
-        ' Label2
+        ' lblDirection
         ' 
-        Label2.AutoSize = True
-        Label2.Location = New Point(12, 44)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(55, 15)
-        Label2.TabIndex = 4
-        Label2.Text = "Direction"
+        lblDirection.AutoSize = True
+        lblDirection.Location = New Point(12, 44)
+        lblDirection.Name = "lblDirection"
+        lblDirection.Size = New Size(55, 15)
+        lblDirection.TabIndex = 4
+        lblDirection.Text = "Direction"
         ' 
         ' frmMulti
         ' 
@@ -80,10 +83,10 @@ Partial Class frmMulti
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(284, 105)
-        Controls.Add(Label2)
+        Controls.Add(lblDirection)
         Controls.Add(cmbDirection)
         Controls.Add(btnOK)
-        Controls.Add(Label1)
+        Controls.Add(lblNumOfLeds)
         Controls.Add(numAmount)
         FormBorderStyle = FormBorderStyle.FixedToolWindow
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
@@ -98,8 +101,8 @@ Partial Class frmMulti
     End Sub
 
     Friend WithEvents numAmount As NumericUpDown
-    Friend WithEvents Label1 As Label
+    Friend WithEvents lblNumOfLeds As Label
     Friend WithEvents btnOK As Button
     Friend WithEvents cmbDirection As ComboBox
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lblDirection As Label
 End Class

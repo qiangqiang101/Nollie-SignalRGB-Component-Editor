@@ -125,15 +125,9 @@ Public Class ucComponent
         ' Add any initialization after the InitializeComponent() call.
 
         DoubleBuffered = True
-    End Sub
 
-    'Protected Overloads Overrides ReadOnly Property CreateParams() As CreateParams
-    '    Get
-    '        Dim MyCreateParams As CreateParams = MyBase.CreateParams
-    '        MyCreateParams.ExStyle = MyCreateParams.ExStyle Or &H80
-    '        Return MyCreateParams
-    '    End Get
-    'End Property
+        Translate()
+    End Sub
 
     Private Sub PrepareGraphics(g As Graphics)
         g.SmoothingMode = Drawing2D.SmoothingMode.HighSpeed
@@ -195,7 +189,7 @@ Public Class ucComponent
                                 g.FillRectangle(sb2, r)
                             End Using
                             Using sb2 As New SolidBrush(Color.Blue)
-                                g.DrawString(ledIndex, Font, sb2, renderRect, sf)
+                                g.DrawString(If(Setting.ShiftIndex, ledIndex + 1, ledIndex), Font, sb2, renderRect, sf)
                             End Using
                         Else
                             If renderRect.Contains(PointToClient(Control.MousePosition)) Then
@@ -203,25 +197,22 @@ Public Class ucComponent
                                     g.FillRectangle(sb2, r)
                                 End Using
                                 Using sb2 As New SolidBrush(Color.Green)
-                                    g.DrawString(ledIndex, Font, sb2, renderRect, sf)
+                                    g.DrawString(If(Setting.ShiftIndex, ledIndex + 1, ledIndex), Font, sb2, renderRect, sf)
                                 End Using
                             Else
                                 Using sb2 As New SolidBrush(Color.Green)
                                     g.FillRectangle(sb2, r)
                                 End Using
-                                Using sb2 As New SolidBrush(Color.Black)
-                                    g.DrawString(ledIndex, Font, sb2, renderRect, sf)
+                                Using sb2 As New SolidBrush(ForeColor)
+                                    g.DrawString(If(Setting.ShiftIndex, ledIndex + 1, ledIndex), Font, sb2, renderRect, sf)
                                 End Using
                             End If
                         End If
                     Else
                         g.FillRectangle(sb, r)
-                        'Using sb2 As New SolidBrush(Color.White)
-                        '    g.DrawString(index, Font, sb2, renderRect, sf)
-                        'End Using
                     End If
 
-                    Using pen As New Pen(Color.Black, 1.0F)
+                    Using pen As New Pen(ForeColor, 1.0F)
                         g.DrawRectangle(pen, r)
                     End Using
                 End Using
@@ -248,7 +239,7 @@ Public Class ucComponent
 
         If ItemOnHover() <> Nothing Then
             Dim itm = ItemOnHover()
-            Dim info = $"Index: {itm.MappingIndex}{vbCrLf}Name: {itm.LedName}{vbCrLf}Position: {itm.LedCoordinates.X}, {itm.LedCoordinates.Y}"
+            Dim info = String.Format(Translation.Localization.LEDInfo, vbCrLf, itm.MappingIndex, itm.LedName, itm.LedCoordinates.X, itm.LedCoordinates.Y)
             Dim infoSize = TextRenderer.MeasureText(g, info, Font)
             Dim cursor = PointToClient(Control.MousePosition)
             Using sb As New SolidBrush(Color.LightGoldenrodYellow)
@@ -365,4 +356,14 @@ Public Class ucComponent
         Dim fmt As New frmMulti(eMode.Remove, LEDs.Count, Me, CType(ContextMenuStrip1.Tag, Point))
         fmt.Show()
     End Sub
+
+    Private Sub Translate()
+        Dim loc = Translation.Localization
+
+        tsmiAddLed.Text = loc.AddLED
+        tsmiAddLeds.Text = loc.AddLEDs
+        tsmiRemoveLed.Text = loc.RemoveLastLED
+        tsmiRemoveLastLEDs.Text = loc.RemoveLastLEDs
+    End Sub
+
 End Class

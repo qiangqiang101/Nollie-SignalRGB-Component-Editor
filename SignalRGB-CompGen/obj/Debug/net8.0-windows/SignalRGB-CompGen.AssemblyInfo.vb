@@ -13,13 +13,14 @@ Option Explicit On
 
 Imports System
 Imports System.Reflection
-<Assembly: System.Reflection.AssemblyCompanyAttribute("SignalRGB-CompGen"),  _
+<Assembly: System.Reflection.AssemblyCompanyAttribute("Haikou Nuoli Trading Co., Ltd."),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
- Assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a392c0d0a9b3d896c7eca58b851bd58112faee71"),  _
- Assembly: System.Reflection.AssemblyProductAttribute("SignalRGB-CompGen"),  _
- Assembly: System.Reflection.AssemblyTitleAttribute("SignalRGB-CompGen"),  _
- Assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0"),  _
+ Assembly: System.Reflection.AssemblyFileVersionAttribute("1.2"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.2+b0e9231848ada57a7e51904ac0cba39e5d7697f9"),  _
+ Assembly: System.Reflection.AssemblyProductAttribute("compgen"),  _
+ Assembly: System.Reflection.AssemblyTitleAttribute("compgen"),  _
+ Assembly: System.Reflection.AssemblyVersionAttribute("1.2"),  _
+ Assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/qiangqiang101/SignalRGB-CompGen"),  _
  Assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0"),  _
  Assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")> 
 
