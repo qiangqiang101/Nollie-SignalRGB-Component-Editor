@@ -1,10 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "K6zYH9mxWI2WTX/sWXwaisKAi+9M6Ld/TMRS5ZdzQLX/QqS5p4Fv2nS4g2LPb2ywUb4bum5rq53agTBRfLD+VA==",
+  "dgSpecHash": "SAzmuBsNZEHzBFrmhHYiMT2YbkwLFzRFPsS9W2O3PdSIvbJ0n/GM3AQEj0Bd0UxgdqtHop54nw9LB1zcQsxWhg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\SignalRGB-CompGen.vbproj",
+  "projectFilePath": "E:\\Users\\Admin\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\SignalRGB-CompGen.vbproj",
   "expectedPackageFiles": [
-    "C:\\Users\\WePro\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+    "C:\\Users\\Admin\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
   ],
   "logs": []
 }

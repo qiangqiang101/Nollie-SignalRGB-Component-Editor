@@ -25,8 +25,6 @@ Partial Class frmMain
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         RightPanel = New Panel()
-        StatusStrip1 = New StatusStrip()
-        tsslPosition = New ToolStripStatusLabel()
         btnChangeImage = New Button()
         txtLedCount = New TextBox()
         Label8 = New Label()
@@ -61,9 +59,9 @@ Partial Class frmMain
         tsmiBuy = New ToolStripMenuItem()
         SplitContainer1 = New SplitContainer()
         Timer1 = New Timer(components)
-        tsmiGenerator = New ToolStripMenuItem()
+        StatusStrip1 = New StatusStrip()
+        tsslPosition = New ToolStripStatusLabel()
         RightPanel.SuspendLayout()
-        StatusStrip1.SuspendLayout()
         CType(pbImage, ComponentModel.ISupportInitialize).BeginInit()
         CType(numHeight, ComponentModel.ISupportInitialize).BeginInit()
         CType(numWidth, ComponentModel.ISupportInitialize).BeginInit()
@@ -71,6 +69,7 @@ Partial Class frmMain
         CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
         SplitContainer1.Panel2.SuspendLayout()
         SplitContainer1.SuspendLayout()
+        StatusStrip1.SuspendLayout()
         SuspendLayout()
         ' 
         ' RightPanel
@@ -100,21 +99,6 @@ Partial Class frmMain
         RightPanel.Name = "RightPanel"
         RightPanel.Size = New Size(275, 729)
         RightPanel.TabIndex = 0
-        ' 
-        ' StatusStrip1
-        ' 
-        StatusStrip1.Items.AddRange(New ToolStripItem() {tsslPosition})
-        StatusStrip1.Location = New Point(0, 705)
-        StatusStrip1.Name = "StatusStrip1"
-        StatusStrip1.Size = New Size(273, 22)
-        StatusStrip1.TabIndex = 18
-        StatusStrip1.Text = "StatusStrip1"
-        ' 
-        ' tsslPosition
-        ' 
-        tsslPosition.Name = "tsslPosition"
-        tsslPosition.Size = New Size(74, 17)
-        tsslPosition.Text = "Position: 0, 0"
         ' 
         ' btnChangeImage
         ' 
@@ -277,7 +261,7 @@ Partial Class frmMain
         ' 
         ' MenuStrip1
         ' 
-        MenuStrip1.Items.AddRange(New ToolStripItem() {tsmiFile, tsmiGenerator, tsmiHelp})
+        MenuStrip1.Items.AddRange(New ToolStripItem() {tsmiFile, tsmiHelp})
         MenuStrip1.Location = New Point(0, 0)
         MenuStrip1.Name = "MenuStrip1"
         MenuStrip1.Size = New Size(273, 24)
@@ -395,11 +379,20 @@ Partial Class frmMain
         ' 
         Timer1.Enabled = True
         ' 
-        ' tsmiGenerator
+        ' StatusStrip1
         ' 
-        tsmiGenerator.Name = "tsmiGenerator"
-        tsmiGenerator.Size = New Size(71, 20)
-        tsmiGenerator.Text = "Generator"
+        StatusStrip1.Items.AddRange(New ToolStripItem() {tsslPosition})
+        StatusStrip1.Location = New Point(0, 705)
+        StatusStrip1.Name = "StatusStrip1"
+        StatusStrip1.Size = New Size(273, 22)
+        StatusStrip1.TabIndex = 18
+        StatusStrip1.Text = "StatusStrip1"
+        ' 
+        ' tsslPosition
+        ' 
+        tsslPosition.Name = "tsslPosition"
+        tsslPosition.Size = New Size(74, 17)
+        tsslPosition.Text = "Position: 0, 0"
         ' 
         ' frmMain
         ' 
@@ -415,8 +408,6 @@ Partial Class frmMain
         Text = "Untitled - Nollie x SignalRGB Custom Component Editor"
         RightPanel.ResumeLayout(False)
         RightPanel.PerformLayout()
-        StatusStrip1.ResumeLayout(False)
-        StatusStrip1.PerformLayout()
         CType(pbImage, ComponentModel.ISupportInitialize).EndInit()
         CType(numHeight, ComponentModel.ISupportInitialize).EndInit()
         CType(numWidth, ComponentModel.ISupportInitialize).EndInit()
@@ -425,6 +416,8 @@ Partial Class frmMain
         SplitContainer1.Panel2.ResumeLayout(False)
         CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
         SplitContainer1.ResumeLayout(False)
+        StatusStrip1.ResumeLayout(False)
+        StatusStrip1.PerformLayout()
         ResumeLayout(False)
     End Sub
 
@@ -465,6 +458,5 @@ Partial Class frmMain
     Friend WithEvents tsmiBuy As ToolStripMenuItem
     Friend WithEvents StatusStrip1 As StatusStrip
     Friend WithEvents tsslPosition As ToolStripStatusLabel
-    Friend WithEvents tsmiGenerator As ToolStripMenuItem
 
 End Class
