@@ -60,7 +60,7 @@ Partial Class frmSettings
         ' 
         ' btnSave
         ' 
-        btnSave.Location = New Point(297, 92)
+        btnSave.Location = New Point(297, 116)
         btnSave.Name = "btnSave"
         btnSave.Size = New Size(75, 23)
         btnSave.TabIndex = 5
@@ -81,7 +81,7 @@ Partial Class frmSettings
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(384, 127)
+        ClientSize = New Size(384, 151)
         Controls.Add(cbConsole)
         Controls.Add(btnSave)
         Controls.Add(cbShiftLedPosition)

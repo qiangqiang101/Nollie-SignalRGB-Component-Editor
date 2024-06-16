@@ -48,7 +48,7 @@ Public Class Localization
     Public Settings As String = "Settings"
     Public Help As String = "Help"
     Public Controls As String = "Controls"
-    Public ControlMsg As String = "Mouse Controls: {0}Left Click: Select LED/Move LED{0}Left Double Click: Add LED{0}Middle Click: Move Map{0}Scroll: Zoom{0}Right Click: Show Menu{0}{0}Keyboard Controls: {0}Spacebar: Add LED on Mouse Position{0}Delete: Remove last LED"
+    Public ControlMsg As String = "Mouse Controls: {0}Left Click: Select LED/Move LED{0}Left Double Click: Add LED{0}Middle Click: Move Map{0}Scroll: Zoom{0}Right Click: Show Menu{0}{0}Keyboard Controls: {0}Spacebar: Add LED on Mouse Position{0}Delete: Remove last LED{0}Arrow keys: Move LEDs"
     Public VisitSignalRGB As String = "Visit SignalRGB Website"
     Public VisitNollie As String = "Visit Nollie Website"
     Public VisitMentaL As String = "Visit I'm Not MentaL Website"

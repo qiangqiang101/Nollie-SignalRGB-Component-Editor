@@ -15,7 +15,7 @@
     "Settings": "Settings",
     "Help": "Help",
     "Controls": "Controls",
-    "ControlMsg": "Mouse Controls: {0}Left Click: Select LED/Move LED{0}Left Double Click: Add LED{0}Middle Click: Move Map{0}Scroll: Zoom{0}Right Click: Show Menu{0}{0}Keyboard Controls: {0}Spacebar: Add LED on Mouse Position{0}Delete: Remove last LED",
+    "ControlMsg": "Mouse Controls: {0}Left Click: Select LED/Move LED{0}Left Double Click: Add LED{0}Middle Click: Move Map{0}Scroll: Zoom{0}Right Click: Show Menu{0}{0}Keyboard Controls: {0}Spacebar: Add LED on Mouse Position{0}Delete: Remove last LED{0}Arrow keys: Move LEDs",
     "VisitSignalRGB": "Visit SignalRGB Website",
     "VisitNollie": "Visit Nollie Website",
     "VisitMentaL": "Visit I'm Not MentaL Website",

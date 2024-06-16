@@ -327,4 +327,5 @@ Public Class frmMain
     Private Sub tsmiSettings_Click(sender As Object, e As EventArgs) Handles tsmiSettings.Click
         frmSettings.Show()
     End Sub
+
 End Class

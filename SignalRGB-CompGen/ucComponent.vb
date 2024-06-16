@@ -335,15 +335,44 @@ Public Class ucComponent
     End Sub
 
     Private Sub ucComponent_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
-        If e.KeyCode = Keys.Delete Then
-            If LEDs.Count <> 0 Then
-                RemoveLed(LEDs.Last)
+        Select Case e.KeyCode
+            Case Keys.Delete
+                If LEDs.Count <> 0 Then
+                    RemoveLed(LEDs.Last)
+                    Invalidate()
+                End If
+            Case Keys.Space
+                AddLeds(1, _ledPos)
                 Invalidate()
-            End If
-        ElseIf e.KeyCode = Keys.Space Then
-            AddLeds(1, _ledPos)
-            Invalidate()
-        End If
+            Case Keys.Left
+                For i As Integer = 0 To LEDs.Count - 1
+                    Dim led = LEDs(i)
+                    Dim newPos As New Point(led.LedCoordinates.X - 1, led.LedCoordinates.Y)
+                    LEDs(i).LedCoordinates = newPos
+                Next
+                Invalidate()
+            Case Keys.Right
+                For i As Integer = 0 To LEDs.Count - 1
+                    Dim led = LEDs(i)
+                    Dim newPos As New Point(led.LedCoordinates.X + 1, led.LedCoordinates.Y)
+                    LEDs(i).LedCoordinates = newPos
+                Next
+                Invalidate()
+            Case Keys.Up
+                For i As Integer = 0 To LEDs.Count - 1
+                    Dim led = LEDs(i)
+                    Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y - 1)
+                    LEDs(i).LedCoordinates = newPos
+                Next
+                Invalidate()
+            Case Keys.Down
+                For i As Integer = 0 To LEDs.Count - 1
+                    Dim led = LEDs(i)
+                    Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y + 1)
+                    LEDs(i).LedCoordinates = newPos
+                Next
+                Invalidate()
+        End Select
     End Sub
 
     Private Sub tsmiAddLeds_Click(sender As Object, e As EventArgs) Handles tsmiAddLeds.Click

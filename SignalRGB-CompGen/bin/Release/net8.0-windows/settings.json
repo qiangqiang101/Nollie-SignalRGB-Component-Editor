@@ -1,5 +1,6 @@
 {
   "Language": "en-US",
   "ShiftIndex": true,
-  "Debug": false
+  "Debug": false,
+  "DarkMode": true
 }

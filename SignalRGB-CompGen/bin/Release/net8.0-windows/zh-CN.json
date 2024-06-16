@@ -15,7 +15,7 @@
     "Settings": "设定",
     "Help": "帮助",
     "Controls": "控制",
-    "ControlMsg": "鼠标控制: {0}左键单击: 选择LED/移动LED{0}左键双击: 添加LED{0}中键单击: 移动映射{0}滚动: 缩放{0}右键单击: 显示菜单{0}{0}键盘控制: {0}空格键: 在鼠标位置添加LED{0}删除键: 移除最后一个LED",
+    "ControlMsg": "鼠标控制: {0}左键单击: 选择LED/移动LED{0}左键双击: 添加LED{0}中键单击: 移动映射{0}滚动: 缩放{0}右键单击: 显示菜单{0}{0}键盘控制: {0}空格键: 在鼠标位置添加LED{0}删除键: 移除最后一个LED{0}方向键: 移动LED",
     "VisitSignalRGB": "访问 SignalRGB 网站",
     "VisitNollie": "访问 Nollie 网站",
     "VisitMentaL": "访问 我唔係MentaL 网站",
