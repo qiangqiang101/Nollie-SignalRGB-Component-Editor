@@ -4,6 +4,12 @@
     <_LastSelectedProfileId>E:\Users\Admin\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\My Project\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Update="Class\NetSealTheme.vb">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Update="Class\ThemeBase.vb">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Update="frmMulti.vb">
       <SubType>Form</SubType>
     </Compile>
