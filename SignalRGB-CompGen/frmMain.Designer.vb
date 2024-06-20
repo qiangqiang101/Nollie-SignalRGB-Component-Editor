@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmMain
-    Inherits System.Windows.Forms.Form
+    Inherits FormEx
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -25,35 +25,36 @@ Partial Class frmMain
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         RightPanel = New Panel()
-        StatusStrip1 = New StatusStrip()
-        tsslPosition = New ToolStripStatusLabel()
-        btnChangeImage = New Button()
-        txtLedCount = New TextBox()
-        lblLedCount = New Label()
-        Label7 = New Label()
+        flpMenuStrip = New FlowLayoutPanel()
+        btnFile = New NSButton()
+        btnSettings = New NSButton()
+        btnHelp = New NSButton()
+        nslblPosition = New NSLabel()
+        gbImage = New NSGroupBox()
         pbImage = New PictureBox()
+        btnChangeImage = New NSButton()
+        NsSeperator1 = New NSSeperator()
+        txtLedCount = New NSTextBox()
+        lblLedCount = New Label()
         lblType = New Label()
-        cmbType = New ComboBox()
+        cmbType = New NSComboBox()
         lblProduct = New Label()
-        txtProduct = New TextBox()
+        txtProduct = New NSTextBox()
         lblVendor = New Label()
-        txtBrand = New TextBox()
+        txtBrand = New NSTextBox()
         lblName = New Label()
-        txtName = New TextBox()
+        txtName = New NSTextBox()
         lblHeight = New Label()
         lblWidth = New Label()
-        numHeight = New NumericUpDown()
-        numWidth = New NumericUpDown()
-        MenuStrip1 = New MenuStrip()
-        tsmiFile = New ToolStripMenuItem()
+        numHeight = New NSTextBox()
+        numWidth = New NSTextBox()
+        cmFile = New NSContextMenu()
         tsmiNew = New ToolStripMenuItem()
         tsmiOpen = New ToolStripMenuItem()
         tsmiSave = New ToolStripMenuItem()
         tsmiSaveAs = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
         tsmiExit = New ToolStripMenuItem()
-        tsmiSettings = New ToolStripMenuItem()
-        tsmiHelp = New ToolStripMenuItem()
         tsmiControls = New ToolStripMenuItem()
         ToolStripSeparator2 = New ToolStripSeparator()
         tsmiSRGB = New ToolStripMenuItem()
@@ -62,26 +63,31 @@ Partial Class frmMain
         tsmiBuy = New ToolStripMenuItem()
         SplitContainer1 = New SplitContainer()
         Timer1 = New Timer(components)
+        NsTheme1 = New NSTheme()
+        btnMin = New NSControlButton()
+        btnMax = New NSControlButton()
+        btnClose = New NSControlButton()
+        cmHelp = New NSContextMenu()
         RightPanel.SuspendLayout()
-        StatusStrip1.SuspendLayout()
+        flpMenuStrip.SuspendLayout()
+        gbImage.SuspendLayout()
         CType(pbImage, ComponentModel.ISupportInitialize).BeginInit()
-        CType(numHeight, ComponentModel.ISupportInitialize).BeginInit()
-        CType(numWidth, ComponentModel.ISupportInitialize).BeginInit()
-        MenuStrip1.SuspendLayout()
+        cmFile.SuspendLayout()
         CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
         SplitContainer1.Panel2.SuspendLayout()
         SplitContainer1.SuspendLayout()
+        NsTheme1.SuspendLayout()
+        cmHelp.SuspendLayout()
         SuspendLayout()
         ' 
         ' RightPanel
         ' 
-        RightPanel.BorderStyle = BorderStyle.FixedSingle
-        RightPanel.Controls.Add(StatusStrip1)
-        RightPanel.Controls.Add(btnChangeImage)
+        RightPanel.Controls.Add(flpMenuStrip)
+        RightPanel.Controls.Add(nslblPosition)
+        RightPanel.Controls.Add(gbImage)
+        RightPanel.Controls.Add(NsSeperator1)
         RightPanel.Controls.Add(txtLedCount)
         RightPanel.Controls.Add(lblLedCount)
-        RightPanel.Controls.Add(Label7)
-        RightPanel.Controls.Add(pbImage)
         RightPanel.Controls.Add(lblType)
         RightPanel.Controls.Add(cmbType)
         RightPanel.Controls.Add(lblProduct)
@@ -94,81 +100,133 @@ Partial Class frmMain
         RightPanel.Controls.Add(lblWidth)
         RightPanel.Controls.Add(numHeight)
         RightPanel.Controls.Add(numWidth)
-        RightPanel.Controls.Add(MenuStrip1)
         RightPanel.Dock = DockStyle.Fill
         RightPanel.Location = New Point(0, 0)
         RightPanel.Name = "RightPanel"
-        RightPanel.Size = New Size(275, 729)
+        RightPanel.Size = New Size(269, 687)
         RightPanel.TabIndex = 0
         ' 
-        ' StatusStrip1
+        ' flpMenuStrip
         ' 
-        StatusStrip1.Items.AddRange(New ToolStripItem() {tsslPosition})
-        StatusStrip1.Location = New Point(0, 705)
-        StatusStrip1.Name = "StatusStrip1"
-        StatusStrip1.Size = New Size(273, 22)
-        StatusStrip1.TabIndex = 18
-        StatusStrip1.Text = "StatusStrip1"
+        flpMenuStrip.Controls.Add(btnFile)
+        flpMenuStrip.Controls.Add(btnSettings)
+        flpMenuStrip.Controls.Add(btnHelp)
+        flpMenuStrip.Dock = DockStyle.Top
+        flpMenuStrip.Location = New Point(0, 0)
+        flpMenuStrip.Name = "flpMenuStrip"
+        flpMenuStrip.Size = New Size(269, 30)
+        flpMenuStrip.TabIndex = 0
         ' 
-        ' tsslPosition
+        ' btnFile
         ' 
-        tsslPosition.Name = "tsslPosition"
-        tsslPosition.Size = New Size(74, 17)
-        tsslPosition.Text = "Position: 0, 0"
+        btnFile.AutoWidth = True
+        btnFile.Location = New Point(3, 3)
+        btnFile.Name = "btnFile"
+        btnFile.Size = New Size(32, 23)
+        btnFile.TabIndex = 0
+        btnFile.Text = "File"
+        ' 
+        ' btnSettings
+        ' 
+        btnSettings.AutoWidth = True
+        btnSettings.Location = New Point(41, 3)
+        btnSettings.Name = "btnSettings"
+        btnSettings.Size = New Size(58, 23)
+        btnSettings.TabIndex = 1
+        btnSettings.Text = "Settings"
+        ' 
+        ' btnHelp
+        ' 
+        btnHelp.AutoWidth = True
+        btnHelp.Location = New Point(105, 3)
+        btnHelp.Name = "btnHelp"
+        btnHelp.Size = New Size(39, 23)
+        btnHelp.TabIndex = 2
+        btnHelp.Text = "Help"
+        ' 
+        ' nslblPosition
+        ' 
+        nslblPosition.Dock = DockStyle.Bottom
+        nslblPosition.Font = New Font("Segoe UI", 9.0F)
+        nslblPosition.Location = New Point(0, 664)
+        nslblPosition.Name = "nslblPosition"
+        nslblPosition.Size = New Size(269, 23)
+        nslblPosition.TabIndex = 21
+        nslblPosition.Text = "NsLabel1"
+        nslblPosition.Value1 = "Position: 0, 0"
+        nslblPosition.Value2 = ""
+        ' 
+        ' gbImage
+        ' 
+        gbImage.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        gbImage.Controls.Add(pbImage)
+        gbImage.Controls.Add(btnChangeImage)
+        gbImage.DrawSeperator = True
+        gbImage.Location = New Point(3, 256)
+        gbImage.Name = "gbImage"
+        gbImage.Padding = New Padding(3, 31, 3, 3)
+        gbImage.Size = New Size(263, 312)
+        gbImage.SubTitle = ""
+        gbImage.TabIndex = 8
+        gbImage.Title = "Component Image"
+        ' 
+        ' pbImage
+        ' 
+        pbImage.Dock = DockStyle.Fill
+        pbImage.Image = My.Resources.Resources._1
+        pbImage.Location = New Point(3, 31)
+        pbImage.Name = "pbImage"
+        pbImage.Size = New Size(257, 255)
+        pbImage.SizeMode = PictureBoxSizeMode.Zoom
+        pbImage.TabIndex = 13
+        pbImage.TabStop = False
         ' 
         ' btnChangeImage
         ' 
-        btnChangeImage.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        btnChangeImage.Location = New Point(3, 509)
+        btnChangeImage.AutoWidth = False
+        btnChangeImage.Dock = DockStyle.Bottom
+        btnChangeImage.Location = New Point(3, 286)
         btnChangeImage.Name = "btnChangeImage"
-        btnChangeImage.Size = New Size(267, 23)
-        btnChangeImage.TabIndex = 8
+        btnChangeImage.Size = New Size(257, 23)
+        btnChangeImage.TabIndex = 1
         btnChangeImage.Text = "Select Image"
-        btnChangeImage.UseVisualStyleBackColor = True
+        ' 
+        ' NsSeperator1
+        ' 
+        NsSeperator1.Location = New Point(3, 239)
+        NsSeperator1.Name = "NsSeperator1"
+        NsSeperator1.Size = New Size(261, 11)
+        NsSeperator1.TabIndex = 19
+        NsSeperator1.Text = "NsSeperator1"
         ' 
         ' txtLedCount
         ' 
         txtLedCount.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtLedCount.Location = New Point(75, 201)
+        txtLedCount.Location = New Point(83, 210)
+        txtLedCount.MaxLength = 32767
+        txtLedCount.Multiline = False
         txtLedCount.Name = "txtLedCount"
         txtLedCount.ReadOnly = True
-        txtLedCount.Size = New Size(187, 23)
+        txtLedCount.Size = New Size(183, 23)
         txtLedCount.TabIndex = 7
+        txtLedCount.TextAlign = HorizontalAlignment.Left
+        txtLedCount.UseSystemPasswordChar = False
         ' 
         ' lblLedCount
         ' 
         lblLedCount.AutoSize = True
-        lblLedCount.Location = New Point(3, 203)
+        lblLedCount.ForeColor = Color.White
+        lblLedCount.Location = New Point(3, 212)
         lblLedCount.Name = "lblLedCount"
         lblLedCount.Size = New Size(63, 15)
         lblLedCount.TabIndex = 17
         lblLedCount.Text = "LED Count"
         ' 
-        ' Label7
-        ' 
-        Label7.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        Label7.BorderStyle = BorderStyle.Fixed3D
-        Label7.Location = New Point(3, 231)
-        Label7.Name = "Label7"
-        Label7.Size = New Size(267, 2)
-        Label7.TabIndex = 14
-        ' 
-        ' pbImage
-        ' 
-        pbImage.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        pbImage.BorderStyle = BorderStyle.FixedSingle
-        pbImage.Image = My.Resources.Resources._1
-        pbImage.Location = New Point(3, 236)
-        pbImage.Name = "pbImage"
-        pbImage.Size = New Size(267, 267)
-        pbImage.SizeMode = PictureBoxSizeMode.Zoom
-        pbImage.TabIndex = 13
-        pbImage.TabStop = False
-        ' 
         ' lblType
         ' 
         lblType.AutoSize = True
-        lblType.Location = New Point(3, 117)
+        lblType.ForeColor = Color.White
+        lblType.Location = New Point(3, 126)
         lblType.Name = "lblType"
         lblType.Size = New Size(31, 15)
         lblType.TabIndex = 12
@@ -177,17 +235,21 @@ Partial Class frmMain
         ' cmbType
         ' 
         cmbType.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        cmbType.BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        cmbType.DrawMode = DrawMode.OwnerDrawFixed
         cmbType.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbType.ForeColor = Color.White
         cmbType.FormattingEnabled = True
-        cmbType.Location = New Point(75, 114)
+        cmbType.Location = New Point(83, 123)
         cmbType.Name = "cmbType"
-        cmbType.Size = New Size(187, 23)
+        cmbType.Size = New Size(183, 24)
         cmbType.TabIndex = 4
         ' 
         ' lblProduct
         ' 
         lblProduct.AutoSize = True
-        lblProduct.Location = New Point(3, 88)
+        lblProduct.ForeColor = Color.White
+        lblProduct.Location = New Point(3, 97)
         lblProduct.Name = "lblProduct"
         lblProduct.Size = New Size(49, 15)
         lblProduct.TabIndex = 10
@@ -196,15 +258,21 @@ Partial Class frmMain
         ' txtProduct
         ' 
         txtProduct.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtProduct.Location = New Point(75, 85)
+        txtProduct.Location = New Point(83, 94)
+        txtProduct.MaxLength = 32767
+        txtProduct.Multiline = False
         txtProduct.Name = "txtProduct"
-        txtProduct.Size = New Size(187, 23)
+        txtProduct.ReadOnly = False
+        txtProduct.Size = New Size(183, 23)
         txtProduct.TabIndex = 3
+        txtProduct.TextAlign = HorizontalAlignment.Left
+        txtProduct.UseSystemPasswordChar = False
         ' 
         ' lblVendor
         ' 
         lblVendor.AutoSize = True
-        lblVendor.Location = New Point(3, 59)
+        lblVendor.ForeColor = Color.White
+        lblVendor.Location = New Point(3, 68)
         lblVendor.Name = "lblVendor"
         lblVendor.Size = New Size(44, 15)
         lblVendor.TabIndex = 8
@@ -213,15 +281,21 @@ Partial Class frmMain
         ' txtBrand
         ' 
         txtBrand.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtBrand.Location = New Point(75, 56)
+        txtBrand.Location = New Point(83, 65)
+        txtBrand.MaxLength = 32767
+        txtBrand.Multiline = False
         txtBrand.Name = "txtBrand"
-        txtBrand.Size = New Size(187, 23)
+        txtBrand.ReadOnly = False
+        txtBrand.Size = New Size(183, 23)
         txtBrand.TabIndex = 2
+        txtBrand.TextAlign = HorizontalAlignment.Left
+        txtBrand.UseSystemPasswordChar = False
         ' 
         ' lblName
         ' 
         lblName.AutoSize = True
-        lblName.Location = New Point(3, 30)
+        lblName.ForeColor = Color.White
+        lblName.Location = New Point(3, 39)
         lblName.Name = "lblName"
         lblName.Size = New Size(39, 15)
         lblName.TabIndex = 6
@@ -230,15 +304,21 @@ Partial Class frmMain
         ' txtName
         ' 
         txtName.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtName.Location = New Point(75, 27)
+        txtName.Location = New Point(83, 36)
+        txtName.MaxLength = 32767
+        txtName.Multiline = False
         txtName.Name = "txtName"
-        txtName.Size = New Size(187, 23)
+        txtName.ReadOnly = False
+        txtName.Size = New Size(183, 23)
         txtName.TabIndex = 1
+        txtName.TextAlign = HorizontalAlignment.Left
+        txtName.UseSystemPasswordChar = False
         ' 
         ' lblHeight
         ' 
         lblHeight.AutoSize = True
-        lblHeight.Location = New Point(3, 174)
+        lblHeight.ForeColor = Color.White
+        lblHeight.Location = New Point(3, 183)
         lblHeight.Name = "lblHeight"
         lblHeight.Size = New Size(43, 15)
         lblHeight.TabIndex = 4
@@ -247,7 +327,8 @@ Partial Class frmMain
         ' lblWidth
         ' 
         lblWidth.AutoSize = True
-        lblWidth.Location = New Point(3, 145)
+        lblWidth.ForeColor = Color.White
+        lblWidth.Location = New Point(3, 154)
         lblWidth.Name = "lblWidth"
         lblWidth.Size = New Size(39, 15)
         lblWidth.TabIndex = 3
@@ -256,40 +337,37 @@ Partial Class frmMain
         ' numHeight
         ' 
         numHeight.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        numHeight.Location = New Point(75, 172)
-        numHeight.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
-        numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        numHeight.Location = New Point(83, 181)
+        numHeight.MaxLength = 3
+        numHeight.Multiline = False
         numHeight.Name = "numHeight"
-        numHeight.Size = New Size(187, 23)
+        numHeight.ReadOnly = False
+        numHeight.Size = New Size(183, 23)
         numHeight.TabIndex = 6
-        numHeight.Value = New Decimal(New Integer() {5, 0, 0, 0})
+        numHeight.Text = "5"
+        numHeight.TextAlign = HorizontalAlignment.Left
+        numHeight.UseSystemPasswordChar = False
         ' 
         ' numWidth
         ' 
         numWidth.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        numWidth.Location = New Point(75, 143)
-        numWidth.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
-        numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        numWidth.Location = New Point(83, 152)
+        numWidth.MaxLength = 3
+        numWidth.Multiline = False
         numWidth.Name = "numWidth"
-        numWidth.Size = New Size(187, 23)
+        numWidth.ReadOnly = False
+        numWidth.Size = New Size(183, 23)
         numWidth.TabIndex = 5
-        numWidth.Value = New Decimal(New Integer() {5, 0, 0, 0})
+        numWidth.Text = "5"
+        numWidth.TextAlign = HorizontalAlignment.Left
+        numWidth.UseSystemPasswordChar = False
         ' 
-        ' MenuStrip1
+        ' cmFile
         ' 
-        MenuStrip1.Items.AddRange(New ToolStripItem() {tsmiFile, tsmiSettings, tsmiHelp})
-        MenuStrip1.Location = New Point(0, 0)
-        MenuStrip1.Name = "MenuStrip1"
-        MenuStrip1.Size = New Size(273, 24)
-        MenuStrip1.TabIndex = 0
-        MenuStrip1.Text = "MenuStrip1"
-        ' 
-        ' tsmiFile
-        ' 
-        tsmiFile.DropDownItems.AddRange(New ToolStripItem() {tsmiNew, tsmiOpen, tsmiSave, tsmiSaveAs, ToolStripSeparator1, tsmiExit})
-        tsmiFile.Name = "tsmiFile"
-        tsmiFile.Size = New Size(37, 20)
-        tsmiFile.Text = "File"
+        cmFile.ForeColor = Color.White
+        cmFile.Items.AddRange(New ToolStripItem() {tsmiNew, tsmiOpen, tsmiSave, tsmiSaveAs, ToolStripSeparator1, tsmiExit})
+        cmFile.Name = "NsContextMenu1"
+        cmFile.Size = New Size(187, 120)
         ' 
         ' tsmiNew
         ' 
@@ -331,19 +409,6 @@ Partial Class frmMain
         tsmiExit.Size = New Size(186, 22)
         tsmiExit.Text = "Exit"
         ' 
-        ' tsmiSettings
-        ' 
-        tsmiSettings.Name = "tsmiSettings"
-        tsmiSettings.Size = New Size(61, 20)
-        tsmiSettings.Text = "Settings"
-        ' 
-        ' tsmiHelp
-        ' 
-        tsmiHelp.DropDownItems.AddRange(New ToolStripItem() {tsmiControls, ToolStripSeparator2, tsmiSRGB, tsmiNollie, tsmiMentaL, tsmiBuy})
-        tsmiHelp.Name = "tsmiHelp"
-        tsmiHelp.Size = New Size(44, 20)
-        tsmiHelp.Text = "Help"
-        ' 
         ' tsmiControls
         ' 
         tsmiControls.Name = "tsmiControls"
@@ -382,8 +447,9 @@ Partial Class frmMain
         ' 
         ' SplitContainer1
         ' 
-        SplitContainer1.Dock = DockStyle.Fill
-        SplitContainer1.Location = New Point(0, 0)
+        SplitContainer1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        SplitContainer1.FixedPanel = FixedPanel.Panel2
+        SplitContainer1.Location = New Point(6, 36)
         SplitContainer1.Name = "SplitContainer1"
         ' 
         ' SplitContainer1.Panel1
@@ -393,58 +459,128 @@ Partial Class frmMain
         ' SplitContainer1.Panel2
         ' 
         SplitContainer1.Panel2.Controls.Add(RightPanel)
-        SplitContainer1.Size = New Size(1008, 729)
-        SplitContainer1.SplitterDistance = 729
+        SplitContainer1.Size = New Size(996, 687)
+        SplitContainer1.SplitterDistance = 723
         SplitContainer1.TabIndex = 3
         ' 
         ' Timer1
         ' 
         Timer1.Enabled = True
         ' 
+        ' NsTheme1
+        ' 
+        NsTheme1.AccentOffset = 42
+        NsTheme1.BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        NsTheme1.BorderStyle = FormBorderStyle.Sizable
+        NsTheme1.Controls.Add(btnMin)
+        NsTheme1.Controls.Add(btnMax)
+        NsTheme1.Controls.Add(btnClose)
+        NsTheme1.Controls.Add(SplitContainer1)
+        NsTheme1.Customization = ""
+        NsTheme1.Dock = DockStyle.Fill
+        NsTheme1.Font = New Font("Segoe UI", 9.0F)
+        NsTheme1.Image = Nothing
+        NsTheme1.Location = New Point(0, 0)
+        NsTheme1.Movable = True
+        NsTheme1.Name = "NsTheme1"
+        NsTheme1.NoRounding = False
+        NsTheme1.Padding = New Padding(3, 10, 3, 3)
+        NsTheme1.Sizable = True
+        NsTheme1.Size = New Size(1008, 729)
+        NsTheme1.SmartBounds = True
+        NsTheme1.StartPosition = FormStartPosition.CenterScreen
+        NsTheme1.TabIndex = 4
+        NsTheme1.Text = "Untitled - Nollie x SignalRGB Custom Component Editor"
+        NsTheme1.TransparencyKey = Color.Empty
+        NsTheme1.Transparent = False
+        ' 
+        ' btnMin
+        ' 
+        btnMin.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnMin.ControlButton = NSControlButton.Button.Minimize
+        btnMin.Location = New Point(949, 5)
+        btnMin.Margin = New Padding(0)
+        btnMin.MaximumSize = New Size(18, 20)
+        btnMin.MinimumSize = New Size(18, 20)
+        btnMin.Name = "btnMin"
+        btnMin.Size = New Size(18, 20)
+        btnMin.TabIndex = 6
+        btnMin.Text = "NsControlButton3"
+        ' 
+        ' btnMax
+        ' 
+        btnMax.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnMax.ControlButton = NSControlButton.Button.MaximizeRestore
+        btnMax.Location = New Point(967, 5)
+        btnMax.Margin = New Padding(0)
+        btnMax.MaximumSize = New Size(18, 20)
+        btnMax.MinimumSize = New Size(18, 20)
+        btnMax.Name = "btnMax"
+        btnMax.Size = New Size(18, 20)
+        btnMax.TabIndex = 5
+        btnMax.Text = "NsControlButton2"
+        ' 
+        ' btnClose
+        ' 
+        btnClose.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        btnClose.ControlButton = NSControlButton.Button.Close
+        btnClose.Location = New Point(985, 5)
+        btnClose.Margin = New Padding(0)
+        btnClose.MaximumSize = New Size(18, 20)
+        btnClose.MinimumSize = New Size(18, 20)
+        btnClose.Name = "btnClose"
+        btnClose.Size = New Size(18, 20)
+        btnClose.TabIndex = 4
+        btnClose.Text = "NsControlButton1"
+        ' 
+        ' cmHelp
+        ' 
+        cmHelp.ForeColor = Color.White
+        cmHelp.Items.AddRange(New ToolStripItem() {tsmiControls, ToolStripSeparator2, tsmiSRGB, tsmiNollie, tsmiMentaL, tsmiBuy})
+        cmHelp.Name = "cmHelp"
+        cmHelp.Size = New Size(228, 120)
+        ' 
         ' frmMain
         ' 
         AllowDrop = True
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1008, 729)
-        Controls.Add(SplitContainer1)
+        ControlBox = False
+        Controls.Add(NsTheme1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
-        MainMenuStrip = MenuStrip1
+        Location = New Point(0, 0)
         Name = "frmMain"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Untitled - Nollie x SignalRGB Custom Component Editor"
         RightPanel.ResumeLayout(False)
         RightPanel.PerformLayout()
-        StatusStrip1.ResumeLayout(False)
-        StatusStrip1.PerformLayout()
+        flpMenuStrip.ResumeLayout(False)
+        gbImage.ResumeLayout(False)
         CType(pbImage, ComponentModel.ISupportInitialize).EndInit()
-        CType(numHeight, ComponentModel.ISupportInitialize).EndInit()
-        CType(numWidth, ComponentModel.ISupportInitialize).EndInit()
-        MenuStrip1.ResumeLayout(False)
-        MenuStrip1.PerformLayout()
+        cmFile.ResumeLayout(False)
         SplitContainer1.Panel2.ResumeLayout(False)
         CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
         SplitContainer1.ResumeLayout(False)
+        NsTheme1.ResumeLayout(False)
+        cmHelp.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
 
     Friend WithEvents RightPanel As Panel
-    Friend WithEvents numWidth As NumericUpDown
-    Friend WithEvents MenuStrip1 As MenuStrip
-    Friend WithEvents tsmiFile As ToolStripMenuItem
+    Friend WithEvents numWidth As NSTextBox
     Friend WithEvents lblName As Label
-    Friend WithEvents txtName As TextBox
+    Friend WithEvents txtName As NSTextBox
     Friend WithEvents lblHeight As Label
     Friend WithEvents lblWidth As Label
-    Friend WithEvents numHeight As NumericUpDown
+    Friend WithEvents numHeight As NSTextBox
     Friend WithEvents lblType As Label
-    Friend WithEvents cmbType As ComboBox
+    Friend WithEvents cmbType As NSComboBox
     Friend WithEvents lblProduct As Label
-    Friend WithEvents txtProduct As TextBox
+    Friend WithEvents txtProduct As NSTextBox
     Friend WithEvents lblVendor As Label
-    Friend WithEvents txtBrand As TextBox
+    Friend WithEvents txtBrand As NSTextBox
     Friend WithEvents SplitContainer1 As SplitContainer
-    Friend WithEvents Label7 As Label
     Friend WithEvents pbImage As PictureBox
     Friend WithEvents Timer1 As Timer
     Friend WithEvents tsmiNew As ToolStripMenuItem
@@ -452,19 +588,28 @@ Partial Class frmMain
     Friend WithEvents tsmiSave As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents tsmiExit As ToolStripMenuItem
-    Friend WithEvents tsmiHelp As ToolStripMenuItem
     Friend WithEvents tsmiSaveAs As ToolStripMenuItem
     Friend WithEvents lblLedCount As Label
-    Friend WithEvents txtLedCount As TextBox
-    Friend WithEvents btnChangeImage As Button
+    Friend WithEvents txtLedCount As NSTextBox
+    Friend WithEvents btnChangeImage As NSButton
     Friend WithEvents tsmiControls As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents tsmiSRGB As ToolStripMenuItem
     Friend WithEvents tsmiNollie As ToolStripMenuItem
     Friend WithEvents tsmiMentaL As ToolStripMenuItem
     Friend WithEvents tsmiBuy As ToolStripMenuItem
-    Friend WithEvents StatusStrip1 As StatusStrip
-    Friend WithEvents tsslPosition As ToolStripStatusLabel
-    Friend WithEvents tsmiSettings As ToolStripMenuItem
+    Friend WithEvents NsTheme1 As NSTheme
+    Friend WithEvents btnClose As NSControlButton
+    Friend WithEvents btnMin As NSControlButton
+    Friend WithEvents btnMax As NSControlButton
+    Friend WithEvents NsSeperator1 As NSSeperator
+    Friend WithEvents gbImage As NSGroupBox
+    Friend WithEvents nslblPosition As NSLabel
+    Friend WithEvents btnFile As NSButton
+    Friend WithEvents cmFile As NSContextMenu
+    Friend WithEvents btnSettings As NSButton
+    Friend WithEvents cmHelp As NSContextMenu
+    Friend WithEvents btnHelp As NSButton
+    Friend WithEvents flpMenuStrip As FlowLayoutPanel
 
 End Class

@@ -157,6 +157,19 @@ Module Helper
         Return Environment.OSVersion.Version.Major >= 10 AndAlso Environment.OSVersion.Version.Build >= build
     End Function
 
+    <Extension>
+    Public Sub Clear(nstxt As NSTextBox)
+        nstxt.Text = Nothing
+    End Sub
+
+    <DllImport("user32.dll")>
+    Private Function AnimateWindow(ByVal hwnd As IntPtr, ByVal dwTime As Integer, ByVal dwFlags As Integer) As Boolean
+    End Function
+    Private Const AW_VER_POSITIVE As Integer = &H4
+    Private Const AW_VER_NEGATIVE As Integer = &H8
+    Private Const AW_SLIDE As Integer = &H40000
+    Private Const AW_HIDE As Integer = &H10000
+
 End Module
 
 Public Enum eMode

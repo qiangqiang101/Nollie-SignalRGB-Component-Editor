@@ -6,6 +6,7 @@ Imports System.Drawing.Text
 Imports System.ComponentModel
 Imports System.Collections.Generic
 Imports System.Text
+Imports System.Diagnostics.Eventing.Reader
 
 'IMPORTANT:
 'Please leave these comments in place as they help protect intellectual rights and allow
@@ -144,6 +145,17 @@ Class NSButton
 
     Private PB1 As PathGradientBrush
     Private GB1 As LinearGradientBrush
+
+    Private _autoWidth As Boolean = False
+    Public Property AutoWidth As Boolean
+        Get
+            Return _autoWidth
+        End Get
+        Set(value As Boolean)
+            Size = New Size(SZ1.Width + (PT1.X * 2), Height)
+            _autoWidth = value
+        End Set
+    End Property
 
     Protected Overrides Sub OnPaint(e As System.Windows.Forms.PaintEventArgs)
         G = e.Graphics
@@ -1256,8 +1268,8 @@ Class NSGroupBox
         SetStyle(DirectCast(139286, ControlStyles), True)
         SetStyle(ControlStyles.Selectable, False)
 
-        _TitleFont = New Font("Verdana", 10.0F)
-        _SubTitleFont = New Font("Verdana", 6.5F)
+        _TitleFont = New Font("Segoe UI", 9.0F)
+        _SubTitleFont = New Font("Segoe UI", 9.0F)
 
         P1 = New Pen(Color.FromArgb(35, 35, 35))
         P2 = New Pen(Color.FromArgb(55, 55, 55))
@@ -1668,7 +1680,7 @@ Class NSKeyboard
         SetStyle(DirectCast(139286, ControlStyles), True)
         SetStyle(ControlStyles.Selectable, False)
 
-        Font = New Font("Verdana", 8.25F)
+        Font = New Font("Segoe UI", 9.0F)
 
         TextBitmap = New Bitmap(1, 1)
         TextGraphics = Graphics.FromImage(TextBitmap)

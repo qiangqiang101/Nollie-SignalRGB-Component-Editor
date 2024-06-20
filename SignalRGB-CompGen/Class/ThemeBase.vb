@@ -24,7 +24,7 @@ Friend MustInherit Class ThemeContainer154
 		SetStyle(CType(139270, ControlStyles), True)
 
 		_ImageSize = Size.Empty
-		Font = New Font("Verdana", 8)
+		Font = New Font("Segoe UI", 9.0F)
 
 		MeasureBitmap = New Bitmap(1, 1)
 		MeasureGraphics = Graphics.FromImage(MeasureBitmap)
@@ -1235,7 +1235,7 @@ Friend MustInherit Class ThemeControl154
 		SetStyle(CType(139270, ControlStyles), True)
 
 		_ImageSize = Size.Empty
-		Font = New Font("Verdana", 8)
+		Font = New Font("Segoe UI", 9.0F)
 
 		MeasureBitmap = New Bitmap(1, 1)
 		MeasureGraphics = Graphics.FromImage(MeasureBitmap)
