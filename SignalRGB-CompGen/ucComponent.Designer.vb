@@ -22,21 +22,14 @@ Partial Class ucComponent
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        components = New ComponentModel.Container()
-        ContextMenuStrip1 = New ContextMenuStrip(components)
         tsmiAddLed = New ToolStripMenuItem()
         tsmiAddLeds = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
         tsmiRemoveLed = New ToolStripMenuItem()
         tsmiRemoveLastLEDs = New ToolStripMenuItem()
-        ContextMenuStrip1.SuspendLayout()
+        NsContextMenu1 = New NSContextMenu()
+        NsContextMenu1.SuspendLayout()
         SuspendLayout()
-        ' 
-        ' ContextMenuStrip1
-        ' 
-        ContextMenuStrip1.Items.AddRange(New ToolStripItem() {tsmiAddLed, tsmiAddLeds, ToolStripSeparator1, tsmiRemoveLed, tsmiRemoveLastLEDs})
-        ContextMenuStrip1.Name = "ContextMenuStrip1"
-        ContextMenuStrip1.Size = New Size(167, 98)
         ' 
         ' tsmiAddLed
         ' 
@@ -67,23 +60,30 @@ Partial Class ucComponent
         tsmiRemoveLastLEDs.Size = New Size(166, 22)
         tsmiRemoveLastLEDs.Text = "Remove last LEDs"
         ' 
+        ' NsContextMenu1
+        ' 
+        NsContextMenu1.ForeColor = Color.White
+        NsContextMenu1.Items.AddRange(New ToolStripItem() {tsmiAddLed, tsmiAddLeds, ToolStripSeparator1, tsmiRemoveLed, tsmiRemoveLastLEDs})
+        NsContextMenu1.Name = "NsContextMenu1"
+        NsContextMenu1.Size = New Size(167, 98)
+        ' 
         ' ucComponent
         ' 
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
+        BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
         Margin = New Padding(100)
         MinimumSize = New Size(250, 250)
         Name = "ucComponent"
         Size = New Size(250, 250)
-        ContextMenuStrip1.ResumeLayout(False)
+        NsContextMenu1.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
-
-    Friend WithEvents ContextMenuStrip1 As ContextMenuStrip
     Friend WithEvents tsmiAddLed As ToolStripMenuItem
     Friend WithEvents tsmiAddLeds As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents tsmiRemoveLed As ToolStripMenuItem
     Friend WithEvents tsmiRemoveLastLEDs As ToolStripMenuItem
+    Friend WithEvents NsContextMenu1 As NSContextMenu
 
 End Class

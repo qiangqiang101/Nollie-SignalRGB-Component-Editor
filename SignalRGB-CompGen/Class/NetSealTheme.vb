@@ -146,17 +146,6 @@ Class NSButton
     Private PB1 As PathGradientBrush
     Private GB1 As LinearGradientBrush
 
-    Private _autoWidth As Boolean = False
-    Public Property AutoWidth As Boolean
-        Get
-            Return _autoWidth
-        End Get
-        Set(value As Boolean)
-            Size = New Size(SZ1.Width + (PT1.X * 2), Height)
-            _autoWidth = value
-        End Set
-    End Property
-
     Protected Overrides Sub OnPaint(e As System.Windows.Forms.PaintEventArgs)
         G = e.Graphics
         G.TextRenderingHint = TextRenderingHint.ClearTypeGridFit

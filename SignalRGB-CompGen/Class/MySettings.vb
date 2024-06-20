@@ -69,13 +69,13 @@ Public Class Localization
     Public Tower As String = "Tower"
     Public Heatsink As String = "Heatsink"
     Public Desk As String = "Desk"
-
     Public Width As String = "Width"
     Public Height As String = "Height"
     Public LEDCount As String = "LED Count"
     Public SelectImage As String = "Select Image"
     Public SelectImageFile As String = "Select image file.."
-    Public Position As String = "Position: {0}, {1}"
+    Public Position As String = "Position:"
+    Public ComponentImage As String = "Component Image"
 
     Public LEDInfo As String = "Index: {1}{0}Name: {2}{0}Position: {3}, {4}"
     Public AddLED As String = "Add LED"
@@ -95,5 +95,9 @@ Public Class Localization
     Public ShiftDisplayingLEDIndex As String = "Shift Displaying LED index by 1"
     Public Console As String = "Console"
     Public SettingSaveMsg As String = "Some setting changes will not take effect until you restart SignalRGB Custom Component Editor."
+
+    Public FileWidth As Integer = 32
+    Public SettingsWidth As Integer = 55
+    Public HelpWidth As Integer = 38
 
 End Class

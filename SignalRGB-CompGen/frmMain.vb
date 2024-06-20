@@ -16,7 +16,8 @@ Public Class frmMain
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If ucCompoment IsNot Nothing Then
-            nslblPosition.Value1 = String.Format(Translation.Localization.Position, ucCompoment.MousePos.X, ucCompoment.MousePos.Y)
+            nslblPosition.Value1 = Translation.Localization.Position
+            nslblPosition.Value2 = $"{ucCompoment.MousePos.X}, {ucCompoment.MousePos.Y}"
         End If
     End Sub
 
@@ -45,9 +46,9 @@ Public Class frmMain
                 LEDs.Add(New Led(index, name, New Point(point(0), point(1))))
             Next
 
-            ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.FixedSingle,
+            ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.None,
                 .Size = New Size((Component.Width * 50) + ucCompoment.Margin.All, (Component.Height * 50) + ucCompoment.Margin.All), .LEDs = LEDs,
-                .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.FromArgb(205, 150, 0)}
+                .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
             SplitContainer1.Panel1.Controls.Add(ucCompoment)
             ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
             ucCompoment.BringToFront()
@@ -136,8 +137,8 @@ Public Class frmMain
             .SelectedIndex = 0
         End With
 
-        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.FixedSingle, .Location = New Point(0, 0),
-            .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.FromArgb(205, 150, 0)}
+        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.None, .Location = New Point(0, 0),
+            .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
         SplitContainer1.Panel1.Controls.Add(ucCompoment)
         ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
         ucCompoment.BringToFront()
@@ -178,15 +179,20 @@ Public Class frmMain
             tsmiMentaL.Text = loc.VisitMentaL
             tsmiBuy.Text = loc.BuyNollie
 
-            lblName.Text = loc.Name
-            lblVendor.Text = loc.Vendor
-            lblProduct.Text = loc.Product
-            lblType.Text = loc.Type
-            lblWidth.Text = loc.Width
-            lblHeight.Text = loc.Height
-            lblLedCount.Text = loc.LEDCount
+            lblName.Value1 = loc.Name
+            lblVendor.Value1 = loc.Vendor
+            lblProduct.Value1 = loc.Product
+            lblType.Value1 = loc.Type
+            lblWidth.Value1 = loc.Width
+            lblHeight.Value1 = loc.Height
+            lblLedCount.Value1 = loc.LEDCount
             btnChangeImage.Text = loc.SelectImage
-            nslblPosition.Value1 = String.Format(loc.Position, 0, 0)
+            nslblPosition.Value1 = loc.Position
+            nslblPosition.Value2 = "0, 0"
+            gbImage.Title = loc.ComponentImage
+            btnFile.Width = loc.FileWidth
+            btnSettings.Width = loc.SettingsWidth
+            btnHelp.Width = loc.HelpWidth
         End If
     End Sub
 
@@ -252,9 +258,9 @@ Public Class frmMain
         cmbType.SelectedIndex = 0
         pbImage.Image = My.Resources._1
 
-        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.FixedSingle,
+        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.None,
             .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right,
-            .ForeColor = Color.FromArgb(205, 150, 0)}
+            .ForeColor = Color.White}
         SplitContainer1.Panel1.Controls.Add(ucCompoment)
         ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
         ucCompoment.BringToFront()
@@ -302,9 +308,9 @@ Public Class frmMain
                     LEDs.Add(New Led(index, name, New Point(point(0), point(1))))
                 Next
 
-                ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.FixedSingle,
+                ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.None,
                     .Size = New Size((Component.Width * 50) + ucCompoment.Margin.All, (Component.Height * 50) + ucCompoment.Margin.All), .LEDs = LEDs,
-                    .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.FromArgb(205, 150, 0)}
+                    .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
                 SplitContainer1.Panel1.Controls.Add(ucCompoment)
                 ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
                 ucCompoment.BringToFront()
@@ -340,5 +346,22 @@ Public Class frmMain
 
     Private Sub btnHelp_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
         cmHelp.Show(btnHelp, New Point(0, btnHelp.Height))
+    End Sub
+
+    Private Sub NumericUpDown_KeyDown(sender As Object, e As KeyEventArgs) Handles numWidth.KeyDown, numHeight.KeyDown
+        Dim tb As NSTextBox = sender
+        Dim isDigits As Boolean = IsNumeric(tb.Text)
+        Dim number As Integer
+        If isDigits Then
+            number = CInt(tb.Text)
+        End If
+        Select Case e.KeyCode
+            Case Keys.Up
+                number += 1
+                tb.Text = number
+            Case Keys.Down
+                number -= 1
+                tb.Text = number
+        End Select
     End Sub
 End Class

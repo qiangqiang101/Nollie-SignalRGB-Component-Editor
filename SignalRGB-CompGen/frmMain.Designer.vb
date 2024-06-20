@@ -35,17 +35,17 @@ Partial Class frmMain
         btnChangeImage = New NSButton()
         NsSeperator1 = New NSSeperator()
         txtLedCount = New NSTextBox()
-        lblLedCount = New Label()
-        lblType = New Label()
+        lblLedCount = New NSLabel()
+        lblType = New NSLabel()
         cmbType = New NSComboBox()
-        lblProduct = New Label()
+        lblProduct = New NSLabel()
         txtProduct = New NSTextBox()
-        lblVendor = New Label()
+        lblVendor = New NSLabel()
         txtBrand = New NSTextBox()
-        lblName = New Label()
+        lblName = New NSLabel()
         txtName = New NSTextBox()
-        lblHeight = New Label()
-        lblWidth = New Label()
+        lblHeight = New NSLabel()
+        lblWidth = New NSLabel()
         numHeight = New NSTextBox()
         numWidth = New NSTextBox()
         cmFile = New NSContextMenu()
@@ -119,7 +119,6 @@ Partial Class frmMain
         ' 
         ' btnFile
         ' 
-        btnFile.AutoWidth = True
         btnFile.Location = New Point(3, 3)
         btnFile.Name = "btnFile"
         btnFile.Size = New Size(32, 23)
@@ -128,26 +127,24 @@ Partial Class frmMain
         ' 
         ' btnSettings
         ' 
-        btnSettings.AutoWidth = True
         btnSettings.Location = New Point(41, 3)
         btnSettings.Name = "btnSettings"
-        btnSettings.Size = New Size(58, 23)
+        btnSettings.Size = New Size(55, 23)
         btnSettings.TabIndex = 1
         btnSettings.Text = "Settings"
         ' 
         ' btnHelp
         ' 
-        btnHelp.AutoWidth = True
-        btnHelp.Location = New Point(105, 3)
+        btnHelp.Location = New Point(102, 3)
         btnHelp.Name = "btnHelp"
-        btnHelp.Size = New Size(39, 23)
+        btnHelp.Size = New Size(38, 23)
         btnHelp.TabIndex = 2
         btnHelp.Text = "Help"
         ' 
         ' nslblPosition
         ' 
         nslblPosition.Dock = DockStyle.Bottom
-        nslblPosition.Font = New Font("Segoe UI", 9.0F)
+        nslblPosition.Font = New Font("Segoe UI", 9F)
         nslblPosition.Location = New Point(0, 664)
         nslblPosition.Name = "nslblPosition"
         nslblPosition.Size = New Size(269, 23)
@@ -183,7 +180,6 @@ Partial Class frmMain
         ' 
         ' btnChangeImage
         ' 
-        btnChangeImage.AutoWidth = False
         btnChangeImage.Dock = DockStyle.Bottom
         btnChangeImage.Location = New Point(3, 286)
         btnChangeImage.Name = "btnChangeImage"
@@ -214,23 +210,27 @@ Partial Class frmMain
         ' 
         ' lblLedCount
         ' 
-        lblLedCount.AutoSize = True
+        lblLedCount.Font = New Font("Segoe UI", 9F)
         lblLedCount.ForeColor = Color.White
-        lblLedCount.Location = New Point(3, 212)
+        lblLedCount.Location = New Point(6, 214)
         lblLedCount.Name = "lblLedCount"
-        lblLedCount.Size = New Size(63, 15)
+        lblLedCount.Size = New Size(74, 15)
         lblLedCount.TabIndex = 17
         lblLedCount.Text = "LED Count"
+        lblLedCount.Value1 = "LED Count"
+        lblLedCount.Value2 = ""
         ' 
         ' lblType
         ' 
-        lblType.AutoSize = True
+        lblType.Font = New Font("Segoe UI", 9F)
         lblType.ForeColor = Color.White
-        lblType.Location = New Point(3, 126)
+        lblType.Location = New Point(6, 128)
         lblType.Name = "lblType"
-        lblType.Size = New Size(31, 15)
+        lblType.Size = New Size(74, 15)
         lblType.TabIndex = 12
         lblType.Text = "Type"
+        lblType.Value1 = "Type"
+        lblType.Value2 = ""
         ' 
         ' cmbType
         ' 
@@ -247,13 +247,15 @@ Partial Class frmMain
         ' 
         ' lblProduct
         ' 
-        lblProduct.AutoSize = True
+        lblProduct.Font = New Font("Segoe UI", 9F)
         lblProduct.ForeColor = Color.White
-        lblProduct.Location = New Point(3, 97)
+        lblProduct.Location = New Point(6, 99)
         lblProduct.Name = "lblProduct"
-        lblProduct.Size = New Size(49, 15)
+        lblProduct.Size = New Size(74, 15)
         lblProduct.TabIndex = 10
         lblProduct.Text = "Product"
+        lblProduct.Value1 = "Product"
+        lblProduct.Value2 = ""
         ' 
         ' txtProduct
         ' 
@@ -270,13 +272,15 @@ Partial Class frmMain
         ' 
         ' lblVendor
         ' 
-        lblVendor.AutoSize = True
+        lblVendor.Font = New Font("Segoe UI", 9F)
         lblVendor.ForeColor = Color.White
-        lblVendor.Location = New Point(3, 68)
+        lblVendor.Location = New Point(6, 70)
         lblVendor.Name = "lblVendor"
-        lblVendor.Size = New Size(44, 15)
+        lblVendor.Size = New Size(74, 15)
         lblVendor.TabIndex = 8
         lblVendor.Text = "Vendor"
+        lblVendor.Value1 = "Brand"
+        lblVendor.Value2 = ""
         ' 
         ' txtBrand
         ' 
@@ -293,13 +297,15 @@ Partial Class frmMain
         ' 
         ' lblName
         ' 
-        lblName.AutoSize = True
+        lblName.Font = New Font("Segoe UI", 9F)
         lblName.ForeColor = Color.White
-        lblName.Location = New Point(3, 39)
+        lblName.Location = New Point(6, 41)
         lblName.Name = "lblName"
-        lblName.Size = New Size(39, 15)
+        lblName.Size = New Size(74, 15)
         lblName.TabIndex = 6
         lblName.Text = "Name"
+        lblName.Value1 = "Name"
+        lblName.Value2 = ""
         ' 
         ' txtName
         ' 
@@ -316,23 +322,27 @@ Partial Class frmMain
         ' 
         ' lblHeight
         ' 
-        lblHeight.AutoSize = True
+        lblHeight.Font = New Font("Segoe UI", 9F)
         lblHeight.ForeColor = Color.White
-        lblHeight.Location = New Point(3, 183)
+        lblHeight.Location = New Point(6, 185)
         lblHeight.Name = "lblHeight"
-        lblHeight.Size = New Size(43, 15)
+        lblHeight.Size = New Size(74, 15)
         lblHeight.TabIndex = 4
         lblHeight.Text = "Height"
+        lblHeight.Value1 = "Height"
+        lblHeight.Value2 = ""
         ' 
         ' lblWidth
         ' 
-        lblWidth.AutoSize = True
+        lblWidth.Font = New Font("Segoe UI", 9F)
         lblWidth.ForeColor = Color.White
-        lblWidth.Location = New Point(3, 154)
+        lblWidth.Location = New Point(6, 156)
         lblWidth.Name = "lblWidth"
-        lblWidth.Size = New Size(39, 15)
+        lblWidth.Size = New Size(74, 15)
         lblWidth.TabIndex = 3
         lblWidth.Text = "Width"
+        lblWidth.Value1 = "Width"
+        lblWidth.Value2 = ""
         ' 
         ' numHeight
         ' 
@@ -454,7 +464,8 @@ Partial Class frmMain
         ' 
         ' SplitContainer1.Panel1
         ' 
-        SplitContainer1.Panel1.BackColor = SystemColors.ControlDark
+        SplitContainer1.Panel1.BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        SplitContainer1.Panel1.ForeColor = Color.White
         ' 
         ' SplitContainer1.Panel2
         ' 
@@ -478,9 +489,10 @@ Partial Class frmMain
         NsTheme1.Controls.Add(SplitContainer1)
         NsTheme1.Customization = ""
         NsTheme1.Dock = DockStyle.Fill
-        NsTheme1.Font = New Font("Segoe UI", 9.0F)
+        NsTheme1.Font = New Font("Segoe UI", 9F)
         NsTheme1.Image = Nothing
         NsTheme1.Location = New Point(0, 0)
+        NsTheme1.MinimumSize = New Size(1000, 700)
         NsTheme1.Movable = True
         NsTheme1.Name = "NsTheme1"
         NsTheme1.NoRounding = False
@@ -543,13 +555,14 @@ Partial Class frmMain
         ' frmMain
         ' 
         AllowDrop = True
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1008, 729)
         ControlBox = False
         Controls.Add(NsTheme1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Location = New Point(0, 0)
+        MinimumSize = New Size(1000, 700)
         Name = "frmMain"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Untitled - Nollie x SignalRGB Custom Component Editor"
@@ -569,16 +582,16 @@ Partial Class frmMain
 
     Friend WithEvents RightPanel As Panel
     Friend WithEvents numWidth As NSTextBox
-    Friend WithEvents lblName As Label
+    Friend WithEvents lblName As NSLabel
     Friend WithEvents txtName As NSTextBox
-    Friend WithEvents lblHeight As Label
-    Friend WithEvents lblWidth As Label
+    Friend WithEvents lblHeight As NSLabel
+    Friend WithEvents lblWidth As NSLabel
     Friend WithEvents numHeight As NSTextBox
-    Friend WithEvents lblType As Label
+    Friend WithEvents lblType As NSLabel
     Friend WithEvents cmbType As NSComboBox
-    Friend WithEvents lblProduct As Label
+    Friend WithEvents lblProduct As NSLabel
     Friend WithEvents txtProduct As NSTextBox
-    Friend WithEvents lblVendor As Label
+    Friend WithEvents lblVendor As NSLabel
     Friend WithEvents txtBrand As NSTextBox
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents pbImage As PictureBox
@@ -589,7 +602,7 @@ Partial Class frmMain
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents tsmiExit As ToolStripMenuItem
     Friend WithEvents tsmiSaveAs As ToolStripMenuItem
-    Friend WithEvents lblLedCount As Label
+    Friend WithEvents lblLedCount As NSLabel
     Friend WithEvents txtLedCount As NSTextBox
     Friend WithEvents btnChangeImage As NSButton
     Friend WithEvents tsmiControls As ToolStripMenuItem

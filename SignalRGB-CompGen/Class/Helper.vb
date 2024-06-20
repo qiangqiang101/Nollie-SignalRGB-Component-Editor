@@ -3,6 +3,7 @@ Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
+Imports System.Text.RegularExpressions
 
 Module Helper
 
@@ -162,13 +163,10 @@ Module Helper
         nstxt.Text = Nothing
     End Sub
 
-    <DllImport("user32.dll")>
-    Private Function AnimateWindow(ByVal hwnd As IntPtr, ByVal dwTime As Integer, ByVal dwFlags As Integer) As Boolean
+    <Extension>
+    Public Function ToRect(rectF As RectangleF) As Rectangle
+        Return New Rectangle(CInt(Math.Ceiling(rectF.X)), CInt(Math.Ceiling(rectF.Y)), CInt(Math.Ceiling(rectF.Width)), CInt(Math.Ceiling(rectF.Height)))
     End Function
-    Private Const AW_VER_POSITIVE As Integer = &H4
-    Private Const AW_VER_NEGATIVE As Integer = &H8
-    Private Const AW_SLIDE As Integer = &H40000
-    Private Const AW_HIDE As Integer = &H10000
 
 End Module
 
