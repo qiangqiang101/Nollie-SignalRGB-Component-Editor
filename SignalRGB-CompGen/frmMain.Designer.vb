@@ -46,8 +46,8 @@ Partial Class frmMain
         txtName = New NSTextBox()
         lblHeight = New NSLabel()
         lblWidth = New NSLabel()
-        numHeight = New NSTextBox()
-        numWidth = New NSTextBox()
+        numHeight = New NSNumericUpDown()
+        numWidth = New NSNumericUpDown()
         cmFile = New NSContextMenu()
         tsmiNew = New ToolStripMenuItem()
         tsmiOpen = New ToolStripMenuItem()
@@ -103,6 +103,7 @@ Partial Class frmMain
         RightPanel.Dock = DockStyle.Fill
         RightPanel.Location = New Point(0, 0)
         RightPanel.Name = "RightPanel"
+        RightPanel.Padding = New Padding(3)
         RightPanel.Size = New Size(269, 687)
         RightPanel.TabIndex = 0
         ' 
@@ -112,9 +113,9 @@ Partial Class frmMain
         flpMenuStrip.Controls.Add(btnSettings)
         flpMenuStrip.Controls.Add(btnHelp)
         flpMenuStrip.Dock = DockStyle.Top
-        flpMenuStrip.Location = New Point(0, 0)
+        flpMenuStrip.Location = New Point(3, 3)
         flpMenuStrip.Name = "flpMenuStrip"
-        flpMenuStrip.Size = New Size(269, 30)
+        flpMenuStrip.Size = New Size(263, 28)
         flpMenuStrip.TabIndex = 0
         ' 
         ' btnFile
@@ -145,9 +146,9 @@ Partial Class frmMain
         ' 
         nslblPosition.Dock = DockStyle.Bottom
         nslblPosition.Font = New Font("Segoe UI", 9F)
-        nslblPosition.Location = New Point(0, 664)
+        nslblPosition.Location = New Point(3, 661)
         nslblPosition.Name = "nslblPosition"
-        nslblPosition.Size = New Size(269, 23)
+        nslblPosition.Size = New Size(263, 23)
         nslblPosition.TabIndex = 21
         nslblPosition.Text = "NsLabel1"
         nslblPosition.Value1 = "Position: 0, 0"
@@ -159,10 +160,10 @@ Partial Class frmMain
         gbImage.Controls.Add(pbImage)
         gbImage.Controls.Add(btnChangeImage)
         gbImage.DrawSeperator = True
-        gbImage.Location = New Point(3, 256)
+        gbImage.Location = New Point(6, 260)
         gbImage.Name = "gbImage"
         gbImage.Padding = New Padding(3, 31, 3, 3)
-        gbImage.Size = New Size(263, 312)
+        gbImage.Size = New Size(257, 312)
         gbImage.SubTitle = ""
         gbImage.TabIndex = 8
         gbImage.Title = "Component Image"
@@ -173,7 +174,7 @@ Partial Class frmMain
         pbImage.Image = My.Resources.Resources._1
         pbImage.Location = New Point(3, 31)
         pbImage.Name = "pbImage"
-        pbImage.Size = New Size(257, 255)
+        pbImage.Size = New Size(251, 255)
         pbImage.SizeMode = PictureBoxSizeMode.Zoom
         pbImage.TabIndex = 13
         pbImage.TabStop = False
@@ -183,13 +184,13 @@ Partial Class frmMain
         btnChangeImage.Dock = DockStyle.Bottom
         btnChangeImage.Location = New Point(3, 286)
         btnChangeImage.Name = "btnChangeImage"
-        btnChangeImage.Size = New Size(257, 23)
+        btnChangeImage.Size = New Size(251, 23)
         btnChangeImage.TabIndex = 1
         btnChangeImage.Text = "Select Image"
         ' 
         ' NsSeperator1
         ' 
-        NsSeperator1.Location = New Point(3, 239)
+        NsSeperator1.Location = New Point(5, 242)
         NsSeperator1.Name = "NsSeperator1"
         NsSeperator1.Size = New Size(261, 11)
         NsSeperator1.TabIndex = 19
@@ -198,23 +199,24 @@ Partial Class frmMain
         ' txtLedCount
         ' 
         txtLedCount.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtLedCount.Location = New Point(83, 210)
+        txtLedCount.Location = New Point(86, 215)
         txtLedCount.MaxLength = 32767
         txtLedCount.Multiline = False
         txtLedCount.Name = "txtLedCount"
         txtLedCount.ReadOnly = True
-        txtLedCount.Size = New Size(183, 23)
+        txtLedCount.Size = New Size(177, 24)
         txtLedCount.TabIndex = 7
-        txtLedCount.TextAlign = HorizontalAlignment.Left
+        txtLedCount.Text = "0"
+        txtLedCount.TextAlign = HorizontalAlignment.Right
         txtLedCount.UseSystemPasswordChar = False
         ' 
         ' lblLedCount
         ' 
         lblLedCount.Font = New Font("Segoe UI", 9F)
         lblLedCount.ForeColor = Color.White
-        lblLedCount.Location = New Point(6, 214)
+        lblLedCount.Location = New Point(6, 215)
         lblLedCount.Name = "lblLedCount"
-        lblLedCount.Size = New Size(74, 15)
+        lblLedCount.Size = New Size(74, 24)
         lblLedCount.TabIndex = 17
         lblLedCount.Text = "LED Count"
         lblLedCount.Value1 = "LED Count"
@@ -224,9 +226,9 @@ Partial Class frmMain
         ' 
         lblType.Font = New Font("Segoe UI", 9F)
         lblType.ForeColor = Color.White
-        lblType.Location = New Point(6, 128)
+        lblType.Location = New Point(6, 125)
         lblType.Name = "lblType"
-        lblType.Size = New Size(74, 15)
+        lblType.Size = New Size(74, 24)
         lblType.TabIndex = 12
         lblType.Text = "Type"
         lblType.Value1 = "Type"
@@ -240,18 +242,18 @@ Partial Class frmMain
         cmbType.DropDownStyle = ComboBoxStyle.DropDownList
         cmbType.ForeColor = Color.White
         cmbType.FormattingEnabled = True
-        cmbType.Location = New Point(83, 123)
+        cmbType.Location = New Point(86, 125)
         cmbType.Name = "cmbType"
-        cmbType.Size = New Size(183, 24)
+        cmbType.Size = New Size(177, 24)
         cmbType.TabIndex = 4
         ' 
         ' lblProduct
         ' 
         lblProduct.Font = New Font("Segoe UI", 9F)
         lblProduct.ForeColor = Color.White
-        lblProduct.Location = New Point(6, 99)
+        lblProduct.Location = New Point(6, 95)
         lblProduct.Name = "lblProduct"
-        lblProduct.Size = New Size(74, 15)
+        lblProduct.Size = New Size(74, 24)
         lblProduct.TabIndex = 10
         lblProduct.Text = "Product"
         lblProduct.Value1 = "Product"
@@ -260,12 +262,12 @@ Partial Class frmMain
         ' txtProduct
         ' 
         txtProduct.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtProduct.Location = New Point(83, 94)
+        txtProduct.Location = New Point(86, 95)
         txtProduct.MaxLength = 32767
         txtProduct.Multiline = False
         txtProduct.Name = "txtProduct"
         txtProduct.ReadOnly = False
-        txtProduct.Size = New Size(183, 23)
+        txtProduct.Size = New Size(177, 24)
         txtProduct.TabIndex = 3
         txtProduct.TextAlign = HorizontalAlignment.Left
         txtProduct.UseSystemPasswordChar = False
@@ -274,9 +276,9 @@ Partial Class frmMain
         ' 
         lblVendor.Font = New Font("Segoe UI", 9F)
         lblVendor.ForeColor = Color.White
-        lblVendor.Location = New Point(6, 70)
+        lblVendor.Location = New Point(6, 65)
         lblVendor.Name = "lblVendor"
-        lblVendor.Size = New Size(74, 15)
+        lblVendor.Size = New Size(74, 24)
         lblVendor.TabIndex = 8
         lblVendor.Text = "Vendor"
         lblVendor.Value1 = "Brand"
@@ -285,12 +287,12 @@ Partial Class frmMain
         ' txtBrand
         ' 
         txtBrand.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtBrand.Location = New Point(83, 65)
+        txtBrand.Location = New Point(86, 65)
         txtBrand.MaxLength = 32767
         txtBrand.Multiline = False
         txtBrand.Name = "txtBrand"
         txtBrand.ReadOnly = False
-        txtBrand.Size = New Size(183, 23)
+        txtBrand.Size = New Size(177, 24)
         txtBrand.TabIndex = 2
         txtBrand.TextAlign = HorizontalAlignment.Left
         txtBrand.UseSystemPasswordChar = False
@@ -299,9 +301,9 @@ Partial Class frmMain
         ' 
         lblName.Font = New Font("Segoe UI", 9F)
         lblName.ForeColor = Color.White
-        lblName.Location = New Point(6, 41)
+        lblName.Location = New Point(6, 35)
         lblName.Name = "lblName"
-        lblName.Size = New Size(74, 15)
+        lblName.Size = New Size(74, 24)
         lblName.TabIndex = 6
         lblName.Text = "Name"
         lblName.Value1 = "Name"
@@ -310,12 +312,12 @@ Partial Class frmMain
         ' txtName
         ' 
         txtName.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtName.Location = New Point(83, 36)
+        txtName.Location = New Point(86, 35)
         txtName.MaxLength = 32767
         txtName.Multiline = False
         txtName.Name = "txtName"
         txtName.ReadOnly = False
-        txtName.Size = New Size(183, 23)
+        txtName.Size = New Size(177, 24)
         txtName.TabIndex = 1
         txtName.TextAlign = HorizontalAlignment.Left
         txtName.UseSystemPasswordChar = False
@@ -326,7 +328,7 @@ Partial Class frmMain
         lblHeight.ForeColor = Color.White
         lblHeight.Location = New Point(6, 185)
         lblHeight.Name = "lblHeight"
-        lblHeight.Size = New Size(74, 15)
+        lblHeight.Size = New Size(74, 24)
         lblHeight.TabIndex = 4
         lblHeight.Text = "Height"
         lblHeight.Value1 = "Height"
@@ -336,9 +338,9 @@ Partial Class frmMain
         ' 
         lblWidth.Font = New Font("Segoe UI", 9F)
         lblWidth.ForeColor = Color.White
-        lblWidth.Location = New Point(6, 156)
+        lblWidth.Location = New Point(6, 155)
         lblWidth.Name = "lblWidth"
-        lblWidth.Size = New Size(74, 15)
+        lblWidth.Size = New Size(74, 24)
         lblWidth.TabIndex = 3
         lblWidth.Text = "Width"
         lblWidth.Value1 = "Width"
@@ -347,30 +349,36 @@ Partial Class frmMain
         ' numHeight
         ' 
         numHeight.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        numHeight.Location = New Point(83, 181)
-        numHeight.MaxLength = 3
-        numHeight.Multiline = False
+        numHeight.DecimalPlaces = 0
+        numHeight.Increment = 1
+        numHeight.InterceptArrowKeys = True
+        numHeight.Location = New Point(86, 185)
+        numHeight.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
+        numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numHeight.Name = "numHeight"
         numHeight.ReadOnly = False
-        numHeight.Size = New Size(183, 23)
+        numHeight.Size = New Size(177, 24)
         numHeight.TabIndex = 6
-        numHeight.Text = "5"
-        numHeight.TextAlign = HorizontalAlignment.Left
-        numHeight.UseSystemPasswordChar = False
+        numHeight.TextAlign = HorizontalAlignment.Right
+        numHeight.ThousandsSeparator = False
+        numHeight.Value = New Decimal(New Integer() {5, 0, 0, 0})
         ' 
         ' numWidth
         ' 
         numWidth.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        numWidth.Location = New Point(83, 152)
-        numWidth.MaxLength = 3
-        numWidth.Multiline = False
+        numWidth.DecimalPlaces = 0
+        numWidth.Increment = 1
+        numWidth.InterceptArrowKeys = True
+        numWidth.Location = New Point(86, 155)
+        numWidth.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
+        numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numWidth.Name = "numWidth"
         numWidth.ReadOnly = False
-        numWidth.Size = New Size(183, 23)
+        numWidth.Size = New Size(177, 24)
         numWidth.TabIndex = 5
-        numWidth.Text = "5"
-        numWidth.TextAlign = HorizontalAlignment.Left
-        numWidth.UseSystemPasswordChar = False
+        numWidth.TextAlign = HorizontalAlignment.Right
+        numWidth.ThousandsSeparator = False
+        numWidth.Value = New Decimal(New Integer() {5, 0, 0, 0})
         ' 
         ' cmFile
         ' 
@@ -496,7 +504,7 @@ Partial Class frmMain
         NsTheme1.Movable = True
         NsTheme1.Name = "NsTheme1"
         NsTheme1.NoRounding = False
-        NsTheme1.Padding = New Padding(3, 10, 3, 3)
+        NsTheme1.Padding = New Padding(3, 33, 3, 3)
         NsTheme1.Sizable = True
         NsTheme1.Size = New Size(1008, 729)
         NsTheme1.SmartBounds = True
@@ -567,7 +575,6 @@ Partial Class frmMain
         StartPosition = FormStartPosition.CenterScreen
         Text = "Untitled - Nollie x SignalRGB Custom Component Editor"
         RightPanel.ResumeLayout(False)
-        RightPanel.PerformLayout()
         flpMenuStrip.ResumeLayout(False)
         gbImage.ResumeLayout(False)
         CType(pbImage, ComponentModel.ISupportInitialize).EndInit()
@@ -581,12 +588,12 @@ Partial Class frmMain
     End Sub
 
     Friend WithEvents RightPanel As Panel
-    Friend WithEvents numWidth As NSTextBox
+    Friend WithEvents numWidth As NSNumericUpDown
     Friend WithEvents lblName As NSLabel
     Friend WithEvents txtName As NSTextBox
     Friend WithEvents lblHeight As NSLabel
     Friend WithEvents lblWidth As NSLabel
-    Friend WithEvents numHeight As NSTextBox
+    Friend WithEvents numHeight As NSNumericUpDown
     Friend WithEvents lblType As NSLabel
     Friend WithEvents cmbType As NSComboBox
     Friend WithEvents lblProduct As NSLabel

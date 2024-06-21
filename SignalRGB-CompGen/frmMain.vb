@@ -196,15 +196,15 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub numWidth_TextChanged(sender As Object, e As EventArgs) Handles numWidth.TextChanged
-        If IsNumeric(numWidth.Text) AndAlso ucCompoment IsNot Nothing Then
-            ucCompoment._Width = numWidth.Text
+    Private Sub numWidth_ValueChanged(sender As Object, e As EventArgs) Handles numWidth.ValueChanged
+        If ucCompoment IsNot Nothing Then
+            ucCompoment._Width = numWidth.Value
         End If
     End Sub
 
-    Private Sub numHeight_TextChanged(sender As Object, e As EventArgs) Handles numHeight.TextChanged
-        If IsNumeric(numHeight.Text) AndAlso ucCompoment IsNot Nothing Then
-            ucCompoment._Height = numHeight.Text
+    Private Sub numHeight_ValueChanged(sender As Object, e As EventArgs) Handles numHeight.ValueChanged
+        If ucCompoment IsNot Nothing Then
+            ucCompoment._Height = numHeight.Value
         End If
     End Sub
 
@@ -348,20 +348,4 @@ Public Class frmMain
         cmHelp.Show(btnHelp, New Point(0, btnHelp.Height))
     End Sub
 
-    Private Sub NumericUpDown_KeyDown(sender As Object, e As KeyEventArgs) Handles numWidth.KeyDown, numHeight.KeyDown
-        Dim tb As NSTextBox = sender
-        Dim isDigits As Boolean = IsNumeric(tb.Text)
-        Dim number As Integer
-        If isDigits Then
-            number = CInt(tb.Text)
-        End If
-        Select Case e.KeyCode
-            Case Keys.Up
-                number += 1
-                tb.Text = number
-            Case Keys.Down
-                number -= 1
-                tb.Text = number
-        End Select
-    End Sub
 End Class

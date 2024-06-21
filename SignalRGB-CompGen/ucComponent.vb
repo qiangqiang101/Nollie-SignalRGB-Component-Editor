@@ -399,8 +399,10 @@ Public Class ucComponent
     End Sub
 
     Private Sub tsmiRemoveLastLEDs_Click(sender As Object, e As EventArgs) Handles tsmiRemoveLastLEDs.Click
-        Dim fmt As New frmMulti(eMode.Remove, LEDs.Count, Me, CType(NsContextMenu1.Tag, Point))
-        fmt.Show()
+        If LEDs.Count <> 0 Then
+            Dim fmt As New frmMulti(eMode.Remove, LEDs.Count, Me, CType(NsContextMenu1.Tag, Point))
+            fmt.Show()
+        End If
     End Sub
 
     Private Sub Translate()
