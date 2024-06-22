@@ -1,6 +1,5 @@
 {
-  "Language": "en-US",
-  "Theme": 2,
-  "ShiftIndex": false,
+  "Language": "zh-CN",
+  "ShiftIndex": true,
   "Debug": false
 }

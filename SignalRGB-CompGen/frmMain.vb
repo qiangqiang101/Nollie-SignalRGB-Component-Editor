@@ -16,7 +16,8 @@ Public Class frmMain
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If ucCompoment IsNot Nothing Then
-            tsslPosition.Text = String.Format(Translation.Localization.Position, ucCompoment.MousePos.X, ucCompoment.MousePos.Y)
+            nslblPosition.Value1 = Translation.Localization.Position
+            nslblPosition.Value2 = $"{ucCompoment.MousePos.X}, {ucCompoment.MousePos.Y}"
         End If
     End Sub
 
@@ -45,9 +46,9 @@ Public Class frmMain
                 LEDs.Add(New Led(index, name, New Point(point(0), point(1))))
             Next
 
-            ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.FixedSingle,
+            ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.None,
                 .Size = New Size((Component.Width * 50) + ucCompoment.Margin.All, (Component.Height * 50) + ucCompoment.Margin.All), .LEDs = LEDs,
-                .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
+                .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
             SplitContainer1.Panel1.Controls.Add(ucCompoment)
             ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
             ucCompoment.BringToFront()
@@ -56,13 +57,14 @@ Public Class frmMain
             txtBrand.Text = Component.Brand
             txtProduct.Text = Component.ProductName
             txtName.Text = Component.DisplayName
-            numWidth.Value = Component.Width
-            numHeight.Value = Component.Height
+            numWidth.Text = Component.Width
+            numHeight.Text = Component.Height
             txtLedCount.Text = Component.LedCount
             cmbType.SelectedValue = Component.Type.ToLower
             pbImage.Image = Component.ToImage
 
             Text = String.Format(Translation.Localization.Title, FileName)
+            NsTheme1.Text = Text
         End If
     End Sub
 
@@ -83,8 +85,8 @@ Public Class frmMain
             With comp
                 .Brand = txtBrand.Text
                 .DisplayName = txtName.Text
-                .Width = numWidth.Value
-                .Height = numHeight.Value
+                .Width = numWidth.Text
+                .Height = numHeight.Text
                 .LedCoordinates = ledCoords
                 .LedCount = ucCompoment.LedCount
                 .LedMapping = mapping.ToArray
@@ -117,6 +119,7 @@ Public Class frmMain
             Save(sfd.FileName)
             FileName = sfd.FileName
             Text = String.Format(Translation.Localization.Title, FileName)
+            NsTheme1.Text = Text
         End If
     End Sub
 
@@ -134,8 +137,8 @@ Public Class frmMain
             .SelectedIndex = 0
         End With
 
-        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.FixedSingle, .Location = New Point(0, 0),
-            .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
+        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.None, .Location = New Point(0, 0),
+            .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
         SplitContainer1.Panel1.Controls.Add(ucCompoment)
         ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
         ucCompoment.BringToFront()
@@ -160,30 +163,36 @@ Public Class frmMain
                                       New DropdownListItem(Of String)(loc.Heatsink, "heatsink"), New DropdownListItem(Of String)(loc.Desk, "desk")})
 
             Text = String.Format(loc.Title, loc.Untitled)
+            NsTheme1.Text = Text
 
-            tsmiFile.Text = loc.File
+            btnFile.Text = loc.File
             tsmiNew.Text = loc.[New]
             tsmiOpen.Text = loc.Open
             tsmiSave.Text = loc.Save
             tsmiSaveAs.Text = loc.SaveAs
             tsmiExit.Text = loc.Exit
-            tsmiSettings.Text = loc.Settings
-            tsmiHelp.Text = loc.Help
+            btnSettings.Text = loc.Settings
+            btnHelp.Text = loc.Help
             tsmiControls.Text = loc.Controls
             tsmiSRGB.Text = loc.VisitSignalRGB
             tsmiNollie.Text = loc.VisitNollie
             tsmiMentaL.Text = loc.VisitMentaL
             tsmiBuy.Text = loc.BuyNollie
 
-            lblName.Text = loc.Name
-            lblVendor.Text = loc.Vendor
-            lblProduct.Text = loc.Product
-            lblType.Text = loc.Type
-            lblWidth.Text = loc.Width
-            lblHeight.Text = loc.Height
-            lblLedCount.Text = loc.LEDCount
+            lblName.Value1 = loc.Name
+            lblVendor.Value1 = loc.Vendor
+            lblProduct.Value1 = loc.Product
+            lblType.Value1 = loc.Type
+            lblWidth.Value1 = loc.Width
+            lblHeight.Value1 = loc.Height
+            lblLedCount.Value1 = loc.LEDCount
             btnChangeImage.Text = loc.SelectImage
-            tsslPosition.Text = String.Format(loc.Position, 0, 0)
+            nslblPosition.Value1 = loc.Position
+            nslblPosition.Value2 = "0, 0"
+            gbImage.Title = loc.ComponentImage
+            btnFile.Width = loc.FileWidth
+            btnSettings.Width = loc.SettingsWidth
+            btnHelp.Width = loc.HelpWidth
         End If
     End Sub
 
@@ -238,18 +247,20 @@ Public Class frmMain
         End If
         FileName = Nothing
         Text = String.Format(Translation.Localization.Title, Translation.Localization.Untitled)
+        NsTheme1.Text = Text
 
         txtBrand.Clear()
         txtProduct.Clear()
         txtName.Clear()
-        numWidth.Value = 5
-        numHeight.Value = 5
+        numWidth.Text = 5
+        numHeight.Text = 5
         txtLedCount.Text = 0
         cmbType.SelectedIndex = 0
         pbImage.Image = My.Resources._1
 
-        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.FixedSingle,
-            .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
+        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.None,
+            .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right,
+            .ForeColor = Color.White}
         SplitContainer1.Panel1.Controls.Add(ucCompoment)
         ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
         ucCompoment.BringToFront()
@@ -297,9 +308,9 @@ Public Class frmMain
                     LEDs.Add(New Led(index, name, New Point(point(0), point(1))))
                 Next
 
-                ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.FixedSingle,
+                ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.None,
                     .Size = New Size((Component.Width * 50) + ucCompoment.Margin.All, (Component.Height * 50) + ucCompoment.Margin.All), .LEDs = LEDs,
-                    .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
+                    .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
                 SplitContainer1.Panel1.Controls.Add(ucCompoment)
                 ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
                 ucCompoment.BringToFront()
@@ -308,13 +319,14 @@ Public Class frmMain
                 txtBrand.Text = Component.Brand
                 txtProduct.Text = Component.ProductName
                 txtName.Text = Component.DisplayName
-                numWidth.Value = Component.Width
-                numHeight.Value = Component.Height
+                numWidth.Text = Component.Width
+                numHeight.Text = Component.Height
                 txtLedCount.Text = Component.LedCount
                 cmbType.SelectedValue = Component.Type.ToLower
                 pbImage.Image = Component.ToImage
 
                 Text = String.Format(Translation.Localization.Title, FileName)
+                NsTheme1.Text = Text
             End If
         End If
 
@@ -324,8 +336,16 @@ Public Class frmMain
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then e.Effect = DragDropEffects.Copy
     End Sub
 
-    Private Sub tsmiSettings_Click(sender As Object, e As EventArgs) Handles tsmiSettings.Click
+    Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
         frmSettings.Show()
+    End Sub
+
+    Private Sub btnFile_Click(sender As Object, e As EventArgs) Handles btnFile.Click
+        cmFile.Show(btnFile, New Point(0, btnFile.Height))
+    End Sub
+
+    Private Sub btnHelp_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
+        cmHelp.Show(btnHelp, New Point(0, btnHelp.Height))
     End Sub
 
 End Class

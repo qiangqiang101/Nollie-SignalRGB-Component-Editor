@@ -40,7 +40,8 @@
     "LEDCount": "LED Count",
     "SelectImage": "Select Image",
     "SelectImageFile": "Select image file..",
-    "Position": "Position: {0}, {1}",
+    "Position": "Position:",
+	"ComponentImage": "Component Image",
     "LEDInfo": "Index: {1}{0}Name: {2}{0}Position: {3}, {4}",
     "AddLED": "Add LED",
     "AddLEDs": "Add LEDs",
@@ -56,6 +57,9 @@
     "Language": "Language",
     "ShiftDisplayingLEDIndex": "Shift Displaying LED index by 1",
     "Console": "Console",
-	"SettingSaveMsg": "Some setting changes will not take effect until you restart SignalRGB Custom Component Editor."
+	"SettingSaveMsg": "Some setting changes will not take effect until you restart SignalRGB Custom Component Editor.",
+	"FileWidth": 32,
+	"SettingsWidth": 55,
+	"HelpWidth": 38
   }
 }

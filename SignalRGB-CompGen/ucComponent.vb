@@ -130,10 +130,10 @@ Public Class ucComponent
     End Sub
 
     Private Sub PrepareGraphics(g As Graphics)
-        g.SmoothingMode = Drawing2D.SmoothingMode.HighSpeed
-        g.CompositingQuality = Drawing2D.CompositingQuality.HighSpeed
-        g.InterpolationMode = Drawing2D.InterpolationMode.Low
-        g.PixelOffsetMode = Drawing2D.PixelOffsetMode.HighSpeed
+        g.SmoothingMode = SmoothingMode.AntiAlias
+        g.CompositingQuality = CompositingQuality.HighSpeed
+        g.InterpolationMode = InterpolationMode.Low
+        g.PixelOffsetMode = PixelOffsetMode.HighSpeed
     End Sub
 
     Private Sub ucComponent_Paint(sender As Object, e As PaintEventArgs) Handles Me.Paint
@@ -152,7 +152,7 @@ Public Class ucComponent
         For row As Integer = 0 To matrix.GetUpperBound(0)
             For col As Integer = 0 To matrix.GetUpperBound(1)
 
-                Using sb As New SolidBrush(Color.LightGray)
+                Using sb As New SolidBrush(Color.FromArgb(55, 55, 55))
                     numRows = matrix.GetUpperBound(1) + 1
                     numCols = matrix.GetUpperBound(0) + 1
 
@@ -186,34 +186,51 @@ Public Class ucComponent
                         If led = SelectedItem Then
                             dragRect = r
                             Using sb2 As New SolidBrush(Color.LightBlue)
-                                g.FillRectangle(sb2, r)
+                                'g.FillRectangle(sb2, r)
+                                g.FillRoundedRectangle(sb2, r.ToRect, 7)
                             End Using
                             Using sb2 As New SolidBrush(Color.Blue)
-                                g.DrawString(If(Setting.ShiftIndex, ledIndex + 1, ledIndex), Font, sb2, renderRect, sf)
+                                Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
+                                Dim text As String = If(Setting.ShiftIndex, ledIndex + 1, ledIndex)
+                                Dim adjFont = GetAdjustedFont(g, text, Font, CInt(renderRect.Width), Font.Size, 1.0F, False)
+                                g.DrawString(text, adjFont, Brushes.Black, srect, sf)
+                                g.DrawString(text, adjFont, sb2, renderRect, sf)
                             End Using
                         Else
                             If renderRect.Contains(PointToClient(Control.MousePosition)) Then
-                                Using sb2 As New SolidBrush(Color.LightGreen)
-                                    g.FillRectangle(sb2, r)
+                                Using sb2 As New SolidBrush(Color.FromArgb(240, 220, 160))
+                                    'g.FillRectangle(sb2, r)
+                                    g.FillRoundedRectangle(sb2, r.ToRect, 7)
                                 End Using
-                                Using sb2 As New SolidBrush(Color.Green)
-                                    g.DrawString(If(Setting.ShiftIndex, ledIndex + 1, ledIndex), Font, sb2, renderRect, sf)
+                                Using sb2 As New SolidBrush(Color.FromArgb(205, 150, 0))
+                                    Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
+                                    Dim text As String = If(Setting.ShiftIndex, ledIndex + 1, ledIndex)
+                                    Dim adjFont = GetAdjustedFont(g, text, Font, CInt(renderRect.Width), Font.Size, 1.0F, False)
+                                    g.DrawString(text, adjFont, Brushes.Black, srect, sf)
+                                    g.DrawString(text, adjFont, sb2, renderRect, sf)
                                 End Using
                             Else
-                                Using sb2 As New SolidBrush(Color.Green)
-                                    g.FillRectangle(sb2, r)
+                                Using sb2 As New SolidBrush(Color.FromArgb(205, 150, 0))
+                                    'g.FillRectangle(sb2, r)
+                                    g.FillRoundedRectangle(sb2, r.ToRect, 7)
                                 End Using
                                 Using sb2 As New SolidBrush(ForeColor)
-                                    g.DrawString(If(Setting.ShiftIndex, ledIndex + 1, ledIndex), Font, sb2, renderRect, sf)
+                                    Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
+                                    Dim text As String = If(Setting.ShiftIndex, ledIndex + 1, ledIndex)
+                                    Dim adjFont = GetAdjustedFont(g, text, Font, CInt(renderRect.Width), Font.Size, 1.0F, False)
+                                    g.DrawString(text, adjFont, Brushes.Black, srect, sf)
+                                    g.DrawString(text, adjFont, sb2, renderRect, sf)
                                 End Using
                             End If
                         End If
                     Else
-                        g.FillRectangle(sb, r)
+                        'g.FillRectangle(sb, r)
+                        g.FillRoundedRectangle(sb, r.ToRect, 7)
                     End If
 
-                    Using pen As New Pen(ForeColor, 1.0F)
-                        g.DrawRectangle(pen, r)
+                    Using pen As New Pen(Color.FromArgb(35, 35, 35), 1.0F)
+                        'g.DrawRectangle(pen, r)
+                        g.DrawRoundedRectangle(pen, r.ToRect, 7)
                     End Using
                 End Using
                 count += 1
@@ -226,13 +243,19 @@ Public Class ucComponent
             Dim cursor = PointToClient(Control.MousePosition)
             Dim dr As New RectangleF(cursor.X - dragRect.Width / 2, cursor.Y - dragRect.Height / 2, dragRect.Width, dragRect.Height)
             Using sb As New SolidBrush(Color.FromArgb(125, Color.LightBlue))
-                g.FillRectangle(sb, dr)
+                'g.FillRectangle(sb, dr)
+                g.FillRoundedRectangle(sb, dr.ToRect, 7)
             End Using
             Using sb2 As New SolidBrush(Color.Blue)
-                g.DrawString(SelectedItem.Index, Font, sb2, dr, sf)
+                Dim srect = New RectangleF(dr.X + 1, dr.Y + 1, dr.Width, dr.Height)
+                Dim text As String = If(Setting.ShiftIndex, SelectedItem.Index + 1, SelectedItem.Index)
+                Dim adjFont = GetAdjustedFont(g, text, Font, CInt(dr.Width), Font.Size, 1.0F, False)
+                g.DrawString(text, adjFont, Brushes.Black, srect, sf)
+                g.DrawString(text, adjFont, sb2, dr, sf)
             End Using
             Using pen As New Pen(Color.White, 1.0F)
-                g.DrawRectangle(pen, dr)
+                'g.DrawRectangle(pen, dr)
+                g.DrawRoundedRectangle(pen, dr.ToRect, 7)
             End Using
             'End If
         End If
@@ -242,7 +265,7 @@ Public Class ucComponent
             Dim info = String.Format(Translation.Localization.LEDInfo, vbCrLf, itm.MappingIndex, itm.LedName, itm.LedCoordinates.X, itm.LedCoordinates.Y)
             Dim infoSize = TextRenderer.MeasureText(g, info, Font)
             Dim cursor = PointToClient(Control.MousePosition)
-            Using sb As New SolidBrush(Color.LightGoldenrodYellow)
+            Using sb As New SolidBrush(Color.FromArgb(45, 45, 45))
                 Dim rect As Rectangle
                 If itm.LedCoordinates.X >= (numCols - 2) AndAlso itm.LedCoordinates.Y >= (numRows - 2) Then
                     rect = New Rectangle(cursor.X - infoSize.Width - 30, cursor.Y - infoSize.Height - 30, infoSize.Width + 15, infoSize.Height + 15)
@@ -253,8 +276,10 @@ Public Class ucComponent
                 Else
                     rect = New Rectangle(cursor.X + 10, cursor.Y, infoSize.Width + 15, infoSize.Height + 15)
                 End If
-                g.FillRoundedRectangle(sb, rect, 10)
+                g.FillRoundedRectangle(sb, rect, 7)
                 Using sb2 As New SolidBrush(ForeColor)
+                    Dim srect = New Rectangle(rect.X + 1, rect.Y + 1, rect.Width, rect.Height)
+                    g.DrawString(info, Font, Brushes.Black, srect, sf)
                     g.DrawString(info, Font, sb2, rect, sf)
                 End Using
                 Using pen As New Pen(Color.Black, 1.0F)
@@ -285,8 +310,8 @@ Public Class ucComponent
     Private Sub ucComponent_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
         Select Case e.Button
             Case MouseButtons.Right
-                ContextMenuStrip1.Show(MousePosition)
-                ContextMenuStrip1.Tag = _ledPos
+                NsContextMenu1.Show(MousePosition)
+                NsContextMenu1.Tag = _ledPos
             Case MouseButtons.Left
                 If Not IsDragging Then SelectedItem = ItemOnHover()
         End Select
@@ -323,7 +348,7 @@ Public Class ucComponent
     End Sub
 
     Private Sub tsmiAddLed_Click(sender As Object, e As EventArgs) Handles tsmiAddLed.Click
-        AddLeds(1, CType(ContextMenuStrip1.Tag, Point))
+        AddLeds(1, CType(NsContextMenu1.Tag, Point))
         Invalidate()
     End Sub
 
@@ -377,13 +402,15 @@ Public Class ucComponent
 
     Private Sub tsmiAddLeds_Click(sender As Object, e As EventArgs) Handles tsmiAddLeds.Click
         Dim max = numRows * numCols - LEDs.Count
-        Dim fmt As New frmMulti(eMode.Add, max, Me, CType(ContextMenuStrip1.Tag, Point))
+        Dim fmt As New frmMulti(eMode.Add, max, Me, CType(NsContextMenu1.Tag, Point))
         fmt.Show()
     End Sub
 
     Private Sub tsmiRemoveLastLEDs_Click(sender As Object, e As EventArgs) Handles tsmiRemoveLastLEDs.Click
-        Dim fmt As New frmMulti(eMode.Remove, LEDs.Count, Me, CType(ContextMenuStrip1.Tag, Point))
-        fmt.Show()
+        If LEDs.Count <> 0 Then
+            Dim fmt As New frmMulti(eMode.Remove, LEDs.Count, Me, CType(NsContextMenu1.Tag, Point))
+            fmt.Show()
+        End If
     End Sub
 
     Private Sub Translate()
@@ -394,5 +421,24 @@ Public Class ucComponent
         tsmiRemoveLed.Text = loc.RemoveLastLED
         tsmiRemoveLastLEDs.Text = loc.RemoveLastLEDs
     End Sub
+
+    Private Function GetAdjustedFont(graphics As Graphics, graphicString As String, originalFont As Font, containerWidth As Integer, maxFontSize As Integer, minFontSize As Integer, smallestOnFail As Boolean) As Font
+        Dim testFont As Font = Nothing
+
+        For adjustedSize As Integer = maxFontSize To minFontSize
+            testFont = New Font(originalFont.Name, adjustedSize, originalFont.Style)
+            Dim adjustedSizeNew As SizeF = G.MeasureString(graphicString, testFont)
+
+            If containerWidth > Convert.ToInt32(adjustedSizeNew.Width) Then
+                Return testFont
+            End If
+        Next
+
+        If smallestOnFail Then
+            Return testFont
+        Else
+            Return originalFont
+        End If
+    End Function
 
 End Class

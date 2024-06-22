@@ -3,6 +3,7 @@ Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
+Imports System.Text.RegularExpressions
 
 Module Helper
 
@@ -155,6 +156,16 @@ Module Helper
 
     Private Function IsWindows10OrGreater(ByVal Optional build As Integer = -1) As Boolean
         Return Environment.OSVersion.Version.Major >= 10 AndAlso Environment.OSVersion.Version.Build >= build
+    End Function
+
+    <Extension>
+    Public Sub Clear(nstxt As NSTextBox)
+        nstxt.Text = Nothing
+    End Sub
+
+    <Extension>
+    Public Function ToRect(rectF As RectangleF) As Rectangle
+        Return New Rectangle(CInt(Math.Ceiling(rectF.X)), CInt(Math.Ceiling(rectF.Y)), CInt(Math.Ceiling(rectF.Width)), CInt(Math.Ceiling(rectF.Height)))
     End Function
 
 End Module

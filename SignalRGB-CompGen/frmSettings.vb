@@ -38,8 +38,9 @@ Public Class frmSettings
         Dim loc = Translation.Localization
 
         Text = loc.Settings
+        NsTheme1.Text = Text
 
-        lblLanguage.Text = loc.Language
+        lblLanguage.Value1 = loc.Language
         cbShiftLedPosition.Text = loc.ShiftDisplayingLEDIndex
         cbConsole.Text = loc.Console
         btnSave.Text = loc.Save
