@@ -40,7 +40,8 @@
     "LEDCount": "LED數量",
     "SelectImage": "選擇圖像",
     "SelectImageFile": "選擇圖像文件..",
-    "Position": "位置: {0}, {1}",
+    "Position": "位置: ",
+	"ComponentImage": "元件图像",
     "LEDInfo": "索引: {1}{0}名字: {2}{0}位置: {3}, {4}",
     "AddLED": "添加LED",
     "AddLEDs": "添加多個LED",
@@ -56,6 +57,9 @@
     "Language": "語言",
     "ShiftDisplayingLEDIndex": "顯示LED索引從1開始",
     "Console": "控制臺",
-	"SettingSaveMsg": "某些設置更改只有在重新啟動 SignalRGB 自定義組件編輯器後才會生效。"
+	"SettingSaveMsg": "某些設置更改只有在重新啟動 SignalRGB 自定義組件編輯器後才會生效。",
+	"FileWidth": 32,
+	"SettingsWidth": 55,
+	"HelpWidth": 38
   }
 }

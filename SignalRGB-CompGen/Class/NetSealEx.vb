@@ -170,6 +170,7 @@ Class NSNumericUpDown
     End Sub
 
     Private Base As NumericUpDown
+    Private NsUp, NsDown As NSButton, ButtonSize As New Size(18, (Height / 2) - 2)
     Sub New()
         SetStyle(DirectCast(139286, ControlStyles), True)
         SetStyle(ControlStyles.Selectable, True)
@@ -177,26 +178,54 @@ Class NSNumericUpDown
         Cursor = Cursors.IBeam
 
         Base = New NumericUpDown
-        Base.Font = Font
-        Base.Value = Text
-        Base.Maximum = _Maximum
-        Base.Minimum = _Minimum
-        Base.InterceptArrowKeys = _InterceptArrowKeys
-        Base.ReadOnly = _ReadOnly
-        Base.ThousandsSeparator = _ThousandsSeparator
-        Base.DecimalPlaces = _DecimalPlaces
+        With Base
+            .Font = Font
+            .Value = Text
+            .Maximum = _Maximum
+            .Minimum = _Minimum
+            .InterceptArrowKeys = _InterceptArrowKeys
+            .ReadOnly = _ReadOnly
+            .ThousandsSeparator = _ThousandsSeparator
+            .DecimalPlaces = _DecimalPlaces
 
-        Base.ForeColor = Color.White
-        Base.BackColor = Color.FromArgb(50, 50, 50)
+            .ForeColor = Color.White
+            .BackColor = Color.FromArgb(50, 50, 50)
 
-        Base.BorderStyle = BorderStyle.None
-        Base.Controls(0).Hide()
+            .BorderStyle = BorderStyle.None
+            .Controls(0).Hide()
 
-        Base.Location = New Point(5, 3)
-        Base.Width = Width - 14
-        Base.Height = Height - 14
+            .Location = New Point(5, 3)
+            .Width = Width - 14
+            .Height = Height - 14
 
-        AddHandler Base.ValueChanged, AddressOf OnBaseValueChanged
+            AddHandler .ValueChanged, AddressOf OnBaseValueChanged
+        End With
+
+        NsUp = New NSButton
+        With NsUp
+            .Font = New Font("Marlett", 6.0F)
+            .Text = "t"
+            .Anchor = AnchorStyles.Top And AnchorStyles.Right
+            .Size = ButtonSize
+            .Location = New Point(Width - (ButtonSize.Width + 1), 2)
+            .Cursor = Cursors.Arrow
+
+            AddHandler .Click, AddressOf NsUpButtonClicked
+        End With
+        Me.Controls.Add(NsUp)
+
+        NsDown = New NSButton
+        With NsDown
+            .Font = New Font("Marlett", 6.0F)
+            .Text = "u"
+            .Anchor = AnchorStyles.Bottom And AnchorStyles.Right
+            .Size = ButtonSize
+            .Location = New Point(Width - (ButtonSize.Width + 1), ButtonSize.Height + 2)
+            .Cursor = Cursors.Arrow
+
+            AddHandler .Click, AddressOf NsDownButtonClicked
+        End With
+        Me.Controls.Add(NsDown)
 
         P1 = New Pen(Color.FromArgb(35, 35, 35))
         P2 = New Pen(Color.FromArgb(55, 55, 55))
@@ -235,11 +264,30 @@ Class NSNumericUpDown
         RaiseEvent ValueChanged(s, e)
     End Sub
 
+    Private Sub NsUpButtonClicked(ByVal s As Object, ByVal e As EventArgs)
+        If Not Base.Value >= Base.Maximum Then
+            Base.Value += Increment
+        End If
+    End Sub
+
+    Private Sub NsDownButtonClicked(ByVal s As Object, ByVal e As EventArgs)
+        If Not Base.Value <= Base.Minimum Then
+            Base.Value -= Increment
+        End If
+    End Sub
+
     Protected Overrides Sub OnResize(ByVal e As EventArgs)
         Base.Location = New Point(5, 3)
-
         Base.Width = Width - 10
         Base.Height = Height - 10
+
+        ButtonSize = New Size(20, (Height / 2) - 2)
+
+        NsUp.Size = ButtonSize
+        NsUp.Location = New Point(Width - (ButtonSize.Width + 1), 2)
+
+        NsDown.Size = ButtonSize
+        NsDown.Location = New Point(Width - (ButtonSize.Width + 1), ButtonSize.Height + 2)
 
         MyBase.OnResize(e)
     End Sub

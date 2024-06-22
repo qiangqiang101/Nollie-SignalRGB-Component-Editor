@@ -16,10 +16,10 @@
     <Compile Update="Class\ThemeBase.vb">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Update="frmMulti.vb">
+    <Compile Update="frmMain.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="frmMain.vb">
+    <Compile Update="frmMulti.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="frmSettings.vb">

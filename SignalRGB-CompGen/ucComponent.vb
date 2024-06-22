@@ -191,8 +191,10 @@ Public Class ucComponent
                             End Using
                             Using sb2 As New SolidBrush(Color.Blue)
                                 Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
-                                g.DrawString(If(Setting.ShiftIndex, ledIndex + 1, ledIndex), Font, Brushes.Black, srect, sf)
-                                g.DrawString(If(Setting.ShiftIndex, ledIndex + 1, ledIndex), Font, sb2, renderRect, sf)
+                                Dim text As String = If(Setting.ShiftIndex, ledIndex + 1, ledIndex)
+                                Dim adjFont = GetAdjustedFont(g, text, Font, CInt(renderRect.Width), Font.Size, 1.0F, False)
+                                g.DrawString(text, adjFont, Brushes.Black, srect, sf)
+                                g.DrawString(text, adjFont, sb2, renderRect, sf)
                             End Using
                         Else
                             If renderRect.Contains(PointToClient(Control.MousePosition)) Then
@@ -202,8 +204,10 @@ Public Class ucComponent
                                 End Using
                                 Using sb2 As New SolidBrush(Color.FromArgb(205, 150, 0))
                                     Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
-                                    g.DrawString(If(Setting.ShiftIndex, ledIndex + 1, ledIndex), Font, Brushes.Black, srect, sf)
-                                    g.DrawString(If(Setting.ShiftIndex, ledIndex + 1, ledIndex), Font, sb2, renderRect, sf)
+                                    Dim text As String = If(Setting.ShiftIndex, ledIndex + 1, ledIndex)
+                                    Dim adjFont = GetAdjustedFont(g, text, Font, CInt(renderRect.Width), Font.Size, 1.0F, False)
+                                    g.DrawString(text, adjFont, Brushes.Black, srect, sf)
+                                    g.DrawString(text, adjFont, sb2, renderRect, sf)
                                 End Using
                             Else
                                 Using sb2 As New SolidBrush(Color.FromArgb(205, 150, 0))
@@ -212,8 +216,10 @@ Public Class ucComponent
                                 End Using
                                 Using sb2 As New SolidBrush(ForeColor)
                                     Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
-                                    g.DrawString(If(Setting.ShiftIndex, ledIndex + 1, ledIndex), Font, Brushes.Black, srect, sf)
-                                    g.DrawString(If(Setting.ShiftIndex, ledIndex + 1, ledIndex), Font, sb2, renderRect, sf)
+                                    Dim text As String = If(Setting.ShiftIndex, ledIndex + 1, ledIndex)
+                                    Dim adjFont = GetAdjustedFont(g, text, Font, CInt(renderRect.Width), Font.Size, 1.0F, False)
+                                    g.DrawString(text, adjFont, Brushes.Black, srect, sf)
+                                    g.DrawString(text, adjFont, sb2, renderRect, sf)
                                 End Using
                             End If
                         End If
@@ -242,8 +248,10 @@ Public Class ucComponent
             End Using
             Using sb2 As New SolidBrush(Color.Blue)
                 Dim srect = New RectangleF(dr.X + 1, dr.Y + 1, dr.Width, dr.Height)
-                g.DrawString(SelectedItem.Index, Font, Brushes.Black, srect, sf)
-                g.DrawString(SelectedItem.Index, Font, sb2, dr, sf)
+                Dim text As String = If(Setting.ShiftIndex, SelectedItem.Index + 1, SelectedItem.Index)
+                Dim adjFont = GetAdjustedFont(g, text, Font, CInt(dr.Width), Font.Size, 1.0F, False)
+                g.DrawString(text, adjFont, Brushes.Black, srect, sf)
+                g.DrawString(text, adjFont, sb2, dr, sf)
             End Using
             Using pen As New Pen(Color.White, 1.0F)
                 'g.DrawRectangle(pen, dr)
@@ -413,5 +421,24 @@ Public Class ucComponent
         tsmiRemoveLed.Text = loc.RemoveLastLED
         tsmiRemoveLastLEDs.Text = loc.RemoveLastLEDs
     End Sub
+
+    Private Function GetAdjustedFont(graphics As Graphics, graphicString As String, originalFont As Font, containerWidth As Integer, maxFontSize As Integer, minFontSize As Integer, smallestOnFail As Boolean) As Font
+        Dim testFont As Font = Nothing
+
+        For adjustedSize As Integer = maxFontSize To minFontSize
+            testFont = New Font(originalFont.Name, adjustedSize, originalFont.Style)
+            Dim adjustedSizeNew As SizeF = G.MeasureString(graphicString, testFont)
+
+            If containerWidth > Convert.ToInt32(adjustedSizeNew.Width) Then
+                Return testFont
+            End If
+        Next
+
+        If smallestOnFail Then
+            Return testFont
+        Else
+            Return originalFont
+        End If
+    End Function
 
 End Class
