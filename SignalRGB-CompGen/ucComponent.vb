@@ -370,33 +370,13 @@ Public Class ucComponent
                 AddLeds(1, _ledPos)
                 Invalidate()
             Case Keys.Left
-                For i As Integer = 0 To LEDs.Count - 1
-                    Dim led = LEDs(i)
-                    Dim newPos As New Point(led.LedCoordinates.X - 1, led.LedCoordinates.Y)
-                    LEDs(i).LedCoordinates = newPos
-                Next
-                Invalidate()
+                MoveLeft
             Case Keys.Right
-                For i As Integer = 0 To LEDs.Count - 1
-                    Dim led = LEDs(i)
-                    Dim newPos As New Point(led.LedCoordinates.X + 1, led.LedCoordinates.Y)
-                    LEDs(i).LedCoordinates = newPos
-                Next
-                Invalidate()
+                MoveRight()
             Case Keys.Up
-                For i As Integer = 0 To LEDs.Count - 1
-                    Dim led = LEDs(i)
-                    Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y - 1)
-                    LEDs(i).LedCoordinates = newPos
-                Next
-                Invalidate()
+                MoveUp()
             Case Keys.Down
-                For i As Integer = 0 To LEDs.Count - 1
-                    Dim led = LEDs(i)
-                    Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y + 1)
-                    LEDs(i).LedCoordinates = newPos
-                Next
-                Invalidate()
+                MoveDown()
         End Select
     End Sub
 
@@ -420,6 +400,7 @@ Public Class ucComponent
         tsmiAddLeds.Text = loc.AddLEDs
         tsmiRemoveLed.Text = loc.RemoveLastLED
         tsmiRemoveLastLEDs.Text = loc.RemoveLastLEDs
+        tsmiAutoResize.Text = loc.AutoResize
     End Sub
 
     Private Function GetAdjustedFont(graphics As Graphics, graphicString As String, originalFont As Font, containerWidth As Integer, maxFontSize As Integer, minFontSize As Integer, smallestOnFail As Boolean) As Font
@@ -441,4 +422,68 @@ Public Class ucComponent
         End If
     End Function
 
+    Public Sub MoveUp()
+        For i As Integer = 0 To LEDs.Count - 1
+            Dim led = LEDs(i)
+            Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y - 1)
+            LEDs(i).LedCoordinates = newPos
+        Next
+        Invalidate()
+    End Sub
+
+    Public Sub MoveDown()
+        For i As Integer = 0 To LEDs.Count - 1
+            Dim led = LEDs(i)
+            Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y + 1)
+            LEDs(i).LedCoordinates = newPos
+        Next
+        Invalidate()
+    End Sub
+
+    Public Sub MoveLeft()
+        For i As Integer = 0 To LEDs.Count - 1
+            Dim led = LEDs(i)
+            Dim newPos As New Point(led.LedCoordinates.X - 1, led.LedCoordinates.Y)
+            LEDs(i).LedCoordinates = newPos
+        Next
+        Invalidate()
+    End Sub
+
+    Public Sub MoveRight()
+        For i As Integer = 0 To LEDs.Count - 1
+            Dim led = LEDs(i)
+            Dim newPos As New Point(led.LedCoordinates.X + 1, led.LedCoordinates.Y)
+            LEDs(i).LedCoordinates = newPos
+        Next
+        Invalidate()
+    End Sub
+
+    Public Sub AutoResize()
+        If LEDs.Count <> 0 Then
+            Dim leftest = LEDs.MinBy(Function(x) Math.Abs(x.LedCoordinates.X - 0))
+            Do While leftest.LedCoordinates.X > 0
+                MoveLeft()
+            Loop
+
+            Dim topest = LEDs.MinBy(Function(x) Math.Abs(x.LedCoordinates.Y - 0))
+            Do While topest.LedCoordinates.Y > 0
+                MoveUp()
+            Loop
+
+            Dim rightest = LEDs.MaxBy(Function(x) Math.Abs(x.LedCoordinates.X + _Width))
+            _Width = rightest.LedCoordinates.X + 1
+
+            Dim bottomest = LEDs.MaxBy(Function(x) Math.Abs(x.LedCoordinates.Y + _Height))
+            _Height = bottomest.LedCoordinates.Y + 1
+
+            Invalidate()
+
+            frmMain.numHeight.Value = _Height
+            frmMain.numWidth.Value = _Width
+        End If
+    End Sub
+
+    Private Sub tsmiAutoResize_Click(sender As Object, e As EventArgs) Handles tsmiAutoResize.Click
+        AutoResize()
+    End Sub
 End Class

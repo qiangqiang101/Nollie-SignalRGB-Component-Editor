@@ -96,8 +96,6 @@ Public Class Localization
     Public Console As String = "Console"
     Public SettingSaveMsg As String = "Some setting changes will not take effect until you restart SignalRGB Custom Component Editor."
 
-    Public FileWidth As Integer = 32
-    Public SettingsWidth As Integer = 55
-    Public HelpWidth As Integer = 38
+    Public AutoResize As String = "AutoResize"
 
 End Class

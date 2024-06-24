@@ -22,7 +22,7 @@ Public Class frmMain
     End Sub
 
     Private Sub tsmiOpen_Click(sender As Object, e As EventArgs) Handles tsmiOpen.Click
-        Dim ofd As New OpenFileDialog()
+        Dim ofd As New OpenFileDialog
         With ofd
             .DefaultExt = "json"
             .InitialDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\WhirlwindFX\Components"
@@ -39,26 +39,26 @@ Public Class frmMain
             Component = Component.Load(FileName)
 
             Dim LEDs As New List(Of Led)
-            For i As Integer = 0 To Component.LedCoordinates.Count - 1
-                Dim name As String = Component.LedNames(i)
-                Dim index As Integer = Component.LedMapping(i)
-                Dim point As Integer() = Component.LedCoordinates(i)
+            For i = 0 To Component.LedCoordinates.Count - 1
+                Dim name = Component.LedNames(i)
+                Dim index = Component.LedMapping(i)
+                Dim point = Component.LedCoordinates(i)
                 LEDs.Add(New Led(index, name, New Point(point(0), point(1))))
             Next
 
             ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.None,
-                .Size = New Size((Component.Width * 50) + ucCompoment.Margin.All, (Component.Height * 50) + ucCompoment.Margin.All), .LEDs = LEDs,
+                .Size = New Size(Component.Width * 50 + ucCompoment.Margin.All, Component.Height * 50 + ucCompoment.Margin.All), .LEDs = LEDs,
                 .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
             SplitContainer1.Panel1.Controls.Add(ucCompoment)
-            ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
+            ucCompoment.Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
             ucCompoment.BringToFront()
             mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
 
             txtBrand.Text = Component.Brand
             txtProduct.Text = Component.ProductName
             txtName.Text = Component.DisplayName
-            numWidth.Text = Component.Width
-            numHeight.Text = Component.Height
+            numWidth.Value = Component.Width
+            numHeight.Value = Component.Height
             txtLedCount.Text = Component.LedCount
             cmbType.SelectedValue = Component.Type.ToLower
             pbImage.Image = Component.ToImage
@@ -85,8 +85,8 @@ Public Class frmMain
             With comp
                 .Brand = txtBrand.Text
                 .DisplayName = txtName.Text
-                .Width = numWidth.Text
-                .Height = numHeight.Text
+                .Width = numWidth.Value
+                .Height = numHeight.Value
                 .LedCoordinates = ledCoords
                 .LedCount = ucCompoment.LedCount
                 .LedMapping = mapping.ToArray
@@ -108,7 +108,7 @@ Public Class frmMain
     End Sub
 
     Private Sub tsmiSaveAs_Click(sender As Object, e As EventArgs) Handles tsmiSaveAs.Click
-        Dim sfd As New SaveFileDialog()
+        Dim sfd As New SaveFileDialog
         With sfd
             .DefaultExt = "json"
             .InitialDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments)}\WhirlwindFX\Components"
@@ -165,14 +165,14 @@ Public Class frmMain
             Text = String.Format(loc.Title, loc.Untitled)
             NsTheme1.Text = Text
 
-            btnFile.Text = loc.File
+            tsmiFile.Text = loc.File
             tsmiNew.Text = loc.[New]
             tsmiOpen.Text = loc.Open
             tsmiSave.Text = loc.Save
             tsmiSaveAs.Text = loc.SaveAs
             tsmiExit.Text = loc.Exit
-            btnSettings.Text = loc.Settings
-            btnHelp.Text = loc.Help
+            tsmiSettings.Text = loc.Settings
+            tsmiHelp.Text = loc.Help
             tsmiControls.Text = loc.Controls
             tsmiSRGB.Text = loc.VisitSignalRGB
             tsmiNollie.Text = loc.VisitNollie
@@ -190,9 +190,8 @@ Public Class frmMain
             nslblPosition.Value1 = loc.Position
             nslblPosition.Value2 = "0, 0"
             gbImage.Title = loc.ComponentImage
-            btnFile.Width = loc.FileWidth
-            btnSettings.Width = loc.SettingsWidth
-            btnHelp.Width = loc.HelpWidth
+            gbControls.Title = loc.Controls
+            btnAutoResize.Text = loc.AutoResize
         End If
     End Sub
 
@@ -221,12 +220,12 @@ Public Class frmMain
     End Sub
 
     Private Sub btnChangeImage_Click(sender As Object, e As EventArgs) Handles btnChangeImage.Click
-        Dim ofd As New OpenFileDialog()
+        Dim ofd As New OpenFileDialog
         With ofd
-            Dim codecs As ImageCodecInfo() = ImageCodecInfo.GetImageEncoders()
-            Dim sep As String = String.Empty
-            For Each c As ImageCodecInfo In codecs
-                Dim codecName As String = c.CodecName.Substring(8).Replace("Codec", "Files").Trim()
+            Dim codecs = ImageCodecInfo.GetImageEncoders
+            Dim sep = String.Empty
+            For Each c In codecs
+                Dim codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim
                 .Filter = String.Format("{0}{1}{2} ({3})|{3}", ofd.Filter, sep, codecName, c.FilenameExtension)
                 sep = "|"
             Next c
@@ -249,11 +248,11 @@ Public Class frmMain
         Text = String.Format(Translation.Localization.Title, Translation.Localization.Untitled)
         NsTheme1.Text = Text
 
-        txtBrand.Clear()
-        txtProduct.Clear()
-        txtName.Clear()
-        numWidth.Text = 5
-        numHeight.Text = 5
+        txtBrand.Clear
+        txtProduct.Clear
+        txtName.Clear
+        numWidth.Value = 5
+        numHeight.Value = 5
         txtLedCount.Text = 0
         cmbType.SelectedIndex = 0
         pbImage.Image = My.Resources._1
@@ -262,7 +261,7 @@ Public Class frmMain
             .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right,
             .ForeColor = Color.White}
         SplitContainer1.Panel1.Controls.Add(ucCompoment)
-        ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
+        ucCompoment.Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
         ucCompoment.BringToFront()
         mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
     End Sub
@@ -272,19 +271,19 @@ Public Class frmMain
     End Sub
 
     Private Sub tsmiNollie_Click(sender As Object, e As EventArgs) Handles tsmiNollie.Click
-        Process.Start(New ProcessStartInfo() With {.FileName = "https://nolliergb.com", .UseShellExecute = True})
+        Process.Start(New ProcessStartInfo With {.FileName = "https://nolliergb.com", .UseShellExecute = True})
     End Sub
 
     Private Sub tsmiSRGB_Click(sender As Object, e As EventArgs) Handles tsmiSRGB.Click
-        Process.Start(New ProcessStartInfo() With {.FileName = "https://signalrgb.com", .UseShellExecute = True})
+        Process.Start(New ProcessStartInfo With {.FileName = "https://signalrgb.com", .UseShellExecute = True})
     End Sub
 
     Private Sub tsmiMentaL_Click(sender As Object, e As EventArgs) Handles tsmiMentaL.Click
-        Process.Start(New ProcessStartInfo() With {.FileName = "https://imnotmental.com", .UseShellExecute = True})
+        Process.Start(New ProcessStartInfo With {.FileName = "https://imnotmental.com", .UseShellExecute = True})
     End Sub
 
     Private Sub tsmiBuy_Click(sender As Object, e As EventArgs) Handles tsmiBuy.Click
-        Process.Start(New ProcessStartInfo() With {.FileName = "https://nolliergb.cn/products/nollie32-argb-kontroler-5-v3pin-argb-interfejs-obsluguje-signalrgb-openrgb", .UseShellExecute = True})
+        Process.Start(New ProcessStartInfo With {.FileName = "https://nolliergb.cn/products/nollie32-argb-kontroler-5-v3pin-argb-interfejs-obsluguje-signalrgb-openrgb", .UseShellExecute = True})
     End Sub
 
     Private Sub frmMain_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop
@@ -319,8 +318,8 @@ Public Class frmMain
                 txtBrand.Text = Component.Brand
                 txtProduct.Text = Component.ProductName
                 txtName.Text = Component.DisplayName
-                numWidth.Text = Component.Width
-                numHeight.Text = Component.Height
+                numWidth.Value = Component.Width
+                numHeight.Value = Component.Height
                 txtLedCount.Text = Component.LedCount
                 cmbType.SelectedValue = Component.Type.ToLower
                 pbImage.Image = Component.ToImage
@@ -336,16 +335,37 @@ Public Class frmMain
         If e.Data.GetDataPresent(DataFormats.FileDrop) Then e.Effect = DragDropEffects.Copy
     End Sub
 
-    Private Sub btnSettings_Click(sender As Object, e As EventArgs) Handles btnSettings.Click
+    Private Sub tsmiSettings_Click(sender As Object, e As EventArgs) Handles tsmiSettings.Click
         frmSettings.Show()
     End Sub
 
-    Private Sub btnFile_Click(sender As Object, e As EventArgs) Handles btnFile.Click
-        cmFile.Show(btnFile, New Point(0, btnFile.Height))
+    Private Sub btnUp_Click(sender As Object, e As EventArgs) Handles btnUp.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.MoveUp()
+        End If
     End Sub
 
-    Private Sub btnHelp_Click(sender As Object, e As EventArgs) Handles btnHelp.Click
-        cmHelp.Show(btnHelp, New Point(0, btnHelp.Height))
+    Private Sub btnDown_Click(sender As Object, e As EventArgs) Handles btnDown.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.MoveDown()
+        End If
     End Sub
 
+    Private Sub btnLeft_Click(sender As Object, e As EventArgs) Handles btnLeft.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.MoveLeft()
+        End If
+    End Sub
+
+    Private Sub btnRight_Click(sender As Object, e As EventArgs) Handles btnRight.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.MoveRight()
+        End If
+    End Sub
+
+    Private Sub btnAutoResize_Click(sender As Object, e As EventArgs) Handles btnAutoResize.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.AutoResize()
+        End If
+    End Sub
 End Class

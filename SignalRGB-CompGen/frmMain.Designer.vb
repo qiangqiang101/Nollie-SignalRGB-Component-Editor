@@ -25,81 +25,89 @@ Partial Class frmMain
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         RightPanel = New Panel()
-        flpMenuStrip = New FlowLayoutPanel()
-        btnFile = New NSButton()
-        btnSettings = New NSButton()
-        btnHelp = New NSButton()
-        nslblPosition = New NSLabel()
+        tlpImageControls = New TableLayoutPanel()
         gbImage = New NSGroupBox()
         pbImage = New PictureBox()
         btnChangeImage = New NSButton()
-        NsSeperator1 = New NSSeperator()
-        txtLedCount = New NSTextBox()
-        lblLedCount = New NSLabel()
-        lblType = New NSLabel()
-        cmbType = New NSComboBox()
-        lblProduct = New NSLabel()
-        txtProduct = New NSTextBox()
-        lblVendor = New NSLabel()
-        txtBrand = New NSTextBox()
-        lblName = New NSLabel()
-        txtName = New NSTextBox()
-        lblHeight = New NSLabel()
-        lblWidth = New NSLabel()
-        numHeight = New NSNumericUpDown()
-        numWidth = New NSNumericUpDown()
-        cmFile = New NSContextMenu()
+        gbControls = New NSGroupBox()
+        TableLayoutPanel1 = New TableLayoutPanel()
+        btnUp = New NSButton()
+        btnLeft = New NSButton()
+        btnRight = New NSButton()
+        btnDown = New NSButton()
+        btnAutoResize = New NSButton()
+        msMainMenu = New NSMenuStrip()
+        tsmiFile = New ToolStripMenuItem()
         tsmiNew = New ToolStripMenuItem()
         tsmiOpen = New ToolStripMenuItem()
         tsmiSave = New ToolStripMenuItem()
         tsmiSaveAs = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
         tsmiExit = New ToolStripMenuItem()
+        tsmiSettings = New ToolStripMenuItem()
+        tsmiHelp = New ToolStripMenuItem()
         tsmiControls = New ToolStripMenuItem()
         ToolStripSeparator2 = New ToolStripSeparator()
         tsmiSRGB = New ToolStripMenuItem()
         tsmiNollie = New ToolStripMenuItem()
         tsmiMentaL = New ToolStripMenuItem()
         tsmiBuy = New ToolStripMenuItem()
+        nslblPosition = New NSLabel()
+        NsSeperator1 = New NSSeperator()
+        txtName = New NSTextBox()
+        lblVendor = New NSLabel()
+        numWidth = New NSNumericUpDown()
+        txtProduct = New NSTextBox()
+        txtLedCount = New NSTextBox()
+        txtBrand = New NSTextBox()
+        numHeight = New NSNumericUpDown()
+        lblProduct = New NSLabel()
+        lblLedCount = New NSLabel()
+        lblName = New NSLabel()
+        lblWidth = New NSLabel()
+        cmbType = New NSComboBox()
+        lblType = New NSLabel()
+        lblHeight = New NSLabel()
         SplitContainer1 = New SplitContainer()
         Timer1 = New Timer(components)
         NsTheme1 = New NSTheme()
         btnMin = New NSControlButton()
         btnMax = New NSControlButton()
         btnClose = New NSControlButton()
-        cmHelp = New NSContextMenu()
         RightPanel.SuspendLayout()
-        flpMenuStrip.SuspendLayout()
+        tlpImageControls.SuspendLayout()
         gbImage.SuspendLayout()
         CType(pbImage, ComponentModel.ISupportInitialize).BeginInit()
-        cmFile.SuspendLayout()
+        gbControls.SuspendLayout()
+        TableLayoutPanel1.SuspendLayout()
+        msMainMenu.SuspendLayout()
         CType(SplitContainer1, ComponentModel.ISupportInitialize).BeginInit()
         SplitContainer1.Panel2.SuspendLayout()
         SplitContainer1.SuspendLayout()
         NsTheme1.SuspendLayout()
-        cmHelp.SuspendLayout()
         SuspendLayout()
         ' 
         ' RightPanel
         ' 
-        RightPanel.Controls.Add(flpMenuStrip)
+        RightPanel.AutoScroll = True
+        RightPanel.Controls.Add(tlpImageControls)
+        RightPanel.Controls.Add(msMainMenu)
         RightPanel.Controls.Add(nslblPosition)
-        RightPanel.Controls.Add(gbImage)
         RightPanel.Controls.Add(NsSeperator1)
-        RightPanel.Controls.Add(txtLedCount)
-        RightPanel.Controls.Add(lblLedCount)
-        RightPanel.Controls.Add(lblType)
-        RightPanel.Controls.Add(cmbType)
-        RightPanel.Controls.Add(lblProduct)
-        RightPanel.Controls.Add(txtProduct)
-        RightPanel.Controls.Add(lblVendor)
-        RightPanel.Controls.Add(txtBrand)
-        RightPanel.Controls.Add(lblName)
         RightPanel.Controls.Add(txtName)
-        RightPanel.Controls.Add(lblHeight)
-        RightPanel.Controls.Add(lblWidth)
-        RightPanel.Controls.Add(numHeight)
+        RightPanel.Controls.Add(lblVendor)
         RightPanel.Controls.Add(numWidth)
+        RightPanel.Controls.Add(txtProduct)
+        RightPanel.Controls.Add(txtLedCount)
+        RightPanel.Controls.Add(txtBrand)
+        RightPanel.Controls.Add(numHeight)
+        RightPanel.Controls.Add(lblProduct)
+        RightPanel.Controls.Add(lblLedCount)
+        RightPanel.Controls.Add(lblName)
+        RightPanel.Controls.Add(lblWidth)
+        RightPanel.Controls.Add(cmbType)
+        RightPanel.Controls.Add(lblType)
+        RightPanel.Controls.Add(lblHeight)
         RightPanel.Dock = DockStyle.Fill
         RightPanel.Location = New Point(0, 0)
         RightPanel.Name = "RightPanel"
@@ -107,63 +115,30 @@ Partial Class frmMain
         RightPanel.Size = New Size(269, 687)
         RightPanel.TabIndex = 0
         ' 
-        ' flpMenuStrip
+        ' tlpImageControls
         ' 
-        flpMenuStrip.Controls.Add(btnFile)
-        flpMenuStrip.Controls.Add(btnSettings)
-        flpMenuStrip.Controls.Add(btnHelp)
-        flpMenuStrip.Dock = DockStyle.Top
-        flpMenuStrip.Location = New Point(3, 3)
-        flpMenuStrip.Name = "flpMenuStrip"
-        flpMenuStrip.Size = New Size(263, 28)
-        flpMenuStrip.TabIndex = 0
-        ' 
-        ' btnFile
-        ' 
-        btnFile.Location = New Point(3, 3)
-        btnFile.Name = "btnFile"
-        btnFile.Size = New Size(32, 23)
-        btnFile.TabIndex = 0
-        btnFile.Text = "File"
-        ' 
-        ' btnSettings
-        ' 
-        btnSettings.Location = New Point(41, 3)
-        btnSettings.Name = "btnSettings"
-        btnSettings.Size = New Size(55, 23)
-        btnSettings.TabIndex = 1
-        btnSettings.Text = "Settings"
-        ' 
-        ' btnHelp
-        ' 
-        btnHelp.Location = New Point(102, 3)
-        btnHelp.Name = "btnHelp"
-        btnHelp.Size = New Size(38, 23)
-        btnHelp.TabIndex = 2
-        btnHelp.Text = "Help"
-        ' 
-        ' nslblPosition
-        ' 
-        nslblPosition.Dock = DockStyle.Bottom
-        nslblPosition.Font = New Font("Segoe UI", 9F)
-        nslblPosition.Location = New Point(3, 661)
-        nslblPosition.Name = "nslblPosition"
-        nslblPosition.Size = New Size(263, 23)
-        nslblPosition.TabIndex = 21
-        nslblPosition.Text = "NsLabel1"
-        nslblPosition.Value1 = "Position: 0, 0"
-        nslblPosition.Value2 = ""
+        tlpImageControls.ColumnCount = 2
+        tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
+        tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
+        tlpImageControls.Controls.Add(gbImage, 0, 0)
+        tlpImageControls.Controls.Add(gbControls, 1, 0)
+        tlpImageControls.Location = New Point(6, 257)
+        tlpImageControls.Name = "tlpImageControls"
+        tlpImageControls.RowCount = 1
+        tlpImageControls.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
+        tlpImageControls.Size = New Size(257, 179)
+        tlpImageControls.TabIndex = 23
         ' 
         ' gbImage
         ' 
-        gbImage.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         gbImage.Controls.Add(pbImage)
         gbImage.Controls.Add(btnChangeImage)
+        gbImage.Dock = DockStyle.Fill
         gbImage.DrawSeperator = True
-        gbImage.Location = New Point(6, 260)
+        gbImage.Location = New Point(3, 3)
         gbImage.Name = "gbImage"
         gbImage.Padding = New Padding(3, 31, 3, 3)
-        gbImage.Size = New Size(257, 312)
+        gbImage.Size = New Size(122, 173)
         gbImage.SubTitle = ""
         gbImage.TabIndex = 8
         gbImage.Title = "Component Image"
@@ -174,7 +149,7 @@ Partial Class frmMain
         pbImage.Image = My.Resources.Resources._1
         pbImage.Location = New Point(3, 31)
         pbImage.Name = "pbImage"
-        pbImage.Size = New Size(251, 255)
+        pbImage.Size = New Size(116, 116)
         pbImage.SizeMode = PictureBoxSizeMode.Zoom
         pbImage.TabIndex = 13
         pbImage.TabStop = False
@@ -182,137 +157,232 @@ Partial Class frmMain
         ' btnChangeImage
         ' 
         btnChangeImage.Dock = DockStyle.Bottom
-        btnChangeImage.Location = New Point(3, 286)
+        btnChangeImage.Location = New Point(3, 147)
         btnChangeImage.Name = "btnChangeImage"
-        btnChangeImage.Size = New Size(251, 23)
+        btnChangeImage.Size = New Size(116, 23)
         btnChangeImage.TabIndex = 1
         btnChangeImage.Text = "Select Image"
         ' 
+        ' gbControls
+        ' 
+        gbControls.Controls.Add(TableLayoutPanel1)
+        gbControls.Controls.Add(btnAutoResize)
+        gbControls.Dock = DockStyle.Fill
+        gbControls.DrawSeperator = True
+        gbControls.Location = New Point(131, 3)
+        gbControls.Name = "gbControls"
+        gbControls.Padding = New Padding(3, 31, 3, 3)
+        gbControls.Size = New Size(123, 173)
+        gbControls.SubTitle = ""
+        gbControls.TabIndex = 9
+        gbControls.Title = "Controls"
+        ' 
+        ' TableLayoutPanel1
+        ' 
+        TableLayoutPanel1.ColumnCount = 3
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel1.Controls.Add(btnUp, 1, 0)
+        TableLayoutPanel1.Controls.Add(btnLeft, 0, 1)
+        TableLayoutPanel1.Controls.Add(btnRight, 2, 1)
+        TableLayoutPanel1.Controls.Add(btnDown, 1, 2)
+        TableLayoutPanel1.Dock = DockStyle.Fill
+        TableLayoutPanel1.Location = New Point(3, 31)
+        TableLayoutPanel1.Name = "TableLayoutPanel1"
+        TableLayoutPanel1.RowCount = 3
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel1.Size = New Size(117, 116)
+        TableLayoutPanel1.TabIndex = 0
+        ' 
+        ' btnUp
+        ' 
+        btnUp.Dock = DockStyle.Fill
+        btnUp.Font = New Font("Marlett", 11.0F)
+        btnUp.Location = New Point(41, 3)
+        btnUp.Name = "btnUp"
+        btnUp.Size = New Size(32, 32)
+        btnUp.TabIndex = 0
+        btnUp.Text = "5"
+        ' 
+        ' btnLeft
+        ' 
+        btnLeft.Dock = DockStyle.Fill
+        btnLeft.Font = New Font("Marlett", 11.0F)
+        btnLeft.Location = New Point(3, 41)
+        btnLeft.Name = "btnLeft"
+        btnLeft.Size = New Size(32, 32)
+        btnLeft.TabIndex = 1
+        btnLeft.Text = "3"
+        ' 
+        ' btnRight
+        ' 
+        btnRight.Dock = DockStyle.Fill
+        btnRight.Font = New Font("Marlett", 11.0F)
+        btnRight.Location = New Point(79, 41)
+        btnRight.Name = "btnRight"
+        btnRight.Size = New Size(35, 32)
+        btnRight.TabIndex = 2
+        btnRight.Text = "4"
+        ' 
+        ' btnDown
+        ' 
+        btnDown.Dock = DockStyle.Fill
+        btnDown.Font = New Font("Marlett", 11.0F)
+        btnDown.Location = New Point(41, 79)
+        btnDown.Name = "btnDown"
+        btnDown.Size = New Size(32, 34)
+        btnDown.TabIndex = 3
+        btnDown.Text = "6"
+        ' 
+        ' btnAutoResize
+        ' 
+        btnAutoResize.Dock = DockStyle.Bottom
+        btnAutoResize.Location = New Point(3, 147)
+        btnAutoResize.Name = "btnAutoResize"
+        btnAutoResize.Size = New Size(117, 23)
+        btnAutoResize.TabIndex = 2
+        btnAutoResize.Text = "Auto Resize"
+        ' 
+        ' msMainMenu
+        ' 
+        msMainMenu.BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        msMainMenu.ForeColor = Color.White
+        msMainMenu.Items.AddRange(New ToolStripItem() {tsmiFile, tsmiSettings, tsmiHelp})
+        msMainMenu.Location = New Point(3, 3)
+        msMainMenu.Name = "msMainMenu"
+        msMainMenu.Size = New Size(263, 24)
+        msMainMenu.TabIndex = 22
+        msMainMenu.Text = "NsMenuStrip1"
+        ' 
+        ' tsmiFile
+        ' 
+        tsmiFile.DropDownItems.AddRange(New ToolStripItem() {tsmiNew, tsmiOpen, tsmiSave, tsmiSaveAs, ToolStripSeparator1, tsmiExit})
+        tsmiFile.Name = "tsmiFile"
+        tsmiFile.Size = New Size(37, 20)
+        tsmiFile.Text = "File"
+        ' 
+        ' tsmiNew
+        ' 
+        tsmiNew.ForeColor = Color.White
+        tsmiNew.Name = "tsmiNew"
+        tsmiNew.Size = New Size(120, 22)
+        tsmiNew.Text = "New"
+        ' 
+        ' tsmiOpen
+        ' 
+        tsmiOpen.ForeColor = Color.White
+        tsmiOpen.Name = "tsmiOpen"
+        tsmiOpen.Size = New Size(120, 22)
+        tsmiOpen.Text = "Open"
+        ' 
+        ' tsmiSave
+        ' 
+        tsmiSave.ForeColor = Color.White
+        tsmiSave.Name = "tsmiSave"
+        tsmiSave.Size = New Size(120, 22)
+        tsmiSave.Text = "Save"
+        ' 
+        ' tsmiSaveAs
+        ' 
+        tsmiSaveAs.ForeColor = Color.White
+        tsmiSaveAs.Name = "tsmiSaveAs"
+        tsmiSaveAs.Size = New Size(120, 22)
+        tsmiSaveAs.Text = "Save As.."
+        ' 
+        ' ToolStripSeparator1
+        ' 
+        ToolStripSeparator1.ForeColor = Color.White
+        ToolStripSeparator1.Name = "ToolStripSeparator1"
+        ToolStripSeparator1.Size = New Size(117, 6)
+        ' 
+        ' tsmiExit
+        ' 
+        tsmiExit.ForeColor = Color.White
+        tsmiExit.Name = "tsmiExit"
+        tsmiExit.Size = New Size(120, 22)
+        tsmiExit.Text = "Exit"
+        ' 
+        ' tsmiSettings
+        ' 
+        tsmiSettings.Name = "tsmiSettings"
+        tsmiSettings.Size = New Size(61, 20)
+        tsmiSettings.Text = "Settings"
+        ' 
+        ' tsmiHelp
+        ' 
+        tsmiHelp.DropDownItems.AddRange(New ToolStripItem() {tsmiControls, ToolStripSeparator2, tsmiSRGB, tsmiNollie, tsmiMentaL, tsmiBuy})
+        tsmiHelp.Name = "tsmiHelp"
+        tsmiHelp.Size = New Size(44, 20)
+        tsmiHelp.Text = "Help"
+        ' 
+        ' tsmiControls
+        ' 
+        tsmiControls.ForeColor = Color.White
+        tsmiControls.Name = "tsmiControls"
+        tsmiControls.Size = New Size(227, 22)
+        tsmiControls.Text = "Controls"
+        ' 
+        ' ToolStripSeparator2
+        ' 
+        ToolStripSeparator2.ForeColor = Color.White
+        ToolStripSeparator2.Name = "ToolStripSeparator2"
+        ToolStripSeparator2.Size = New Size(224, 6)
+        ' 
+        ' tsmiSRGB
+        ' 
+        tsmiSRGB.ForeColor = Color.White
+        tsmiSRGB.Name = "tsmiSRGB"
+        tsmiSRGB.Size = New Size(227, 22)
+        tsmiSRGB.Text = "Visit SignalRGB Website"
+        ' 
+        ' tsmiNollie
+        ' 
+        tsmiNollie.ForeColor = Color.White
+        tsmiNollie.Name = "tsmiNollie"
+        tsmiNollie.Size = New Size(227, 22)
+        tsmiNollie.Text = "Visit Nollie Website"
+        ' 
+        ' tsmiMentaL
+        ' 
+        tsmiMentaL.ForeColor = Color.White
+        tsmiMentaL.Name = "tsmiMentaL"
+        tsmiMentaL.Size = New Size(227, 22)
+        tsmiMentaL.Text = "Visit I'm Not MentaL Website"
+        ' 
+        ' tsmiBuy
+        ' 
+        tsmiBuy.ForeColor = Color.White
+        tsmiBuy.Name = "tsmiBuy"
+        tsmiBuy.Size = New Size(227, 22)
+        tsmiBuy.Text = "Buy Nollie32"
+        ' 
+        ' nslblPosition
+        ' 
+        nslblPosition.Dock = DockStyle.Bottom
+        nslblPosition.Font = New Font("Segoe UI", 9.0F)
+        nslblPosition.Location = New Point(3, 661)
+        nslblPosition.Name = "nslblPosition"
+        nslblPosition.Size = New Size(263, 23)
+        nslblPosition.TabIndex = 21
+        nslblPosition.Text = "NsLabel1"
+        nslblPosition.Value1 = "Position: 0, 0"
+        nslblPosition.Value2 = ""
+        ' 
         ' NsSeperator1
         ' 
-        NsSeperator1.Location = New Point(5, 242)
+        NsSeperator1.Location = New Point(6, 240)
         NsSeperator1.Name = "NsSeperator1"
-        NsSeperator1.Size = New Size(261, 11)
+        NsSeperator1.Size = New Size(257, 11)
         NsSeperator1.TabIndex = 19
         NsSeperator1.Text = "NsSeperator1"
-        ' 
-        ' txtLedCount
-        ' 
-        txtLedCount.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtLedCount.Location = New Point(86, 215)
-        txtLedCount.MaxLength = 32767
-        txtLedCount.Multiline = False
-        txtLedCount.Name = "txtLedCount"
-        txtLedCount.ReadOnly = True
-        txtLedCount.Size = New Size(177, 24)
-        txtLedCount.TabIndex = 7
-        txtLedCount.Text = "0"
-        txtLedCount.TextAlign = HorizontalAlignment.Right
-        txtLedCount.UseSystemPasswordChar = False
-        ' 
-        ' lblLedCount
-        ' 
-        lblLedCount.Font = New Font("Segoe UI", 9F)
-        lblLedCount.ForeColor = Color.White
-        lblLedCount.Location = New Point(6, 215)
-        lblLedCount.Name = "lblLedCount"
-        lblLedCount.Size = New Size(74, 24)
-        lblLedCount.TabIndex = 17
-        lblLedCount.Text = "LED Count"
-        lblLedCount.Value1 = "LED Count"
-        lblLedCount.Value2 = ""
-        ' 
-        ' lblType
-        ' 
-        lblType.Font = New Font("Segoe UI", 9F)
-        lblType.ForeColor = Color.White
-        lblType.Location = New Point(6, 125)
-        lblType.Name = "lblType"
-        lblType.Size = New Size(74, 24)
-        lblType.TabIndex = 12
-        lblType.Text = "Type"
-        lblType.Value1 = "Type"
-        lblType.Value2 = ""
-        ' 
-        ' cmbType
-        ' 
-        cmbType.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        cmbType.BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
-        cmbType.DrawMode = DrawMode.OwnerDrawFixed
-        cmbType.DropDownStyle = ComboBoxStyle.DropDownList
-        cmbType.ForeColor = Color.White
-        cmbType.FormattingEnabled = True
-        cmbType.Location = New Point(86, 125)
-        cmbType.Name = "cmbType"
-        cmbType.Size = New Size(177, 24)
-        cmbType.TabIndex = 4
-        ' 
-        ' lblProduct
-        ' 
-        lblProduct.Font = New Font("Segoe UI", 9F)
-        lblProduct.ForeColor = Color.White
-        lblProduct.Location = New Point(6, 95)
-        lblProduct.Name = "lblProduct"
-        lblProduct.Size = New Size(74, 24)
-        lblProduct.TabIndex = 10
-        lblProduct.Text = "Product"
-        lblProduct.Value1 = "Product"
-        lblProduct.Value2 = ""
-        ' 
-        ' txtProduct
-        ' 
-        txtProduct.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtProduct.Location = New Point(86, 95)
-        txtProduct.MaxLength = 32767
-        txtProduct.Multiline = False
-        txtProduct.Name = "txtProduct"
-        txtProduct.ReadOnly = False
-        txtProduct.Size = New Size(177, 24)
-        txtProduct.TabIndex = 3
-        txtProduct.TextAlign = HorizontalAlignment.Left
-        txtProduct.UseSystemPasswordChar = False
-        ' 
-        ' lblVendor
-        ' 
-        lblVendor.Font = New Font("Segoe UI", 9F)
-        lblVendor.ForeColor = Color.White
-        lblVendor.Location = New Point(6, 65)
-        lblVendor.Name = "lblVendor"
-        lblVendor.Size = New Size(74, 24)
-        lblVendor.TabIndex = 8
-        lblVendor.Text = "Vendor"
-        lblVendor.Value1 = "Brand"
-        lblVendor.Value2 = ""
-        ' 
-        ' txtBrand
-        ' 
-        txtBrand.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtBrand.Location = New Point(86, 65)
-        txtBrand.MaxLength = 32767
-        txtBrand.Multiline = False
-        txtBrand.Name = "txtBrand"
-        txtBrand.ReadOnly = False
-        txtBrand.Size = New Size(177, 24)
-        txtBrand.TabIndex = 2
-        txtBrand.TextAlign = HorizontalAlignment.Left
-        txtBrand.UseSystemPasswordChar = False
-        ' 
-        ' lblName
-        ' 
-        lblName.Font = New Font("Segoe UI", 9F)
-        lblName.ForeColor = Color.White
-        lblName.Location = New Point(6, 35)
-        lblName.Name = "lblName"
-        lblName.Size = New Size(74, 24)
-        lblName.TabIndex = 6
-        lblName.Text = "Name"
-        lblName.Value1 = "Name"
-        lblName.Value2 = ""
         ' 
         ' txtName
         ' 
         txtName.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtName.Location = New Point(86, 35)
+        txtName.Location = New Point(86, 30)
         txtName.MaxLength = 32767
         txtName.Multiline = False
         txtName.Name = "txtName"
@@ -322,46 +392,17 @@ Partial Class frmMain
         txtName.TextAlign = HorizontalAlignment.Left
         txtName.UseSystemPasswordChar = False
         ' 
-        ' lblHeight
+        ' lblVendor
         ' 
-        lblHeight.Font = New Font("Segoe UI", 9F)
-        lblHeight.ForeColor = Color.White
-        lblHeight.Location = New Point(6, 185)
-        lblHeight.Name = "lblHeight"
-        lblHeight.Size = New Size(74, 24)
-        lblHeight.TabIndex = 4
-        lblHeight.Text = "Height"
-        lblHeight.Value1 = "Height"
-        lblHeight.Value2 = ""
-        ' 
-        ' lblWidth
-        ' 
-        lblWidth.Font = New Font("Segoe UI", 9F)
-        lblWidth.ForeColor = Color.White
-        lblWidth.Location = New Point(6, 155)
-        lblWidth.Name = "lblWidth"
-        lblWidth.Size = New Size(74, 24)
-        lblWidth.TabIndex = 3
-        lblWidth.Text = "Width"
-        lblWidth.Value1 = "Width"
-        lblWidth.Value2 = ""
-        ' 
-        ' numHeight
-        ' 
-        numHeight.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        numHeight.DecimalPlaces = 0
-        numHeight.Increment = 1
-        numHeight.InterceptArrowKeys = True
-        numHeight.Location = New Point(86, 185)
-        numHeight.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
-        numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        numHeight.Name = "numHeight"
-        numHeight.ReadOnly = False
-        numHeight.Size = New Size(177, 24)
-        numHeight.TabIndex = 6
-        numHeight.TextAlign = HorizontalAlignment.Right
-        numHeight.ThousandsSeparator = False
-        numHeight.Value = New Decimal(New Integer() {5, 0, 0, 0})
+        lblVendor.Font = New Font("Segoe UI", 9.0F)
+        lblVendor.ForeColor = Color.White
+        lblVendor.Location = New Point(6, 60)
+        lblVendor.Name = "lblVendor"
+        lblVendor.Size = New Size(74, 24)
+        lblVendor.TabIndex = 8
+        lblVendor.Text = "Vendor"
+        lblVendor.Value1 = "Brand"
+        lblVendor.Value2 = ""
         ' 
         ' numWidth
         ' 
@@ -369,7 +410,7 @@ Partial Class frmMain
         numWidth.DecimalPlaces = 0
         numWidth.Increment = 1
         numWidth.InterceptArrowKeys = True
-        numWidth.Location = New Point(86, 155)
+        numWidth.Location = New Point(86, 150)
         numWidth.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
         numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numWidth.Name = "numWidth"
@@ -380,88 +421,147 @@ Partial Class frmMain
         numWidth.ThousandsSeparator = False
         numWidth.Value = New Decimal(New Integer() {5, 0, 0, 0})
         ' 
-        ' cmFile
+        ' txtProduct
         ' 
-        cmFile.ForeColor = Color.White
-        cmFile.Items.AddRange(New ToolStripItem() {tsmiNew, tsmiOpen, tsmiSave, tsmiSaveAs, ToolStripSeparator1, tsmiExit})
-        cmFile.Name = "NsContextMenu1"
-        cmFile.Size = New Size(187, 120)
+        txtProduct.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtProduct.Location = New Point(86, 90)
+        txtProduct.MaxLength = 32767
+        txtProduct.Multiline = False
+        txtProduct.Name = "txtProduct"
+        txtProduct.ReadOnly = False
+        txtProduct.Size = New Size(177, 24)
+        txtProduct.TabIndex = 3
+        txtProduct.TextAlign = HorizontalAlignment.Left
+        txtProduct.UseSystemPasswordChar = False
         ' 
-        ' tsmiNew
+        ' txtLedCount
         ' 
-        tsmiNew.Name = "tsmiNew"
-        tsmiNew.ShortcutKeys = Keys.Control Or Keys.N
-        tsmiNew.Size = New Size(186, 22)
-        tsmiNew.Text = "New"
+        txtLedCount.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtLedCount.Location = New Point(86, 210)
+        txtLedCount.MaxLength = 32767
+        txtLedCount.Multiline = False
+        txtLedCount.Name = "txtLedCount"
+        txtLedCount.ReadOnly = True
+        txtLedCount.Size = New Size(177, 24)
+        txtLedCount.TabIndex = 7
+        txtLedCount.Text = "0"
+        txtLedCount.TextAlign = HorizontalAlignment.Right
+        txtLedCount.UseSystemPasswordChar = False
         ' 
-        ' tsmiOpen
+        ' txtBrand
         ' 
-        tsmiOpen.Name = "tsmiOpen"
-        tsmiOpen.ShortcutKeys = Keys.Control Or Keys.O
-        tsmiOpen.Size = New Size(186, 22)
-        tsmiOpen.Text = "Open..."
+        txtBrand.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtBrand.Location = New Point(86, 60)
+        txtBrand.MaxLength = 32767
+        txtBrand.Multiline = False
+        txtBrand.Name = "txtBrand"
+        txtBrand.ReadOnly = False
+        txtBrand.Size = New Size(177, 24)
+        txtBrand.TabIndex = 2
+        txtBrand.TextAlign = HorizontalAlignment.Left
+        txtBrand.UseSystemPasswordChar = False
         ' 
-        ' tsmiSave
+        ' numHeight
         ' 
-        tsmiSave.Name = "tsmiSave"
-        tsmiSave.ShortcutKeys = Keys.Control Or Keys.S
-        tsmiSave.Size = New Size(186, 22)
-        tsmiSave.Text = "Save"
+        numHeight.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        numHeight.DecimalPlaces = 0
+        numHeight.Increment = 1
+        numHeight.InterceptArrowKeys = True
+        numHeight.Location = New Point(86, 180)
+        numHeight.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
+        numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        numHeight.Name = "numHeight"
+        numHeight.ReadOnly = False
+        numHeight.Size = New Size(177, 24)
+        numHeight.TabIndex = 6
+        numHeight.TextAlign = HorizontalAlignment.Right
+        numHeight.ThousandsSeparator = False
+        numHeight.Value = New Decimal(New Integer() {5, 0, 0, 0})
         ' 
-        ' tsmiSaveAs
+        ' lblProduct
         ' 
-        tsmiSaveAs.Name = "tsmiSaveAs"
-        tsmiSaveAs.ShortcutKeys = Keys.Control Or Keys.Alt Or Keys.S
-        tsmiSaveAs.Size = New Size(186, 22)
-        tsmiSaveAs.Text = "Save As..."
+        lblProduct.Font = New Font("Segoe UI", 9.0F)
+        lblProduct.ForeColor = Color.White
+        lblProduct.Location = New Point(6, 90)
+        lblProduct.Name = "lblProduct"
+        lblProduct.Size = New Size(74, 24)
+        lblProduct.TabIndex = 10
+        lblProduct.Text = "Product"
+        lblProduct.Value1 = "Product"
+        lblProduct.Value2 = ""
         ' 
-        ' ToolStripSeparator1
+        ' lblLedCount
         ' 
-        ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(183, 6)
+        lblLedCount.Font = New Font("Segoe UI", 9.0F)
+        lblLedCount.ForeColor = Color.White
+        lblLedCount.Location = New Point(6, 210)
+        lblLedCount.Name = "lblLedCount"
+        lblLedCount.Size = New Size(74, 24)
+        lblLedCount.TabIndex = 17
+        lblLedCount.Text = "LED Count"
+        lblLedCount.Value1 = "LED Count"
+        lblLedCount.Value2 = ""
         ' 
-        ' tsmiExit
+        ' lblName
         ' 
-        tsmiExit.Name = "tsmiExit"
-        tsmiExit.ShortcutKeys = Keys.Alt Or Keys.F4
-        tsmiExit.Size = New Size(186, 22)
-        tsmiExit.Text = "Exit"
+        lblName.Font = New Font("Segoe UI", 9.0F)
+        lblName.ForeColor = Color.White
+        lblName.Location = New Point(6, 30)
+        lblName.Name = "lblName"
+        lblName.Size = New Size(74, 24)
+        lblName.TabIndex = 6
+        lblName.Text = "Name"
+        lblName.Value1 = "Name"
+        lblName.Value2 = ""
         ' 
-        ' tsmiControls
+        ' lblWidth
         ' 
-        tsmiControls.Name = "tsmiControls"
-        tsmiControls.ShortcutKeys = Keys.F1
-        tsmiControls.Size = New Size(227, 22)
-        tsmiControls.Text = "Controls"
+        lblWidth.Font = New Font("Segoe UI", 9.0F)
+        lblWidth.ForeColor = Color.White
+        lblWidth.Location = New Point(6, 150)
+        lblWidth.Name = "lblWidth"
+        lblWidth.Size = New Size(74, 24)
+        lblWidth.TabIndex = 3
+        lblWidth.Text = "Width"
+        lblWidth.Value1 = "Width"
+        lblWidth.Value2 = ""
         ' 
-        ' ToolStripSeparator2
+        ' cmbType
         ' 
-        ToolStripSeparator2.Name = "ToolStripSeparator2"
-        ToolStripSeparator2.Size = New Size(224, 6)
+        cmbType.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        cmbType.BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        cmbType.DrawMode = DrawMode.OwnerDrawFixed
+        cmbType.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbType.ForeColor = Color.White
+        cmbType.FormattingEnabled = True
+        cmbType.Location = New Point(86, 120)
+        cmbType.Name = "cmbType"
+        cmbType.Size = New Size(177, 24)
+        cmbType.TabIndex = 4
         ' 
-        ' tsmiSRGB
+        ' lblType
         ' 
-        tsmiSRGB.Name = "tsmiSRGB"
-        tsmiSRGB.Size = New Size(227, 22)
-        tsmiSRGB.Text = "Visit SignalRGB Website"
+        lblType.Font = New Font("Segoe UI", 9.0F)
+        lblType.ForeColor = Color.White
+        lblType.Location = New Point(6, 120)
+        lblType.Name = "lblType"
+        lblType.Size = New Size(74, 24)
+        lblType.TabIndex = 12
+        lblType.Text = "Type"
+        lblType.Value1 = "Type"
+        lblType.Value2 = ""
         ' 
-        ' tsmiNollie
+        ' lblHeight
         ' 
-        tsmiNollie.Name = "tsmiNollie"
-        tsmiNollie.Size = New Size(227, 22)
-        tsmiNollie.Text = "Visit Nollie Website"
-        ' 
-        ' tsmiMentaL
-        ' 
-        tsmiMentaL.Name = "tsmiMentaL"
-        tsmiMentaL.Size = New Size(227, 22)
-        tsmiMentaL.Text = "Visit I'm Not MentaL Website"
-        ' 
-        ' tsmiBuy
-        ' 
-        tsmiBuy.Name = "tsmiBuy"
-        tsmiBuy.Size = New Size(227, 22)
-        tsmiBuy.Text = "Buy Nollie32"
+        lblHeight.Font = New Font("Segoe UI", 9.0F)
+        lblHeight.ForeColor = Color.White
+        lblHeight.Location = New Point(6, 180)
+        lblHeight.Name = "lblHeight"
+        lblHeight.Size = New Size(74, 24)
+        lblHeight.TabIndex = 4
+        lblHeight.Text = "Height"
+        lblHeight.Value1 = "Height"
+        lblHeight.Value2 = ""
         ' 
         ' SplitContainer1
         ' 
@@ -497,7 +597,7 @@ Partial Class frmMain
         NsTheme1.Controls.Add(SplitContainer1)
         NsTheme1.Customization = ""
         NsTheme1.Dock = DockStyle.Fill
-        NsTheme1.Font = New Font("Segoe UI", 9F)
+        NsTheme1.Font = New Font("Segoe UI", 9.0F)
         NsTheme1.Image = Nothing
         NsTheme1.Location = New Point(0, 0)
         NsTheme1.MinimumSize = New Size(1000, 700)
@@ -553,37 +653,34 @@ Partial Class frmMain
         btnClose.TabIndex = 4
         btnClose.Text = "NsControlButton1"
         ' 
-        ' cmHelp
-        ' 
-        cmHelp.ForeColor = Color.White
-        cmHelp.Items.AddRange(New ToolStripItem() {tsmiControls, ToolStripSeparator2, tsmiSRGB, tsmiNollie, tsmiMentaL, tsmiBuy})
-        cmHelp.Name = "cmHelp"
-        cmHelp.Size = New Size(228, 120)
-        ' 
         ' frmMain
         ' 
         AllowDrop = True
-        AutoScaleDimensions = New SizeF(7F, 15F)
+        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1008, 729)
         ControlBox = False
         Controls.Add(NsTheme1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Location = New Point(0, 0)
+        MainMenuStrip = msMainMenu
         MinimumSize = New Size(1000, 700)
         Name = "frmMain"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Untitled - Nollie x SignalRGB Custom Component Editor"
         RightPanel.ResumeLayout(False)
-        flpMenuStrip.ResumeLayout(False)
+        RightPanel.PerformLayout()
+        tlpImageControls.ResumeLayout(False)
         gbImage.ResumeLayout(False)
         CType(pbImage, ComponentModel.ISupportInitialize).EndInit()
-        cmFile.ResumeLayout(False)
+        gbControls.ResumeLayout(False)
+        TableLayoutPanel1.ResumeLayout(False)
+        msMainMenu.ResumeLayout(False)
+        msMainMenu.PerformLayout()
         SplitContainer1.Panel2.ResumeLayout(False)
         CType(SplitContainer1, ComponentModel.ISupportInitialize).EndInit()
         SplitContainer1.ResumeLayout(False)
         NsTheme1.ResumeLayout(False)
-        cmHelp.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
 
@@ -603,21 +700,9 @@ Partial Class frmMain
     Friend WithEvents SplitContainer1 As SplitContainer
     Friend WithEvents pbImage As PictureBox
     Friend WithEvents Timer1 As Timer
-    Friend WithEvents tsmiNew As ToolStripMenuItem
-    Friend WithEvents tsmiOpen As ToolStripMenuItem
-    Friend WithEvents tsmiSave As ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
-    Friend WithEvents tsmiExit As ToolStripMenuItem
-    Friend WithEvents tsmiSaveAs As ToolStripMenuItem
     Friend WithEvents lblLedCount As NSLabel
     Friend WithEvents txtLedCount As NSTextBox
     Friend WithEvents btnChangeImage As NSButton
-    Friend WithEvents tsmiControls As ToolStripMenuItem
-    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
-    Friend WithEvents tsmiSRGB As ToolStripMenuItem
-    Friend WithEvents tsmiNollie As ToolStripMenuItem
-    Friend WithEvents tsmiMentaL As ToolStripMenuItem
-    Friend WithEvents tsmiBuy As ToolStripMenuItem
     Friend WithEvents NsTheme1 As NSTheme
     Friend WithEvents btnClose As NSControlButton
     Friend WithEvents btnMin As NSControlButton
@@ -625,11 +710,29 @@ Partial Class frmMain
     Friend WithEvents NsSeperator1 As NSSeperator
     Friend WithEvents gbImage As NSGroupBox
     Friend WithEvents nslblPosition As NSLabel
-    Friend WithEvents btnFile As NSButton
-    Friend WithEvents cmFile As NSContextMenu
-    Friend WithEvents btnSettings As NSButton
-    Friend WithEvents cmHelp As NSContextMenu
-    Friend WithEvents btnHelp As NSButton
-    Friend WithEvents flpMenuStrip As FlowLayoutPanel
+    Friend WithEvents gbControls As NSGroupBox
+    Friend WithEvents TableLayoutPanel1 As TableLayoutPanel
+    Friend WithEvents btnUp As NSButton
+    Friend WithEvents btnLeft As NSButton
+    Friend WithEvents btnRight As NSButton
+    Friend WithEvents btnDown As NSButton
+    Friend WithEvents msMainMenu As NSMenuStrip
+    Friend WithEvents tsmiFile As ToolStripMenuItem
+    Friend WithEvents tsmiSettings As ToolStripMenuItem
+    Friend WithEvents tsmiHelp As ToolStripMenuItem
+    Friend WithEvents tsmiNew As ToolStripMenuItem
+    Friend WithEvents tsmiOpen As ToolStripMenuItem
+    Friend WithEvents tsmiSave As ToolStripMenuItem
+    Friend WithEvents tsmiSaveAs As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
+    Friend WithEvents tsmiExit As ToolStripMenuItem
+    Friend WithEvents tsmiControls As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
+    Friend WithEvents tsmiSRGB As ToolStripMenuItem
+    Friend WithEvents tsmiNollie As ToolStripMenuItem
+    Friend WithEvents tsmiMentaL As ToolStripMenuItem
+    Friend WithEvents tsmiBuy As ToolStripMenuItem
+    Friend WithEvents tlpImageControls As TableLayoutPanel
+    Friend WithEvents btnAutoResize As NSButton
 
 End Class

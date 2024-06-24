@@ -1,5 +1,6 @@
 ﻿Imports System.ComponentModel
 Imports System.Drawing.Drawing2D
+Imports System.Drawing.Text
 
 <DefaultEvent("ValueChanged")>
 Class NSNumericUpDown
@@ -306,6 +307,22 @@ Class NSNumericUpDown
     Protected Overrides Sub OnLeave(e As EventArgs)
         Invalidate()
         MyBase.OnLeave(e)
+    End Sub
+
+End Class
+
+Class NSMenuStrip
+    Inherits MenuStrip
+
+    Sub New()
+        Renderer = New ToolStripProfessionalRenderer(New NSColorTable())
+        BackColor = Color.FromArgb(50, 50, 50)
+        ForeColor = Color.White
+    End Sub
+
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
+        e.Graphics.TextRenderingHint = TextRenderingHint.ClearTypeGridFit
+        MyBase.OnPaint(e)
     End Sub
 
 End Class

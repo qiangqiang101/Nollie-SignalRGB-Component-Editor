@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v8.0": {
-      "compeditor/1.5": {
+      "compeditor/1.6": {
         "dependencies": {
           "Newtonsoft.Json": "13.0.3"
         },
@@ -25,7 +25,7 @@
     }
   },
   "libraries": {
-    "compeditor/1.5": {
+    "compeditor/1.6": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
