@@ -89,7 +89,6 @@ Partial Class frmMain
         ' 
         ' RightPanel
         ' 
-        RightPanel.AutoScroll = True
         RightPanel.Controls.Add(tlpImageControls)
         RightPanel.Controls.Add(msMainMenu)
         RightPanel.Controls.Add(nslblPosition)
@@ -117,15 +116,16 @@ Partial Class frmMain
         ' 
         ' tlpImageControls
         ' 
+        tlpImageControls.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         tlpImageControls.ColumnCount = 2
-        tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
-        tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
+        tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         tlpImageControls.Controls.Add(gbImage, 0, 0)
         tlpImageControls.Controls.Add(gbControls, 1, 0)
         tlpImageControls.Location = New Point(6, 257)
         tlpImageControls.Name = "tlpImageControls"
         tlpImageControls.RowCount = 1
-        tlpImageControls.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
+        tlpImageControls.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
         tlpImageControls.Size = New Size(257, 179)
         tlpImageControls.TabIndex = 23
         ' 
@@ -200,7 +200,7 @@ Partial Class frmMain
         ' btnUp
         ' 
         btnUp.Dock = DockStyle.Fill
-        btnUp.Font = New Font("Marlett", 11.0F)
+        btnUp.Font = New Font("Marlett", 11F)
         btnUp.Location = New Point(41, 3)
         btnUp.Name = "btnUp"
         btnUp.Size = New Size(32, 32)
@@ -210,7 +210,7 @@ Partial Class frmMain
         ' btnLeft
         ' 
         btnLeft.Dock = DockStyle.Fill
-        btnLeft.Font = New Font("Marlett", 11.0F)
+        btnLeft.Font = New Font("Marlett", 11F)
         btnLeft.Location = New Point(3, 41)
         btnLeft.Name = "btnLeft"
         btnLeft.Size = New Size(32, 32)
@@ -220,7 +220,7 @@ Partial Class frmMain
         ' btnRight
         ' 
         btnRight.Dock = DockStyle.Fill
-        btnRight.Font = New Font("Marlett", 11.0F)
+        btnRight.Font = New Font("Marlett", 11F)
         btnRight.Location = New Point(79, 41)
         btnRight.Name = "btnRight"
         btnRight.Size = New Size(35, 32)
@@ -230,7 +230,7 @@ Partial Class frmMain
         ' btnDown
         ' 
         btnDown.Dock = DockStyle.Fill
-        btnDown.Font = New Font("Marlett", 11.0F)
+        btnDown.Font = New Font("Marlett", 11F)
         btnDown.Location = New Point(41, 79)
         btnDown.Name = "btnDown"
         btnDown.Size = New Size(32, 34)
@@ -362,7 +362,7 @@ Partial Class frmMain
         ' nslblPosition
         ' 
         nslblPosition.Dock = DockStyle.Bottom
-        nslblPosition.Font = New Font("Segoe UI", 9.0F)
+        nslblPosition.Font = New Font("Segoe UI", 9F)
         nslblPosition.Location = New Point(3, 661)
         nslblPosition.Name = "nslblPosition"
         nslblPosition.Size = New Size(263, 23)
@@ -394,7 +394,7 @@ Partial Class frmMain
         ' 
         ' lblVendor
         ' 
-        lblVendor.Font = New Font("Segoe UI", 9.0F)
+        lblVendor.Font = New Font("Segoe UI", 9F)
         lblVendor.ForeColor = Color.White
         lblVendor.Location = New Point(6, 60)
         lblVendor.Name = "lblVendor"
@@ -480,7 +480,7 @@ Partial Class frmMain
         ' 
         ' lblProduct
         ' 
-        lblProduct.Font = New Font("Segoe UI", 9.0F)
+        lblProduct.Font = New Font("Segoe UI", 9F)
         lblProduct.ForeColor = Color.White
         lblProduct.Location = New Point(6, 90)
         lblProduct.Name = "lblProduct"
@@ -492,7 +492,7 @@ Partial Class frmMain
         ' 
         ' lblLedCount
         ' 
-        lblLedCount.Font = New Font("Segoe UI", 9.0F)
+        lblLedCount.Font = New Font("Segoe UI", 9F)
         lblLedCount.ForeColor = Color.White
         lblLedCount.Location = New Point(6, 210)
         lblLedCount.Name = "lblLedCount"
@@ -504,7 +504,7 @@ Partial Class frmMain
         ' 
         ' lblName
         ' 
-        lblName.Font = New Font("Segoe UI", 9.0F)
+        lblName.Font = New Font("Segoe UI", 9F)
         lblName.ForeColor = Color.White
         lblName.Location = New Point(6, 30)
         lblName.Name = "lblName"
@@ -516,7 +516,7 @@ Partial Class frmMain
         ' 
         ' lblWidth
         ' 
-        lblWidth.Font = New Font("Segoe UI", 9.0F)
+        lblWidth.Font = New Font("Segoe UI", 9F)
         lblWidth.ForeColor = Color.White
         lblWidth.Location = New Point(6, 150)
         lblWidth.Name = "lblWidth"
@@ -541,7 +541,7 @@ Partial Class frmMain
         ' 
         ' lblType
         ' 
-        lblType.Font = New Font("Segoe UI", 9.0F)
+        lblType.Font = New Font("Segoe UI", 9F)
         lblType.ForeColor = Color.White
         lblType.Location = New Point(6, 120)
         lblType.Name = "lblType"
@@ -553,7 +553,7 @@ Partial Class frmMain
         ' 
         ' lblHeight
         ' 
-        lblHeight.Font = New Font("Segoe UI", 9.0F)
+        lblHeight.Font = New Font("Segoe UI", 9F)
         lblHeight.ForeColor = Color.White
         lblHeight.Location = New Point(6, 180)
         lblHeight.Name = "lblHeight"
@@ -567,6 +567,7 @@ Partial Class frmMain
         ' 
         SplitContainer1.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         SplitContainer1.FixedPanel = FixedPanel.Panel2
+        SplitContainer1.IsSplitterFixed = True
         SplitContainer1.Location = New Point(6, 36)
         SplitContainer1.Name = "SplitContainer1"
         ' 
@@ -597,7 +598,7 @@ Partial Class frmMain
         NsTheme1.Controls.Add(SplitContainer1)
         NsTheme1.Customization = ""
         NsTheme1.Dock = DockStyle.Fill
-        NsTheme1.Font = New Font("Segoe UI", 9.0F)
+        NsTheme1.Font = New Font("Segoe UI", 9F)
         NsTheme1.Image = Nothing
         NsTheme1.Location = New Point(0, 0)
         NsTheme1.MinimumSize = New Size(1000, 700)
@@ -656,7 +657,7 @@ Partial Class frmMain
         ' frmMain
         ' 
         AllowDrop = True
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1008, 729)
         ControlBox = False

@@ -460,15 +460,27 @@ Public Class ucComponent
 
     Public Sub AutoResize()
         If LEDs.Count <> 0 Then
-            Dim leftest = LEDs.MinBy(Function(x) Math.Abs(x.LedCoordinates.X - 0))
-            Do While leftest.LedCoordinates.X > 0
-                MoveLeft()
-            Loop
+            Dim leftest = LEDs.MinBy(Function(x) x.LedCoordinates.X)
+            If leftest.LedCoordinates.X < 0 Then
+                Do While leftest.LedCoordinates.X < 0
+                    MoveRight()
+                Loop
+            Else
+                Do While leftest.LedCoordinates.X > 0
+                    MoveLeft()
+                Loop
+            End If
 
-            Dim topest = LEDs.MinBy(Function(x) Math.Abs(x.LedCoordinates.Y - 0))
-            Do While topest.LedCoordinates.Y > 0
-                MoveUp()
-            Loop
+            Dim topest = LEDs.MinBy(Function(x) x.LedCoordinates.Y)
+            If topest.LedCoordinates.Y < 0 Then
+                Do While topest.LedCoordinates.Y < 0
+                    MoveDown()
+                Loop
+            Else
+                Do While topest.LedCoordinates.Y > 0
+                    MoveUp()
+                Loop
+            End If
 
             Dim rightest = LEDs.MaxBy(Function(x) Math.Abs(x.LedCoordinates.X + _Width))
             _Width = rightest.LedCoordinates.X + 1
