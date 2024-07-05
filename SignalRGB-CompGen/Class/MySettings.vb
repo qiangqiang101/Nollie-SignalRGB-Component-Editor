@@ -98,4 +98,8 @@ Public Class Localization
 
     Public AutoResize As String = "AutoResize"
 
+    Public EditLED As String = "Edit LED"
+    Public LEDName As String = "LED Name"
+    Public LEDCoordinates As String = "LED Coordinates"
+
 End Class

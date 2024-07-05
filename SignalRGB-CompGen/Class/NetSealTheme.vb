@@ -132,6 +132,7 @@ Class NSButton
 
         P1 = New Pen(Color.FromArgb(35, 35, 35))
         P2 = New Pen(Color.FromArgb(65, 65, 65))
+        PF = New Pen(Color.FromArgb(205, 150, 0))
     End Sub
 
     Private IsMouseDown As Boolean
@@ -141,7 +142,7 @@ Class NSButton
     Private SZ1 As SizeF
     Private PT1 As PointF
 
-    Private P1, P2 As Pen
+    Private P1, P2, PF As Pen
 
     Private PB1 As PathGradientBrush
     Private GB1 As LinearGradientBrush
@@ -163,12 +164,16 @@ Class NSButton
             PB1.FocusScales = New PointF(0.8F, 0.5F)
 
             G.FillPath(PB1, GP1)
+
+            G.DrawPath(PF, GP1)
         Else
             GB1 = New LinearGradientBrush(ClientRectangle, Color.FromArgb(60, 60, 60), Color.FromArgb(55, 55, 55), 90.0F)
             G.FillPath(GB1, GP1)
+
+            G.DrawPath(P1, GP1)
         End If
 
-        G.DrawPath(P1, GP1)
+
         G.DrawPath(P2, GP2)
 
         SZ1 = G.MeasureString(Text, Font)
@@ -518,11 +523,12 @@ Class NSTextBox
 
         P1 = New Pen(Color.FromArgb(35, 35, 35))
         P2 = New Pen(Color.FromArgb(55, 55, 55))
+        PF = New Pen(Color.FromArgb(205, 150, 0))
     End Sub
 
     Private GP1, GP2 As GraphicsPath
 
-    Private P1, P2 As Pen
+    Private P1, P2, PF As Pen
     Private PB1 As PathGradientBrush
 
     Protected Overrides Sub OnPaint(e As System.Windows.Forms.PaintEventArgs)
@@ -541,7 +547,11 @@ Class NSTextBox
 
         G.FillPath(PB1, GP1)
 
-        G.DrawPath(P2, GP1)
+        If Base.Focused Then
+            G.DrawPath(PF, GP1)
+        Else
+            G.DrawPath(P2, GP1)
+        End If
         G.DrawPath(P1, GP2)
     End Sub
 
@@ -767,6 +777,7 @@ Class NSComboBox
         P2 = New Pen(Color.White, 2.0F)
         P3 = New Pen(Brushes.Black, 2.0F)
         P4 = New Pen(Color.FromArgb(65, 65, 65))
+        PF = New Pen(Color.FromArgb(205, 150, 0))
 
         B1 = New SolidBrush(Color.FromArgb(65, 65, 65))
         B2 = New SolidBrush(Color.FromArgb(55, 55, 55))
@@ -777,7 +788,7 @@ Class NSComboBox
     Private SZ1 As SizeF
     Private PT1 As PointF
 
-    Private P1, P2, P3, P4 As Pen
+    Private P1, P2, P3, P4, PF As Pen
     Private B1, B2 As SolidBrush
 
     Private GB1 As LinearGradientBrush
@@ -797,7 +808,11 @@ Class NSComboBox
         G.FillRectangle(GB1, ClientRectangle)
         G.ResetClip()
 
-        G.DrawPath(P1, GP1)
+        If Focused Then
+            G.DrawPath(PF, GP1)
+        Else
+            G.DrawPath(P1, GP1)
+        End If
         G.DrawPath(P4, GP2)
 
         SZ1 = G.MeasureString(Text, Font)
@@ -814,7 +829,11 @@ Class NSComboBox
         G.DrawLine(P2, Width - 8, 9, Width - 12, 12)
         G.DrawLine(Pens.White, Width - 12, 12, Width - 12, 13)
 
-        G.DrawLine(P1, Width - 22, 0, Width - 22, Height)
+        If Focused Then
+            G.DrawLine(PF, Width - 22, 0, Width - 22, Height)
+        Else
+            G.DrawLine(P1, Width - 22, 0, Width - 22, Height)
+        End If
         G.DrawLine(P4, Width - 23, 1, Width - 23, Height - 2)
         G.DrawLine(P4, Width - 21, 1, Width - 21, Height - 2)
     End Sub
@@ -1011,7 +1030,7 @@ Class NSOnOffBox
 
     Private GP1, GP2, GP3, GP4 As GraphicsPath
 
-    Private P1, P2, P3 As Pen
+    Private P1, P2, P3, PF As Pen
     Private B1, B2, B3, B4, B5 As SolidBrush
 
     Private PB1 As PathGradientBrush
@@ -1464,7 +1483,6 @@ Class NSTrackBar
 
             TrackDown = R2.Contains(e.Location)
         End If
-
         MyBase.OnMouseDown(e)
     End Sub
 

@@ -16,6 +16,9 @@
     <Compile Update="Class\ThemeBase.vb">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Update="frmEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmMain.vb">
       <SubType>Form</SubType>
     </Compile>

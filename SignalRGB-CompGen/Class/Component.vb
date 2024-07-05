@@ -4,17 +4,17 @@ Imports Newtonsoft.Json
 
 Public Structure Component
 
-    Public Brand As String
     Public ProductName As String
     Public DisplayName As String
+    Public Brand As String
     Public Type As String
+    Public LedCount As Integer
     Public Width As Integer
     Public Height As Integer
-    Public Image As String
-    Public LedCoordinates As List(Of Integer())
-    Public LedCount As Integer
     Public LedMapping As Integer()
+    Public LedCoordinates As List(Of Integer())
     Public LedNames As String()
+    Public Image As String
 
     Public Function ToImage() As Image
         Return Image.Base64ToImage()
@@ -47,16 +47,16 @@ End Structure
 
 Public Structure ComponentF
 
-    Public Brand As String
+
     Public ProductName As String
     Public DisplayName As String
+    Public Brand As String
     Public Type As String
+    Public LedCount As Integer
     Public Width As Integer
     Public Height As Integer
-    Public Image As String
-    Public LedCoordinates As List(Of Single())
-    Public LedCount As Integer
     Public LedMapping As Integer()
+    Public LedCoordinates As List(Of Single())
     Public LedNames As String()
-
+    Public Image As String
 End Structure

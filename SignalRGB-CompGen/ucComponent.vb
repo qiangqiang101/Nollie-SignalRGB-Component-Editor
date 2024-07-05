@@ -397,6 +397,7 @@ Public Class ucComponent
         Dim loc = Translation.Localization
 
         tsmiAddLed.Text = loc.AddLED
+        tsmiEditLED.Text = loc.EditLED
         tsmiAddLeds.Text = loc.AddLEDs
         tsmiRemoveLed.Text = loc.RemoveLastLED
         tsmiRemoveLastLEDs.Text = loc.RemoveLastLEDs
@@ -495,7 +496,21 @@ Public Class ucComponent
         End If
     End Sub
 
+    Public Sub EditLED(_pos As Point)
+        Dim item As Led = SelectedItem
+        If item = Nothing Then item = ItemOnHover()
+
+        If item <> Nothing Then
+            Dim fed As New frmEdit(Me, item)
+            fed.Show()
+        End If
+    End Sub
+
     Private Sub tsmiAutoResize_Click(sender As Object, e As EventArgs) Handles tsmiAutoResize.Click
         AutoResize()
+    End Sub
+
+    Private Sub tsmiEditLED_Click(sender As Object, e As EventArgs) Handles tsmiEditLED.Click
+        EditLED(CType(NsContextMenu1.Tag, Point))
     End Sub
 End Class

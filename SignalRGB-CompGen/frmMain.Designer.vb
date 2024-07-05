@@ -386,7 +386,7 @@ Partial Class frmMain
         txtName.MaxLength = 32767
         txtName.Multiline = False
         txtName.Name = "txtName"
-        txtName.ReadOnly = False
+        txtName.ReadOnly = True
         txtName.Size = New Size(177, 24)
         txtName.TabIndex = 1
         txtName.TextAlign = HorizontalAlignment.Left
