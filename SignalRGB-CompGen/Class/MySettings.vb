@@ -76,6 +76,7 @@ Public Class Localization
     Public SelectImageFile As String = "Select image file.."
     Public Position As String = "Position:"
     Public ComponentImage As String = "Component Image"
+    Public ImageURL As String = "Image URL"
 
     Public LEDInfo As String = "Index: {1}{0}Name: {2}{0}Position: {3}, {4}"
     Public AddLED As String = "Add LED"

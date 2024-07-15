@@ -42,6 +42,7 @@
     "SelectImageFile": "選擇圖像文件..",
     "Position": "位置: ",
 	"ComponentImage": "元件图像",
+	"ImageURL": "圖片網址",
     "LEDInfo": "索引: {1}{0}名字: {2}{0}位置: {3}, {4}",
     "AddLED": "添加LED",
     "AddLEDs": "添加多個LED",

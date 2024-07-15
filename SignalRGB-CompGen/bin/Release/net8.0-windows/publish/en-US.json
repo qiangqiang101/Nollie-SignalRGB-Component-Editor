@@ -42,6 +42,7 @@
     "SelectImageFile": "Select image file..",
     "Position": "Position:",
 	"ComponentImage": "Component Image",
+	"ImageURL": "Image URL",
     "LEDInfo": "Index: {1}{0}Name: {2}{0}Position: {3}, {4}",
     "AddLED": "Add LED",
     "AddLEDs": "Add LEDs",

@@ -15,6 +15,7 @@ Public Structure Component
     Public LedCoordinates As List(Of Integer())
     Public LedNames As String()
     Public Image As String
+    Public ImageUrl As String
 
     Public Function ToImage() As Image
         Return Image.Base64ToImage()
@@ -29,8 +30,9 @@ Public Structure Component
             For i As Integer = 0 To componentF.LedCoordinates.Count - 1
                 newCoords.Add({componentF.LedCoordinates(i)(0), componentF.LedCoordinates(i)(1)})
             Next
-            Dim convert = New Component() With {.Brand = componentF.Brand, .ProductName = componentF.ProductName, .DisplayName = componentF.DisplayName, .Type = componentF.Type, .Width = componentF.Width,
-                .Height = componentF.Height, .Image = componentF.Image, .LedCoordinates = newCoords, .LedCount = componentF.LedCount, .LedMapping = componentF.LedMapping, .LedNames = componentF.LedNames}
+            Dim convert = New Component() With {.Brand = componentF.Brand, .ProductName = componentF.ProductName, .DisplayName = componentF.DisplayName,
+                .Type = componentF.Type, .Width = componentF.Width, .Height = componentF.Height, .Image = componentF.Image, .ImageUrl = componentF.ImageUrl,
+                .LedCoordinates = newCoords, .LedCount = componentF.LedCount, .LedMapping = componentF.LedMapping, .LedNames = componentF.LedNames}
             Return convert
         End Try
     End Function
@@ -47,7 +49,6 @@ End Structure
 
 Public Structure ComponentF
 
-
     Public ProductName As String
     Public DisplayName As String
     Public Brand As String
@@ -59,4 +60,6 @@ Public Structure ComponentF
     Public LedCoordinates As List(Of Single())
     Public LedNames As String()
     Public Image As String
+    Public ImageUrl As String
+
 End Structure

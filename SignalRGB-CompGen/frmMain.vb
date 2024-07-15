@@ -62,6 +62,7 @@ Public Class frmMain
             txtLedCount.Text = Component.LedCount
             cmbType.SelectedValue = Component.Type.ToLower
             pbImage.Image = Component.ToImage
+            txtWebImageUrl.Text = Component.ImageUrl
 
             Text = String.Format(Translation.Localization.Title, FileName)
             NsTheme1.Text = Text
@@ -94,6 +95,7 @@ Public Class frmMain
                 .ProductName = txtProduct.Text
                 .Type = cmbType.SelectedValue
                 .Image = pbImage.Image.ImageToBase64()
+                .ImageUrl = txtWebImageUrl.Text
             End With
             comp.Save(file)
         End If
@@ -192,6 +194,7 @@ Public Class frmMain
             gbImage.Title = loc.ComponentImage
             gbControls.Title = loc.Controls
             btnAutoResize.Text = loc.AutoResize
+            lblWebImage.Value1 = loc.ImageURL
         End If
     End Sub
 
@@ -256,6 +259,7 @@ Public Class frmMain
         txtLedCount.Text = 0
         cmbType.SelectedIndex = 0
         pbImage.Image = My.Resources._1
+        txtWebImageUrl.Clear
 
         ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.None,
             .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right,
@@ -323,6 +327,7 @@ Public Class frmMain
                 txtLedCount.Text = Component.LedCount
                 cmbType.SelectedValue = Component.Type.ToLower
                 pbImage.Image = Component.ToImage
+                txtWebImageUrl.Text = Component.ImageUrl
 
                 Text = String.Format(Translation.Localization.Title, FileName)
                 NsTheme1.Text = Text

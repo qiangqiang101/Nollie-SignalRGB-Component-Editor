@@ -49,3 +49,4 @@ C:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Release\
 E:\Users\Admin\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.FormEx.resources
 C:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.FormEx.resources
 C:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.frmEdit.resources
+E:\Users\Admin\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.frmEdit.resources

@@ -58,12 +58,11 @@ Module Helper
     End Function
 
     <Extension>
-    Public Function ImageToBase64(img As Image, Optional forceFormat As ImageFormat = Nothing, Optional formatting As Base64FormattingOptions = Base64FormattingOptions.InsertLineBreaks) As String
+    Public Function ImageToBase64(img As Image, Optional formatting As Base64FormattingOptions = Base64FormattingOptions.InsertLineBreaks) As String
         Try
             If img IsNot Nothing Then
-                If forceFormat Is Nothing Then forceFormat = img.RawFormat
                 Dim stream As New MemoryStream
-                img.Save(stream, forceFormat)
+                img.Save(stream, ImageFormat.Png)
                 Return Convert.ToBase64String(stream.ToArray, formatting)
             Else
                 Return Nothing

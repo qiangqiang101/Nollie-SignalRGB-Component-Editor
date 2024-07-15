@@ -25,6 +25,8 @@ Partial Class frmMain
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         RightPanel = New Panel()
+        txtWebImageUrl = New NSTextBox()
+        lblWebImage = New NSLabel()
         tlpImageControls = New TableLayoutPanel()
         gbImage = New NSGroupBox()
         pbImage = New PictureBox()
@@ -89,6 +91,8 @@ Partial Class frmMain
         ' 
         ' RightPanel
         ' 
+        RightPanel.Controls.Add(txtWebImageUrl)
+        RightPanel.Controls.Add(lblWebImage)
         RightPanel.Controls.Add(tlpImageControls)
         RightPanel.Controls.Add(msMainMenu)
         RightPanel.Controls.Add(nslblPosition)
@@ -114,6 +118,31 @@ Partial Class frmMain
         RightPanel.Size = New Size(269, 687)
         RightPanel.TabIndex = 0
         ' 
+        ' txtWebImageUrl
+        ' 
+        txtWebImageUrl.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtWebImageUrl.Location = New Point(86, 240)
+        txtWebImageUrl.MaxLength = 32767
+        txtWebImageUrl.Multiline = False
+        txtWebImageUrl.Name = "txtWebImageUrl"
+        txtWebImageUrl.ReadOnly = False
+        txtWebImageUrl.Size = New Size(177, 24)
+        txtWebImageUrl.TabIndex = 8
+        txtWebImageUrl.TextAlign = HorizontalAlignment.Left
+        txtWebImageUrl.UseSystemPasswordChar = False
+        ' 
+        ' lblWebImage
+        ' 
+        lblWebImage.Font = New Font("Segoe UI", 9F)
+        lblWebImage.ForeColor = Color.White
+        lblWebImage.Location = New Point(6, 240)
+        lblWebImage.Name = "lblWebImage"
+        lblWebImage.Size = New Size(74, 24)
+        lblWebImage.TabIndex = 25
+        lblWebImage.Text = "Web Image"
+        lblWebImage.Value1 = "Image URL"
+        lblWebImage.Value2 = ""
+        ' 
         ' tlpImageControls
         ' 
         tlpImageControls.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
@@ -122,7 +151,7 @@ Partial Class frmMain
         tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         tlpImageControls.Controls.Add(gbImage, 0, 0)
         tlpImageControls.Controls.Add(gbControls, 1, 0)
-        tlpImageControls.Location = New Point(6, 257)
+        tlpImageControls.Location = New Point(6, 287)
         tlpImageControls.Name = "tlpImageControls"
         tlpImageControls.RowCount = 1
         tlpImageControls.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
@@ -373,7 +402,7 @@ Partial Class frmMain
         ' 
         ' NsSeperator1
         ' 
-        NsSeperator1.Location = New Point(6, 240)
+        NsSeperator1.Location = New Point(6, 270)
         NsSeperator1.Name = "NsSeperator1"
         NsSeperator1.Size = New Size(257, 11)
         NsSeperator1.TabIndex = 19
@@ -386,7 +415,7 @@ Partial Class frmMain
         txtName.MaxLength = 32767
         txtName.Multiline = False
         txtName.Name = "txtName"
-        txtName.ReadOnly = True
+        txtName.ReadOnly = False
         txtName.Size = New Size(177, 24)
         txtName.TabIndex = 1
         txtName.TextAlign = HorizontalAlignment.Left
@@ -735,5 +764,7 @@ Partial Class frmMain
     Friend WithEvents tsmiBuy As ToolStripMenuItem
     Friend WithEvents tlpImageControls As TableLayoutPanel
     Friend WithEvents btnAutoResize As NSButton
+    Friend WithEvents txtWebImageUrl As NSTextBox
+    Friend WithEvents lblWebImage As NSLabel
 
 End Class
