@@ -59,6 +59,9 @@
     "ShiftDisplayingLEDIndex": "显示LED索引从1开始",
     "Console": "控制台",
 	"SettingSaveMsg": "某些设置更改只有在重新启动 SignalRGB 自定义组件编辑器后才会生效。",
-	"AutoResize": "自动调整大小"
+	"AutoResize": "自动调整大小",
+	"EditLED": "编辑LED",
+	"LEDName": "LED名称",
+	"LEDCoordinates": "LED坐标"
   }
 }

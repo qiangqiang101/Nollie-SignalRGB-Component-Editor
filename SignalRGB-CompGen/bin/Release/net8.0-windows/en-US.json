@@ -59,6 +59,9 @@
     "ShiftDisplayingLEDIndex": "Shift Displaying LED index by 1",
     "Console": "Console",
 	"SettingSaveMsg": "Some setting changes will not take effect until you restart SignalRGB Custom Component Editor.",
-	"AutoResize": "Auto Resize"
+	"AutoResize": "Auto Resize",
+	"EditLED": "Edit LED",
+	"LEDName": "LED Name",
+	"LEDCoordinates": "LED Coordinates"
   }
 }
