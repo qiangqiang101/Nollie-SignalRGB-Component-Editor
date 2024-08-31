@@ -129,6 +129,8 @@ Class NSNumericUpDown
             End If
         End Get
         Set(ByVal value As Decimal)
+            If value < Minimum Then value = Minimum
+            If value > Maximum Then value = Maximum
             If Base IsNot Nothing Then Base.Value = value
         End Set
     End Property

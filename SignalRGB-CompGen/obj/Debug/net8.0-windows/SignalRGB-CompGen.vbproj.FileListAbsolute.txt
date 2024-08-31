@@ -47,3 +47,4 @@ E:\Users\Admin\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\ne
 E:\Users\Admin\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\compeditor.pdb
 E:\Users\Admin\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\ref\compeditor.dll
 E:\Users\Admin\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB_CompGen.FormEx.resources
+E:\Users\Admin\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB_CompGen.frmEdit.resources
