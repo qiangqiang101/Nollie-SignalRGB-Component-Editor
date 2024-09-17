@@ -19,6 +19,9 @@
     <Compile Update="frmEdit.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmImport.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="frmMain.vb">
       <SubType>Form</SubType>
     </Compile>

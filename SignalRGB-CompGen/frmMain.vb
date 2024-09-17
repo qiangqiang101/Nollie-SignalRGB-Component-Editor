@@ -9,10 +9,10 @@ Imports Newtonsoft.Json
 
 Public Class frmMain
 
-    Dim FileName As String = Nothing
-    Dim Component As New Component()
-    Dim WithEvents ucCompoment As ucComponent = Nothing
-    Dim mouseHandler As MouseHandler = Nothing
+    Public FileName As String = Nothing
+    Public Component As New Component()
+    Public WithEvents ucCompoment As ucComponent = Nothing
+    Public mouseHandler As MouseHandler = Nothing
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If ucCompoment IsNot Nothing Then
@@ -371,6 +371,42 @@ Public Class frmMain
     Private Sub btnAutoResize_Click(sender As Object, e As EventArgs) Handles btnAutoResize.Click
         If ucCompoment IsNot Nothing Then
             ucCompoment.AutoResize()
+        End If
+    End Sub
+
+    Private Sub tsmiORGBVMap_Click(sender As Object, e As EventArgs) Handles tsmiORGBVMap.Click
+        Dim ofd As New OpenFileDialog
+        With ofd
+            .DefaultExt = ""
+            .InitialDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\OpenRGB\plugins\settings\virtual-controllers"
+            .Filter = "All files|*.*"
+            .Title = Translation.Localization.SelectComponentFile
+            .Multiselect = False
+        End With
+        If ofd.ShowDialog <> DialogResult.Cancel Then
+            Try
+                Dim vmap As OpenRGBVMap = New OpenRGBVMap().Load(ofd.FileName)
+                Dim fimp As New frmImport()
+                With fimp
+                    Dim deviceDDL As New List(Of DropdownListItem(Of String))
+                    For Each zone In vmap.ctrl_zones
+                        deviceDDL.Add(New DropdownListItem(Of String)(zone.controller.name, zone.controller.location))
+                    Next
+
+                    With .cmbDevice
+                        .DataSource = deviceDDL
+                        .DisplayMember = "Text"
+                        .ValueMember = "Value"
+                        .SelectedIndex = 0
+                    End With
+
+                    .txtFileName.Text = ofd.FileName
+                    .VisualMap = vmap
+                End With
+                fimp.Show()
+            Catch ex As Exception
+                MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
+            End Try
         End If
     End Sub
 End Class

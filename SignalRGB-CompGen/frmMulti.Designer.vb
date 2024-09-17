@@ -39,7 +39,7 @@ Partial Class frmMulti
         numAmount.DecimalPlaces = 0
         numAmount.Increment = 1
         numAmount.InterceptArrowKeys = True
-        numAmount.Location = New Point(111, 36)
+        numAmount.Location = New Point(117, 36)
         numAmount.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
         numAmount.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numAmount.Name = "numAmount"
@@ -52,8 +52,8 @@ Partial Class frmMulti
         ' 
         ' lblNumOfLeds
         ' 
-        lblNumOfLeds.Font = New Font("Segoe UI", 9.0F)
-        lblNumOfLeds.Location = New Point(12, 36)
+        lblNumOfLeds.Font = New Font("Segoe UI", 9F)
+        lblNumOfLeds.Location = New Point(6, 36)
         lblNumOfLeds.Name = "lblNumOfLeds"
         lblNumOfLeds.Size = New Size(93, 24)
         lblNumOfLeds.TabIndex = 1
@@ -64,7 +64,7 @@ Partial Class frmMulti
         ' btnOK
         ' 
         btnOK.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnOK.Location = New Point(197, 100)
+        btnOK.Location = New Point(203, 100)
         btnOK.Name = "btnOK"
         btnOK.Size = New Size(75, 23)
         btnOK.TabIndex = 2
@@ -78,15 +78,15 @@ Partial Class frmMulti
         cmbDirection.DropDownStyle = ComboBoxStyle.DropDownList
         cmbDirection.ForeColor = Color.White
         cmbDirection.FormattingEnabled = True
-        cmbDirection.Location = New Point(111, 66)
+        cmbDirection.Location = New Point(117, 66)
         cmbDirection.Name = "cmbDirection"
         cmbDirection.Size = New Size(161, 24)
         cmbDirection.TabIndex = 1
         ' 
         ' lblDirection
         ' 
-        lblDirection.Font = New Font("Segoe UI", 9.0F)
-        lblDirection.Location = New Point(12, 66)
+        lblDirection.Font = New Font("Segoe UI", 9F)
+        lblDirection.Location = New Point(6, 66)
         lblDirection.Name = "lblDirection"
         lblDirection.Size = New Size(55, 24)
         lblDirection.TabIndex = 4
@@ -107,7 +107,7 @@ Partial Class frmMulti
         NsTheme1.Controls.Add(numAmount)
         NsTheme1.Customization = ""
         NsTheme1.Dock = DockStyle.Fill
-        NsTheme1.Font = New Font("Segoe UI", 9.0F)
+        NsTheme1.Font = New Font("Segoe UI", 9F)
         NsTheme1.Image = Nothing
         NsTheme1.Location = New Point(0, 0)
         NsTheme1.Movable = True
@@ -137,7 +137,7 @@ Partial Class frmMulti
         ' 
         ' frmMulti
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(284, 135)
         Controls.Add(NsTheme1)
