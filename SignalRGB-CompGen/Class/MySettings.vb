@@ -43,6 +43,8 @@ Public Class Localization
     Public SelectComponentFile As String = "Select component file.."
     Public Save As String = "Save"
     Public SaveAs As String = "Save As..."
+    Public ImportOpenRGBVisualMap As String = "Import OpenRGB Visual Map"
+    Public SelectOpenRGBVisualMapFile As String = "Select OpenRGB Visual Map file.."
     Public SaveComponentFileAs As String = "Save component file as..."
     Public [Exit] As String = "Exit"
     Public Settings As String = "Settings"
@@ -102,5 +104,9 @@ Public Class Localization
     Public EditLED As String = "Edit LED"
     Public LEDName As String = "LED Name"
     Public LEDCoordinates As String = "LED Coordinates"
+
+    Public FileName As String = "File Name"
+    Public Device As String = "Device"
+    Public Location As String = "Location"
 
 End Class

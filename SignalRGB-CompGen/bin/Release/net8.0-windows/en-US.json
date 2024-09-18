@@ -62,6 +62,11 @@
 	"AutoResize": "Auto Resize",
 	"EditLED": "Edit LED",
 	"LEDName": "LED Name",
-	"LEDCoordinates": "LED Coordinates"
+	"LEDCoordinates": "LED Coordinates",
+	"ImportOpenRGBVisualMap": "Import OpenRGB Visual Map",
+	"SelectOpenRGBVisualMapFile": "Select OpenRGB Visual Map file..",
+	"FileName": "File Name",
+	"Device": "Device",
+	"Location": "Location"
   }
 }

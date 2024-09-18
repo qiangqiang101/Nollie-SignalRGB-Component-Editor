@@ -62,6 +62,11 @@
 	"AutoResize": "自动调整大小",
 	"EditLED": "编辑LED",
 	"LEDName": "LED名称",
-	"LEDCoordinates": "LED坐标"
+	"LEDCoordinates": "LED坐标",
+	"ImportOpenRGBVisualMap": "导入 OpenRGB 视觉地图",
+	"SelectOpenRGBVisualMapFile": "选择 OpenRGB 视觉地图文件..",
+	"FileName": "文件名",
+	"Device": "设备",
+	"Location": "位置"
   }
 }

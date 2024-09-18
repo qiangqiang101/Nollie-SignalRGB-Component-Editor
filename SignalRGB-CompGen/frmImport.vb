@@ -72,4 +72,25 @@ Public Class frmImport
         NsTheme1.Text = Text
         Close()
     End Sub
+
+    Private Sub Translate()
+        Dim loc = Translation.Localization
+
+        Text = loc.ImportOpenRGBVisualMap
+        NsTheme1.Text = loc.ImportOpenRGBVisualMap
+        lblFileName.Value1 = loc.FileName
+        lblDevice.Value1 = loc.Device
+        lblLocation.Value1 = loc.Location
+        btnOK.Text = loc.Confirm
+    End Sub
+
+    Private Sub cmbDevice_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDevice.SelectedIndexChanged
+        txtLocation.Text = cmbDevice.SelectedValue
+    End Sub
+
+    Private Sub frmImport_Load(sender As Object, e As EventArgs) Handles Me.Load
+        Translate()
+
+        txtLocation.Text = cmbDevice.SelectedValue
+    End Sub
 End Class

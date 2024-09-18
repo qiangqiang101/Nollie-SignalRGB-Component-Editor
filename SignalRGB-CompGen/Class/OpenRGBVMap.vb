@@ -12,14 +12,14 @@ Public Structure OpenRGBVMap
 
 End Structure
 
-Public Structure ctrl_zones
+Public Class ctrl_zones
 
     Public controller As _controller
     Public custom_zone_name As String
     Public settings As _settings
     Public zone_idx As Integer
 
-End Structure
+End Class
 
 Public Structure _controller
 

@@ -180,6 +180,7 @@ Public Class frmMain
             tsmiNollie.Text = loc.VisitNollie
             tsmiMentaL.Text = loc.VisitMentaL
             tsmiBuy.Text = loc.BuyNollie
+            tsmiImport.Text = loc.ImportOpenRGBVisualMap
 
             lblName.Value1 = loc.Name
             lblVendor.Value1 = loc.Vendor
@@ -374,13 +375,13 @@ Public Class frmMain
         End If
     End Sub
 
-    Private Sub tsmiORGBVMap_Click(sender As Object, e As EventArgs) Handles tsmiORGBVMap.Click
+    Private Sub tsmiImport_Click(sender As Object, e As EventArgs) Handles tsmiImport.Click
         Dim ofd As New OpenFileDialog
         With ofd
             .DefaultExt = ""
             .InitialDirectory = $"{Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData)}\OpenRGB\plugins\settings\virtual-controllers"
             .Filter = "All files|*.*"
-            .Title = Translation.Localization.SelectComponentFile
+            .Title = Translation.Localization.SelectOpenRGBVisualMapFile
             .Multiselect = False
         End With
         If ofd.ShowDialog <> DialogResult.Cancel Then
@@ -388,6 +389,7 @@ Public Class frmMain
                 Dim vmap As OpenRGBVMap = New OpenRGBVMap().Load(ofd.FileName)
                 Dim fimp As New frmImport()
                 With fimp
+                    .VisualMap = vmap
                     Dim deviceDDL As New List(Of DropdownListItem(Of String))
                     For Each zone In vmap.ctrl_zones
                         deviceDDL.Add(New DropdownListItem(Of String)(zone.controller.name, zone.controller.location))
@@ -401,7 +403,6 @@ Public Class frmMain
                     End With
 
                     .txtFileName.Text = ofd.FileName
-                    .VisualMap = vmap
                 End With
                 fimp.Show()
             Catch ex As Exception

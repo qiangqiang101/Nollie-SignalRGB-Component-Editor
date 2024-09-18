@@ -44,6 +44,8 @@ Partial Class frmMain
         tsmiOpen = New ToolStripMenuItem()
         tsmiSave = New ToolStripMenuItem()
         tsmiSaveAs = New ToolStripMenuItem()
+        ToolStripSeparator3 = New ToolStripSeparator()
+        tsmiImport = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
         tsmiExit = New ToolStripMenuItem()
         tsmiSettings = New ToolStripMenuItem()
@@ -76,9 +78,6 @@ Partial Class frmMain
         btnMin = New NSControlButton()
         btnMax = New NSControlButton()
         btnClose = New NSControlButton()
-        tsmiImport = New ToolStripMenuItem()
-        ToolStripSeparator3 = New ToolStripSeparator()
-        tsmiORGBVMap = New ToolStripMenuItem()
         RightPanel.SuspendLayout()
         tlpImageControls.SuspendLayout()
         gbImage.SuspendLayout()
@@ -300,41 +299,53 @@ Partial Class frmMain
         ' 
         tsmiNew.ForeColor = Color.White
         tsmiNew.Name = "tsmiNew"
-        tsmiNew.Size = New Size(180, 22)
+        tsmiNew.Size = New Size(225, 22)
         tsmiNew.Text = "New"
         ' 
         ' tsmiOpen
         ' 
         tsmiOpen.ForeColor = Color.White
         tsmiOpen.Name = "tsmiOpen"
-        tsmiOpen.Size = New Size(180, 22)
+        tsmiOpen.Size = New Size(225, 22)
         tsmiOpen.Text = "Open"
         ' 
         ' tsmiSave
         ' 
         tsmiSave.ForeColor = Color.White
         tsmiSave.Name = "tsmiSave"
-        tsmiSave.Size = New Size(180, 22)
+        tsmiSave.Size = New Size(225, 22)
         tsmiSave.Text = "Save"
         ' 
         ' tsmiSaveAs
         ' 
         tsmiSaveAs.ForeColor = Color.White
         tsmiSaveAs.Name = "tsmiSaveAs"
-        tsmiSaveAs.Size = New Size(180, 22)
+        tsmiSaveAs.Size = New Size(225, 22)
         tsmiSaveAs.Text = "Save As.."
+        ' 
+        ' ToolStripSeparator3
+        ' 
+        ToolStripSeparator3.Name = "ToolStripSeparator3"
+        ToolStripSeparator3.Size = New Size(222, 6)
+        ' 
+        ' tsmiImport
+        ' 
+        tsmiImport.ForeColor = Color.White
+        tsmiImport.Name = "tsmiImport"
+        tsmiImport.Size = New Size(225, 22)
+        tsmiImport.Text = "Import OpenRGB Visual Map"
         ' 
         ' ToolStripSeparator1
         ' 
         ToolStripSeparator1.ForeColor = Color.White
         ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(177, 6)
+        ToolStripSeparator1.Size = New Size(222, 6)
         ' 
         ' tsmiExit
         ' 
         tsmiExit.ForeColor = Color.White
         tsmiExit.Name = "tsmiExit"
-        tsmiExit.Size = New Size(180, 22)
+        tsmiExit.Size = New Size(225, 22)
         tsmiExit.Text = "Exit"
         ' 
         ' tsmiSettings
@@ -686,26 +697,6 @@ Partial Class frmMain
         btnClose.TabIndex = 4
         btnClose.Text = "NsControlButton1"
         ' 
-        ' tsmiImport
-        ' 
-        tsmiImport.DropDownItems.AddRange(New ToolStripItem() {tsmiORGBVMap})
-        tsmiImport.ForeColor = Color.White
-        tsmiImport.Name = "tsmiImport"
-        tsmiImport.Size = New Size(180, 22)
-        tsmiImport.Text = "Import"
-        ' 
-        ' ToolStripSeparator3
-        ' 
-        ToolStripSeparator3.Name = "ToolStripSeparator3"
-        ToolStripSeparator3.Size = New Size(177, 6)
-        ' 
-        ' tsmiORGBVMap
-        ' 
-        tsmiORGBVMap.ForeColor = Color.White
-        tsmiORGBVMap.Name = "tsmiORGBVMap"
-        tsmiORGBVMap.Size = New Size(186, 22)
-        tsmiORGBVMap.Text = "OpenRGB Visual Map"
-        ' 
         ' frmMain
         ' 
         AllowDrop = True
@@ -791,6 +782,5 @@ Partial Class frmMain
     Friend WithEvents lblWebImage As NSLabel
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents tsmiImport As ToolStripMenuItem
-    Friend WithEvents tsmiORGBVMap As ToolStripMenuItem
 
 End Class

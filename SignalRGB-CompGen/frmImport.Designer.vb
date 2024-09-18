@@ -24,9 +24,11 @@ Partial Class frmImport
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmImport))
         NsTheme1 = New NSTheme()
+        txtLocation = New NSTextBox()
+        lblLocation = New NSLabel()
         txtFileName = New NSTextBox()
-        lblName = New NSLabel()
-        lblDirection = New NSLabel()
+        lblFileName = New NSLabel()
+        lblDevice = New NSLabel()
         btnOK = New NSButton()
         cmbDevice = New NSComboBox()
         btnClose = New NSControlButton()
@@ -38,9 +40,11 @@ Partial Class frmImport
         NsTheme1.AccentOffset = 42
         NsTheme1.BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
         NsTheme1.BorderStyle = FormBorderStyle.FixedSingle
+        NsTheme1.Controls.Add(txtLocation)
+        NsTheme1.Controls.Add(lblLocation)
         NsTheme1.Controls.Add(txtFileName)
-        NsTheme1.Controls.Add(lblName)
-        NsTheme1.Controls.Add(lblDirection)
+        NsTheme1.Controls.Add(lblFileName)
+        NsTheme1.Controls.Add(lblDevice)
         NsTheme1.Controls.Add(btnOK)
         NsTheme1.Controls.Add(cmbDevice)
         NsTheme1.Controls.Add(btnClose)
@@ -54,13 +58,36 @@ Partial Class frmImport
         NsTheme1.NoRounding = False
         NsTheme1.Padding = New Padding(3, 33, 3, 3)
         NsTheme1.Sizable = True
-        NsTheme1.Size = New Size(363, 133)
+        NsTheme1.Size = New Size(363, 161)
         NsTheme1.SmartBounds = True
         NsTheme1.StartPosition = FormStartPosition.CenterScreen
         NsTheme1.TabIndex = 0
-        NsTheme1.Text = "Import from OpenRGB Visual Map"
+        NsTheme1.Text = "Import OpenRGB Visual Map"
         NsTheme1.TransparencyKey = Color.Empty
         NsTheme1.Transparent = False
+        ' 
+        ' txtLocation
+        ' 
+        txtLocation.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtLocation.Location = New Point(89, 97)
+        txtLocation.MaxLength = 32767
+        txtLocation.Multiline = False
+        txtLocation.Name = "txtLocation"
+        txtLocation.ReadOnly = True
+        txtLocation.Size = New Size(268, 24)
+        txtLocation.TabIndex = 2
+        txtLocation.TextAlign = HorizontalAlignment.Left
+        txtLocation.UseSystemPasswordChar = False
+        ' 
+        ' lblLocation
+        ' 
+        lblLocation.Font = New Font("Segoe UI", 9F)
+        lblLocation.Location = New Point(6, 97)
+        lblLocation.Name = "lblLocation"
+        lblLocation.Size = New Size(77, 24)
+        lblLocation.TabIndex = 11
+        lblLocation.Value1 = "Location"
+        lblLocation.Value2 = ""
         ' 
         ' txtFileName
         ' 
@@ -75,34 +102,34 @@ Partial Class frmImport
         txtFileName.TextAlign = HorizontalAlignment.Left
         txtFileName.UseSystemPasswordChar = False
         ' 
-        ' lblName
+        ' lblFileName
         ' 
-        lblName.Font = New Font("Segoe UI", 9F)
-        lblName.Location = New Point(6, 37)
-        lblName.Name = "lblName"
-        lblName.Size = New Size(77, 24)
-        lblName.TabIndex = 9
-        lblName.Value1 = "File Name"
-        lblName.Value2 = ""
+        lblFileName.Font = New Font("Segoe UI", 9F)
+        lblFileName.Location = New Point(6, 37)
+        lblFileName.Name = "lblFileName"
+        lblFileName.Size = New Size(77, 24)
+        lblFileName.TabIndex = 9
+        lblFileName.Value1 = "File Name"
+        lblFileName.Value2 = ""
         ' 
-        ' lblDirection
+        ' lblDevice
         ' 
-        lblDirection.Font = New Font("Segoe UI", 9F)
-        lblDirection.Location = New Point(6, 67)
-        lblDirection.Name = "lblDirection"
-        lblDirection.Size = New Size(77, 24)
-        lblDirection.TabIndex = 7
-        lblDirection.Text = "Direction"
-        lblDirection.Value1 = "Device"
-        lblDirection.Value2 = ""
+        lblDevice.Font = New Font("Segoe UI", 9F)
+        lblDevice.Location = New Point(6, 67)
+        lblDevice.Name = "lblDevice"
+        lblDevice.Size = New Size(77, 24)
+        lblDevice.TabIndex = 7
+        lblDevice.Text = "Direction"
+        lblDevice.Value1 = "Device"
+        lblDevice.Value2 = ""
         ' 
         ' btnOK
         ' 
         btnOK.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnOK.Location = New Point(282, 98)
+        btnOK.Location = New Point(282, 126)
         btnOK.Name = "btnOK"
         btnOK.Size = New Size(75, 23)
-        btnOK.TabIndex = 2
+        btnOK.TabIndex = 5
         btnOK.Text = "Confirm"
         ' 
         ' cmbDevice
@@ -135,7 +162,7 @@ Partial Class frmImport
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(363, 133)
+        ClientSize = New Size(363, 161)
         Controls.Add(NsTheme1)
         FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
@@ -144,16 +171,18 @@ Partial Class frmImport
         MinimizeBox = False
         Name = "frmImport"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "Import from OpenRGB Visual Map"
+        Text = "Import OpenRGB Visual Map"
         NsTheme1.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
 
     Friend WithEvents NsTheme1 As NSTheme
     Friend WithEvents btnClose As NSControlButton
-    Friend WithEvents lblDirection As NSLabel
+    Friend WithEvents lblDevice As NSLabel
     Friend WithEvents btnOK As NSButton
     Friend WithEvents cmbDevice As NSComboBox
     Friend WithEvents txtFileName As NSTextBox
-    Friend WithEvents lblName As NSLabel
+    Friend WithEvents lblFileName As NSLabel
+    Friend WithEvents txtLocation As NSTextBox
+    Friend WithEvents lblLocation As NSLabel
 End Class
