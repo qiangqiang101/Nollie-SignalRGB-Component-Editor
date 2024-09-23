@@ -167,6 +167,22 @@ Module Helper
         Return New Rectangle(CInt(Math.Ceiling(rectF.X)), CInt(Math.Ceiling(rectF.Y)), CInt(Math.Ceiling(rectF.Width)), CInt(Math.Ceiling(rectF.Height)))
     End Function
 
+    Public Function GetFontSizeMatch(ByVal myText As String, ByVal myFont As Font, ByVal mySize As Size) As Single
+        Dim fit As Boolean = False
+        Dim curSize As Single
+        Do Until fit
+            curSize += 0.1F
+            Dim fnt As Font = New Font(myFont.Name, curSize)
+            Dim textSize As Size = TextRenderer.MeasureText(myText, fnt)
+            If textSize.Height >= mySize.Height Or textSize.Width >= mySize.Width Or textSize.Height = 0 Or textSize.Width = 0 Then
+                fit = True
+                If textSize.Width > mySize.Width Then curSize -= 1.0F
+                If textSize.Height > mySize.Height Then curSize -= 1.0F
+            End If
+        Loop
+        Return curSize
+    End Function
+
 End Module
 
 Public Enum eMode

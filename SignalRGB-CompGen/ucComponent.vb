@@ -57,6 +57,9 @@ Public Class ucComponent
     End Property
     Private IsDragging As Boolean = False
 
+    Private PixelFont As Font = Font
+    Private PixelRect As RectangleF
+
     Public Sub AddLed(index As Integer, mindex As Integer, name As String, point As Point)
         LEDs.Add(New Led(mindex, name, point) With {.Index = index})
 
@@ -81,6 +84,8 @@ Public Class ucComponent
                 AddLed(index, index, name, pos)
             Next i
         End If
+
+        PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)
     End Sub
 
     Private Function GetNextPointFrom(pos As Point, offset As Integer, Optional direction As eDirection = eDirection.Right) As Point
@@ -169,6 +174,7 @@ Public Class ucComponent
                     If Height > approximatelySize.Height Then Height = approximatelySize.Height + (Margin.Bottom)
 
                     Dim renderRect As New RectangleF(x, y, rectSize.Width, rectSize.Height)
+                    PixelRect = renderRect
                     If renderRect.Contains(PointToClient(Control.MousePosition)) Then
                         _ledPos = New Point(row, col)
                     End If
@@ -192,9 +198,8 @@ Public Class ucComponent
                             Using sb2 As New SolidBrush(Color.Blue)
                                 Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
                                 Dim text As String = If(Setting.ShiftIndex, ledIndex + 1, ledIndex)
-                                Dim adjFont = GetAdjustedFont(g, text, Font, CInt(renderRect.Width), Font.Size, 1.0F, False)
-                                g.DrawString(text, adjFont, Brushes.Black, srect, sf)
-                                g.DrawString(text, adjFont, sb2, renderRect, sf)
+                                g.DrawString(text, PixelFont, Brushes.Black, srect, sf)
+                                g.DrawString(text, PixelFont, sb2, renderRect, sf)
                             End Using
                         Else
                             If renderRect.Contains(PointToClient(Control.MousePosition)) Then
@@ -205,9 +210,8 @@ Public Class ucComponent
                                 Using sb2 As New SolidBrush(Color.FromArgb(205, 150, 0))
                                     Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
                                     Dim text As String = If(Setting.ShiftIndex, ledIndex + 1, ledIndex)
-                                    Dim adjFont = GetAdjustedFont(g, text, Font, CInt(renderRect.Width), Font.Size, 1.0F, False)
-                                    g.DrawString(text, adjFont, Brushes.Black, srect, sf)
-                                    g.DrawString(text, adjFont, sb2, renderRect, sf)
+                                    g.DrawString(text, PixelFont, Brushes.Black, srect, sf)
+                                    g.DrawString(text, PixelFont, sb2, renderRect, sf)
                                 End Using
                             Else
                                 Using sb2 As New SolidBrush(Color.FromArgb(205, 150, 0))
@@ -217,9 +221,8 @@ Public Class ucComponent
                                 Using sb2 As New SolidBrush(ForeColor)
                                     Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
                                     Dim text As String = If(Setting.ShiftIndex, ledIndex + 1, ledIndex)
-                                    Dim adjFont = GetAdjustedFont(g, text, Font, CInt(renderRect.Width), Font.Size, 1.0F, False)
-                                    g.DrawString(text, adjFont, Brushes.Black, srect, sf)
-                                    g.DrawString(text, adjFont, sb2, renderRect, sf)
+                                    g.DrawString(text, PixelFont, Brushes.Black, srect, sf)
+                                    g.DrawString(text, PixelFont, sb2, renderRect, sf)
                                 End Using
                             End If
                         End If
@@ -249,9 +252,8 @@ Public Class ucComponent
             Using sb2 As New SolidBrush(Color.Blue)
                 Dim srect = New RectangleF(dr.X + 1, dr.Y + 1, dr.Width, dr.Height)
                 Dim text As String = If(Setting.ShiftIndex, SelectedItem.Index + 1, SelectedItem.Index)
-                Dim adjFont = GetAdjustedFont(g, text, Font, CInt(dr.Width), Font.Size, 1.0F, False)
-                g.DrawString(text, adjFont, Brushes.Black, srect, sf)
-                g.DrawString(text, adjFont, sb2, dr, sf)
+                g.DrawString(text, PixelFont, Brushes.Black, srect, sf)
+                g.DrawString(text, PixelFont, sb2, dr, sf)
             End Using
             Using pen As New Pen(Color.White, 1.0F)
                 'g.DrawRectangle(pen, dr)
@@ -301,6 +303,8 @@ Public Class ucComponent
             Width -= 100
             Height -= 100
         End If
+
+        PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)
     End Sub
 
     Private Sub ucComponent_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
@@ -403,25 +407,6 @@ Public Class ucComponent
         tsmiRemoveLastLEDs.Text = loc.RemoveLastLEDs
         tsmiAutoResize.Text = loc.AutoResize
     End Sub
-
-    Private Function GetAdjustedFont(graphics As Graphics, graphicString As String, originalFont As Font, containerWidth As Integer, maxFontSize As Integer, minFontSize As Integer, smallestOnFail As Boolean) As Font
-        Dim testFont As Font = Nothing
-
-        For adjustedSize As Integer = maxFontSize To minFontSize
-            testFont = New Font(originalFont.Name, adjustedSize, originalFont.Style)
-            Dim adjustedSizeNew As SizeF = G.MeasureString(graphicString, testFont)
-
-            If containerWidth > Convert.ToInt32(adjustedSizeNew.Width) Then
-                Return testFont
-            End If
-        Next
-
-        If smallestOnFail Then
-            Return testFont
-        Else
-            Return originalFont
-        End If
-    End Function
 
     Public Sub MoveUp()
         For i As Integer = 0 To LEDs.Count - 1
