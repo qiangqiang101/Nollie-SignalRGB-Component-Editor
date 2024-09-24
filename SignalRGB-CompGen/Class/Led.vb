@@ -21,4 +21,8 @@ Public Class Led
         Return a IsNot b
     End Operator
 
+    Public Function Rectangle() As Rectangle
+        Return New Rectangle(LedCoordinates, New Size(1, 1))
+    End Function
+
 End Class
