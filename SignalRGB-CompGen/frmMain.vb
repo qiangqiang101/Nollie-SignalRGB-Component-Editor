@@ -390,11 +390,11 @@ Public Class frmMain
                 Dim fimp As New frmImport()
                 With fimp
                     .VisualMap = vmap
-                    Dim deviceDDL As New List(Of DropdownListItem(Of String))
+                    Dim deviceDDL As New List(Of DropdownListItem(Of zone_identifier))
                     For Each zone In vmap.ctrl_zones
                         Dim isRGBController = vmap.ctrl_zones.Where(Function(x) x.controller.name = zone.controller.name).Count > 1
                         Dim zoneName As String = If(zone.custom_zone_name <> Nothing, zone.custom_zone_name, If(isRGBController, $"{zone.controller.name} - {Translation.Localization.Zone} {zone.zone_idx + 1}", zone.controller.name))
-                        deviceDDL.Add(New DropdownListItem(Of String)(zoneName, zone.controller.location))
+                        deviceDDL.Add(New DropdownListItem(Of zone_identifier)(zoneName, New zone_identifier(zoneName, zone.controller.location, zone.zone_idx)))
                     Next
 
                     With .cmbDevice

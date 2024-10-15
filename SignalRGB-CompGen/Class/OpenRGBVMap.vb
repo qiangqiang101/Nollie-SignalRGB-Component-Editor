@@ -69,3 +69,21 @@ Public Structure grid_settings
     Public unregister_members As Boolean
 
 End Structure
+
+Public Class zone_identifier
+
+    Public name As String
+    Public location As String
+    Public index As Integer
+
+    Public Sub New(Name As String, location As String, index As Integer)
+        Me.name = Name
+        Me.location = location
+        Me.index = index
+    End Sub
+
+    Public Overrides Function ToString() As String
+        Return JsonConvert.SerializeObject(New zone_identifier(name, location, index))
+    End Function
+
+End Class

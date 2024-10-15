@@ -14,7 +14,8 @@ Public Class frmImport
         frmMain.Text = String.Format(Translation.Localization.Title, Translation.Localization.Untitled)
         frmMain.NsTheme1.Text = frmMain.Text
 
-        Dim zone = VisualMap.ctrl_zones.Find(Function(x) x.controller.location = cmbDevice.SelectedValue)
+        Dim zone_identifier As zone_identifier = CType(cmbDevice.SelectedValue, zone_identifier)
+        Dim zone = VisualMap.ctrl_zones.Find(Function(x) x.controller.location = zone_identifier.location And x.zone_idx = zone_identifier.index)
         Dim newComp As New Component()
         With newComp
             .Brand = zone.controller.vendor
@@ -85,12 +86,14 @@ Public Class frmImport
     End Sub
 
     Private Sub cmbDevice_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbDevice.SelectedIndexChanged
-        txtLocation.Text = cmbDevice.SelectedValue
+        Dim zone_identifier As zone_identifier = CType(cmbDevice.SelectedValue, zone_identifier)
+        txtLocation.Text = zone_identifier.location
     End Sub
 
     Private Sub frmImport_Load(sender As Object, e As EventArgs) Handles Me.Load
         Translate()
 
-        txtLocation.Text = cmbDevice.SelectedValue
+        Dim zone_identifier As zone_identifier = CType(cmbDevice.SelectedValue, zone_identifier)
+        txtLocation.Text = zone_identifier.location
     End Sub
 End Class
