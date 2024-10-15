@@ -108,5 +108,6 @@ Public Class Localization
     Public FileName As String = "File Name"
     Public Device As String = "Device"
     Public Location As String = "Location"
+    Public Zone As String = "Zone"
 
 End Class

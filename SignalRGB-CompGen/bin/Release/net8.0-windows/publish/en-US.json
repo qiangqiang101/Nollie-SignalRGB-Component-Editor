@@ -67,6 +67,7 @@
 	"SelectOpenRGBVisualMapFile": "Select OpenRGB Visual Map file..",
 	"FileName": "File Name",
 	"Device": "Device",
-	"Location": "Location"
+	"Location": "Location",
+  "Zone": "Zone"
   }
 }

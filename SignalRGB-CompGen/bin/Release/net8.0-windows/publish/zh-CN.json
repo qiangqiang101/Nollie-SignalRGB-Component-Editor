@@ -67,6 +67,7 @@
 	"SelectOpenRGBVisualMapFile": "选择 OpenRGB 视觉地图文件..",
 	"FileName": "文件名",
 	"Device": "设备",
-	"Location": "位置"
+	"Location": "位置",
+  "Zone": "频道"
   }
 }

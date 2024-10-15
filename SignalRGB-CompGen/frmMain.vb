@@ -392,7 +392,9 @@ Public Class frmMain
                     .VisualMap = vmap
                     Dim deviceDDL As New List(Of DropdownListItem(Of String))
                     For Each zone In vmap.ctrl_zones
-                        deviceDDL.Add(New DropdownListItem(Of String)(zone.controller.name, zone.controller.location))
+                        Dim isRGBController = vmap.ctrl_zones.Where(Function(x) x.controller.name = zone.controller.name).Count > 1
+                        Dim zoneName As String = If(zone.custom_zone_name <> Nothing, zone.custom_zone_name, If(isRGBController, $"{zone.controller.name} - {Translation.Localization.Zone} {zone.zone_idx + 1}", zone.controller.name))
+                        deviceDDL.Add(New DropdownListItem(Of String)(zoneName, zone.controller.location))
                     Next
 
                     With .cmbDevice

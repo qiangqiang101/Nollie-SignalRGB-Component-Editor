@@ -58,7 +58,7 @@ Partial Class frmImport
         NsTheme1.NoRounding = False
         NsTheme1.Padding = New Padding(3, 33, 3, 3)
         NsTheme1.Sizable = True
-        NsTheme1.Size = New Size(363, 161)
+        NsTheme1.Size = New Size(484, 161)
         NsTheme1.SmartBounds = True
         NsTheme1.StartPosition = FormStartPosition.CenterScreen
         NsTheme1.TabIndex = 0
@@ -74,7 +74,7 @@ Partial Class frmImport
         txtLocation.Multiline = False
         txtLocation.Name = "txtLocation"
         txtLocation.ReadOnly = True
-        txtLocation.Size = New Size(268, 24)
+        txtLocation.Size = New Size(389, 24)
         txtLocation.TabIndex = 2
         txtLocation.TextAlign = HorizontalAlignment.Left
         txtLocation.UseSystemPasswordChar = False
@@ -97,7 +97,7 @@ Partial Class frmImport
         txtFileName.Multiline = False
         txtFileName.Name = "txtFileName"
         txtFileName.ReadOnly = True
-        txtFileName.Size = New Size(268, 24)
+        txtFileName.Size = New Size(389, 24)
         txtFileName.TabIndex = 0
         txtFileName.TextAlign = HorizontalAlignment.Left
         txtFileName.UseSystemPasswordChar = False
@@ -126,7 +126,7 @@ Partial Class frmImport
         ' btnOK
         ' 
         btnOK.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnOK.Location = New Point(282, 126)
+        btnOK.Location = New Point(403, 126)
         btnOK.Name = "btnOK"
         btnOK.Size = New Size(75, 23)
         btnOK.TabIndex = 5
@@ -142,14 +142,14 @@ Partial Class frmImport
         cmbDevice.FormattingEnabled = True
         cmbDevice.Location = New Point(89, 67)
         cmbDevice.Name = "cmbDevice"
-        cmbDevice.Size = New Size(268, 24)
+        cmbDevice.Size = New Size(389, 24)
         cmbDevice.TabIndex = 1
         ' 
         ' btnClose
         ' 
         btnClose.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnClose.ControlButton = NSControlButton.Button.Close
-        btnClose.Location = New Point(340, 5)
+        btnClose.Location = New Point(461, 5)
         btnClose.Margin = New Padding(0)
         btnClose.MaximumSize = New Size(18, 20)
         btnClose.MinimumSize = New Size(18, 20)
@@ -162,7 +162,7 @@ Partial Class frmImport
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(363, 161)
+        ClientSize = New Size(484, 161)
         Controls.Add(NsTheme1)
         FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
