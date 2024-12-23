@@ -9,15 +9,15 @@
     <MyType>WindowsForms</MyType>
     <AssemblyName>compeditor</AssemblyName>
     <ApplicationIcon>1.ico</ApplicationIcon>
-    <Version>1.8.1</Version>
+    <Version>1.8.2</Version>
     <Authors>I'm Not MentaL</Authors>
     <Company>Haikou Nuoli Trading Co., Ltd.</Company>
     <PackageProjectUrl>https://nolliergb.cn</PackageProjectUrl>
     <PackageIcon>nollie.png</PackageIcon>
     <RepositoryUrl>https://github.com/qiangqiang101/SignalRGB-CompGen</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>1.8.1</AssemblyVersion>
-    <FileVersion>1.8.1</FileVersion>
+    <AssemblyVersion>1.8.2</AssemblyVersion>
+    <FileVersion>1.8.2</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>

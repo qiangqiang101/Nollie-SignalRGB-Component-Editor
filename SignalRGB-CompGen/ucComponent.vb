@@ -180,12 +180,13 @@ Public Class ucComponent
                     End If
 
                     If LedCoordinatesPoints.Contains(New Point(row, col)) Then
-                        Dim ledIndex = LEDs.FindIndex(Function(xy) xy.LedCoordinates.X = row AndAlso xy.LedCoordinates.Y = col)
-                        Dim led = LEDs.Find(Function(z) z.MappingIndex = ledIndex)
+                        Dim led = LEDs.Find(Function(xy) xy.LedCoordinates.X = row And xy.LedCoordinates.Y = col)
+                        Dim displayIndex = If(Setting.ShiftIndex, led.MappingIndex + 1, led.MappingIndex)
+
                         'Update LED Index if it has no value.
                         If Not led.Index.HasValue Then
                             Dim idx = LEDs.IndexOf(led)
-                            led.Index = ledIndex
+                            led.Index = led.MappingIndex
                             LEDs(idx) = led
                         End If
 
@@ -197,7 +198,7 @@ Public Class ucComponent
                             End Using
                             Using sb2 As New SolidBrush(Color.Blue)
                                 Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
-                                Dim text As String = If(Setting.ShiftIndex, ledIndex + 1, ledIndex)
+                                Dim text As String = displayIndex
                                 g.DrawString(text, PixelFont, Brushes.Black, srect, sf)
                                 g.DrawString(text, PixelFont, sb2, renderRect, sf)
                             End Using
@@ -209,7 +210,7 @@ Public Class ucComponent
                                 End Using
                                 Using sb2 As New SolidBrush(Color.FromArgb(205, 150, 0))
                                     Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
-                                    Dim text As String = If(Setting.ShiftIndex, ledIndex + 1, ledIndex)
+                                    Dim text As String = displayIndex
                                     g.DrawString(text, PixelFont, Brushes.Black, srect, sf)
                                     g.DrawString(text, PixelFont, sb2, renderRect, sf)
                                 End Using
@@ -220,7 +221,7 @@ Public Class ucComponent
                                 End Using
                                 Using sb2 As New SolidBrush(ForeColor)
                                     Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
-                                    Dim text As String = If(Setting.ShiftIndex, ledIndex + 1, ledIndex)
+                                    Dim text As String = displayIndex
                                     g.DrawString(text, PixelFont, Brushes.Black, srect, sf)
                                     g.DrawString(text, PixelFont, sb2, renderRect, sf)
                                 End Using
@@ -262,6 +263,7 @@ Public Class ucComponent
             'End If
         End If
 
+        'drawing the bubble on hover
         If ItemOnHover() <> Nothing Then
             Dim itm = ItemOnHover()
             Dim info = String.Format(Translation.Localization.LEDInfo, vbCrLf, itm.MappingIndex, itm.LedName, itm.LedCoordinates.X, itm.LedCoordinates.Y)

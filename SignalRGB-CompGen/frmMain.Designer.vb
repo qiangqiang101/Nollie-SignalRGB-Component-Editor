@@ -117,7 +117,7 @@ Partial Class frmMain
         RightPanel.Location = New Point(0, 0)
         RightPanel.Name = "RightPanel"
         RightPanel.Padding = New Padding(3)
-        RightPanel.Size = New Size(269, 687)
+        RightPanel.Size = New Size(312, 687)
         RightPanel.TabIndex = 0
         ' 
         ' txtWebImageUrl
@@ -128,7 +128,7 @@ Partial Class frmMain
         txtWebImageUrl.Multiline = False
         txtWebImageUrl.Name = "txtWebImageUrl"
         txtWebImageUrl.ReadOnly = False
-        txtWebImageUrl.Size = New Size(177, 24)
+        txtWebImageUrl.Size = New Size(220, 24)
         txtWebImageUrl.TabIndex = 8
         txtWebImageUrl.TextAlign = HorizontalAlignment.Left
         txtWebImageUrl.UseSystemPasswordChar = False
@@ -157,7 +157,7 @@ Partial Class frmMain
         tlpImageControls.Name = "tlpImageControls"
         tlpImageControls.RowCount = 1
         tlpImageControls.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
-        tlpImageControls.Size = New Size(257, 179)
+        tlpImageControls.Size = New Size(300, 201)
         tlpImageControls.TabIndex = 23
         ' 
         ' gbImage
@@ -169,7 +169,7 @@ Partial Class frmMain
         gbImage.Location = New Point(3, 3)
         gbImage.Name = "gbImage"
         gbImage.Padding = New Padding(3, 31, 3, 3)
-        gbImage.Size = New Size(122, 173)
+        gbImage.Size = New Size(144, 195)
         gbImage.SubTitle = ""
         gbImage.TabIndex = 8
         gbImage.Title = "Component Image"
@@ -180,7 +180,7 @@ Partial Class frmMain
         pbImage.Image = My.Resources.Resources._1
         pbImage.Location = New Point(3, 31)
         pbImage.Name = "pbImage"
-        pbImage.Size = New Size(116, 116)
+        pbImage.Size = New Size(138, 138)
         pbImage.SizeMode = PictureBoxSizeMode.Zoom
         pbImage.TabIndex = 13
         pbImage.TabStop = False
@@ -188,9 +188,9 @@ Partial Class frmMain
         ' btnChangeImage
         ' 
         btnChangeImage.Dock = DockStyle.Bottom
-        btnChangeImage.Location = New Point(3, 147)
+        btnChangeImage.Location = New Point(3, 169)
         btnChangeImage.Name = "btnChangeImage"
-        btnChangeImage.Size = New Size(116, 23)
+        btnChangeImage.Size = New Size(138, 23)
         btnChangeImage.TabIndex = 1
         btnChangeImage.Text = "Select Image"
         ' 
@@ -200,10 +200,10 @@ Partial Class frmMain
         gbControls.Controls.Add(btnAutoResize)
         gbControls.Dock = DockStyle.Fill
         gbControls.DrawSeperator = True
-        gbControls.Location = New Point(131, 3)
+        gbControls.Location = New Point(153, 3)
         gbControls.Name = "gbControls"
         gbControls.Padding = New Padding(3, 31, 3, 3)
-        gbControls.Size = New Size(123, 173)
+        gbControls.Size = New Size(144, 195)
         gbControls.SubTitle = ""
         gbControls.TabIndex = 9
         gbControls.Title = "Controls"
@@ -225,16 +225,16 @@ Partial Class frmMain
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 33.3333321F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 33.3333321F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 33.3333321F))
-        TableLayoutPanel1.Size = New Size(117, 116)
+        TableLayoutPanel1.Size = New Size(138, 138)
         TableLayoutPanel1.TabIndex = 0
         ' 
         ' btnUp
         ' 
         btnUp.Dock = DockStyle.Fill
         btnUp.Font = New Font("Marlett", 11F)
-        btnUp.Location = New Point(41, 3)
+        btnUp.Location = New Point(49, 3)
         btnUp.Name = "btnUp"
-        btnUp.Size = New Size(32, 32)
+        btnUp.Size = New Size(40, 40)
         btnUp.TabIndex = 0
         btnUp.Text = "5"
         ' 
@@ -242,9 +242,9 @@ Partial Class frmMain
         ' 
         btnLeft.Dock = DockStyle.Fill
         btnLeft.Font = New Font("Marlett", 11F)
-        btnLeft.Location = New Point(3, 41)
+        btnLeft.Location = New Point(3, 49)
         btnLeft.Name = "btnLeft"
-        btnLeft.Size = New Size(32, 32)
+        btnLeft.Size = New Size(40, 40)
         btnLeft.TabIndex = 1
         btnLeft.Text = "3"
         ' 
@@ -252,9 +252,9 @@ Partial Class frmMain
         ' 
         btnRight.Dock = DockStyle.Fill
         btnRight.Font = New Font("Marlett", 11F)
-        btnRight.Location = New Point(79, 41)
+        btnRight.Location = New Point(95, 49)
         btnRight.Name = "btnRight"
-        btnRight.Size = New Size(35, 32)
+        btnRight.Size = New Size(40, 40)
         btnRight.TabIndex = 2
         btnRight.Text = "4"
         ' 
@@ -262,18 +262,18 @@ Partial Class frmMain
         ' 
         btnDown.Dock = DockStyle.Fill
         btnDown.Font = New Font("Marlett", 11F)
-        btnDown.Location = New Point(41, 79)
+        btnDown.Location = New Point(49, 95)
         btnDown.Name = "btnDown"
-        btnDown.Size = New Size(32, 34)
+        btnDown.Size = New Size(40, 40)
         btnDown.TabIndex = 3
         btnDown.Text = "6"
         ' 
         ' btnAutoResize
         ' 
         btnAutoResize.Dock = DockStyle.Bottom
-        btnAutoResize.Location = New Point(3, 147)
+        btnAutoResize.Location = New Point(3, 169)
         btnAutoResize.Name = "btnAutoResize"
-        btnAutoResize.Size = New Size(117, 23)
+        btnAutoResize.Size = New Size(138, 23)
         btnAutoResize.TabIndex = 2
         btnAutoResize.Text = "Auto Resize"
         ' 
@@ -284,7 +284,7 @@ Partial Class frmMain
         msMainMenu.Items.AddRange(New ToolStripItem() {tsmiFile, tsmiSettings, tsmiHelp})
         msMainMenu.Location = New Point(3, 3)
         msMainMenu.Name = "msMainMenu"
-        msMainMenu.Size = New Size(263, 24)
+        msMainMenu.Size = New Size(306, 24)
         msMainMenu.TabIndex = 22
         msMainMenu.Text = "NsMenuStrip1"
         ' 
@@ -408,7 +408,7 @@ Partial Class frmMain
         nslblPosition.Font = New Font("Segoe UI", 9F)
         nslblPosition.Location = New Point(3, 661)
         nslblPosition.Name = "nslblPosition"
-        nslblPosition.Size = New Size(263, 23)
+        nslblPosition.Size = New Size(306, 23)
         nslblPosition.TabIndex = 21
         nslblPosition.Text = "NsLabel1"
         nslblPosition.Value1 = "Position: 0, 0"
@@ -430,7 +430,7 @@ Partial Class frmMain
         txtName.Multiline = False
         txtName.Name = "txtName"
         txtName.ReadOnly = False
-        txtName.Size = New Size(177, 24)
+        txtName.Size = New Size(220, 24)
         txtName.TabIndex = 1
         txtName.TextAlign = HorizontalAlignment.Left
         txtName.UseSystemPasswordChar = False
@@ -458,7 +458,7 @@ Partial Class frmMain
         numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numWidth.Name = "numWidth"
         numWidth.ReadOnly = False
-        numWidth.Size = New Size(177, 24)
+        numWidth.Size = New Size(220, 24)
         numWidth.TabIndex = 5
         numWidth.TextAlign = HorizontalAlignment.Right
         numWidth.ThousandsSeparator = False
@@ -472,7 +472,7 @@ Partial Class frmMain
         txtProduct.Multiline = False
         txtProduct.Name = "txtProduct"
         txtProduct.ReadOnly = False
-        txtProduct.Size = New Size(177, 24)
+        txtProduct.Size = New Size(220, 24)
         txtProduct.TabIndex = 3
         txtProduct.TextAlign = HorizontalAlignment.Left
         txtProduct.UseSystemPasswordChar = False
@@ -485,7 +485,7 @@ Partial Class frmMain
         txtLedCount.Multiline = False
         txtLedCount.Name = "txtLedCount"
         txtLedCount.ReadOnly = True
-        txtLedCount.Size = New Size(177, 24)
+        txtLedCount.Size = New Size(220, 24)
         txtLedCount.TabIndex = 7
         txtLedCount.Text = "0"
         txtLedCount.TextAlign = HorizontalAlignment.Right
@@ -499,7 +499,7 @@ Partial Class frmMain
         txtBrand.Multiline = False
         txtBrand.Name = "txtBrand"
         txtBrand.ReadOnly = False
-        txtBrand.Size = New Size(177, 24)
+        txtBrand.Size = New Size(220, 24)
         txtBrand.TabIndex = 2
         txtBrand.TextAlign = HorizontalAlignment.Left
         txtBrand.UseSystemPasswordChar = False
@@ -515,7 +515,7 @@ Partial Class frmMain
         numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numHeight.Name = "numHeight"
         numHeight.ReadOnly = False
-        numHeight.Size = New Size(177, 24)
+        numHeight.Size = New Size(220, 24)
         numHeight.TabIndex = 6
         numHeight.TextAlign = HorizontalAlignment.Right
         numHeight.ThousandsSeparator = False
@@ -579,7 +579,7 @@ Partial Class frmMain
         cmbType.FormattingEnabled = True
         cmbType.Location = New Point(86, 120)
         cmbType.Name = "cmbType"
-        cmbType.Size = New Size(177, 24)
+        cmbType.Size = New Size(220, 24)
         cmbType.TabIndex = 4
         ' 
         ' lblType
@@ -623,7 +623,7 @@ Partial Class frmMain
         ' 
         SplitContainer1.Panel2.Controls.Add(RightPanel)
         SplitContainer1.Size = New Size(996, 687)
-        SplitContainer1.SplitterDistance = 723
+        SplitContainer1.SplitterDistance = 680
         SplitContainer1.TabIndex = 3
         ' 
         ' Timer1

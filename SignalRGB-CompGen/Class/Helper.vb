@@ -180,6 +180,7 @@ Module Helper
                 If textSize.Height > mySize.Height Then curSize -= 1.0F
             End If
         Loop
+        If curSize <= 0.1F Then curSize = myFont.Size
         Return curSize
     End Function
 
