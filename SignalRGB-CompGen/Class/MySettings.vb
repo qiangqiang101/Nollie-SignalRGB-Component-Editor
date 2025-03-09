@@ -82,16 +82,15 @@ Public Class Localization
 
     Public LEDInfo As String = "Index: {1}{0}Name: {2}{0}Position: {3}, {4}"
     Public AddLED As String = "Add LED"
-    Public AddLEDs As String = "Add LEDs"
     Public RemoveLastLED As String = "Remove last LED"
     Public RemoveLastLEDs As String = "Remove last LEDs"
 
     Public NumberOfLEDs As String = "Number of LEDs"
     Public Direction As String = "Direction"
     Public Confirm As String = "Confirm"
-    Public Top As String = "Top"
+    Public Up As String = "Up"
     Public Right As String = "Right"
-    Public Bottom As String = "Bottom"
+    Public Down As String = "Down"
     Public Left As String = "Left"
 
     Public Language As String = "Language"
@@ -109,5 +108,21 @@ Public Class Localization
     Public Device As String = "Device"
     Public Location As String = "Location"
     Public Zone As String = "Zone"
+
+    'Added on 09/03/2025
+    Public Size As String = "Size"
+    Public Order As String = "Order"
+    Public Serpentine As String = "Serpentine"
+    Public HorizontalTopLeft As String = "Horizontal Top Left"
+    Public HorizontalTopRight As String = "Horizontal Top Right"
+    Public HorizontalBottomLeft As String = "Horizontal Bottom Left"
+    Public HorizontalBottomRight As String = "Horizontal Bottom Right"
+    Public VerticalTopLeft As String = "Vertical Top Left"
+    Public VerticalTopRight As String = "Vertical Top Right"
+    Public VerticalBottomLeft As String = "Vertical Bottom Left"
+    Public VerticalBottomRight As String = "Vertical Bottom Right"
+    Public Generate As String = "Generate"
+    Public Matrix As String = "Matrix"
+    Public Linear As String = "Linear"
 
 End Class

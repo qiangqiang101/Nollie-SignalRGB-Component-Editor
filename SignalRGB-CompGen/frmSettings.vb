@@ -1,8 +1,10 @@
 ﻿Imports System.Configuration
 Imports System.Drawing.Imaging
+Imports System.IO
 
 Public Class frmSettings
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles Me.Load
+        ScanForLanguageFiles()
         Translate()
 
         With cmbLanguage
@@ -44,6 +46,15 @@ Public Class frmSettings
         cbShiftLedPosition.Text = loc.ShiftDisplayingLEDIndex
         cbConsole.Text = loc.Console
         btnSave.Text = loc.Save
+    End Sub
+
+    Private Sub ScanForLanguageFiles()
+        Dim langDir = New DirectoryInfo("languages")
+        Dim files = langDir.GetFiles("*.json")
+        For Each file In files
+            Dim lang = New MyLanguage().Load(file.FullName)
+            LanguageDropdownList.Add(New DropdownListItem(Of String)(lang.LanguageName, lang.LanguageID))
+        Next
     End Sub
 
 End Class

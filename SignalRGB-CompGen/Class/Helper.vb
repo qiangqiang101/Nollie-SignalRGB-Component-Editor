@@ -15,11 +15,22 @@ Module Helper
         New DropdownListItem(Of String)("Strip", "strip"), New DropdownListItem(Of String)("Water Block", "water block"), New DropdownListItem(Of String)("Tower", "tower"),
         New DropdownListItem(Of String)("Heatsink", "heatsink"), New DropdownListItem(Of String)("Desk", "desk")}
     Public DirectionDropdownList As New List(Of DropdownListItem(Of eDirection)) From {
-        New DropdownListItem(Of eDirection)("Top", eDirection.Top), New DropdownListItem(Of eDirection)("Right", eDirection.Right),
-        New DropdownListItem(Of eDirection)("Bottom", eDirection.Bottom), New DropdownListItem(Of eDirection)("Left", eDirection.Left)}
-    Public LanguageDropdownList As New List(Of DropdownListItem(Of String)) From {
-        New DropdownListItem(Of String)("English", "en-US"), New DropdownListItem(Of String)("Chinese Simplified", "zh-CN"), New DropdownListItem(Of String)("Chinese Traditional", "zh-TW")}
+        New DropdownListItem(Of eDirection)("Up", eDirection.Up), New DropdownListItem(Of eDirection)("Right", eDirection.Right),
+        New DropdownListItem(Of eDirection)("Down", eDirection.Down), New DropdownListItem(Of eDirection)("Left", eDirection.Left)}
+    Public LanguageDropdownList As New List(Of DropdownListItem(Of String))
+    'Public LanguageDropdownList As New List(Of DropdownListItem(Of String)) From {
+    '    New DropdownListItem(Of String)("English", "en-US"), New DropdownListItem(Of String)("Chinese Simplified", "zh-CN"), New DropdownListItem(Of String)("Chinese Traditional", "zh-TW")}
+    Public MatrixDropdownList As New List(Of DropdownListItem(Of eMatrixOrder)) From {
+        New DropdownListItem(Of eMatrixOrder)("Horizontal Top Left", eMatrixOrder.HorizontalTopLeft),
+        New DropdownListItem(Of eMatrixOrder)("Horizontal Top Right", eMatrixOrder.HorizontalTopRight),
+        New DropdownListItem(Of eMatrixOrder)("Horizontal Bottom Left", eMatrixOrder.HorizontalBottomLeft),
+        New DropdownListItem(Of eMatrixOrder)("Horizontal Bottom Right", eMatrixOrder.HorizontalBottomRight),
+        New DropdownListItem(Of eMatrixOrder)("Vertical Top Left", eMatrixOrder.VerticalTopLeft),
+        New DropdownListItem(Of eMatrixOrder)("Vertical Top Right", eMatrixOrder.VerticalTopRight),
+        New DropdownListItem(Of eMatrixOrder)("Vertical Bottom Left", eMatrixOrder.VerticalBottomLeft),
+        New DropdownListItem(Of eMatrixOrder)("Vertical Bottom Right", eMatrixOrder.VerticalBottomRight)}
     Public Translation As MyLanguage = New MyLanguage()
+    Public UserMemory As New Memory()
 
     <Extension>
     Public Function StringToBase64(text As String) As String
@@ -187,15 +198,28 @@ Module Helper
 End Module
 
 Public Enum eMode
-    Add
+    AddLinear
+    AddMatrix
+    Edit
     Remove
 End Enum
 
 Public Enum eDirection
-    Top
+    Up
     Right
-    Bottom
+    Down
     Left
+End Enum
+
+Public Enum eMatrixOrder
+    HorizontalTopLeft
+    HorizontalTopRight
+    HorizontalBottomLeft
+    HorizontalBottomRight
+    VerticalTopLeft
+    VerticalTopRight
+    VerticalBottomLeft
+    VerticalBottomRight
 End Enum
 
 Public Enum DWMWINDOWATTRIBUTE

@@ -15,11 +15,11 @@ Imports System
 Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("Haikou Nuoli Trading Co., Ltd."),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
- Assembly: System.Reflection.AssemblyFileVersionAttribute("1.8"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.8+82564ae6e514a726a21825b8e84789eb398e3c89"),  _
+ Assembly: System.Reflection.AssemblyFileVersionAttribute("1.9"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.9+35edd6863f601c4330fa6161a25a7c2bb8b49850"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("compeditor"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("compeditor"),  _
- Assembly: System.Reflection.AssemblyVersionAttribute("1.8"),  _
+ Assembly: System.Reflection.AssemblyVersionAttribute("1.9"),  _
  Assembly: System.Reflection.AssemblyMetadataAttribute("RepositoryUrl", "https://github.com/qiangqiang101/SignalRGB-CompGen"),  _
  Assembly: System.Runtime.Versioning.TargetPlatformAttribute("Windows7.0"),  _
  Assembly: System.Runtime.Versioning.SupportedOSPlatformAttribute("Windows7.0")> 

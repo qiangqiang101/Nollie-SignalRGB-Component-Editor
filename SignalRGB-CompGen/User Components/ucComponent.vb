@@ -66,7 +66,7 @@ Public Class ucComponent
         RaiseEvent LEDsChanged(Me, New EventArgs())
     End Sub
 
-    Public Sub AddLeds(quantities As Integer, _pos As Point, Optional direction As eDirection = eDirection.Right)
+    Public Sub AddLeds(quantities As Integer, _pos As Point, Optional direction As eDirection = eDirection.Right, Optional updatefont As Boolean = True)
         If LEDs.Count = 0 Then
             For i As Integer = 0 To quantities - 1
                 Dim index = i
@@ -78,19 +78,149 @@ Public Class ucComponent
             Dim lastLed As Led = LEDs.Last
             For i As Integer = 0 To quantities - 1
                 Dim index = If(lastLed.Index.HasValue, lastLed.Index.Value + i + 1, lastLed.MappingIndex + i + 1)
-                Dim mindex = lastLed.MappingIndex + i + 1
-                Dim name = $"Led{mindex + i + 1}"
+                Dim name = $"Led{index + 1}"
                 Dim pos = GetNextPointFrom(_pos, i, direction)
                 AddLed(index, index, name, pos)
             Next i
         End If
+
+        If updatefont Then PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)
+    End Sub
+
+    Public Sub AddMatrix(_pos As Point, order As eMatrixOrder, serpentine As Boolean, _size As Size)
+        Select Case order
+            Case eMatrixOrder.HorizontalTopLeft
+                If serpentine Then
+                    For h As Integer = 0 To _size.Height - 1
+                        If h Mod 2 = 0 Then
+                            AddLeds(_size.Width, New Point(_pos.X, _pos.Y + h), eDirection.Right, False)
+                        Else
+                            AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + h), eDirection.Left, False)
+                        End If
+                    Next
+                Else
+                    For h As Integer = 0 To _size.Height - 1
+                        AddLeds(_size.Width, New Point(_pos.X, _pos.Y + h), eDirection.Right, False)
+                    Next
+                End If
+            Case eMatrixOrder.HorizontalTopRight
+                If serpentine Then
+                    For h As Integer = 0 To _size.Height - 1
+                        If h Mod 2 = 0 Then
+                            AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + h), eDirection.Left, False)
+                        Else
+                            AddLeds(_size.Width, New Point(_pos.X, _pos.Y + h), eDirection.Right, False)
+                        End If
+                    Next
+                Else
+                    For h As Integer = 0 To _size.Height - 1
+                        AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + h), eDirection.Left, False)
+                    Next
+                End If
+            Case eMatrixOrder.HorizontalBottomLeft
+                If serpentine Then
+                    Dim i As Integer = 0
+
+                    For h As Integer = _size.Height - 1 To 0 Step -1
+                        If i Mod 2 = 0 Then
+                            AddLeds(_size.Width, New Point(_pos.X, _pos.Y + h), eDirection.Right, False)
+                        Else
+                            AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + h), eDirection.Left, False)
+                        End If
+                        i += 1
+                    Next
+                Else
+                    For h As Integer = _size.Height - 1 To 0 Step -1
+                        AddLeds(_size.Width, New Point(_pos.X, _pos.Y + h), eDirection.Right, False)
+                    Next
+                End If
+            Case eMatrixOrder.HorizontalBottomRight
+                If serpentine Then
+                    Dim i As Integer = 0
+
+                    For h As Integer = _size.Height - 1 To 0 Step -1
+                        If i Mod 2 = 0 Then
+                            AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + h), eDirection.Left, False)
+                        Else
+                            AddLeds(_size.Width, New Point(_pos.X, _pos.Y + h), eDirection.Right, False)
+                        End If
+                        i += 1
+                    Next
+                Else
+                    For h As Integer = _size.Height - 1 To 0 Step -1
+                        AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + h), eDirection.Left, False)
+                    Next
+                End If
+            Case eMatrixOrder.VerticalTopLeft
+                If serpentine Then
+                    For w As Integer = 0 To _size.Width - 1
+                        If w Mod 2 = 0 Then
+                            AddLeds(_size.Height, New Point(_pos.X + w, _pos.Y), eDirection.Down, False)
+                        Else
+                            AddLeds(_size.Height, New Point(_pos.X + w, (_pos.Y + _size.Height) - 1), eDirection.Up, False)
+                        End If
+                    Next
+                Else
+                    For w As Integer = 0 To _size.Width - 1
+                        AddLeds(_size.Height, New Point(_pos.X + w, _pos.Y), eDirection.Down, False)
+                    Next
+                End If
+            Case eMatrixOrder.VerticalTopRight
+                If serpentine Then
+                    Dim i As Integer = 0
+
+                    For w As Integer = _size.Width - 1 To 0 Step -1
+                        If i Mod 2 = 0 Then
+                            AddLeds(_size.Height, New Point(_pos.X + w, _pos.Y), eDirection.Down, False)
+                        Else
+                            AddLeds(_size.Height, New Point(_pos.X + w, (_pos.Y + _size.Height) - 1), eDirection.Up, False)
+                        End If
+                        i += 1
+                    Next
+                Else
+                    For w As Integer = _size.Width - 1 To 0 Step -1
+                        AddLeds(_size.Height, New Point(_pos.X + w, _pos.Y), eDirection.Down, False)
+                    Next
+                End If
+            Case eMatrixOrder.VerticalBottomLeft
+                If serpentine Then
+                    For w As Integer = 0 To _size.Width - 1
+                        If w Mod 2 = 0 Then
+                            AddLeds(_size.Height, New Point(_pos.X + w, (_pos.Y + _size.Height) - 1), eDirection.Up, False)
+                        Else
+                            AddLeds(_size.Height, New Point(_pos.X + w, _pos.Y), eDirection.Down, False)
+                        End If
+                    Next
+                Else
+                    For w As Integer = 0 To _size.Width - 1
+                        AddLeds(_size.Height, New Point(_pos.X + w, (_pos.Y + _size.Height) - 1), eDirection.Up, False)
+                    Next
+                End If
+            Case eMatrixOrder.VerticalBottomRight
+                If serpentine Then
+                    Dim i As Integer = 0
+
+                    For w As Integer = _size.Width - 1 To 0 Step -1
+                        If i Mod 2 = 0 Then
+                            AddLeds(_size.Height, New Point(_pos.X + w, (_pos.Y + _size.Height) - 1), eDirection.Up, False)
+                        Else
+                            AddLeds(_size.Height, New Point(_pos.X + w, _pos.Y), eDirection.Down, False)
+                        End If
+                        i += 1
+                    Next
+                Else
+                    For w As Integer = _size.Width - 1 To 0 Step -1
+                        AddLeds(_size.Height, New Point(_pos.X + w, (_pos.Y + _size.Height) - 1), eDirection.Up, False)
+                    Next
+                End If
+        End Select
 
         PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)
     End Sub
 
     Private Function GetNextPointFrom(pos As Point, offset As Integer, Optional direction As eDirection = eDirection.Right) As Point
         Select Case direction
-            Case eDirection.Top
+            Case eDirection.Up
                 Dim newPos = New Point(pos.X, pos.Y - offset)
                 If newPos.Y < 0 Then
                     Return New Point(newPos.X, 0)
@@ -99,7 +229,7 @@ Public Class ucComponent
                 End If
             Case eDirection.Right
                 Return New Point(pos.X + offset, pos.Y)
-            Case eDirection.Bottom
+            Case eDirection.Down
                 Return New Point(pos.X, pos.Y + offset)
             Case eDirection.Left
                 Dim newPos = New Point(pos.X - offset, pos.Y)
@@ -386,9 +516,15 @@ Public Class ucComponent
         End Select
     End Sub
 
-    Private Sub tsmiAddLeds_Click(sender As Object, e As EventArgs) Handles tsmiAddLeds.Click
+    Private Sub tsmiLinear_Click(sender As Object, e As EventArgs) Handles tsmiLinear.Click
         Dim max = numRows * numCols - LEDs.Count
-        Dim fmt As New frmMulti(eMode.Add, max, Me, CType(NsContextMenu1.Tag, Point))
+        Dim fmt As New frmMulti(eMode.AddLinear, max, Me, NsContextMenu1.Tag)
+        fmt.Show()
+    End Sub
+
+    Private Sub tsmiMatrix_Click(sender As Object, e As EventArgs) Handles tsmiMatrix.Click
+        Dim max = numRows * numCols - LEDs.Count
+        Dim fmt As New frmMulti(eMode.AddMatrix, max, Me, NsContextMenu1.Tag)
         fmt.Show()
     End Sub
 
@@ -404,10 +540,13 @@ Public Class ucComponent
 
         tsmiAddLed.Text = loc.AddLED
         tsmiEditLED.Text = loc.EditLED
-        tsmiAddLeds.Text = loc.AddLEDs
         tsmiRemoveLed.Text = loc.RemoveLastLED
         tsmiRemoveLastLEDs.Text = loc.RemoveLastLEDs
         tsmiAutoResize.Text = loc.AutoResize
+
+        tsmiGenerate.Text = loc.Generate
+        tsmiLinear.Text = loc.Linear
+        tsmiMatrix.Text = loc.Matrix
     End Sub
 
     Public Sub MoveUp()
@@ -488,8 +627,8 @@ Public Class ucComponent
         If item = Nothing Then item = ItemOnHover()
 
         If item <> Nothing Then
-            Dim fed As New frmEdit(Me, item)
-            fed.Show()
+            Dim fmt As New frmMulti(eMode.Edit, Me, item)
+            fmt.Show()
         End If
     End Sub
 
@@ -500,4 +639,5 @@ Public Class ucComponent
     Private Sub tsmiEditLED_Click(sender As Object, e As EventArgs) Handles tsmiEditLED.Click
         EditLED(CType(NsContextMenu1.Tag, Point))
     End Sub
+
 End Class

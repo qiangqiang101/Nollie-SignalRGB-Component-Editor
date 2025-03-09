@@ -148,21 +148,34 @@ Public Class frmMain
     End Sub
 
     Private Sub Translate()
-        If File.Exists($"{Setting.Language}.json") Then
-            Translation = New MyLanguage().Load($"{Setting.Language}.json")
+        If File.Exists($"languages\{Setting.Language}.json") Then
+            Translation = New MyLanguage().Load($"languages\{Setting.Language}.json")
             Dim loc = Translation.Localization
 
             DirectionDropdownList.Clear()
             DirectionDropdownList.AddRange({
-                                           New DropdownListItem(Of eDirection)(loc.Top, eDirection.Top), New DropdownListItem(Of eDirection)(loc.Right, eDirection.Right),
-                                           New DropdownListItem(Of eDirection)(loc.Bottom, eDirection.Bottom), New DropdownListItem(Of eDirection)(loc.Left, eDirection.Left)
+                                           New DropdownListItem(Of eDirection)(loc.Up, eDirection.Up), New DropdownListItem(Of eDirection)(loc.Right, eDirection.Right),
+                                           New DropdownListItem(Of eDirection)(loc.Down, eDirection.Down), New DropdownListItem(Of eDirection)(loc.Left, eDirection.Left)
                                            })
             TypeDropdownList.Clear()
             TypeDropdownList.AddRange({
-                                      New DropdownListItem(Of String)(loc.AIO, "aio"), New DropdownListItem(Of String)(loc.Cable, "cable"), New DropdownListItem(Of String)(loc.Case, "case"),
-                                      New DropdownListItem(Of String)(loc.Chair, "chair"), New DropdownListItem(Of String)(loc.Fan, "fan"), New DropdownListItem(Of String)(loc.Custom, "custom"),
-                                      New DropdownListItem(Of String)(loc.Strip, "strip"), New DropdownListItem(Of String)(loc.WaterBlock, "water block"), New DropdownListItem(Of String)(loc.Tower, "tower"),
-                                      New DropdownListItem(Of String)(loc.Heatsink, "heatsink"), New DropdownListItem(Of String)(loc.Desk, "desk")})
+                                      New DropdownListItem(Of String)(loc.AIO, "aio"), New DropdownListItem(Of String)(loc.Cable, "cable"),
+                                      New DropdownListItem(Of String)(loc.Case, "case"), New DropdownListItem(Of String)(loc.Chair, "chair"),
+                                      New DropdownListItem(Of String)(loc.Fan, "fan"), New DropdownListItem(Of String)(loc.Custom, "custom"),
+                                      New DropdownListItem(Of String)(loc.Strip, "strip"), New DropdownListItem(Of String)(loc.WaterBlock, "water block"),
+                                      New DropdownListItem(Of String)(loc.Tower, "tower"), New DropdownListItem(Of String)(loc.Heatsink, "heatsink"),
+                                      New DropdownListItem(Of String)(loc.Desk, "desk")})
+
+            MatrixDropdownList.Clear()
+            MatrixDropdownList.AddRange({
+                                        New DropdownListItem(Of eMatrixOrder)(loc.HorizontalTopLeft, eMatrixOrder.HorizontalTopLeft),
+                                        New DropdownListItem(Of eMatrixOrder)(loc.HorizontalTopRight, eMatrixOrder.HorizontalTopRight),
+                                        New DropdownListItem(Of eMatrixOrder)(loc.HorizontalBottomLeft, eMatrixOrder.HorizontalBottomLeft),
+                                        New DropdownListItem(Of eMatrixOrder)(loc.HorizontalBottomRight, eMatrixOrder.HorizontalBottomRight),
+                                        New DropdownListItem(Of eMatrixOrder)(loc.VerticalTopLeft, eMatrixOrder.VerticalTopLeft),
+                                        New DropdownListItem(Of eMatrixOrder)(loc.VerticalTopRight, eMatrixOrder.VerticalTopRight),
+                                        New DropdownListItem(Of eMatrixOrder)(loc.VerticalBottomLeft, eMatrixOrder.VerticalBottomLeft),
+                                        New DropdownListItem(Of eMatrixOrder)(loc.VerticalBottomRight, eMatrixOrder.VerticalBottomRight)})
 
             Text = String.Format(loc.Title, loc.Untitled)
             NsTheme1.Text = Text
@@ -288,7 +301,7 @@ Public Class frmMain
     End Sub
 
     Private Sub tsmiBuy_Click(sender As Object, e As EventArgs) Handles tsmiBuy.Click
-        Process.Start(New ProcessStartInfo With {.FileName = "https://nolliergb.cn/products/nollie32-argb-kontroler-5-v3pin-argb-interfejs-obsluguje-signalrgb-openrgb", .UseShellExecute = True})
+        Process.Start(New ProcessStartInfo With {.FileName = "https://nolliergb.com/our_products/nollie-32/", .UseShellExecute = True})
     End Sub
 
     Private Sub frmMain_DragDrop(sender As Object, e As DragEventArgs) Handles Me.DragDrop

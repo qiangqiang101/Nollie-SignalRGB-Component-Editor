@@ -5,6 +5,9 @@
     Public Property Component() As ucComponent
     Public Property LEDPos() As Point
 
+    'for Edit
+    Public Property SelectedItem() As Led
+
     Public Sub New(_mode As eMode, maxled As Integer, parent As ucComponent, pos As Point)
         ' This call is required by the designer.
         InitializeComponent()
@@ -17,56 +20,46 @@
         LEDPos = pos
     End Sub
 
-    Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
-        If Mode = eMode.Add Then
-            Component.AddLeds(numAmount.Text, LEDPos, CType(cmbDirection.SelectedValue, eDirection))
-            Component.Invalidate()
-        Else
-            Dim lastNthLeds = Component.LEDs.OrderByDescending(Function(x) x.MappingIndex).Take(numAmount.Text)
-            For Each led In lastNthLeds
-                Component.RemoveLed(led)
-                Component.Invalidate()
-            Next
-        End If
-        Close()
+    Public Sub New(_mode As eMode, parent As ucComponent, selected As Led)
+        InitializeComponent()
+
+        Mode = _mode
+        Component = parent
+        SelectedItem = selected
     End Sub
 
     Private Sub frmMulti_Load(sender As Object, e As EventArgs) Handles Me.Load
-        Translate()
+        Select Case Mode
+            Case eMode.AddLinear
+                Text = Translation.Localization.Linear
+                NsTheme1.Text = Text
 
-        With cmbDirection
-            .DataSource = DirectionDropdownList
-            .DisplayMember = "Text"
-            .ValueMember = "Value"
-            .SelectedIndex = 0
-        End With
+                Dim linear As New ucLinear(MaximumLED, Component, LEDPos)
+                pUserControl.Controls.Add(linear)
+                linear.Dock = DockStyle.Fill
+            Case eMode.AddMatrix
+                Text = Translation.Localization.Matrix
+                NsTheme1.Text = Text
 
-        'numAmount.Maximum = MaximumLED
-        If Mode = eMode.Add Then
-            Text = Translation.Localization.AddLEDs
-            NsTheme1.Text = Text
-        Else
-            Text = Translation.Localization.RemoveLastLEDs
-            NsTheme1.Text = Text
-            lblDirection.Visible = False
-            cmbDirection.Visible = False
-        End If
-    End Sub
+                Dim matrix As New ucMatrix(MaximumLED, Component, LEDPos)
+                pUserControl.Controls.Add(matrix)
+                matrix.Dock = DockStyle.Fill
+            Case eMode.Edit
+                Text = Translation.Localization.EditLED
+                NsTheme1.Text = Text
 
-    Private Sub Translate()
-        Dim loc = Translation.Localization
+                Dim edit As New ucEdit(Component, SelectedItem)
+                pUserControl.Controls.Add(edit)
 
-        lblNumOfLeds.Value1 = loc.NumberOfLEDs
-        lblDirection.Value1 = loc.Direction
-        btnOK.Text = loc.Confirm
-    End Sub
+                edit.Dock = DockStyle.Fill
+            Case eMode.Remove
+                Text = Translation.Localization.RemoveLastLEDs
+                NsTheme1.Text = Text
 
-    Private Sub numAmount_TextChanged(sender As Object, e As EventArgs) Handles numAmount.TextChanged
-        Dim IsNumber As Boolean = IsNumeric(numAmount.Text)
-
-        If IsNumber Then
-            If CInt(numAmount.Text) > MaximumLED Then numAmount.Text = MaximumLED
-        End If
+                Dim delete As New ucDelete(MaximumLED, Component, LEDPos)
+                pUserControl.Controls.Add(delete)
+                delete.Dock = DockStyle.Fill
+        End Select
     End Sub
 
 End Class

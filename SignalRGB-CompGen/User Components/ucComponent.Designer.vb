@@ -23,12 +23,14 @@ Partial Class ucComponent
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         tsmiAddLed = New ToolStripMenuItem()
-        tsmiAddLeds = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
         tsmiRemoveLed = New ToolStripMenuItem()
         tsmiRemoveLastLEDs = New ToolStripMenuItem()
         NsContextMenu1 = New NSContextMenu()
         tsmiEditLED = New ToolStripMenuItem()
+        tsmiGenerate = New ToolStripMenuItem()
+        tsmiLinear = New ToolStripMenuItem()
+        tsmiMatrix = New ToolStripMenuItem()
         ToolStripSeparator2 = New ToolStripSeparator()
         tsmiAutoResize = New ToolStripMenuItem()
         NsContextMenu1.SuspendLayout()
@@ -37,59 +39,74 @@ Partial Class ucComponent
         ' tsmiAddLed
         ' 
         tsmiAddLed.Name = "tsmiAddLed"
-        tsmiAddLed.Size = New Size(166, 22)
+        tsmiAddLed.Size = New Size(180, 22)
         tsmiAddLed.Text = "Add LED"
-        ' 
-        ' tsmiAddLeds
-        ' 
-        tsmiAddLeds.Name = "tsmiAddLeds"
-        tsmiAddLeds.Size = New Size(166, 22)
-        tsmiAddLeds.Text = "Add LEDs"
         ' 
         ' ToolStripSeparator1
         ' 
         ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(163, 6)
+        ToolStripSeparator1.Size = New Size(177, 6)
         ' 
         ' tsmiRemoveLed
         ' 
         tsmiRemoveLed.Name = "tsmiRemoveLed"
-        tsmiRemoveLed.Size = New Size(166, 22)
+        tsmiRemoveLed.Size = New Size(180, 22)
         tsmiRemoveLed.Text = "Remove last LED"
         ' 
         ' tsmiRemoveLastLEDs
         ' 
         tsmiRemoveLastLEDs.Name = "tsmiRemoveLastLEDs"
-        tsmiRemoveLastLEDs.Size = New Size(166, 22)
+        tsmiRemoveLastLEDs.Size = New Size(180, 22)
         tsmiRemoveLastLEDs.Text = "Remove last LEDs"
         ' 
         ' NsContextMenu1
         ' 
         NsContextMenu1.ForeColor = Color.White
-        NsContextMenu1.Items.AddRange(New ToolStripItem() {tsmiAddLed, tsmiEditLED, tsmiAddLeds, ToolStripSeparator1, tsmiRemoveLed, tsmiRemoveLastLEDs, ToolStripSeparator2, tsmiAutoResize})
+        NsContextMenu1.Items.AddRange(New ToolStripItem() {tsmiAddLed, tsmiEditLED, tsmiGenerate, ToolStripSeparator1, tsmiRemoveLed, tsmiRemoveLastLEDs, ToolStripSeparator2, tsmiAutoResize})
         NsContextMenu1.Name = "NsContextMenu1"
-        NsContextMenu1.Size = New Size(167, 148)
+        NsContextMenu1.Size = New Size(181, 170)
         ' 
         ' tsmiEditLED
         ' 
         tsmiEditLED.Name = "tsmiEditLED"
-        tsmiEditLED.Size = New Size(166, 22)
+        tsmiEditLED.Size = New Size(180, 22)
         tsmiEditLED.Text = "Edit LED"
+        ' 
+        ' tsmiGenerate
+        ' 
+        tsmiGenerate.DropDownItems.AddRange(New ToolStripItem() {tsmiLinear, tsmiMatrix})
+        tsmiGenerate.Name = "tsmiGenerate"
+        tsmiGenerate.Size = New Size(180, 22)
+        tsmiGenerate.Text = "Generate.."
+        ' 
+        ' tsmiLinear
+        ' 
+        tsmiLinear.ForeColor = Color.White
+        tsmiLinear.Name = "tsmiLinear"
+        tsmiLinear.Size = New Size(180, 22)
+        tsmiLinear.Text = "Linear"
+        ' 
+        ' tsmiMatrix
+        ' 
+        tsmiMatrix.ForeColor = Color.White
+        tsmiMatrix.Name = "tsmiMatrix"
+        tsmiMatrix.Size = New Size(180, 22)
+        tsmiMatrix.Text = "Matrix"
         ' 
         ' ToolStripSeparator2
         ' 
         ToolStripSeparator2.Name = "ToolStripSeparator2"
-        ToolStripSeparator2.Size = New Size(163, 6)
+        ToolStripSeparator2.Size = New Size(177, 6)
         ' 
         ' tsmiAutoResize
         ' 
         tsmiAutoResize.Name = "tsmiAutoResize"
-        tsmiAutoResize.Size = New Size(166, 22)
+        tsmiAutoResize.Size = New Size(180, 22)
         tsmiAutoResize.Text = "Auto Resize"
         ' 
         ' ucComponent
         ' 
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
         Margin = New Padding(100)
@@ -100,7 +117,6 @@ Partial Class ucComponent
         ResumeLayout(False)
     End Sub
     Friend WithEvents tsmiAddLed As ToolStripMenuItem
-    Friend WithEvents tsmiAddLeds As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents tsmiRemoveLed As ToolStripMenuItem
     Friend WithEvents tsmiRemoveLastLEDs As ToolStripMenuItem
@@ -108,5 +124,8 @@ Partial Class ucComponent
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents tsmiAutoResize As ToolStripMenuItem
     Friend WithEvents tsmiEditLED As ToolStripMenuItem
+    Friend WithEvents tsmiGenerate As ToolStripMenuItem
+    Friend WithEvents tsmiLinear As ToolStripMenuItem
+    Friend WithEvents tsmiMatrix As ToolStripMenuItem
 
 End Class

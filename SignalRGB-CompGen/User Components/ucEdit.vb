@@ -1,6 +1,4 @@
-﻿Imports System.ComponentModel.Design.ObjectSelectorEditor
-
-Public Class frmEdit
+﻿Public Class ucEdit
 
     Public Property Component() As ucComponent
     Public Property SelectedItem() As Led
@@ -23,10 +21,10 @@ Public Class frmEdit
         End With
         Component.LEDs(idx) = SelectedItem
         Component.Invalidate()
-        Close()
+        ParentForm.Close()
     End Sub
 
-    Private Sub frmEdit_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub ucEdit_Load(sender As Object, e As EventArgs) Handles Me.Load
         Translate()
 
         txtName.Text = SelectedItem.LedName
@@ -38,11 +36,9 @@ Public Class frmEdit
         Dim loc = Translation.Localization
 
         Text = loc.EditLED
-        NsTheme1.Text = loc.EditLED
         lblName.Value1 = loc.LEDName
         lblCoordinates.Value1 = loc.LEDCoordinates
         btnOK.Text = loc.Confirm
     End Sub
-
 
 End Class
