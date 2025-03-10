@@ -28,6 +28,9 @@
     <Compile Update="frmSettings.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="User Components\ucLShape.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="User Components\ucDelete.vb">
       <SubType>UserControl</SubType>
     </Compile>

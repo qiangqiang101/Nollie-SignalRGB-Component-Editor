@@ -768,7 +768,7 @@ Class NSComboBox
         SetStyle(ControlStyles.Selectable, False)
 
         DrawMode = DrawMode.OwnerDrawFixed
-        DropDownStyle = ComboBoxStyle.DropDownList
+        'DropDownStyle = ComboBoxStyle.DropDownList
 
         BackColor = Color.FromArgb(50, 50, 50)
         ForeColor = Color.White
@@ -2148,6 +2148,14 @@ Class NSVScrollBar
 
             RaiseEvent Scroll(Me)
         End Set
+    End Property
+
+    Public Property _Percent As Double
+    Public ReadOnly Property Percent() As Double
+        Get
+            If Not ShowThumb Then Return 0
+            Return GetProgress()
+        End Get
     End Property
 
     Private _SmallChange As Integer = 1

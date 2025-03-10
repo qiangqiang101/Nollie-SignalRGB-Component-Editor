@@ -68,10 +68,9 @@ Partial Class frmMain
         lblProduct = New NSLabel()
         lblLedCount = New NSLabel()
         lblName = New NSLabel()
-        lblWidth = New NSLabel()
+        lblSize = New NSLabel()
         cmbType = New NSComboBox()
         lblType = New NSLabel()
-        lblHeight = New NSLabel()
         SplitContainer1 = New SplitContainer()
         Timer1 = New Timer(components)
         NsTheme1 = New NSTheme()
@@ -109,10 +108,9 @@ Partial Class frmMain
         RightPanel.Controls.Add(lblProduct)
         RightPanel.Controls.Add(lblLedCount)
         RightPanel.Controls.Add(lblName)
-        RightPanel.Controls.Add(lblWidth)
+        RightPanel.Controls.Add(lblSize)
         RightPanel.Controls.Add(cmbType)
         RightPanel.Controls.Add(lblType)
-        RightPanel.Controls.Add(lblHeight)
         RightPanel.Dock = DockStyle.Fill
         RightPanel.Location = New Point(0, 0)
         RightPanel.Name = "RightPanel"
@@ -123,7 +121,7 @@ Partial Class frmMain
         ' txtWebImageUrl
         ' 
         txtWebImageUrl.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtWebImageUrl.Location = New Point(86, 240)
+        txtWebImageUrl.Location = New Point(86, 210)
         txtWebImageUrl.MaxLength = 32767
         txtWebImageUrl.Multiline = False
         txtWebImageUrl.Name = "txtWebImageUrl"
@@ -137,7 +135,7 @@ Partial Class frmMain
         ' 
         lblWebImage.Font = New Font("Segoe UI", 9F)
         lblWebImage.ForeColor = Color.White
-        lblWebImage.Location = New Point(6, 240)
+        lblWebImage.Location = New Point(6, 210)
         lblWebImage.Name = "lblWebImage"
         lblWebImage.Size = New Size(74, 24)
         lblWebImage.TabIndex = 25
@@ -153,7 +151,7 @@ Partial Class frmMain
         tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         tlpImageControls.Controls.Add(gbImage, 0, 0)
         tlpImageControls.Controls.Add(gbControls, 1, 0)
-        tlpImageControls.Location = New Point(6, 287)
+        tlpImageControls.Location = New Point(6, 257)
         tlpImageControls.Name = "tlpImageControls"
         tlpImageControls.RowCount = 1
         tlpImageControls.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
@@ -416,9 +414,9 @@ Partial Class frmMain
         ' 
         ' NsSeperator1
         ' 
-        NsSeperator1.Location = New Point(6, 270)
+        NsSeperator1.Location = New Point(6, 240)
         NsSeperator1.Name = "NsSeperator1"
-        NsSeperator1.Size = New Size(257, 11)
+        NsSeperator1.Size = New Size(300, 11)
         NsSeperator1.TabIndex = 19
         NsSeperator1.Text = "NsSeperator1"
         ' 
@@ -458,7 +456,7 @@ Partial Class frmMain
         numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numWidth.Name = "numWidth"
         numWidth.ReadOnly = False
-        numWidth.Size = New Size(220, 24)
+        numWidth.Size = New Size(107, 24)
         numWidth.TabIndex = 5
         numWidth.TextAlign = HorizontalAlignment.Right
         numWidth.ThousandsSeparator = False
@@ -480,7 +478,7 @@ Partial Class frmMain
         ' txtLedCount
         ' 
         txtLedCount.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtLedCount.Location = New Point(86, 210)
+        txtLedCount.Location = New Point(86, 180)
         txtLedCount.MaxLength = 32767
         txtLedCount.Multiline = False
         txtLedCount.Name = "txtLedCount"
@@ -510,12 +508,12 @@ Partial Class frmMain
         numHeight.DecimalPlaces = 0
         numHeight.Increment = 1
         numHeight.InterceptArrowKeys = True
-        numHeight.Location = New Point(86, 180)
+        numHeight.Location = New Point(199, 150)
         numHeight.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
         numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numHeight.Name = "numHeight"
         numHeight.ReadOnly = False
-        numHeight.Size = New Size(220, 24)
+        numHeight.Size = New Size(107, 24)
         numHeight.TabIndex = 6
         numHeight.TextAlign = HorizontalAlignment.Right
         numHeight.ThousandsSeparator = False
@@ -537,7 +535,7 @@ Partial Class frmMain
         ' 
         lblLedCount.Font = New Font("Segoe UI", 9F)
         lblLedCount.ForeColor = Color.White
-        lblLedCount.Location = New Point(6, 210)
+        lblLedCount.Location = New Point(6, 180)
         lblLedCount.Name = "lblLedCount"
         lblLedCount.Size = New Size(74, 24)
         lblLedCount.TabIndex = 17
@@ -557,17 +555,17 @@ Partial Class frmMain
         lblName.Value1 = "Name"
         lblName.Value2 = ""
         ' 
-        ' lblWidth
+        ' lblSize
         ' 
-        lblWidth.Font = New Font("Segoe UI", 9F)
-        lblWidth.ForeColor = Color.White
-        lblWidth.Location = New Point(6, 150)
-        lblWidth.Name = "lblWidth"
-        lblWidth.Size = New Size(74, 24)
-        lblWidth.TabIndex = 3
-        lblWidth.Text = "Width"
-        lblWidth.Value1 = "Width"
-        lblWidth.Value2 = ""
+        lblSize.Font = New Font("Segoe UI", 9F)
+        lblSize.ForeColor = Color.White
+        lblSize.Location = New Point(6, 150)
+        lblSize.Name = "lblSize"
+        lblSize.Size = New Size(74, 24)
+        lblSize.TabIndex = 3
+        lblSize.Text = "Size"
+        lblSize.Value1 = "Size"
+        lblSize.Value2 = ""
         ' 
         ' cmbType
         ' 
@@ -593,18 +591,6 @@ Partial Class frmMain
         lblType.Text = "Type"
         lblType.Value1 = "Type"
         lblType.Value2 = ""
-        ' 
-        ' lblHeight
-        ' 
-        lblHeight.Font = New Font("Segoe UI", 9F)
-        lblHeight.ForeColor = Color.White
-        lblHeight.Location = New Point(6, 180)
-        lblHeight.Name = "lblHeight"
-        lblHeight.Size = New Size(74, 24)
-        lblHeight.TabIndex = 4
-        lblHeight.Text = "Height"
-        lblHeight.Value1 = "Height"
-        lblHeight.Value2 = ""
         ' 
         ' SplitContainer1
         ' 
@@ -733,7 +719,7 @@ Partial Class frmMain
     Friend WithEvents lblName As NSLabel
     Friend WithEvents txtName As NSTextBox
     Friend WithEvents lblHeight As NSLabel
-    Friend WithEvents lblWidth As NSLabel
+    Friend WithEvents lblSize As NSLabel
     Friend WithEvents numHeight As NSNumericUpDown
     Friend WithEvents lblType As NSLabel
     Friend WithEvents cmbType As NSComboBox

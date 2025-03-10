@@ -43,10 +43,6 @@ Public Structure Component
         End Try
     End Function
 
-    Public Function HandleDeserializationError(sender As Object, errorArgs As ErrorEventArgs)
-
-    End Function
-
     Public Sub Save(filename As String)
         IO.File.WriteAllText(filename, Serialize)
     End Sub

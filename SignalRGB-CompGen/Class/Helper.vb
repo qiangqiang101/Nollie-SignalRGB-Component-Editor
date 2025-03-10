@@ -18,8 +18,6 @@ Module Helper
         New DropdownListItem(Of eDirection)("Up", eDirection.Up), New DropdownListItem(Of eDirection)("Right", eDirection.Right),
         New DropdownListItem(Of eDirection)("Down", eDirection.Down), New DropdownListItem(Of eDirection)("Left", eDirection.Left)}
     Public LanguageDropdownList As New List(Of DropdownListItem(Of String))
-    'Public LanguageDropdownList As New List(Of DropdownListItem(Of String)) From {
-    '    New DropdownListItem(Of String)("English", "en-US"), New DropdownListItem(Of String)("Chinese Simplified", "zh-CN"), New DropdownListItem(Of String)("Chinese Traditional", "zh-TW")}
     Public MatrixDropdownList As New List(Of DropdownListItem(Of eMatrixOrder)) From {
         New DropdownListItem(Of eMatrixOrder)("Horizontal Top Left", eMatrixOrder.HorizontalTopLeft),
         New DropdownListItem(Of eMatrixOrder)("Horizontal Top Right", eMatrixOrder.HorizontalTopRight),
@@ -29,6 +27,15 @@ Module Helper
         New DropdownListItem(Of eMatrixOrder)("Vertical Top Right", eMatrixOrder.VerticalTopRight),
         New DropdownListItem(Of eMatrixOrder)("Vertical Bottom Left", eMatrixOrder.VerticalBottomLeft),
         New DropdownListItem(Of eMatrixOrder)("Vertical Bottom Right", eMatrixOrder.VerticalBottomRight)}
+    Public LShapeDropdownList As New List(Of DropdownListItem(Of eLShapeOrder)) From {
+        New DropdownListItem(Of eLShapeOrder)("↳ Downwards Right", eLShapeOrder.DownRight),
+        New DropdownListItem(Of eLShapeOrder)("↲ Downwards Left", eLShapeOrder.DownLeft),
+        New DropdownListItem(Of eLShapeOrder)("↱ Upwards Right", eLShapeOrder.UpRight),
+        New DropdownListItem(Of eLShapeOrder)("↰ Upwards Left", eLShapeOrder.UpLeft),
+        New DropdownListItem(Of eLShapeOrder)("↴ Rightwards Down", eLShapeOrder.RightDown),
+        New DropdownListItem(Of eLShapeOrder)("⬏ Rightwards Up", eLShapeOrder.RightUp),
+        New DropdownListItem(Of eLShapeOrder)("⬐ Leftwards Down", eLShapeOrder.LeftDown),
+        New DropdownListItem(Of eLShapeOrder)("⬑ Leftwards Up", eLShapeOrder.LeftUp)}
     Public Translation As MyLanguage = New MyLanguage()
     Public UserMemory As New Memory()
 
@@ -200,6 +207,9 @@ End Module
 Public Enum eMode
     AddLinear
     AddMatrix
+    AddLShape
+    AddUShape
+    AddRectangle
     Edit
     Remove
 End Enum
@@ -234,4 +244,15 @@ Public Enum DWMWINDOWATTRIBUTE
     DWMWA_TRANSITIONS_FORCEDISABLED = 3
     DWMWA_USE_IMMERSIVE_DARK_MODE_BEFORE_20H1 = 19
     DWMWA_USE_IMMERSIVE_DARK_MODE = 20
+End Enum
+
+Public Enum eLShapeOrder
+    DownRight
+    DownLeft
+    UpRight
+    UpLeft
+    RightDown
+    RightUp
+    LeftDown
+    LeftUp
 End Enum

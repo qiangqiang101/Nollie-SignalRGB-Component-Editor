@@ -66,25 +66,71 @@ Public Class ucComponent
         RaiseEvent LEDsChanged(Me, New EventArgs())
     End Sub
 
-    Public Sub AddLeds(quantities As Integer, _pos As Point, Optional direction As eDirection = eDirection.Right, Optional updatefont As Boolean = True)
+    Public Function AddLeds(_leds As Integer, _pos As Point, Optional direction As eDirection = eDirection.Right, Optional updatefont As Boolean = True) As Point
+        Dim result As Point = Point.Empty
         If LEDs.Count = 0 Then
-            For i As Integer = 0 To quantities - 1
+            For i As Integer = 0 To _leds - 1
                 Dim index = i
                 Dim name = $"Led{i + 1}"
                 Dim pos = GetNextPointFrom(_pos, i, direction)
                 AddLed(index, index, name, pos)
+                If i = _leds - 1 Then result = pos
             Next i
         Else
             Dim lastLed As Led = LEDs.Last
-            For i As Integer = 0 To quantities - 1
+            For i As Integer = 0 To _leds - 1
                 Dim index = If(lastLed.Index.HasValue, lastLed.Index.Value + i + 1, lastLed.MappingIndex + i + 1)
                 Dim name = $"Led{index + 1}"
                 Dim pos = GetNextPointFrom(_pos, i, direction)
                 AddLed(index, index, name, pos)
+                If i = _leds - 1 Then result = pos
             Next i
         End If
 
         If updatefont Then PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)
+
+        Return result
+    End Function
+
+    Public Sub AddLShape(_leds As Integer, _pos As Point, order As eLShapeOrder, bendafter As Integer)
+        Dim start As Integer = _leds - bendafter
+
+        Select Case order
+            Case eLShapeOrder.DownRight
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Down, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Right)
+                AddLeds(start, nextPos, eDirection.Right, False)
+            Case eLShapeOrder.DownLeft
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Down, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Left)
+                AddLeds(start, nextPos, eDirection.Left, False)
+            Case eLShapeOrder.UpRight
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Up, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Right)
+                AddLeds(start, nextPos, eDirection.Right, False)
+            Case eLShapeOrder.UpLeft
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Up, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Left)
+                AddLeds(start, nextPos, eDirection.Left, False)
+            Case eLShapeOrder.RightDown
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Right, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Down)
+                AddLeds(start, nextPos, eDirection.Down, False)
+            Case eLShapeOrder.RightUp
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Right, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Up)
+                AddLeds(start, nextPos, eDirection.Up, False)
+            Case eLShapeOrder.LeftDown
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Left, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Down)
+                AddLeds(start, nextPos, eDirection.Down, False)
+            Case eLShapeOrder.LeftUp
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Left, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Up)
+                AddLeds(start, nextPos, eDirection.Up, False)
+        End Select
+
+        PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)
     End Sub
 
     Public Sub AddMatrix(_pos As Point, order As eMatrixOrder, serpentine As Boolean, _size As Size)
@@ -517,14 +563,32 @@ Public Class ucComponent
     End Sub
 
     Private Sub tsmiLinear_Click(sender As Object, e As EventArgs) Handles tsmiLinear.Click
-        Dim max = numRows * numCols - LEDs.Count
+        Dim max = (numRows * numCols) - LEDs.Count
         Dim fmt As New frmMulti(eMode.AddLinear, max, Me, NsContextMenu1.Tag)
         fmt.Show()
     End Sub
 
     Private Sub tsmiMatrix_Click(sender As Object, e As EventArgs) Handles tsmiMatrix.Click
-        Dim max = numRows * numCols - LEDs.Count
+        Dim max = (numRows * numCols) - LEDs.Count
         Dim fmt As New frmMulti(eMode.AddMatrix, max, Me, NsContextMenu1.Tag)
+        fmt.Show()
+    End Sub
+
+    Private Sub tsmiLShape_Click(sender As Object, e As EventArgs) Handles tsmiLShape.Click
+        Dim max = (numRows * numCols) - LEDs.Count
+        Dim fmt As New frmMulti(eMode.AddLShape, max, Me, NsContextMenu1.Tag)
+        fmt.Show()
+    End Sub
+
+    Private Sub tsmiUShape_Click(sender As Object, e As EventArgs) Handles tsmiUShape.Click
+        Dim max = (numRows * numCols) - LEDs.Count
+        Dim fmt As New frmMulti(eMode.AddUShape, max, Me, NsContextMenu1.Tag)
+        fmt.Show()
+    End Sub
+
+    Private Sub tsmiRectangle_Click(sender As Object, e As EventArgs) Handles tsmiRectangle.Click
+        Dim max = (numRows * numCols) - LEDs.Count
+        Dim fmt As New frmMulti(eMode.AddRectangle, max, Me, NsContextMenu1.Tag)
         fmt.Show()
     End Sub
 
@@ -547,6 +611,9 @@ Public Class ucComponent
         tsmiGenerate.Text = loc.Generate
         tsmiLinear.Text = loc.Linear
         tsmiMatrix.Text = loc.Matrix
+        tsmiLShape.Text = loc.LShape
+        tsmiUShape.Text = loc.UShape
+        tsmiRectangle.Text = loc.Rectangle
     End Sub
 
     Public Sub MoveUp()

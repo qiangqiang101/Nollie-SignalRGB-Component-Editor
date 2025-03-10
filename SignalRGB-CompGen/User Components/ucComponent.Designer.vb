@@ -31,6 +31,9 @@ Partial Class ucComponent
         tsmiGenerate = New ToolStripMenuItem()
         tsmiLinear = New ToolStripMenuItem()
         tsmiMatrix = New ToolStripMenuItem()
+        tsmiLShape = New ToolStripMenuItem()
+        tsmiUShape = New ToolStripMenuItem()
+        tsmiRectangle = New ToolStripMenuItem()
         ToolStripSeparator2 = New ToolStripSeparator()
         tsmiAutoResize = New ToolStripMenuItem()
         NsContextMenu1.SuspendLayout()
@@ -74,7 +77,7 @@ Partial Class ucComponent
         ' 
         ' tsmiGenerate
         ' 
-        tsmiGenerate.DropDownItems.AddRange(New ToolStripItem() {tsmiLinear, tsmiMatrix})
+        tsmiGenerate.DropDownItems.AddRange(New ToolStripItem() {tsmiLinear, tsmiMatrix, tsmiLShape, tsmiUShape, tsmiRectangle})
         tsmiGenerate.Name = "tsmiGenerate"
         tsmiGenerate.Size = New Size(180, 22)
         tsmiGenerate.Text = "Generate.."
@@ -92,6 +95,27 @@ Partial Class ucComponent
         tsmiMatrix.Name = "tsmiMatrix"
         tsmiMatrix.Size = New Size(180, 22)
         tsmiMatrix.Text = "Matrix"
+        ' 
+        ' tsmiLShape
+        ' 
+        tsmiLShape.ForeColor = Color.White
+        tsmiLShape.Name = "tsmiLShape"
+        tsmiLShape.Size = New Size(180, 22)
+        tsmiLShape.Text = "L Shape"
+        ' 
+        ' tsmiUShape
+        ' 
+        tsmiUShape.ForeColor = Color.White
+        tsmiUShape.Name = "tsmiUShape"
+        tsmiUShape.Size = New Size(180, 22)
+        tsmiUShape.Text = "U Shape"
+        ' 
+        ' tsmiRectangle
+        ' 
+        tsmiRectangle.ForeColor = Color.White
+        tsmiRectangle.Name = "tsmiRectangle"
+        tsmiRectangle.Size = New Size(180, 22)
+        tsmiRectangle.Text = "Rectangle"
         ' 
         ' ToolStripSeparator2
         ' 
@@ -127,5 +151,8 @@ Partial Class ucComponent
     Friend WithEvents tsmiGenerate As ToolStripMenuItem
     Friend WithEvents tsmiLinear As ToolStripMenuItem
     Friend WithEvents tsmiMatrix As ToolStripMenuItem
+    Friend WithEvents tsmiLShape As ToolStripMenuItem
+    Friend WithEvents tsmiRectangle As ToolStripMenuItem
+    Friend WithEvents tsmiUShape As ToolStripMenuItem
 
 End Class

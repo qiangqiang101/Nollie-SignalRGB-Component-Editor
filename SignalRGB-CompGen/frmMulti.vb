@@ -44,6 +44,23 @@
                 Dim matrix As New ucMatrix(MaximumLED, Component, LEDPos)
                 pUserControl.Controls.Add(matrix)
                 matrix.Dock = DockStyle.Fill
+            Case eMode.AddLShape
+                Text = Translation.Localization.LShape
+                NsTheme1.Text = Text
+
+                Dim lshape As New ucLShape(MaximumLED, Component, LEDPos)
+                pUserControl.Controls.Add(lshape)
+                lshape.Dock = DockStyle.Fill
+            Case eMode.AddUShape
+                Text = Translation.Localization.UShape
+                NsTheme1.Text = Text
+
+                'todo
+            Case eMode.AddRectangle
+                Text = Translation.Localization.Rectangle
+                NsTheme1.Text = Text
+
+                'todo
             Case eMode.Edit
                 Text = Translation.Localization.EditLED
                 NsTheme1.Text = Text

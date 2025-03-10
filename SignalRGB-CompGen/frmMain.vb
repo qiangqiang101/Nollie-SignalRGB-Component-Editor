@@ -177,6 +177,17 @@ Public Class frmMain
                                         New DropdownListItem(Of eMatrixOrder)(loc.VerticalBottomLeft, eMatrixOrder.VerticalBottomLeft),
                                         New DropdownListItem(Of eMatrixOrder)(loc.VerticalBottomRight, eMatrixOrder.VerticalBottomRight)})
 
+            LShapeDropdownList.Clear()
+            LShapeDropdownList.AddRange({
+                                        New DropdownListItem(Of eLShapeOrder)(loc.DownRight, eLShapeOrder.DownRight),
+                                        New DropdownListItem(Of eLShapeOrder)(loc.DownLeft, eLShapeOrder.DownLeft),
+                                        New DropdownListItem(Of eLShapeOrder)(loc.UpRight, eLShapeOrder.UpRight),
+                                        New DropdownListItem(Of eLShapeOrder)(loc.UpLeft, eLShapeOrder.UpLeft),
+                                        New DropdownListItem(Of eLShapeOrder)(loc.RightDown, eLShapeOrder.RightDown),
+                                        New DropdownListItem(Of eLShapeOrder)(loc.RightUp, eLShapeOrder.RightUp),
+                                        New DropdownListItem(Of eLShapeOrder)(loc.LeftDown, eLShapeOrder.LeftDown),
+                                        New DropdownListItem(Of eLShapeOrder)(loc.LeftUp, eLShapeOrder.LeftUp)})
+
             Text = String.Format(loc.Title, loc.Untitled)
             NsTheme1.Text = Text
 
@@ -199,8 +210,7 @@ Public Class frmMain
             lblVendor.Value1 = loc.Vendor
             lblProduct.Value1 = loc.Product
             lblType.Value1 = loc.Type
-            lblWidth.Value1 = loc.Width
-            lblHeight.Value1 = loc.Height
+            lblSize.Value1 = loc.Size
             lblLedCount.Value1 = loc.LEDCount
             btnChangeImage.Text = loc.SelectImage
             nslblPosition.Value1 = loc.Position

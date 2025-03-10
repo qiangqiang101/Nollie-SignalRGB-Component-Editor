@@ -1,4 +1,4 @@
-﻿Public Class ucLinear
+﻿Public Class ucLShape
 
     Public Property MaximumLED() As Integer
     Public Property Component() As ucComponent
@@ -16,23 +16,24 @@
     End Sub
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
-        Component.AddLeds(CInt(numAmount.Value), LEDPos, CType(cmbDirection.SelectedValue, eDirection))
+        Component.AddLShape(CInt(numAmount.Value), LEDPos, CType(cmbOrder.SelectedValue, eLShapeOrder), CInt(numBendAfter.Value))
         Component.Invalidate()
 
         'Save to temporary memory
         With UserMemory
             .LEDAmount = CInt(numAmount.Value)
-            .Direction = CType(cmbDirection.SelectedValue, eDirection)
+            .LShapeOrder = CType(cmbOrder.SelectedValue, eLShapeOrder)
+            .BendAfter = CInt(numBendAfter.Value)
         End With
 
         ParentForm.Close()
     End Sub
 
-    Private Sub ucLinear_Load(sender As Object, e As EventArgs) Handles Me.Load
+    Private Sub ucLShape_Load(sender As Object, e As EventArgs) Handles Me.Load
         Translate()
 
-        With cmbDirection
-            .DataSource = DirectionDropdownList
+        With cmbOrder
+            .DataSource = LShapeDropdownList
             .DisplayMember = "Text"
             .ValueMember = "Value"
             .SelectedIndex = 0
@@ -40,21 +41,24 @@
 
         'Load from temporary memory
         numAmount.Value = UserMemory.LEDAmount
-        cmbDirection.SelectedValue = UserMemory.Direction
+        cmbOrder.SelectedValue = UserMemory.LShapeOrder
+        numBendAfter.Value = UserMemory.BendAfter
     End Sub
 
     Private Sub Translate()
         Dim loc = Translation.Localization
 
-        Text = loc.Linear
-        ParentForm.Text = loc.Linear
+        Text = loc.LShape
+        ParentForm.Text = loc.LShape
         lblNumOfLeds.Value1 = loc.NumberOfLEDs
-        lblDirection.Value1 = loc.Direction
+        lblOrder.Value1 = loc.Order
+        lblBend.Value1 = loc.BendAfter
         btnOK.Text = loc.Confirm
     End Sub
 
-    Private Sub numAmount_TextChanged(sender As Object, e As EventArgs) Handles numAmount.TextChanged, numAmount.ValueChanged
+    Private Sub numAmount_ValueChanged(sender As Object, e As EventArgs) Handles numAmount.ValueChanged, numAmount.TextChanged
         If CInt(numAmount.Value) > MaximumLED Then numAmount.Value = MaximumLED
+        numBendAfter.Maximum = numAmount.Value
     End Sub
 
 End Class

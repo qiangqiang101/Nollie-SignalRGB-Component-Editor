@@ -467,3 +467,352 @@ Class NSComboBoxColorPicker
     End Sub
 
 End Class
+
+Class NSListView
+    Inherits Control
+
+    Public Class NSListViewItem
+        Public Property Text() As String
+        <DesignerSerializationVisibility(DesignerSerializationVisibility.Content)>
+        Public Property SubItems() As List(Of NSListViewSubItem)
+        Protected UniqueId As Guid
+
+        Public Sub New()
+            UniqueId = Guid.NewGuid()
+        End Sub
+
+        Public Overrides Function ToString() As String
+            Return Text
+        End Function
+
+        Public Overrides Function Equals(ByVal obj As Object) As Boolean
+            If TypeOf obj Is NSListViewItem Then
+                Return ((CType(obj, NSListViewItem)).UniqueId = UniqueId)
+            End If
+
+            Return False
+        End Function
+
+        Public Overrides Function GetHashCode() As Integer
+            Return MyBase.GetHashCode()
+        End Function
+    End Class
+
+    Public Class NSListViewSubItem
+        Public Property Text() As String
+
+        Public Overrides Function ToString() As String
+            Return Text
+        End Function
+    End Class
+
+    Public Class NSListViewColumnHeader
+        Public Property Text() As String
+        Public Property Width() As Integer
+
+        Public Overrides Function ToString() As String
+            Return Text
+        End Function
+    End Class
+
+    Private _Items As List(Of NSListViewItem) = New List(Of NSListViewItem)()
+
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Content)>
+    Public Property Items() As NSListViewItem()
+        Get
+            Return _Items.ToArray()
+        End Get
+        Set(ByVal value As NSListViewItem())
+            _Items = New List(Of NSListViewItem)(value)
+            InvalidateScroll()
+        End Set
+    End Property
+
+    Private _SelectedItems As List(Of NSListViewItem) = New List(Of NSListViewItem)()
+
+    Public ReadOnly Property SelectedItems As NSListViewItem()
+        Get
+            Return _SelectedItems.ToArray()
+        End Get
+    End Property
+
+    Private _Columns As List(Of NSListViewColumnHeader) = New List(Of NSListViewColumnHeader)()
+
+    <DesignerSerializationVisibility(DesignerSerializationVisibility.Content)>
+    Public Property Columns() As NSListViewColumnHeader()
+        Get
+            Return _Columns.ToArray()
+        End Get
+        Set(ByVal value As NSListViewColumnHeader())
+            _Columns = New List(Of NSListViewColumnHeader)(value)
+            InvalidateColumns()
+        End Set
+    End Property
+
+    Private _MultiSelect As Boolean = True
+
+    Public Property MultiSelect() As Boolean
+        Get
+            Return _MultiSelect
+        End Get
+        Set(ByVal value As Boolean)
+            _MultiSelect = value
+
+            If _SelectedItems.Count > 1 Then
+                _SelectedItems.RemoveRange(1, _SelectedItems.Count - 1)
+            End If
+
+            Invalidate()
+        End Set
+    End Property
+
+    Private ItemHeight As Integer = 24
+
+    Public Overrides Property Font As Font
+        Get
+            Return MyBase.Font
+        End Get
+        Set(ByVal value As Font)
+            ItemHeight = Convert.ToInt32(Graphics.FromHwnd(Handle).MeasureString("@", Font).Height) + 6
+
+            If VS IsNot Nothing Then
+                VS.SmallChange = ItemHeight
+                VS.LargeChange = ItemHeight
+            End If
+
+            MyBase.Font = value
+            InvalidateLayout()
+        End Set
+    End Property
+
+    Public Sub AddItem(ByVal text As String, ParamArray subItems As String())
+        Dim Items As List(Of NSListViewSubItem) = New List(Of NSListViewSubItem)()
+
+        For Each I As String In subItems
+            Dim SubItem As NSListViewSubItem = New NSListViewSubItem()
+            SubItem.Text = I
+            Items.Add(SubItem)
+        Next
+
+        Dim Item As NSListViewItem = New NSListViewItem()
+        Item.Text = text
+        Item.SubItems = Items
+        _Items.Add(Item)
+        InvalidateScroll()
+    End Sub
+
+    Public Sub RemoveItemAt(ByVal index As Integer)
+        _Items.RemoveAt(index)
+        InvalidateScroll()
+    End Sub
+
+    Public Sub RemoveItem(ByVal item As NSListViewItem)
+        _Items.Remove(item)
+        InvalidateScroll()
+    End Sub
+
+    Public Sub RemoveItems(ByVal items As NSListViewItem())
+        For Each I As NSListViewItem In items
+            _Items.Remove(I)
+        Next
+
+        InvalidateScroll()
+    End Sub
+
+    Private VS As NSVScrollBar
+
+    Public Sub New()
+        SetStyle(CType(139286, ControlStyles), True)
+        SetStyle(ControlStyles.Selectable, True)
+        P1 = New Pen(Color.FromArgb(55, 55, 55))
+        P2 = New Pen(Color.FromArgb(35, 35, 35))
+        P3 = New Pen(Color.FromArgb(65, 65, 65))
+        B1 = New SolidBrush(Color.FromArgb(62, 62, 62))
+        B2 = New SolidBrush(Color.FromArgb(65, 65, 65))
+        B3 = New SolidBrush(Color.FromArgb(47, 47, 47))
+        B4 = New SolidBrush(Color.FromArgb(50, 50, 50))
+        VS = New NSVScrollBar()
+        VS.SmallChange = ItemHeight
+        VS.LargeChange = ItemHeight
+        AddHandler VS.Scroll, AddressOf HandleScroll
+        AddHandler VS.MouseDown, AddressOf VS_MouseDown
+        Controls.Add(VS)
+        InvalidateLayout()
+    End Sub
+
+    Protected Overrides Sub OnSizeChanged(ByVal e As EventArgs)
+        InvalidateLayout()
+        MyBase.OnSizeChanged(e)
+    End Sub
+
+    Private Sub HandleScroll(ByVal sender As Object)
+        Invalidate()
+    End Sub
+
+    Private Sub InvalidateScroll()
+        VS.Maximum = (_Items.Count * ItemHeight)
+        Invalidate()
+    End Sub
+
+    Private Sub InvalidateLayout()
+        VS.Location = New Point(Width - VS.Width - 1, 1)
+        VS.Size = New Size(18, Height - 2)
+        Invalidate()
+    End Sub
+
+    Private ColumnOffsets As Integer()
+
+    Private Sub InvalidateColumns()
+        Dim Width As Integer = 3
+        ColumnOffsets = New Integer(_Columns.Count - 1) {}
+
+        For I As Integer = 0 To _Columns.Count - 1
+            ColumnOffsets(I) = Width
+            Width += Columns(I).Width
+        Next
+
+        Invalidate()
+    End Sub
+
+    Private Sub VS_MouseDown(ByVal sender As Object, ByVal e As MouseEventArgs)
+        Focus()
+    End Sub
+
+    Protected Overrides Sub OnMouseDown(ByVal e As MouseEventArgs)
+        Focus()
+
+        If e.Button = System.Windows.Forms.MouseButtons.Left Then
+            Dim Offset As Integer = Convert.ToInt32(VS.Percent * (VS.Maximum - (Height - (ItemHeight * 2))))
+            Dim Index As Integer = ((e.Y + Offset - ItemHeight) / ItemHeight)
+            If Index > _Items.Count - 1 Then Index = -1
+
+            If Not (Index = -1) Then
+
+                If ModifierKeys = Keys.Control AndAlso _MultiSelect Then
+
+                    If _SelectedItems.Contains(_Items(Index)) Then
+                        _SelectedItems.Remove(_Items(Index))
+                    Else
+                        _SelectedItems.Add(_Items(Index))
+                    End If
+                Else
+                    _SelectedItems.Clear()
+                    _SelectedItems.Add(_Items(Index))
+                End If
+            End If
+
+            Invalidate()
+        End If
+
+        MyBase.OnMouseDown(e)
+    End Sub
+
+    Private P1 As Pen
+    Private P2 As Pen
+    Private P3 As Pen
+    Private B1 As SolidBrush
+    Private B2 As SolidBrush
+    Private B3 As SolidBrush
+    Private B4 As SolidBrush
+    Private GB1 As LinearGradientBrush
+    Private G As Graphics
+
+    Protected Overrides Sub OnPaint(ByVal e As PaintEventArgs)
+        G = e.Graphics
+        G.TextRenderingHint = TextRenderingHint.ClearTypeGridFit
+        G.Clear(BackColor)
+        Dim X As Integer = 0
+        Dim Y As Integer = 0
+        Dim H As Single = 0
+        G.DrawRectangle(P1, 1, 1, Width - 3, Height - 3)
+        Dim R1 As Rectangle = Nothing
+        Dim CI As NSListViewItem = Nothing
+        Dim Offset As Integer = Convert.ToInt32(VS.Percent * (VS.Maximum - (Height - (ItemHeight * 2))))
+        Dim StartIndex As Integer = 0
+
+        If Offset = 0 Then
+            StartIndex = 0
+        Else
+            StartIndex = (Offset / ItemHeight)
+        End If
+
+        Dim EndIndex As Integer = Math.Min(StartIndex + (Height / ItemHeight), _Items.Count - 1)
+
+        For I As Integer = StartIndex To EndIndex
+            CI = Items(I)
+            R1 = New Rectangle(0, ItemHeight + (I * ItemHeight) + 1 - Offset, Width, ItemHeight - 1)
+            H = G.MeasureString(CI.Text, Font).Height
+            Y = R1.Y + Convert.ToInt32((ItemHeight / 2) - (H / 2))
+
+            If _SelectedItems.Contains(CI) Then
+
+                If I Mod 2 = 0 Then
+                    G.FillRectangle(B1, R1)
+                Else
+                    G.FillRectangle(B2, R1)
+                End If
+            Else
+
+                If I Mod 2 = 0 Then
+                    G.FillRectangle(B3, R1)
+                Else
+                    G.FillRectangle(B4, R1)
+                End If
+            End If
+
+            G.DrawLine(P2, 0, R1.Bottom, Width, R1.Bottom)
+
+            If Columns.Length > 0 Then
+                R1.Width = Columns(0).Width
+                G.SetClip(R1)
+            End If
+
+            G.DrawString(CI.Text, Font, Brushes.Black, 10, Y + 1)
+            G.DrawString(CI.Text, Font, Brushes.White, 9, Y)
+
+            If CI.SubItems IsNot Nothing Then
+
+                For I2 As Integer = 0 To Math.Min(CI.SubItems.Count, _Columns.Count) - 1
+                    X = ColumnOffsets(I2 + 1) + 4
+                    R1.X = X
+                    R1.Width = Columns(I2).Width
+                    G.SetClip(R1)
+                    G.DrawString(CI.SubItems(I2).Text, Font, Brushes.Black, X + 1, Y + 1)
+                    G.DrawString(CI.SubItems(I2).Text, Font, Brushes.White, X, Y)
+                Next
+            End If
+
+            G.ResetClip()
+        Next
+
+        R1 = New Rectangle(0, 0, Width, ItemHeight)
+        GB1 = New LinearGradientBrush(R1, Color.FromArgb(60, 60, 60), Color.FromArgb(55, 55, 55), 90.0F)
+        G.FillRectangle(GB1, R1)
+        G.DrawRectangle(P3, 1, 1, Width - 22, ItemHeight - 2)
+        Dim LH As Integer = Math.Min(VS.Maximum + ItemHeight - Offset, Height)
+        Dim CC As NSListViewColumnHeader = Nothing
+
+        For I As Integer = 0 To _Columns.Count - 1
+            CC = Columns(I)
+            H = G.MeasureString(CC.Text, Font).Height
+            Y = Convert.ToInt32((ItemHeight / 2) - (H / 2))
+            X = ColumnOffsets(I)
+            G.DrawString(CC.Text, Font, Brushes.Black, X + 1, Y + 1)
+            G.DrawString(CC.Text, Font, Brushes.White, X, Y)
+            G.DrawLine(P2, X - 3, 0, X - 3, LH)
+            G.DrawLine(P3, X - 2, 0, X - 2, ItemHeight)
+        Next
+
+        G.DrawRectangle(P2, 0, 0, Width - 1, Height - 1)
+        G.DrawLine(P2, 0, ItemHeight, Width, ItemHeight)
+        G.DrawLine(P2, VS.Location.X - 1, 0, VS.Location.X - 1, Height)
+    End Sub
+
+    Protected Overrides Sub OnMouseWheel(ByVal e As MouseEventArgs)
+        Dim Move As Integer = -((e.Delta * SystemInformation.MouseWheelScrollLines / 120) * (ItemHeight / 2))
+        Dim Value As Integer = Math.Max(Math.Min(VS.Value + Move, VS.Maximum), VS.Minimum)
+        VS.Value = Value
+        MyBase.OnMouseWheel(e)
+    End Sub
+
+End Class

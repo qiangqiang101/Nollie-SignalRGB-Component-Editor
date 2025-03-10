@@ -125,4 +125,17 @@ Public Class Localization
     Public Matrix As String = "Matrix"
     Public Linear As String = "Linear"
 
+    'Added on 11/03/2025
+    Public LShape As String = "L-Shape"
+    Public UShape As String = "U-Shape"
+    Public Rectangle As String = "Rectangle"
+    Public BendAfter As String = "Bend after"
+    Public DownRight As String = "↳ Downwards Right"
+    Public DownLeft As String = "↲ Downwards Left"
+    Public UpRight As String = "↱ Upwards Right"
+    Public UpLeft As String = "↰ Upwards Left"
+    Public RightDown As String = "↴ Rightwards Down"
+    Public RightUp As String = "⬏ Rightwards Up"
+    Public LeftDown As String = "⬐ Leftwards Down"
+    Public LeftUp As String = "⬑ Leftwards Up"
 End Class
