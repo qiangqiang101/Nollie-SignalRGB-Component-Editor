@@ -16,7 +16,7 @@
     End Sub
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
-        Component.AddMatrix(LEDPos, CType(cmbOrder.SelectedValue, eMatrixOrder), cbSerpentine.Checked, New Size(numWidth.Value, numHeight.Value))
+        Component.AddMatrix(LEDPos, CType(cmbOrder.SelectedValue, eMatrixOrder), cbSerpentine.Checked, New Size(numWidth.Value, numHeight.Value), CInt(numSpacing.Value))
         Component.Invalidate()
 
         'Save to temporary memory
@@ -24,6 +24,7 @@
             .MatrixOrder = CType(cmbOrder.SelectedValue, eMatrixOrder)
             .MatrixSerpentine = cbSerpentine.Checked
             .MatrixSize = New Size(numWidth.Value, numHeight.Value)
+            .Spacing = numSpacing.Value
         End With
 
         ParentForm.Close()
@@ -44,6 +45,7 @@
         cbSerpentine.Checked = UserMemory.MatrixSerpentine
         numWidth.Value = UserMemory.MatrixSize.Width
         numHeight.Value = UserMemory.MatrixSize.Height
+        numSpacing.Value = UserMemory.Spacing
     End Sub
 
     Private Sub Translate()
@@ -53,8 +55,9 @@
         ParentForm.Text = loc.Matrix
         lblOrder.Value1 = loc.Order
         lblSize.Value1 = loc.Size
-        cbSerpentine.Text = loc.Serpentine
+        lblSerpentine.Value1 = loc.Serpentine
         btnOK.Text = loc.Confirm
+        lblSpacing.Value1 = loc.Spacing
     End Sub
 
 End Class

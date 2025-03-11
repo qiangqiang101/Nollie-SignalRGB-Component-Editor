@@ -9,6 +9,8 @@
     Public BendAfter As Integer
     Public BendAfter2 As Integer
     Public BendAfter3 As Integer
+    Public Spacing As Integer
+    Public RoundedCorners As Boolean
 
     Public Sub New()
         Direction = eDirection.Up
@@ -20,6 +22,8 @@
         BendAfter = 1
         BendAfter2 = 1
         BendAfter3 = 1
+        Spacing = 0
+        RoundedCorners = False
     End Sub
 
 End Class

@@ -22,6 +22,7 @@ Partial Class ucComponent
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        components = New ComponentModel.Container()
         tsmiAddLed = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
         tsmiRemoveLed = New ToolStripMenuItem()
@@ -36,30 +37,31 @@ Partial Class ucComponent
         tsmiRectangle = New ToolStripMenuItem()
         ToolStripSeparator2 = New ToolStripSeparator()
         tsmiAutoResize = New ToolStripMenuItem()
+        tPressHold = New Timer(components)
         NsContextMenu1.SuspendLayout()
         SuspendLayout()
         ' 
         ' tsmiAddLed
         ' 
         tsmiAddLed.Name = "tsmiAddLed"
-        tsmiAddLed.Size = New Size(180, 22)
+        tsmiAddLed.Size = New Size(166, 22)
         tsmiAddLed.Text = "Add LED"
         ' 
         ' ToolStripSeparator1
         ' 
         ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(177, 6)
+        ToolStripSeparator1.Size = New Size(163, 6)
         ' 
         ' tsmiRemoveLed
         ' 
         tsmiRemoveLed.Name = "tsmiRemoveLed"
-        tsmiRemoveLed.Size = New Size(180, 22)
+        tsmiRemoveLed.Size = New Size(166, 22)
         tsmiRemoveLed.Text = "Remove last LED"
         ' 
         ' tsmiRemoveLastLEDs
         ' 
         tsmiRemoveLastLEDs.Name = "tsmiRemoveLastLEDs"
-        tsmiRemoveLastLEDs.Size = New Size(180, 22)
+        tsmiRemoveLastLEDs.Size = New Size(166, 22)
         tsmiRemoveLastLEDs.Text = "Remove last LEDs"
         ' 
         ' NsContextMenu1
@@ -67,66 +69,71 @@ Partial Class ucComponent
         NsContextMenu1.ForeColor = Color.White
         NsContextMenu1.Items.AddRange(New ToolStripItem() {tsmiAddLed, tsmiEditLED, tsmiGenerate, ToolStripSeparator1, tsmiRemoveLed, tsmiRemoveLastLEDs, ToolStripSeparator2, tsmiAutoResize})
         NsContextMenu1.Name = "NsContextMenu1"
-        NsContextMenu1.Size = New Size(181, 170)
+        NsContextMenu1.Size = New Size(167, 148)
         ' 
         ' tsmiEditLED
         ' 
         tsmiEditLED.Name = "tsmiEditLED"
-        tsmiEditLED.Size = New Size(180, 22)
+        tsmiEditLED.Size = New Size(166, 22)
         tsmiEditLED.Text = "Edit LED"
         ' 
         ' tsmiGenerate
         ' 
         tsmiGenerate.DropDownItems.AddRange(New ToolStripItem() {tsmiLinear, tsmiMatrix, tsmiLShape, tsmiUShape, tsmiRectangle})
         tsmiGenerate.Name = "tsmiGenerate"
-        tsmiGenerate.Size = New Size(180, 22)
+        tsmiGenerate.Size = New Size(166, 22)
         tsmiGenerate.Text = "Generate.."
         ' 
         ' tsmiLinear
         ' 
         tsmiLinear.ForeColor = Color.White
         tsmiLinear.Name = "tsmiLinear"
-        tsmiLinear.Size = New Size(180, 22)
+        tsmiLinear.Size = New Size(126, 22)
         tsmiLinear.Text = "Linear"
         ' 
         ' tsmiMatrix
         ' 
         tsmiMatrix.ForeColor = Color.White
         tsmiMatrix.Name = "tsmiMatrix"
-        tsmiMatrix.Size = New Size(180, 22)
+        tsmiMatrix.Size = New Size(126, 22)
         tsmiMatrix.Text = "Matrix"
         ' 
         ' tsmiLShape
         ' 
         tsmiLShape.ForeColor = Color.White
         tsmiLShape.Name = "tsmiLShape"
-        tsmiLShape.Size = New Size(180, 22)
+        tsmiLShape.Size = New Size(126, 22)
         tsmiLShape.Text = "L Shape"
         ' 
         ' tsmiUShape
         ' 
         tsmiUShape.ForeColor = Color.White
         tsmiUShape.Name = "tsmiUShape"
-        tsmiUShape.Size = New Size(180, 22)
+        tsmiUShape.Size = New Size(126, 22)
         tsmiUShape.Text = "U Shape"
         ' 
         ' tsmiRectangle
         ' 
         tsmiRectangle.ForeColor = Color.White
         tsmiRectangle.Name = "tsmiRectangle"
-        tsmiRectangle.Size = New Size(180, 22)
+        tsmiRectangle.Size = New Size(126, 22)
         tsmiRectangle.Text = "Rectangle"
         ' 
         ' ToolStripSeparator2
         ' 
         ToolStripSeparator2.Name = "ToolStripSeparator2"
-        ToolStripSeparator2.Size = New Size(177, 6)
+        ToolStripSeparator2.Size = New Size(163, 6)
         ' 
         ' tsmiAutoResize
         ' 
         tsmiAutoResize.Name = "tsmiAutoResize"
-        tsmiAutoResize.Size = New Size(180, 22)
+        tsmiAutoResize.Size = New Size(166, 22)
         tsmiAutoResize.Text = "Auto Resize"
+        ' 
+        ' tPressHold
+        ' 
+        tPressHold.Enabled = True
+        tPressHold.Interval = 60
         ' 
         ' ucComponent
         ' 
@@ -154,5 +161,6 @@ Partial Class ucComponent
     Friend WithEvents tsmiLShape As ToolStripMenuItem
     Friend WithEvents tsmiRectangle As ToolStripMenuItem
     Friend WithEvents tsmiUShape As ToolStripMenuItem
+    Friend WithEvents tPressHold As Timer
 
 End Class

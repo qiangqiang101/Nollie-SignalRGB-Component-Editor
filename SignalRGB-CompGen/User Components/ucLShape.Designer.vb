@@ -29,6 +29,10 @@ Partial Class ucLShape
         cmbOrder = New NSComboBox()
         lblBend = New NSLabel()
         numBendAfter = New NSNumericUpDown()
+        lblSpacing = New NSLabel()
+        numSpacing = New NSNumericUpDown()
+        cbRoundedCorners = New NSOnOffBox()
+        lblRoundedCorners = New NSLabel()
         SuspendLayout()
         ' 
         ' lblNumOfLeds
@@ -36,7 +40,7 @@ Partial Class ucLShape
         lblNumOfLeds.Font = New Font("Segoe UI", 9F)
         lblNumOfLeds.Location = New Point(3, 3)
         lblNumOfLeds.Name = "lblNumOfLeds"
-        lblNumOfLeds.Size = New Size(93, 24)
+        lblNumOfLeds.Size = New Size(99, 24)
         lblNumOfLeds.TabIndex = 13
         lblNumOfLeds.Text = "Number of LEDs"
         lblNumOfLeds.Value1 = "Number of LEDs"
@@ -45,10 +49,10 @@ Partial Class ucLShape
         ' btnOK
         ' 
         btnOK.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnOK.Location = New Point(194, 91)
+        btnOK.Location = New Point(194, 156)
         btnOK.Name = "btnOK"
         btnOK.Size = New Size(75, 23)
-        btnOK.TabIndex = 3
+        btnOK.TabIndex = 5
         btnOK.Text = "Confirm"
         ' 
         ' numAmount
@@ -73,7 +77,7 @@ Partial Class ucLShape
         lblOrder.Font = New Font("Segoe UI", 9F)
         lblOrder.Location = New Point(3, 33)
         lblOrder.Name = "lblOrder"
-        lblOrder.Size = New Size(93, 24)
+        lblOrder.Size = New Size(99, 24)
         lblOrder.TabIndex = 22
         lblOrder.Text = "Direction"
         lblOrder.Value1 = "Order"
@@ -97,7 +101,7 @@ Partial Class ucLShape
         lblBend.Font = New Font("Segoe UI", 9F)
         lblBend.Location = New Point(3, 63)
         lblBend.Name = "lblBend"
-        lblBend.Size = New Size(93, 24)
+        lblBend.Size = New Size(99, 24)
         lblBend.TabIndex = 24
         lblBend.Text = "Bend after"
         lblBend.Value1 = "Bend after"
@@ -120,11 +124,66 @@ Partial Class ucLShape
         numBendAfter.ThousandsSeparator = False
         numBendAfter.Value = New Decimal(New Integer() {1, 0, 0, 0})
         ' 
+        ' lblSpacing
+        ' 
+        lblSpacing.Font = New Font("Segoe UI", 9F)
+        lblSpacing.Location = New Point(3, 93)
+        lblSpacing.Name = "lblSpacing"
+        lblSpacing.Size = New Size(99, 24)
+        lblSpacing.TabIndex = 26
+        lblSpacing.Text = "Spacing"
+        lblSpacing.Value1 = "Spacing"
+        lblSpacing.Value2 = ""
+        ' 
+        ' numSpacing
+        ' 
+        numSpacing.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        numSpacing.DecimalPlaces = 0
+        numSpacing.Increment = 1
+        numSpacing.InterceptArrowKeys = True
+        numSpacing.Location = New Point(108, 93)
+        numSpacing.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        numSpacing.Minimum = New Decimal(New Integer() {0, 0, 0, 0})
+        numSpacing.Name = "numSpacing"
+        numSpacing.ReadOnly = False
+        numSpacing.Size = New Size(161, 24)
+        numSpacing.TabIndex = 3
+        numSpacing.TextAlign = HorizontalAlignment.Right
+        numSpacing.ThousandsSeparator = False
+        numSpacing.Value = New Decimal(New Integer() {0, 0, 0, 0})
+        ' 
+        ' cbRoundedCorners
+        ' 
+        cbRoundedCorners.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        cbRoundedCorners.Checked = False
+        cbRoundedCorners.Location = New Point(108, 123)
+        cbRoundedCorners.MaximumSize = New Size(56, 24)
+        cbRoundedCorners.MinimumSize = New Size(56, 24)
+        cbRoundedCorners.Name = "cbRoundedCorners"
+        cbRoundedCorners.Size = New Size(56, 24)
+        cbRoundedCorners.TabIndex = 4
+        cbRoundedCorners.Text = "NsOnOffBox1"
+        ' 
+        ' lblRoundedCorners
+        ' 
+        lblRoundedCorners.Font = New Font("Segoe UI", 9F)
+        lblRoundedCorners.Location = New Point(3, 123)
+        lblRoundedCorners.Name = "lblRoundedCorners"
+        lblRoundedCorners.Size = New Size(99, 24)
+        lblRoundedCorners.TabIndex = 28
+        lblRoundedCorners.Text = "Spacing"
+        lblRoundedCorners.Value1 = "Rounded Corners"
+        lblRoundedCorners.Value2 = ""
+        ' 
         ' ucLShape
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        Controls.Add(lblRoundedCorners)
+        Controls.Add(cbRoundedCorners)
+        Controls.Add(lblSpacing)
+        Controls.Add(numSpacing)
         Controls.Add(lblBend)
         Controls.Add(numBendAfter)
         Controls.Add(lblOrder)
@@ -134,7 +193,7 @@ Partial Class ucLShape
         Controls.Add(numAmount)
         ForeColor = Color.White
         Name = "ucLShape"
-        Size = New Size(272, 117)
+        Size = New Size(272, 182)
         ResumeLayout(False)
     End Sub
 
@@ -145,5 +204,9 @@ Partial Class ucLShape
     Friend WithEvents cmbOrder As NSComboBox
     Friend WithEvents lblBend As NSLabel
     Friend WithEvents numBendAfter As NSNumericUpDown
+    Friend WithEvents lblSpacing As NSLabel
+    Friend WithEvents numSpacing As NSNumericUpDown
+    Friend WithEvents cbRoundedCorners As NSOnOffBox
+    Friend WithEvents lblRoundedCorners As NSLabel
 
 End Class

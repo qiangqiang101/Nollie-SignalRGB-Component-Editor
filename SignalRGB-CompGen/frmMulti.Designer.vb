@@ -24,8 +24,8 @@ Partial Class frmMulti
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMulti))
         NsTheme1 = New NSTheme()
-        btnClose = New NSControlButton()
         pUserControl = New Panel()
+        btnClose = New NSControlButton()
         NsTheme1.SuspendLayout()
         SuspendLayout()
         ' 
@@ -46,12 +46,20 @@ Partial Class frmMulti
         NsTheme1.NoRounding = False
         NsTheme1.Padding = New Padding(3, 33, 3, 3)
         NsTheme1.Sizable = False
-        NsTheme1.Size = New Size(284, 160)
+        NsTheme1.Size = New Size(284, 211)
         NsTheme1.SmartBounds = True
         NsTheme1.StartPosition = FormStartPosition.CenterScreen
         NsTheme1.TabIndex = 5
         NsTheme1.TransparencyKey = Color.Empty
         NsTheme1.Transparent = False
+        ' 
+        ' pUserControl
+        ' 
+        pUserControl.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        pUserControl.Location = New Point(6, 36)
+        pUserControl.Name = "pUserControl"
+        pUserControl.Size = New Size(272, 169)
+        pUserControl.TabIndex = 6
         ' 
         ' btnClose
         ' 
@@ -66,19 +74,11 @@ Partial Class frmMulti
         btnClose.TabIndex = 5
         btnClose.Text = "NsControlButton1"
         ' 
-        ' pUserControl
-        ' 
-        pUserControl.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        pUserControl.Location = New Point(6, 36)
-        pUserControl.Name = "pUserControl"
-        pUserControl.Size = New Size(272, 118)
-        pUserControl.TabIndex = 6
-        ' 
         ' frmMulti
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(284, 160)
+        ClientSize = New Size(284, 211)
         Controls.Add(NsTheme1)
         FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
@@ -88,6 +88,7 @@ Partial Class frmMulti
         Name = "frmMulti"
         ShowInTaskbar = False
         StartPosition = FormStartPosition.CenterScreen
+        TopMost = True
         NsTheme1.ResumeLayout(False)
         ResumeLayout(False)
     End Sub

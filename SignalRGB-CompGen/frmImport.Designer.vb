@@ -172,6 +172,7 @@ Partial Class frmImport
         Name = "frmImport"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Import OpenRGB Visual Map"
+        TopMost = True
         NsTheme1.ResumeLayout(False)
         ResumeLayout(False)
     End Sub

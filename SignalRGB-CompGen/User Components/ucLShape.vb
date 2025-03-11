@@ -16,7 +16,8 @@
     End Sub
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
-        Component.AddLShape(CInt(numAmount.Value), LEDPos, CType(cmbOrder.SelectedValue, eLShapeOrder), CInt(numBendAfter.Value))
+        Component.AddLShape(CInt(numAmount.Value), LEDPos, CType(cmbOrder.SelectedValue, eLShapeOrder),
+                            CInt(numBendAfter.Value), CInt(numSpacing.Value), cbRoundedCorners.Checked)
         Component.Invalidate()
 
         'Save to temporary memory
@@ -24,6 +25,8 @@
             .LEDAmount = CInt(numAmount.Value)
             .LShapeOrder = CType(cmbOrder.SelectedValue, eLShapeOrder)
             .BendAfter = CInt(numBendAfter.Value)
+            .Spacing = CInt(numSpacing.Value)
+            .RoundedCorners = cbRoundedCorners.Checked
         End With
 
         ParentForm.Close()
@@ -43,6 +46,8 @@
         numAmount.Value = UserMemory.LEDAmount
         cmbOrder.SelectedValue = UserMemory.LShapeOrder
         numBendAfter.Value = UserMemory.BendAfter
+        numSpacing.Value = UserMemory.Spacing
+        cbRoundedCorners.Checked = UserMemory.RoundedCorners
     End Sub
 
     Private Sub Translate()
@@ -54,6 +59,8 @@
         lblOrder.Value1 = loc.Order
         lblBend.Value1 = loc.BendAfter
         btnOK.Text = loc.Confirm
+        lblSpacing.Value1 = loc.Spacing
+        lblRoundedCorners.Value1 = loc.RoundedCorners
     End Sub
 
     Private Sub numAmount_ValueChanged(sender As Object, e As EventArgs) Handles numAmount.ValueChanged, numAmount.TextChanged

@@ -16,6 +16,8 @@ Public Class frmSettings
 
         cbShiftLedPosition.Checked = Setting.ShiftIndex
         cbConsole.Checked = Setting.Debug
+        numWidth.Value = Setting.DefaultSize.Width
+        numHeight.Value = Setting.DefaultSize.Height
     End Sub
 
     Private Sub btnSave_Click(sender As Object, e As EventArgs) Handles btnSave.Click
@@ -25,6 +27,7 @@ Public Class frmSettings
                 .Language = cmbLanguage.SelectedValue
                 .ShiftIndex = cbShiftLedPosition.Checked
                 .Debug = cbConsole.Checked
+                .DefaultSize = New Size(CInt(numWidth.Value), CInt(numHeight.Value))
             End With
             sett.Save(SettingFile)
             Setting = sett
@@ -45,6 +48,7 @@ Public Class frmSettings
         lblLanguage.Value1 = loc.Language
         cbShiftLedPosition.Text = loc.ShiftDisplayingLEDIndex
         cbConsole.Text = loc.Console
+        lblSize.Value1 = loc.DefaultSize
         btnSave.Text = loc.Save
     End Sub
 

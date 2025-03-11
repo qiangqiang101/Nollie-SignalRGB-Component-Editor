@@ -5,6 +5,8 @@ Imports Windows.Win32.System
 
 Public Class ucComponent
 
+    Private timerTicks As Integer = 0
+
     Public LEDs As New List(Of Led)
 
     Public Event LEDsChanged(sender As Object, e As EventArgs)
@@ -66,13 +68,14 @@ Public Class ucComponent
         RaiseEvent LEDsChanged(Me, New EventArgs())
     End Sub
 
-    Public Function AddLeds(_leds As Integer, _pos As Point, Optional direction As eDirection = eDirection.Right, Optional updatefont As Boolean = True) As Point
+    Public Function AddLeds(_leds As Integer, _pos As Point, Optional direction As eDirection = eDirection.Right,
+                            Optional spacing As Integer = 0, Optional updatefont As Boolean = True) As Point
         Dim result As Point = Point.Empty
         If LEDs.Count = 0 Then
             For i As Integer = 0 To _leds - 1
                 Dim index = i
                 Dim name = $"Led{i + 1}"
-                Dim pos = GetNextPointFrom(_pos, i, direction)
+                Dim pos = GetNextPointFrom(_pos, i, direction, spacing * i)
                 AddLed(index, index, name, pos)
                 If i = _leds - 1 Then result = pos
             Next i
@@ -81,7 +84,7 @@ Public Class ucComponent
             For i As Integer = 0 To _leds - 1
                 Dim index = If(lastLed.Index.HasValue, lastLed.Index.Value + i + 1, lastLed.MappingIndex + i + 1)
                 Dim name = $"Led{index + 1}"
-                Dim pos = GetNextPointFrom(_pos, i, direction)
+                Dim pos = GetNextPointFrom(_pos, i, direction, spacing * i)
                 AddLed(index, index, name, pos)
                 If i = _leds - 1 Then result = pos
             Next i
@@ -92,75 +95,86 @@ Public Class ucComponent
         Return result
     End Function
 
-    Public Sub AddLShape(_leds As Integer, _pos As Point, order As eLShapeOrder, bendafter As Integer)
+    Public Sub AddLShape(_leds As Integer, _pos As Point, order As eLShapeOrder, bendafter As Integer, spacing As Integer, rounded As Boolean)
         Dim start As Integer = _leds - bendafter
+        Dim offset As Integer = If(rounded, spacing + 1, 1)
 
         Select Case order
             Case eLShapeOrder.DownRight
-                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Down, False)
-                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Right)
-                AddLeds(start, nextPos, eDirection.Right, False)
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Down, spacing, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Right, spacing)
+                If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
+                AddLeds(start, nextPos, eDirection.Right, spacing, False)
             Case eLShapeOrder.DownLeft
-                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Down, False)
-                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Left)
-                AddLeds(start, nextPos, eDirection.Left, False)
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Down, spacing, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Left, spacing)
+                If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
+                AddLeds(start, nextPos, eDirection.Left, spacing, False)
             Case eLShapeOrder.UpRight
-                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Up, False)
-                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Right)
-                AddLeds(start, nextPos, eDirection.Right, False)
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Up, spacing, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Right, spacing)
+                If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
+                AddLeds(start, nextPos, eDirection.Right, spacing, False)
             Case eLShapeOrder.UpLeft
-                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Up, False)
-                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Left)
-                AddLeds(start, nextPos, eDirection.Left, False)
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Up, spacing, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Left, spacing)
+                If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
+                AddLeds(start, nextPos, eDirection.Left, spacing, False)
             Case eLShapeOrder.RightDown
-                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Right, False)
-                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Down)
-                AddLeds(start, nextPos, eDirection.Down, False)
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Right, spacing, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Down, spacing)
+                If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
+                AddLeds(start, nextPos, eDirection.Down, spacing, False)
             Case eLShapeOrder.RightUp
-                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Right, False)
-                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Up)
-                AddLeds(start, nextPos, eDirection.Up, False)
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Right, spacing, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Up, spacing)
+                If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
+                AddLeds(start, nextPos, eDirection.Up, spacing, False)
             Case eLShapeOrder.LeftDown
-                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Left, False)
-                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Down)
-                AddLeds(start, nextPos, eDirection.Down, False)
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Left, spacing, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Down, spacing)
+                If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
+                AddLeds(start, nextPos, eDirection.Down, spacing, False)
             Case eLShapeOrder.LeftUp
-                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Left, False)
-                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Up)
-                AddLeds(start, nextPos, eDirection.Up, False)
+                Dim lastPos = AddLeds(bendafter, _pos, eDirection.Left, spacing, False)
+                Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Up, spacing)
+                If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
+                AddLeds(start, nextPos, eDirection.Up, spacing, False)
         End Select
 
         PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)
     End Sub
 
-    Public Sub AddMatrix(_pos As Point, order As eMatrixOrder, serpentine As Boolean, _size As Size)
+    Public Sub AddMatrix(_pos As Point, order As eMatrixOrder, serpentine As Boolean, _size As Size, spacing As Integer)
+        Dim offset = spacing + 1
+
         Select Case order
             Case eMatrixOrder.HorizontalTopLeft
                 If serpentine Then
                     For h As Integer = 0 To _size.Height - 1
                         If h Mod 2 = 0 Then
-                            AddLeds(_size.Width, New Point(_pos.X, _pos.Y + h), eDirection.Right, False)
+                            AddLeds(_size.Width, New Point(_pos.X, _pos.Y + (h * offset)), eDirection.Right, spacing, False)
                         Else
-                            AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + h), eDirection.Left, False)
+                            AddLeds(_size.Width, New Point(((_pos.X + _size.Width) - 1) * offset, _pos.Y + (h * offset)), eDirection.Left, spacing, False)
                         End If
                     Next
                 Else
                     For h As Integer = 0 To _size.Height - 1
-                        AddLeds(_size.Width, New Point(_pos.X, _pos.Y + h), eDirection.Right, False)
+                        AddLeds(_size.Width, New Point(_pos.X, _pos.Y + (h * offset)), eDirection.Right, spacing, False)
                     Next
                 End If
             Case eMatrixOrder.HorizontalTopRight
                 If serpentine Then
                     For h As Integer = 0 To _size.Height - 1
                         If h Mod 2 = 0 Then
-                            AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + h), eDirection.Left, False)
+                            AddLeds(_size.Width, New Point(((_pos.X + _size.Width) - 1) * offset, _pos.Y + (h * offset)), eDirection.Left, spacing, False)
                         Else
-                            AddLeds(_size.Width, New Point(_pos.X, _pos.Y + h), eDirection.Right, False)
+                            AddLeds(_size.Width, New Point(_pos.X, _pos.Y + (h * offset)), eDirection.Right, spacing, False)
                         End If
                     Next
                 Else
                     For h As Integer = 0 To _size.Height - 1
-                        AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + h), eDirection.Left, False)
+                        AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + (h * offset)), eDirection.Left, spacing, False)
                     Next
                 End If
             Case eMatrixOrder.HorizontalBottomLeft
@@ -169,15 +183,15 @@ Public Class ucComponent
 
                     For h As Integer = _size.Height - 1 To 0 Step -1
                         If i Mod 2 = 0 Then
-                            AddLeds(_size.Width, New Point(_pos.X, _pos.Y + h), eDirection.Right, False)
+                            AddLeds(_size.Width, New Point(_pos.X, _pos.Y + (h * offset)), eDirection.Right, spacing, False)
                         Else
-                            AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + h), eDirection.Left, False)
+                            AddLeds(_size.Width, New Point(((_pos.X + _size.Width) - 1) * offset, _pos.Y + (h * offset)), eDirection.Left, spacing, False)
                         End If
                         i += 1
                     Next
                 Else
                     For h As Integer = _size.Height - 1 To 0 Step -1
-                        AddLeds(_size.Width, New Point(_pos.X, _pos.Y + h), eDirection.Right, False)
+                        AddLeds(_size.Width, New Point(_pos.X, _pos.Y + (h * offset)), eDirection.Right, spacing, False)
                     Next
                 End If
             Case eMatrixOrder.HorizontalBottomRight
@@ -186,29 +200,29 @@ Public Class ucComponent
 
                     For h As Integer = _size.Height - 1 To 0 Step -1
                         If i Mod 2 = 0 Then
-                            AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + h), eDirection.Left, False)
+                            AddLeds(_size.Width, New Point(((_pos.X + _size.Width) - 1) * offset, _pos.Y + (h * offset)), eDirection.Left, spacing, False)
                         Else
-                            AddLeds(_size.Width, New Point(_pos.X, _pos.Y + h), eDirection.Right, False)
+                            AddLeds(_size.Width, New Point(_pos.X, _pos.Y + (h * offset)), eDirection.Right, spacing, False)
                         End If
                         i += 1
                     Next
                 Else
                     For h As Integer = _size.Height - 1 To 0 Step -1
-                        AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + h), eDirection.Left, False)
+                        AddLeds(_size.Width, New Point((_pos.X + _size.Width) - 1, _pos.Y + (h * offset)), eDirection.Left, spacing, False)
                     Next
                 End If
             Case eMatrixOrder.VerticalTopLeft
                 If serpentine Then
                     For w As Integer = 0 To _size.Width - 1
                         If w Mod 2 = 0 Then
-                            AddLeds(_size.Height, New Point(_pos.X + w, _pos.Y), eDirection.Down, False)
+                            AddLeds(_size.Height, New Point(_pos.X + (w * offset), _pos.Y), eDirection.Down, spacing, False)
                         Else
-                            AddLeds(_size.Height, New Point(_pos.X + w, (_pos.Y + _size.Height) - 1), eDirection.Up, False)
+                            AddLeds(_size.Height, New Point(_pos.X + (w * offset), ((_pos.Y + _size.Height) - 1) * offset), eDirection.Up, spacing, False)
                         End If
                     Next
                 Else
                     For w As Integer = 0 To _size.Width - 1
-                        AddLeds(_size.Height, New Point(_pos.X + w, _pos.Y), eDirection.Down, False)
+                        AddLeds(_size.Height, New Point(_pos.X + (w * offset), _pos.Y), eDirection.Down, spacing, False)
                     Next
                 End If
             Case eMatrixOrder.VerticalTopRight
@@ -217,29 +231,29 @@ Public Class ucComponent
 
                     For w As Integer = _size.Width - 1 To 0 Step -1
                         If i Mod 2 = 0 Then
-                            AddLeds(_size.Height, New Point(_pos.X + w, _pos.Y), eDirection.Down, False)
+                            AddLeds(_size.Height, New Point(_pos.X + (w * offset), _pos.Y), eDirection.Down, spacing, False)
                         Else
-                            AddLeds(_size.Height, New Point(_pos.X + w, (_pos.Y + _size.Height) - 1), eDirection.Up, False)
+                            AddLeds(_size.Height, New Point(_pos.X + (w * offset), ((_pos.Y + _size.Height) - 1) * offset), eDirection.Up, spacing, False)
                         End If
                         i += 1
                     Next
                 Else
                     For w As Integer = _size.Width - 1 To 0 Step -1
-                        AddLeds(_size.Height, New Point(_pos.X + w, _pos.Y), eDirection.Down, False)
+                        AddLeds(_size.Height, New Point(_pos.X + (w * offset), _pos.Y), eDirection.Down, spacing, False)
                     Next
                 End If
             Case eMatrixOrder.VerticalBottomLeft
                 If serpentine Then
                     For w As Integer = 0 To _size.Width - 1
                         If w Mod 2 = 0 Then
-                            AddLeds(_size.Height, New Point(_pos.X + w, (_pos.Y + _size.Height) - 1), eDirection.Up, False)
+                            AddLeds(_size.Height, New Point(_pos.X + (w * offset), ((_pos.Y + _size.Height) - 1) * offset), eDirection.Up, spacing, False)
                         Else
-                            AddLeds(_size.Height, New Point(_pos.X + w, _pos.Y), eDirection.Down, False)
+                            AddLeds(_size.Height, New Point(_pos.X + (w * offset), _pos.Y), eDirection.Down, spacing, False)
                         End If
                     Next
                 Else
                     For w As Integer = 0 To _size.Width - 1
-                        AddLeds(_size.Height, New Point(_pos.X + w, (_pos.Y + _size.Height) - 1), eDirection.Up, False)
+                        AddLeds(_size.Height, New Point(_pos.X + (w * offset), (_pos.Y + _size.Height) - 1), eDirection.Up, spacing, False)
                     Next
                 End If
             Case eMatrixOrder.VerticalBottomRight
@@ -248,15 +262,15 @@ Public Class ucComponent
 
                     For w As Integer = _size.Width - 1 To 0 Step -1
                         If i Mod 2 = 0 Then
-                            AddLeds(_size.Height, New Point(_pos.X + w, (_pos.Y + _size.Height) - 1), eDirection.Up, False)
+                            AddLeds(_size.Height, New Point(_pos.X + (w * offset), ((_pos.Y + _size.Height) - 1) * offset), eDirection.Up, spacing, False)
                         Else
-                            AddLeds(_size.Height, New Point(_pos.X + w, _pos.Y), eDirection.Down, False)
+                            AddLeds(_size.Height, New Point(_pos.X + (w * offset), _pos.Y), eDirection.Down, spacing, False)
                         End If
                         i += 1
                     Next
                 Else
                     For w As Integer = _size.Width - 1 To 0 Step -1
-                        AddLeds(_size.Height, New Point(_pos.X + w, (_pos.Y + _size.Height) - 1), eDirection.Up, False)
+                        AddLeds(_size.Height, New Point(_pos.X + (w * offset), (_pos.Y + _size.Height) - 1), eDirection.Up, spacing, False)
                     Next
                 End If
         End Select
@@ -264,26 +278,37 @@ Public Class ucComponent
         PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)
     End Sub
 
-    Private Function GetNextPointFrom(pos As Point, offset As Integer, Optional direction As eDirection = eDirection.Right) As Point
+    Private Function GetNextPointFrom(pos As Point, offset As Integer, order As eLShapeOrder, Optional spacing As Integer = 0) As Point
+        Select Case order
+            Case eLShapeOrder.DownRight
+                Return New Point(pos.X + offset + spacing, pos.Y + offset + spacing)
+            Case eLShapeOrder.DownLeft
+                Return New Point(pos.X - offset - spacing, pos.Y + offset + spacing)
+            Case eLShapeOrder.UpRight
+                Return New Point(pos.X + offset + spacing, pos.Y - offset - spacing)
+            Case eLShapeOrder.UpLeft
+                Return New Point(pos.X - offset - spacing, pos.Y - offset - spacing)
+            Case eLShapeOrder.RightDown
+                Return New Point(pos.X + offset + spacing, pos.Y + offset + spacing)
+            Case eLShapeOrder.RightUp
+                Return New Point(pos.X + offset + spacing, pos.Y - offset - spacing)
+            Case eLShapeOrder.LeftDown
+                Return New Point(pos.X - offset - spacing, pos.Y + offset + spacing)
+            Case eLShapeOrder.LeftUp
+                Return New Point(pos.X - offset - spacing, pos.Y - offset - spacing)
+        End Select
+    End Function
+
+    Private Function GetNextPointFrom(pos As Point, offset As Integer, direction As eDirection, Optional spacing As Integer = 0) As Point
         Select Case direction
             Case eDirection.Up
-                Dim newPos = New Point(pos.X, pos.Y - offset)
-                If newPos.Y < 0 Then
-                    Return New Point(newPos.X, 0)
-                Else
-                    Return newPos
-                End If
+                Return New Point(pos.X, pos.Y - offset - spacing)
             Case eDirection.Right
-                Return New Point(pos.X + offset, pos.Y)
+                Return New Point(pos.X + offset + spacing, pos.Y)
             Case eDirection.Down
-                Return New Point(pos.X, pos.Y + offset)
+                Return New Point(pos.X, pos.Y + offset + spacing)
             Case eDirection.Left
-                Dim newPos = New Point(pos.X - offset, pos.Y)
-                If newPos.X < 0 Then
-                    Return New Point(0, newPos.Y)
-                Else
-                    Return newPos
-                End If
+                Return New Point(pos.X - offset - spacing, pos.Y)
         End Select
     End Function
 
@@ -295,6 +320,11 @@ Public Class ucComponent
 
     Public Sub RemoveLed(led As Led)
         LEDs.Remove(led)
+        RaiseEvent LEDsChanged(Me, New EventArgs())
+    End Sub
+
+    Public Sub RemoveLeds()
+        LEDs.RemoveAll(Function(x) x.Index.HasValue)
         RaiseEvent LEDsChanged(Me, New EventArgs())
     End Sub
 
@@ -541,12 +571,27 @@ Public Class ucComponent
         End If
     End Sub
 
+    Private Sub ucComponent_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
+        Select Case e.KeyCode
+            Case Keys.Delete
+                If LEDs.Count <> 0 Then
+                    timerTicks += 1
+                End If
+        End Select
+    End Sub
+
     Private Sub ucComponent_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
         Select Case e.KeyCode
             Case Keys.Delete
                 If LEDs.Count <> 0 Then
-                    RemoveLed(LEDs.Last)
-                    Invalidate()
+                    If timerTicks > 50 Then
+                        RemoveLeds()
+                        Invalidate()
+                    Else
+                        RemoveLed(LEDs.Last)
+                        Invalidate()
+                    End If
+                    timerTicks = 0
                 End If
             Case Keys.Space
                 AddLeds(1, _ledPos)

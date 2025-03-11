@@ -5,6 +5,7 @@ Public Class MySettings
     Public Language As String = "en-US"
     Public ShiftIndex As Boolean = False
     Public Debug As Boolean = False
+    Public DefaultSize As Size = New Size(5, 5)
 
     Public Function Load(filename As String) As MySettings
         Return JsonConvert.DeserializeObject(Of MySettings)(IO.File.ReadAllText(filename))
@@ -50,7 +51,7 @@ Public Class Localization
     Public Settings As String = "Settings"
     Public Help As String = "Help"
     Public Controls As String = "Controls"
-    Public ControlMsg As String = "Mouse Controls: {0}Left Click: Select LED/Move LED{0}Left Double Click: Add LED{0}Middle Click: Move Map{0}Scroll: Zoom{0}Right Click: Show Menu{0}{0}Keyboard Controls: {0}Spacebar: Add LED on Mouse Position{0}Delete: Remove last LED{0}Arrow keys: Move LEDs"
+    Public ControlMsg As String = "Mouse Controls: {0}Left Click: Select LED/Move LED{0}Left Double Click: Add LED{0}Middle Click: Move Map{0}Scroll: Zoom{0}Right Click: Show Menu{0}{0}Keyboard Controls: {0}Spacebar: Add LED on Mouse Position{0}Delete Tap: Remove last LED{0}Delete Hold: Remove All LEDs{0}Arrow keys: Move LEDs"
     Public VisitSignalRGB As String = "Visit SignalRGB Website"
     Public VisitNollie As String = "Visit Nollie Website"
     Public VisitMentaL As String = "Visit I'm Not MentaL Website"
@@ -126,6 +127,8 @@ Public Class Localization
     Public Linear As String = "Linear"
 
     'Added on 11/03/2025
+    Public DefaultSize As String = "Default Size"
+    Public Spacing As String = "Spacing"
     Public LShape As String = "L-Shape"
     Public UShape As String = "U-Shape"
     Public Rectangle As String = "Rectangle"
@@ -138,4 +141,6 @@ Public Class Localization
     Public RightUp As String = "⬏ Rightwards Up"
     Public LeftDown As String = "⬐ Leftwards Down"
     Public LeftUp As String = "⬑ Leftwards Up"
+    Public RoundedCorners As String = "Rounded Corners"
+
 End Class

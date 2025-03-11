@@ -16,13 +16,14 @@
     End Sub
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
-        Component.AddLeds(CInt(numAmount.Value), LEDPos, CType(cmbDirection.SelectedValue, eDirection))
+        Component.AddLeds(CInt(numAmount.Value), LEDPos, CType(cmbDirection.SelectedValue, eDirection), CInt(numSpacing.Value))
         Component.Invalidate()
 
         'Save to temporary memory
         With UserMemory
             .LEDAmount = CInt(numAmount.Value)
             .Direction = CType(cmbDirection.SelectedValue, eDirection)
+            .Spacing = CInt(numSpacing.Value)
         End With
 
         ParentForm.Close()
@@ -41,6 +42,7 @@
         'Load from temporary memory
         numAmount.Value = UserMemory.LEDAmount
         cmbDirection.SelectedValue = UserMemory.Direction
+        numSpacing.Value = UserMemory.Spacing
     End Sub
 
     Private Sub Translate()
@@ -51,6 +53,7 @@
         lblNumOfLeds.Value1 = loc.NumberOfLEDs
         lblDirection.Value1 = loc.Direction
         btnOK.Text = loc.Confirm
+        lblSpacing.Value1 = loc.Spacing
     End Sub
 
     Private Sub numAmount_TextChanged(sender As Object, e As EventArgs) Handles numAmount.TextChanged, numAmount.ValueChanged

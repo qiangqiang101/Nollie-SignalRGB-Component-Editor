@@ -28,7 +28,10 @@ Partial Class ucMatrix
         lblOrder = New NSLabel()
         cmbOrder = New NSComboBox()
         btnOK = New NSButton()
-        cbSerpentine = New NSCheckBox()
+        lblSpacing = New NSLabel()
+        numSpacing = New NSNumericUpDown()
+        lblSerpentine = New NSLabel()
+        cbSerpentine = New NSOnOffBox()
         SuspendLayout()
         ' 
         ' numHeight
@@ -38,15 +41,15 @@ Partial Class ucMatrix
         numHeight.Increment = 1
         numHeight.InterceptArrowKeys = True
         numHeight.Location = New Point(191, 3)
-        numHeight.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        numHeight.Minimum = New Decimal(New Integer() {500, 0, 0, Integer.MinValue})
+        numHeight.Maximum = New Decimal(New Integer() {100, 0, 0, 0})
+        numHeight.Minimum = New Decimal(New Integer() {2, 0, 0, 0})
         numHeight.Name = "numHeight"
         numHeight.ReadOnly = False
         numHeight.Size = New Size(78, 24)
-        numHeight.TabIndex = 3
+        numHeight.TabIndex = 1
         numHeight.TextAlign = HorizontalAlignment.Right
         numHeight.ThousandsSeparator = False
-        numHeight.Value = New Decimal(New Integer() {0, 0, 0, 0})
+        numHeight.Value = New Decimal(New Integer() {2, 0, 0, 0})
         ' 
         ' numWidth
         ' 
@@ -55,15 +58,15 @@ Partial Class ucMatrix
         numWidth.Increment = 1
         numWidth.InterceptArrowKeys = True
         numWidth.Location = New Point(108, 3)
-        numWidth.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        numWidth.Minimum = New Decimal(New Integer() {500, 0, 0, Integer.MinValue})
+        numWidth.Maximum = New Decimal(New Integer() {100, 0, 0, 0})
+        numWidth.Minimum = New Decimal(New Integer() {2, 0, 0, 0})
         numWidth.Name = "numWidth"
         numWidth.ReadOnly = False
         numWidth.Size = New Size(78, 24)
-        numWidth.TabIndex = 2
+        numWidth.TabIndex = 0
         numWidth.TextAlign = HorizontalAlignment.Right
         numWidth.ThousandsSeparator = False
-        numWidth.Value = New Decimal(New Integer() {0, 0, 0, 0})
+        numWidth.Value = New Decimal(New Integer() {2, 0, 0, 0})
         ' 
         ' lblSize
         ' 
@@ -98,33 +101,77 @@ Partial Class ucMatrix
         cmbOrder.Location = New Point(108, 33)
         cmbOrder.Name = "cmbOrder"
         cmbOrder.Size = New Size(161, 24)
-        cmbOrder.TabIndex = 4
+        cmbOrder.TabIndex = 2
         ' 
         ' btnOK
         ' 
         btnOK.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnOK.Location = New Point(194, 93)
+        btnOK.Location = New Point(194, 123)
         btnOK.Name = "btnOK"
         btnOK.Size = New Size(75, 23)
-        btnOK.TabIndex = 6
+        btnOK.TabIndex = 5
         btnOK.Text = "Confirm"
+        ' 
+        ' lblSpacing
+        ' 
+        lblSpacing.Font = New Font("Segoe UI", 9F)
+        lblSpacing.Location = New Point(3, 63)
+        lblSpacing.Name = "lblSpacing"
+        lblSpacing.Size = New Size(93, 24)
+        lblSpacing.TabIndex = 22
+        lblSpacing.Text = "Spacing"
+        lblSpacing.Value1 = "Spacing"
+        lblSpacing.Value2 = ""
+        ' 
+        ' numSpacing
+        ' 
+        numSpacing.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        numSpacing.DecimalPlaces = 0
+        numSpacing.Increment = 1
+        numSpacing.InterceptArrowKeys = True
+        numSpacing.Location = New Point(108, 63)
+        numSpacing.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        numSpacing.Minimum = New Decimal(New Integer() {0, 0, 0, 0})
+        numSpacing.Name = "numSpacing"
+        numSpacing.ReadOnly = False
+        numSpacing.Size = New Size(161, 24)
+        numSpacing.TabIndex = 3
+        numSpacing.TextAlign = HorizontalAlignment.Right
+        numSpacing.ThousandsSeparator = False
+        numSpacing.Value = New Decimal(New Integer() {0, 0, 0, 0})
+        ' 
+        ' lblSerpentine
+        ' 
+        lblSerpentine.Font = New Font("Segoe UI", 9F)
+        lblSerpentine.Location = New Point(3, 93)
+        lblSerpentine.Name = "lblSerpentine"
+        lblSerpentine.Size = New Size(99, 24)
+        lblSerpentine.TabIndex = 30
+        lblSerpentine.Text = "Spacing"
+        lblSerpentine.Value1 = "Serpentine"
+        lblSerpentine.Value2 = ""
         ' 
         ' cbSerpentine
         ' 
         cbSerpentine.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         cbSerpentine.Checked = False
-        cbSerpentine.Location = New Point(108, 63)
+        cbSerpentine.Location = New Point(108, 93)
+        cbSerpentine.MaximumSize = New Size(56, 24)
+        cbSerpentine.MinimumSize = New Size(56, 24)
         cbSerpentine.Name = "cbSerpentine"
-        cbSerpentine.Size = New Size(161, 23)
-        cbSerpentine.TabIndex = 5
-        cbSerpentine.Text = "Serpentine"
+        cbSerpentine.Size = New Size(56, 24)
+        cbSerpentine.TabIndex = 4
+        cbSerpentine.Text = "NsOnOffBox1"
         ' 
         ' ucMatrix
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        Controls.Add(lblSerpentine)
         Controls.Add(cbSerpentine)
+        Controls.Add(lblSpacing)
+        Controls.Add(numSpacing)
         Controls.Add(btnOK)
         Controls.Add(lblOrder)
         Controls.Add(cmbOrder)
@@ -133,7 +180,7 @@ Partial Class ucMatrix
         Controls.Add(lblSize)
         ForeColor = Color.White
         Name = "ucMatrix"
-        Size = New Size(272, 119)
+        Size = New Size(272, 149)
         ResumeLayout(False)
     End Sub
     Friend WithEvents numHeight As NSNumericUpDown
@@ -142,6 +189,9 @@ Partial Class ucMatrix
     Friend WithEvents lblOrder As NSLabel
     Friend WithEvents cmbOrder As NSComboBox
     Friend WithEvents btnOK As NSButton
-    Friend WithEvents cbSerpentine As NSCheckBox
+    Friend WithEvents lblSpacing As NSLabel
+    Friend WithEvents numSpacing As NSNumericUpDown
+    Friend WithEvents lblSerpentine As NSLabel
+    Friend WithEvents cbSerpentine As NSOnOffBox
 
 End Class

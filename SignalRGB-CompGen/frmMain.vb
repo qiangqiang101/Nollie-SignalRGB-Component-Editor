@@ -139,8 +139,12 @@ Public Class frmMain
             .SelectedIndex = 0
         End With
 
-        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.None, .Location = New Point(0, 0),
-            .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
+        numWidth.Value = Setting.DefaultSize.Width
+        numHeight.Value = Setting.DefaultSize.Height
+
+        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = Setting.DefaultSize.Width, ._Height = Setting.DefaultSize.Height,
+            .BorderStyle = BorderStyle.None, .Location = New Point(0, 0), .Size = New Size(350, 350),
+            .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
         SplitContainer1.Panel1.Controls.Add(ucCompoment)
         ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
         ucCompoment.BringToFront()
@@ -285,9 +289,8 @@ Public Class frmMain
         pbImage.Image = My.Resources._1
         txtWebImageUrl.Clear
 
-        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = 5, ._Height = 5, .BorderStyle = BorderStyle.None,
-            .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right,
-            .ForeColor = Color.White}
+        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = Setting.DefaultSize.Width, ._Height = Setting.DefaultSize.Height, .ForeColor = Color.White,
+            .BorderStyle = BorderStyle.None, .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
         SplitContainer1.Panel1.Controls.Add(ucCompoment)
         ucCompoment.Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
         ucCompoment.BringToFront()

@@ -27,6 +27,8 @@ Partial Class ucLinear
         btnOK = New NSButton()
         cmbDirection = New NSComboBox()
         numAmount = New NSNumericUpDown()
+        lblSpacing = New NSLabel()
+        numSpacing = New NSNumericUpDown()
         SuspendLayout()
         ' 
         ' lblNumOfLeds
@@ -54,10 +56,10 @@ Partial Class ucLinear
         ' btnOK
         ' 
         btnOK.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnOK.Location = New Point(194, 62)
+        btnOK.Location = New Point(194, 92)
         btnOK.Name = "btnOK"
         btnOK.Size = New Size(75, 23)
-        btnOK.TabIndex = 2
+        btnOK.TabIndex = 3
         btnOK.Text = "Confirm"
         ' 
         ' cmbDirection
@@ -90,11 +92,41 @@ Partial Class ucLinear
         numAmount.ThousandsSeparator = False
         numAmount.Value = New Decimal(New Integer() {1, 0, 0, 0})
         ' 
+        ' lblSpacing
+        ' 
+        lblSpacing.Font = New Font("Segoe UI", 9F)
+        lblSpacing.Location = New Point(3, 63)
+        lblSpacing.Name = "lblSpacing"
+        lblSpacing.Size = New Size(93, 24)
+        lblSpacing.TabIndex = 11
+        lblSpacing.Text = "Spacing"
+        lblSpacing.Value1 = "Spacing"
+        lblSpacing.Value2 = ""
+        ' 
+        ' numSpacing
+        ' 
+        numSpacing.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        numSpacing.DecimalPlaces = 0
+        numSpacing.Increment = 1
+        numSpacing.InterceptArrowKeys = True
+        numSpacing.Location = New Point(108, 63)
+        numSpacing.Maximum = New Decimal(New Integer() {20, 0, 0, 0})
+        numSpacing.Minimum = New Decimal(New Integer() {0, 0, 0, 0})
+        numSpacing.Name = "numSpacing"
+        numSpacing.ReadOnly = False
+        numSpacing.Size = New Size(161, 24)
+        numSpacing.TabIndex = 2
+        numSpacing.TextAlign = HorizontalAlignment.Right
+        numSpacing.ThousandsSeparator = False
+        numSpacing.Value = New Decimal(New Integer() {0, 0, 0, 0})
+        ' 
         ' ucLinear
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        Controls.Add(lblSpacing)
+        Controls.Add(numSpacing)
         Controls.Add(lblNumOfLeds)
         Controls.Add(lblDirection)
         Controls.Add(btnOK)
@@ -102,7 +134,7 @@ Partial Class ucLinear
         Controls.Add(numAmount)
         ForeColor = Color.White
         Name = "ucLinear"
-        Size = New Size(272, 88)
+        Size = New Size(272, 118)
         ResumeLayout(False)
     End Sub
 
@@ -111,5 +143,7 @@ Partial Class ucLinear
     Friend WithEvents btnOK As NSButton
     Friend WithEvents cmbDirection As NSComboBox
     Friend WithEvents numAmount As NSNumericUpDown
+    Friend WithEvents lblSpacing As NSLabel
+    Friend WithEvents numSpacing As NSNumericUpDown
 
 End Class

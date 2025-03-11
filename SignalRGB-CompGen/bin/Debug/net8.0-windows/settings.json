@@ -1,5 +1,6 @@
 {
-  "Language": "zh-CN",
+  "Language": "en-US",
   "ShiftIndex": true,
-  "Debug": false
+  "Debug": false,
+  "DefaultSize": "20, 20"
 }
