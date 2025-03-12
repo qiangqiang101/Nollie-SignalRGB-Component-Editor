@@ -55,7 +55,9 @@
                 Text = Translation.Localization.UShape
                 NsTheme1.Text = Text
 
-                'todo
+                Dim ushape As New ucUShape(MaximumLED, Component, LEDPos)
+                pUserControl.Controls.Add(ushape)
+                ushape.Dock = DockStyle.Fill
             Case eMode.AddRectangle
                 Text = Translation.Localization.Rectangle
                 NsTheme1.Text = Text
@@ -67,7 +69,6 @@
 
                 Dim edit As New ucEdit(Component, SelectedItem)
                 pUserControl.Controls.Add(edit)
-
                 edit.Dock = DockStyle.Fill
             Case eMode.Remove
                 Text = Translation.Localization.RemoveLastLEDs

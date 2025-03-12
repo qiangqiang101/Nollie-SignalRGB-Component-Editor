@@ -19,6 +19,10 @@
         Return _text
     End Function
 
+    Public Overrides Function Equals(obj As Object) As Boolean
+        Return Me Is obj 'MyBase.Equals(obj)
+    End Function
+
     Public Sub New(ByVal text_ As String, ByVal value_ As T)
         _text = text_
         _value = value_

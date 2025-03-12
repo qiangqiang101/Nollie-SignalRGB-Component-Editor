@@ -156,23 +156,15 @@ Public Class frmMain
             Translation = New MyLanguage().Load($"languages\{Setting.Language}.json")
             Dim loc = Translation.Localization
 
-            DirectionDropdownList.Clear()
-            DirectionDropdownList.AddRange({
-                                           New DropdownListItem(Of eDirection)(loc.Up, eDirection.Up), New DropdownListItem(Of eDirection)(loc.Right, eDirection.Right),
-                                           New DropdownListItem(Of eDirection)(loc.Down, eDirection.Down), New DropdownListItem(Of eDirection)(loc.Left, eDirection.Left)
-                                           })
-            TypeDropdownList.Clear()
-            TypeDropdownList.AddRange({
-                                      New DropdownListItem(Of String)(loc.AIO, "aio"), New DropdownListItem(Of String)(loc.Cable, "cable"),
+            DirectionDropdownList.AddRange({New DropdownListItem(Of eDirection)(loc.Up, eDirection.Up), New DropdownListItem(Of eDirection)(loc.Right, eDirection.Right),
+                                           New DropdownListItem(Of eDirection)(loc.Down, eDirection.Down), New DropdownListItem(Of eDirection)(loc.Left, eDirection.Left)})
+            TypeDropdownList.AddRange({New DropdownListItem(Of String)(loc.AIO, "aio"), New DropdownListItem(Of String)(loc.Cable, "cable"),
                                       New DropdownListItem(Of String)(loc.Case, "case"), New DropdownListItem(Of String)(loc.Chair, "chair"),
                                       New DropdownListItem(Of String)(loc.Fan, "fan"), New DropdownListItem(Of String)(loc.Custom, "custom"),
                                       New DropdownListItem(Of String)(loc.Strip, "strip"), New DropdownListItem(Of String)(loc.WaterBlock, "water block"),
                                       New DropdownListItem(Of String)(loc.Tower, "tower"), New DropdownListItem(Of String)(loc.Heatsink, "heatsink"),
                                       New DropdownListItem(Of String)(loc.Desk, "desk")})
-
-            MatrixDropdownList.Clear()
-            MatrixDropdownList.AddRange({
-                                        New DropdownListItem(Of eMatrixOrder)(loc.HorizontalTopLeft, eMatrixOrder.HorizontalTopLeft),
+            MatrixDropdownList.AddRange({New DropdownListItem(Of eMatrixOrder)(loc.HorizontalTopLeft, eMatrixOrder.HorizontalTopLeft),
                                         New DropdownListItem(Of eMatrixOrder)(loc.HorizontalTopRight, eMatrixOrder.HorizontalTopRight),
                                         New DropdownListItem(Of eMatrixOrder)(loc.HorizontalBottomLeft, eMatrixOrder.HorizontalBottomLeft),
                                         New DropdownListItem(Of eMatrixOrder)(loc.HorizontalBottomRight, eMatrixOrder.HorizontalBottomRight),
@@ -180,10 +172,7 @@ Public Class frmMain
                                         New DropdownListItem(Of eMatrixOrder)(loc.VerticalTopRight, eMatrixOrder.VerticalTopRight),
                                         New DropdownListItem(Of eMatrixOrder)(loc.VerticalBottomLeft, eMatrixOrder.VerticalBottomLeft),
                                         New DropdownListItem(Of eMatrixOrder)(loc.VerticalBottomRight, eMatrixOrder.VerticalBottomRight)})
-
-            LShapeDropdownList.Clear()
-            LShapeDropdownList.AddRange({
-                                        New DropdownListItem(Of eLShapeOrder)(loc.DownRight, eLShapeOrder.DownRight),
+            LShapeDropdownList.AddRange({New DropdownListItem(Of eLShapeOrder)(loc.DownRight, eLShapeOrder.DownRight),
                                         New DropdownListItem(Of eLShapeOrder)(loc.DownLeft, eLShapeOrder.DownLeft),
                                         New DropdownListItem(Of eLShapeOrder)(loc.UpRight, eLShapeOrder.UpRight),
                                         New DropdownListItem(Of eLShapeOrder)(loc.UpLeft, eLShapeOrder.UpLeft),
@@ -191,6 +180,14 @@ Public Class frmMain
                                         New DropdownListItem(Of eLShapeOrder)(loc.RightUp, eLShapeOrder.RightUp),
                                         New DropdownListItem(Of eLShapeOrder)(loc.LeftDown, eLShapeOrder.LeftDown),
                                         New DropdownListItem(Of eLShapeOrder)(loc.LeftUp, eLShapeOrder.LeftUp)})
+            UShapeDropdownList.AddRange({New DropdownListItem(Of eUShapeOrder)(loc.DownRightUp, eUShapeOrder.DownRightUp),
+                                        New DropdownListItem(Of eUShapeOrder)(loc.DownLeftUp, eUShapeOrder.DownLeftUp),
+                                        New DropdownListItem(Of eUShapeOrder)(loc.UpRightDown, eUShapeOrder.UpRightDown),
+                                        New DropdownListItem(Of eUShapeOrder)(loc.UpLeftDown, eUShapeOrder.UpLeftDown),
+                                        New DropdownListItem(Of eUShapeOrder)(loc.RightDownLeft, eUShapeOrder.RightDownLeft),
+                                        New DropdownListItem(Of eUShapeOrder)(loc.RightUpLeft, eUShapeOrder.RightUpLeft),
+                                        New DropdownListItem(Of eUShapeOrder)(loc.LeftDownRight, eUShapeOrder.LeftDownRight),
+                                        New DropdownListItem(Of eUShapeOrder)(loc.LeftUpRight, eUShapeOrder.LeftUpRight)})
 
             Text = String.Format(loc.Title, loc.Untitled)
             NsTheme1.Text = Text

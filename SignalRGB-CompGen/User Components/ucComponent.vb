@@ -95,51 +95,79 @@ Public Class ucComponent
         Return result
     End Function
 
+    Public Sub AddUShape(g1 As Integer, g2 As Integer, g3 As Integer, _pos As Point, order As eUShapeOrder, spacing As Integer, rounded As Boolean)
+        Select Case order
+            Case eUShapeOrder.DownRightUp
+                Dim pos1 = AddLeds(g1, _pos, eDirection.Down, spacing, False)
+                Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Right, spacing)
+                If rounded Then pos2 = GetNextPointFrom(pos1, 1, eLShapeOrder.DownRight, spacing)
+                Dim pos3 = AddLeds(g2, pos2, eDirection.Right, spacing, False)
+                Dim pos4 = GetNextPointFrom(pos3, 1, eDirection.Right, spacing)
+                If rounded Then pos4 = GetNextPointFrom(pos3, 1, eLShapeOrder.RightUp, spacing)
+                AddLeds(g3, pos4, eDirection.Up, spacing, False)
+            Case eUShapeOrder.DownLeftUp
+
+            Case eUShapeOrder.UpRightDown
+
+            Case eUShapeOrder.UpLeftDown
+
+            Case eUShapeOrder.RightDownLeft
+
+            Case eUShapeOrder.RightUpLeft
+
+            Case eUShapeOrder.LeftDownRight
+
+            Case eUShapeOrder.LeftUpRight
+
+        End Select
+
+        PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)
+    End Sub
+
     Public Sub AddLShape(_leds As Integer, _pos As Point, order As eLShapeOrder, bendafter As Integer, spacing As Integer, rounded As Boolean)
-        Dim start As Integer = _leds - bendafter
-        Dim offset As Integer = If(rounded, spacing + 1, 1)
+        Dim x As Integer = _leds - bendafter
 
         Select Case order
             Case eLShapeOrder.DownRight
                 Dim lastPos = AddLeds(bendafter, _pos, eDirection.Down, spacing, False)
                 Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Right, spacing)
                 If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
-                AddLeds(start, nextPos, eDirection.Right, spacing, False)
+                AddLeds(x, nextPos, eDirection.Right, spacing, False)
             Case eLShapeOrder.DownLeft
                 Dim lastPos = AddLeds(bendafter, _pos, eDirection.Down, spacing, False)
                 Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Left, spacing)
                 If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
-                AddLeds(start, nextPos, eDirection.Left, spacing, False)
+                AddLeds(x, nextPos, eDirection.Left, spacing, False)
             Case eLShapeOrder.UpRight
                 Dim lastPos = AddLeds(bendafter, _pos, eDirection.Up, spacing, False)
                 Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Right, spacing)
                 If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
-                AddLeds(start, nextPos, eDirection.Right, spacing, False)
+                AddLeds(x, nextPos, eDirection.Right, spacing, False)
             Case eLShapeOrder.UpLeft
                 Dim lastPos = AddLeds(bendafter, _pos, eDirection.Up, spacing, False)
                 Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Left, spacing)
                 If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
-                AddLeds(start, nextPos, eDirection.Left, spacing, False)
+                AddLeds(x, nextPos, eDirection.Left, spacing, False)
             Case eLShapeOrder.RightDown
                 Dim lastPos = AddLeds(bendafter, _pos, eDirection.Right, spacing, False)
                 Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Down, spacing)
                 If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
-                AddLeds(start, nextPos, eDirection.Down, spacing, False)
+                AddLeds(x, nextPos, eDirection.Down, spacing, False)
             Case eLShapeOrder.RightUp
                 Dim lastPos = AddLeds(bendafter, _pos, eDirection.Right, spacing, False)
                 Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Up, spacing)
                 If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
-                AddLeds(start, nextPos, eDirection.Up, spacing, False)
+                AddLeds(x, nextPos, eDirection.Up, spacing, False)
             Case eLShapeOrder.LeftDown
                 Dim lastPos = AddLeds(bendafter, _pos, eDirection.Left, spacing, False)
                 Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Down, spacing)
                 If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
-                AddLeds(start, nextPos, eDirection.Down, spacing, False)
+                AddLeds(x, nextPos, eDirection.Down, spacing, False)
             Case eLShapeOrder.LeftUp
                 Dim lastPos = AddLeds(bendafter, _pos, eDirection.Left, spacing, False)
                 Dim nextPos = GetNextPointFrom(lastPos, 1, eDirection.Up, spacing)
                 If rounded Then nextPos = GetNextPointFrom(lastPos, 1, order, spacing)
-                AddLeds(start, nextPos, eDirection.Up, spacing, False)
+                AddLeds(x, nextPos, eDirection.Up, spacing, False)
         End Select
 
         PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)

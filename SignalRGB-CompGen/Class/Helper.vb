@@ -9,33 +9,12 @@ Module Helper
 
     Public SettingFile As String = "settings.json"
     Public Setting As MySettings = New MySettings()
-    Public TypeDropdownList As New List(Of DropdownListItem(Of String)) From {
-        New DropdownListItem(Of String)("AIO", "aio"), New DropdownListItem(Of String)("Cable", "cable"), New DropdownListItem(Of String)("Case", "case"),
-        New DropdownListItem(Of String)("Chair", "chair"), New DropdownListItem(Of String)("Fan", "fan"), New DropdownListItem(Of String)("Custom", "custom"),
-        New DropdownListItem(Of String)("Strip", "strip"), New DropdownListItem(Of String)("Water Block", "water block"), New DropdownListItem(Of String)("Tower", "tower"),
-        New DropdownListItem(Of String)("Heatsink", "heatsink"), New DropdownListItem(Of String)("Desk", "desk")}
-    Public DirectionDropdownList As New List(Of DropdownListItem(Of eDirection)) From {
-        New DropdownListItem(Of eDirection)("Up", eDirection.Up), New DropdownListItem(Of eDirection)("Right", eDirection.Right),
-        New DropdownListItem(Of eDirection)("Down", eDirection.Down), New DropdownListItem(Of eDirection)("Left", eDirection.Left)}
+    Public TypeDropdownList As New List(Of DropdownListItem(Of String))
+    Public DirectionDropdownList As New List(Of DropdownListItem(Of eDirection))
     Public LanguageDropdownList As New List(Of DropdownListItem(Of String))
-    Public MatrixDropdownList As New List(Of DropdownListItem(Of eMatrixOrder)) From {
-        New DropdownListItem(Of eMatrixOrder)("Horizontal Top Left", eMatrixOrder.HorizontalTopLeft),
-        New DropdownListItem(Of eMatrixOrder)("Horizontal Top Right", eMatrixOrder.HorizontalTopRight),
-        New DropdownListItem(Of eMatrixOrder)("Horizontal Bottom Left", eMatrixOrder.HorizontalBottomLeft),
-        New DropdownListItem(Of eMatrixOrder)("Horizontal Bottom Right", eMatrixOrder.HorizontalBottomRight),
-        New DropdownListItem(Of eMatrixOrder)("Vertical Top Left", eMatrixOrder.VerticalTopLeft),
-        New DropdownListItem(Of eMatrixOrder)("Vertical Top Right", eMatrixOrder.VerticalTopRight),
-        New DropdownListItem(Of eMatrixOrder)("Vertical Bottom Left", eMatrixOrder.VerticalBottomLeft),
-        New DropdownListItem(Of eMatrixOrder)("Vertical Bottom Right", eMatrixOrder.VerticalBottomRight)}
-    Public LShapeDropdownList As New List(Of DropdownListItem(Of eLShapeOrder)) From {
-        New DropdownListItem(Of eLShapeOrder)("↳ Downwards Right", eLShapeOrder.DownRight),
-        New DropdownListItem(Of eLShapeOrder)("↲ Downwards Left", eLShapeOrder.DownLeft),
-        New DropdownListItem(Of eLShapeOrder)("↱ Upwards Right", eLShapeOrder.UpRight),
-        New DropdownListItem(Of eLShapeOrder)("↰ Upwards Left", eLShapeOrder.UpLeft),
-        New DropdownListItem(Of eLShapeOrder)("↴ Rightwards Down", eLShapeOrder.RightDown),
-        New DropdownListItem(Of eLShapeOrder)("⬏ Rightwards Up", eLShapeOrder.RightUp),
-        New DropdownListItem(Of eLShapeOrder)("⬐ Leftwards Down", eLShapeOrder.LeftDown),
-        New DropdownListItem(Of eLShapeOrder)("⬑ Leftwards Up", eLShapeOrder.LeftUp)}
+    Public MatrixDropdownList As New List(Of DropdownListItem(Of eMatrixOrder))
+    Public LShapeDropdownList As New List(Of DropdownListItem(Of eLShapeOrder))
+    Public UShapeDropdownList As New List(Of DropdownListItem(Of eUShapeOrder))
     Public Translation As MyLanguage = New MyLanguage()
     Public UserMemory As New Memory()
 
@@ -255,4 +234,15 @@ Public Enum eLShapeOrder
     RightUp
     LeftDown
     LeftUp
+End Enum
+
+Public Enum eUShapeOrder
+    DownRightUp
+    DownLeftUp
+    UpRightDown
+    UpLeftDown
+    RightDownLeft
+    RightUpLeft
+    LeftDownRight
+    LeftUpRight
 End Enum

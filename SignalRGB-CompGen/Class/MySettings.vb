@@ -126,7 +126,7 @@ Public Class Localization
     Public Matrix As String = "Matrix"
     Public Linear As String = "Linear"
 
-    'Added on 11/03/2025
+    'Added on 12/03/2025
     Public DefaultSize As String = "Default Size"
     Public Spacing As String = "Spacing"
     Public LShape As String = "L-Shape"
@@ -142,5 +142,16 @@ Public Class Localization
     Public LeftDown As String = "⬐ Leftwards Down"
     Public LeftUp As String = "⬑ Leftwards Up"
     Public RoundedCorners As String = "Rounded Corners"
+
+    Public Oops As String = "Oops!"
+    Public InvalidLEDAmount As String = "Invalid LED Amount."
+    Public DownRightUp As String = "DownRightUp"
+    Public DownLeftUp As String = "DownLeftUp"
+    Public UpRightDown As String = "UpRightDown"
+    Public UpLeftDown As String = "UpLeftDown"
+    Public RightDownLeft As String = "RightDownLeft"
+    Public RightUpLeft As String = "RightUpLeft"
+    Public LeftDownRight As String = "LeftDownRight"
+    Public LeftUpRight As String = "LeftUpRight"
 
 End Class

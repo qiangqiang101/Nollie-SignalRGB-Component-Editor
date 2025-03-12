@@ -1,4 +1,6 @@
-﻿Public Class Memory
+﻿Imports System.Numerics
+
+Public Class Memory
 
     Public Direction As eDirection
     Public LEDAmount As Integer
@@ -6,9 +8,11 @@
     Public MatrixSerpentine As Boolean
     Public MatrixSize As Size
     Public LShapeOrder As eLShapeOrder
+    Public UShapeOrder As eUShapeOrder
     Public BendAfter As Integer
-    Public BendAfter2 As Integer
-    Public BendAfter3 As Integer
+    Public UShapeX As Integer
+    Public UShapeY As Integer
+    Public UShapeZ As Integer
     Public Spacing As Integer
     Public RoundedCorners As Boolean
 
@@ -19,9 +23,11 @@
         MatrixSerpentine = False
         MatrixSize = New Size(1, 1)
         LShapeOrder = eLShapeOrder.DownRight
+        UShapeOrder = eUShapeOrder.DownRightUp
         BendAfter = 1
-        BendAfter2 = 1
-        BendAfter3 = 1
+        UShapeX = 1
+        UShapeY = 1
+        UShapeZ = 1
         Spacing = 0
         RoundedCorners = False
     End Sub
