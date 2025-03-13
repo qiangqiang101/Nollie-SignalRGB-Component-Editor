@@ -29,10 +29,11 @@ Partial Class ucDelete
         ' 
         ' lblNumOfLeds
         ' 
+        lblNumOfLeds.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblNumOfLeds.Font = New Font("Segoe UI", 9F)
         lblNumOfLeds.Location = New Point(3, 3)
         lblNumOfLeds.Name = "lblNumOfLeds"
-        lblNumOfLeds.Size = New Size(93, 24)
+        lblNumOfLeds.Size = New Size(99, 24)
         lblNumOfLeds.TabIndex = 9
         lblNumOfLeds.Text = "Number of LEDs"
         lblNumOfLeds.Value1 = "Number of LEDs"

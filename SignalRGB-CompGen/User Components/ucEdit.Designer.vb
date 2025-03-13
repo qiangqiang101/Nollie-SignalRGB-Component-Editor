@@ -79,20 +79,22 @@ Partial Class ucEdit
         ' 
         ' lblName
         ' 
+        lblName.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblName.Font = New Font("Segoe UI", 9F)
         lblName.Location = New Point(3, 3)
         lblName.Name = "lblName"
-        lblName.Size = New Size(93, 24)
+        lblName.Size = New Size(99, 24)
         lblName.TabIndex = 14
         lblName.Value1 = "LED Name"
         lblName.Value2 = ""
         ' 
         ' lblCoordinates
         ' 
+        lblCoordinates.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblCoordinates.Font = New Font("Segoe UI", 9F)
         lblCoordinates.Location = New Point(3, 33)
         lblCoordinates.Name = "lblCoordinates"
-        lblCoordinates.Size = New Size(93, 24)
+        lblCoordinates.Size = New Size(99, 24)
         lblCoordinates.TabIndex = 15
         lblCoordinates.Text = "Direction"
         lblCoordinates.Value1 = "LED Coordinates"

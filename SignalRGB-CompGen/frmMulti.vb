@@ -34,6 +34,7 @@
                 Text = Translation.Localization.Linear
                 NsTheme1.Text = Text
 
+                Height = 170
                 Dim linear As New ucLinear(MaximumLED, Component, LEDPos)
                 pUserControl.Controls.Add(linear)
                 linear.Dock = DockStyle.Fill
@@ -41,6 +42,7 @@
                 Text = Translation.Localization.Matrix
                 NsTheme1.Text = Text
 
+                Height = 200
                 Dim matrix As New ucMatrix(MaximumLED, Component, LEDPos)
                 pUserControl.Controls.Add(matrix)
                 matrix.Dock = DockStyle.Fill
@@ -48,6 +50,7 @@
                 Text = Translation.Localization.LShape
                 NsTheme1.Text = Text
 
+                Height = 230
                 Dim lshape As New ucLShape(MaximumLED, Component, LEDPos)
                 pUserControl.Controls.Add(lshape)
                 lshape.Dock = DockStyle.Fill
@@ -55,6 +58,7 @@
                 Text = Translation.Localization.UShape
                 NsTheme1.Text = Text
 
+                Height = 260
                 Dim ushape As New ucUShape(MaximumLED, Component, LEDPos)
                 pUserControl.Controls.Add(ushape)
                 ushape.Dock = DockStyle.Fill
@@ -62,11 +66,13 @@
                 Text = Translation.Localization.Rectangle
                 NsTheme1.Text = Text
 
+                Height = 300
                 'todo
             Case eMode.Edit
                 Text = Translation.Localization.EditLED
                 NsTheme1.Text = Text
 
+                Height = 140
                 Dim edit As New ucEdit(Component, SelectedItem)
                 pUserControl.Controls.Add(edit)
                 edit.Dock = DockStyle.Fill
@@ -74,6 +80,7 @@
                 Text = Translation.Localization.RemoveLastLEDs
                 NsTheme1.Text = Text
 
+                Height = 110
                 Dim delete As New ucDelete(MaximumLED, Component, LEDPos)
                 pUserControl.Controls.Add(delete)
                 delete.Dock = DockStyle.Fill

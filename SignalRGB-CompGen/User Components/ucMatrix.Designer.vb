@@ -70,6 +70,7 @@ Partial Class ucMatrix
         ' 
         ' lblSize
         ' 
+        lblSize.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblSize.Font = New Font("Segoe UI", 9F)
         lblSize.Location = New Point(3, 3)
         lblSize.Name = "lblSize"
@@ -81,6 +82,7 @@ Partial Class ucMatrix
         ' 
         ' lblOrder
         ' 
+        lblOrder.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblOrder.Font = New Font("Segoe UI", 9F)
         lblOrder.Location = New Point(3, 33)
         lblOrder.Name = "lblOrder"
@@ -114,6 +116,7 @@ Partial Class ucMatrix
         ' 
         ' lblSpacing
         ' 
+        lblSpacing.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblSpacing.Font = New Font("Segoe UI", 9F)
         lblSpacing.Location = New Point(3, 63)
         lblSpacing.Name = "lblSpacing"
@@ -142,6 +145,7 @@ Partial Class ucMatrix
         ' 
         ' lblSerpentine
         ' 
+        lblSerpentine.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblSerpentine.Font = New Font("Segoe UI", 9F)
         lblSerpentine.Location = New Point(3, 93)
         lblSerpentine.Name = "lblSerpentine"

@@ -33,6 +33,7 @@ Partial Class ucLinear
         ' 
         ' lblNumOfLeds
         ' 
+        lblNumOfLeds.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblNumOfLeds.Font = New Font("Segoe UI", 9F)
         lblNumOfLeds.Location = New Point(3, 3)
         lblNumOfLeds.Name = "lblNumOfLeds"
@@ -44,6 +45,7 @@ Partial Class ucLinear
         ' 
         ' lblDirection
         ' 
+        lblDirection.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblDirection.Font = New Font("Segoe UI", 9F)
         lblDirection.Location = New Point(3, 33)
         lblDirection.Name = "lblDirection"
@@ -94,6 +96,7 @@ Partial Class ucLinear
         ' 
         ' lblSpacing
         ' 
+        lblSpacing.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblSpacing.Font = New Font("Segoe UI", 9F)
         lblSpacing.Location = New Point(3, 63)
         lblSpacing.Name = "lblSpacing"

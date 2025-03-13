@@ -3,16 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\uccomponent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\uccomponent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
+      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\ucdelete.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\ucdelete.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\ucedit.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\ucedit.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\uclinear.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\uclinear.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\ucushape.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\ucushape.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\ucmatrix.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\ucmatrix.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\uclshape.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
+      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\uclshape.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\signalrgb-compgen.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:signalrgb-compgen.vbproj||{04B8AB82-A572-4FEF-95CE-5222444B6B64}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\class\\mysettings.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:class\\mysettings.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\uccomponent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\uccomponent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\uccomponent.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
@@ -31,24 +63,12 @@
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\uclshape.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\uclinear.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\uclinear.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\class\\memory.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:class\\memory.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\class\\helper.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:class\\helper.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\ucushape.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\ucushape.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\uclshape.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\uclshape.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\frmsettings.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
@@ -67,32 +87,12 @@
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:frmsettings.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
-      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:frmmulti.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\ucmatrix.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\ucmatrix.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\frmimport.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:frmimport.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\uclinear.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
       "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\uclinear.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\ucedit.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\ucedit.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\user components\\ucdelete.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form",
-      "RelativeMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|solutionrelative:user components\\ucdelete.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}|Form"
     },
     {
       "AbsoluteMoniker": "D:0:0:{FE2F88D8-B141-4B84-BAF7-1C2BCE19B917}|SignalRGB-CompGen.vbproj|c:\\users\\admin\\documents\\github\\nollie-signalrgb-component-editor\\signalrgb-compgen\\frmimport.vb||{2C015C70-C72C-11D0-88C3-00A0C9110049}",
@@ -110,24 +110,119 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "ucUShape.vb",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucUShape.vb",
-              "RelativeDocumentMoniker": "User Components\\ucUShape.vb",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucUShape.vb",
-              "RelativeToolTip": "User Components\\ucUShape.vb",
-              "ViewState": "AgIAAGQAAAAAAAAAAAAAAIAAAAAuAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ucComponent.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucComponent.vb",
+              "RelativeDocumentMoniker": "User Components\\ucComponent.vb",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucComponent.vb [Design]",
+              "RelativeToolTip": "User Components\\ucComponent.vb [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-03-12T14:56:59.503Z",
+              "WhenOpened": "2025-03-10T16:24:26.271Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "frmSettings.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmSettings.vb",
+              "RelativeDocumentMoniker": "frmSettings.vb",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmSettings.vb [Design]",
+              "RelativeToolTip": "frmSettings.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-03-11T12:54:02.425Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ucMatrix.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucMatrix.vb",
+              "RelativeDocumentMoniker": "User Components\\ucMatrix.vb",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucMatrix.vb [Design]",
+              "RelativeToolTip": "User Components\\ucMatrix.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-03-09T09:00:09.233Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "SignalRGB-CompGen",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\SignalRGB-CompGen.vbproj",
+              "RelativeDocumentMoniker": "SignalRGB-CompGen.vbproj",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\SignalRGB-CompGen.vbproj",
+              "RelativeToolTip": "SignalRGB-CompGen.vbproj",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003380|",
+              "WhenOpened": "2025-03-09T14:55:13.33Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "frmMain.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmMain.vb",
+              "RelativeDocumentMoniker": "frmMain.vb",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmMain.vb [Design]",
+              "RelativeToolTip": "frmMain.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-09-17T15:20:36.498Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ucUShape.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucUShape.vb",
+              "RelativeDocumentMoniker": "User Components\\ucUShape.vb",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucUShape.vb [Design]",
+              "RelativeToolTip": "User Components\\ucUShape.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-03-12T14:54:19.396Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "frmMain.vb",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmMain.vb",
+              "RelativeDocumentMoniker": "frmMain.vb",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmMain.vb",
+              "RelativeToolTip": "frmMain.vb",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsBAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2024-09-17T15:23:25.231Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ucEdit.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucEdit.vb",
+              "RelativeDocumentMoniker": "User Components\\ucEdit.vb",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucEdit.vb [Design]",
+              "RelativeToolTip": "User Components\\ucEdit.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-03-09T09:02:16.367Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "ucDelete.vb [Design]",
+              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucDelete.vb",
+              "RelativeDocumentMoniker": "User Components\\ucDelete.vb",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucDelete.vb [Design]",
+              "RelativeToolTip": "User Components\\ucDelete.vb [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
+              "WhenOpened": "2025-03-09T08:13:53.314Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "ucComponent.vb",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucComponent.vb",
               "RelativeDocumentMoniker": "User Components\\ucComponent.vb",
@@ -140,92 +235,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ucComponent.vb [Design]",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucComponent.vb",
-              "RelativeDocumentMoniker": "User Components\\ucComponent.vb",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucComponent.vb [Design]",
-              "RelativeToolTip": "User Components\\ucComponent.vb [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-03-10T16:24:26.271Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "frmSettings.vb [Design]",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmSettings.vb",
-              "RelativeDocumentMoniker": "frmSettings.vb",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmSettings.vb [Design]",
-              "RelativeToolTip": "frmSettings.vb [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-03-11T12:54:02.425Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "ucMatrix.vb [Design]",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucMatrix.vb",
-              "RelativeDocumentMoniker": "User Components\\ucMatrix.vb",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucMatrix.vb [Design]",
-              "RelativeToolTip": "User Components\\ucMatrix.vb [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-03-09T09:00:09.233Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "SignalRGB-CompGen",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\SignalRGB-CompGen.vbproj",
-              "RelativeDocumentMoniker": "SignalRGB-CompGen.vbproj",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\SignalRGB-CompGen.vbproj",
-              "RelativeToolTip": "SignalRGB-CompGen.vbproj",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003380|",
-              "WhenOpened": "2025-03-09T14:55:13.33Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 13,
-              "Title": "frmMain.vb [Design]",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmMain.vb",
-              "RelativeDocumentMoniker": "frmMain.vb",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmMain.vb [Design]",
-              "RelativeToolTip": "frmMain.vb [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-09-17T15:20:36.498Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "ucUShape.vb [Design]",
+              "Title": "ucUShape.vb",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucUShape.vb",
               "RelativeDocumentMoniker": "User Components\\ucUShape.vb",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucUShape.vb [Design]",
-              "RelativeToolTip": "User Components\\ucUShape.vb [Design]",
+              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucUShape.vb",
+              "RelativeToolTip": "User Components\\ucUShape.vb",
+              "ViewState": "AgIAAGQAAAAAAAAAAAAAAIAAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-03-12T14:54:19.396Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "frmMain.vb",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmMain.vb",
-              "RelativeDocumentMoniker": "frmMain.vb",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmMain.vb",
-              "RelativeToolTip": "frmMain.vb",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABsBAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-09-17T15:23:25.231Z",
+              "WhenOpened": "2025-03-12T14:56:59.503Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 20,
               "Title": "frmSettings.vb",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmSettings.vb",
               "RelativeDocumentMoniker": "frmSettings.vb",
@@ -233,12 +256,11 @@
               "RelativeToolTip": "frmSettings.vb",
               "ViewState": "AgIAABMAAAAAAAAAAAAgwBAAAAAuAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-09-17T15:32:09.208Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-17T15:32:09.208Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 19,
               "Title": "ucMatrix.vb",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucMatrix.vb",
               "RelativeDocumentMoniker": "User Components\\ucMatrix.vb",
@@ -247,30 +269,6 @@
               "ViewState": "AgIAABYAAAAAAAAAAAAcwDYAAAAkAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
               "WhenOpened": "2025-03-09T09:14:15.466Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 22,
-              "Title": "ucDelete.vb [Design]",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucDelete.vb",
-              "RelativeDocumentMoniker": "User Components\\ucDelete.vb",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucDelete.vb [Design]",
-              "RelativeToolTip": "User Components\\ucDelete.vb [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-03-09T08:13:53.314Z",
-              "EditorCaption": " [Design]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 21,
-              "Title": "ucEdit.vb [Design]",
-              "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucEdit.vb",
-              "RelativeDocumentMoniker": "User Components\\ucEdit.vb",
-              "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucEdit.vb [Design]",
-              "RelativeToolTip": "User Components\\ucEdit.vb [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-03-09T09:02:16.367Z",
-              "EditorCaption": " [Design]"
             }
           ]
         }
@@ -291,11 +289,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 21,
               "Title": "frmImport.vb [Design]",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmImport.vb",
               "RelativeDocumentMoniker": "frmImport.vb",
@@ -319,7 +317,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 10,
               "Title": "MySettings.vb",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\Class\\MySettings.vb",
               "RelativeDocumentMoniker": "Class\\MySettings.vb",
@@ -344,7 +342,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 2,
               "Title": "frmMulti.vb [Design]",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmMulti.vb",
               "RelativeDocumentMoniker": "frmMulti.vb",
@@ -356,19 +354,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 1,
               "Title": "frmMulti.vb",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmMulti.vb",
               "RelativeDocumentMoniker": "frmMulti.vb",
               "ToolTip": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\frmMulti.vb",
               "RelativeToolTip": "frmMulti.vb",
-              "ViewState": "AgIAABcAAAAAAAAAAAAuwEsAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAABUAAAAAAAAAAAAmwFIAAAAbAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-09-18T15:55:48.124Z"
+              "WhenOpened": "2024-09-18T15:55:48.124Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 22,
               "Title": "ucLinear.vb",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucLinear.vb",
               "RelativeDocumentMoniker": "User Components\\ucLinear.vb",
@@ -381,7 +380,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 5,
               "Title": "ucLinear.vb [Design]",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucLinear.vb",
               "RelativeDocumentMoniker": "User Components\\ucLinear.vb",
@@ -393,7 +392,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 16,
               "Title": "Helper.vb",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\Class\\Helper.vb",
               "RelativeDocumentMoniker": "Class\\Helper.vb",
@@ -401,12 +400,11 @@
               "RelativeToolTip": "Class\\Helper.vb",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2024-09-17T17:21:54.579Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-09-17T17:21:54.579Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 15,
               "Title": "Memory.vb",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\Class\\Memory.vb",
               "RelativeDocumentMoniker": "Class\\Memory.vb",
@@ -414,12 +412,11 @@
               "RelativeToolTip": "Class\\Memory.vb",
               "ViewState": "AgIAAAAAAAAAAAAAAAAqwBwAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-03-09T07:39:49.4Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-09T07:39:49.4Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 8,
               "Title": "ucLShape.vb [Design]",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucLShape.vb",
               "RelativeDocumentMoniker": "User Components\\ucLShape.vb",
@@ -431,7 +428,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 14,
               "Title": "ucLShape.vb",
               "DocumentMoniker": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\User Components\\ucLShape.vb",
               "RelativeDocumentMoniker": "User Components\\ucLShape.vb",
@@ -439,8 +436,7 @@
               "RelativeToolTip": "User Components\\ucLShape.vb",
               "ViewState": "AgIAAFgAAAAAAAAAAAAEwHkAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003361|",
-              "WhenOpened": "2025-03-10T15:21:21.019Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-10T15:21:21.019Z"
             }
           ]
         }

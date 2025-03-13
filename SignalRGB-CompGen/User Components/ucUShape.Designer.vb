@@ -39,6 +39,7 @@ Partial Class ucUShape
         ' 
         ' lblRoundedCorners
         ' 
+        lblRoundedCorners.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblRoundedCorners.Font = New Font("Segoe UI", 9F)
         lblRoundedCorners.Location = New Point(3, 153)
         lblRoundedCorners.Name = "lblRoundedCorners"
@@ -62,6 +63,7 @@ Partial Class ucUShape
         ' 
         ' lblSpacing
         ' 
+        lblSpacing.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblSpacing.Font = New Font("Segoe UI", 9F)
         lblSpacing.Location = New Point(3, 123)
         lblSpacing.Name = "lblSpacing"
@@ -90,6 +92,7 @@ Partial Class ucUShape
         ' 
         ' lblY
         ' 
+        lblY.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblY.Font = New Font("Segoe UI", 9F)
         lblY.Location = New Point(3, 63)
         lblY.Name = "lblY"
@@ -118,6 +121,7 @@ Partial Class ucUShape
         ' 
         ' lblOrder
         ' 
+        lblOrder.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblOrder.Font = New Font("Segoe UI", 9F)
         lblOrder.Location = New Point(3, 3)
         lblOrder.Name = "lblOrder"
@@ -142,6 +146,7 @@ Partial Class ucUShape
         ' 
         ' lblX
         ' 
+        lblX.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblX.Font = New Font("Segoe UI", 9F)
         lblX.Location = New Point(3, 33)
         lblX.Name = "lblX"
@@ -179,6 +184,7 @@ Partial Class ucUShape
         ' 
         ' lblZ
         ' 
+        lblZ.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         lblZ.Font = New Font("Segoe UI", 9F)
         lblZ.Location = New Point(3, 93)
         lblZ.Name = "lblZ"

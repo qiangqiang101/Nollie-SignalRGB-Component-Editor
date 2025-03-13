@@ -16,7 +16,7 @@ Imports System.Reflection
 <Assembly: System.Reflection.AssemblyCompanyAttribute("Haikou Nuoli Trading Co., Ltd."),  _
  Assembly: System.Reflection.AssemblyConfigurationAttribute("Debug"),  _
  Assembly: System.Reflection.AssemblyFileVersionAttribute("1.9.1"),  _
- Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.9.1+fa4c950a5d7d2012808cca602566b2446e140c7f"),  _
+ Assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.9.1+8d6924f167755ba4630318c729d44ade7dbf2fdf"),  _
  Assembly: System.Reflection.AssemblyProductAttribute("compeditor"),  _
  Assembly: System.Reflection.AssemblyTitleAttribute("compeditor"),  _
  Assembly: System.Reflection.AssemblyVersionAttribute("1.9.1"),  _

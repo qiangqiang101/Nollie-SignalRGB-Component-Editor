@@ -46,7 +46,7 @@ Partial Class frmMulti
         NsTheme1.NoRounding = False
         NsTheme1.Padding = New Padding(3, 33, 3, 3)
         NsTheme1.Sizable = False
-        NsTheme1.Size = New Size(284, 211)
+        NsTheme1.Size = New Size(334, 261)
         NsTheme1.SmartBounds = True
         NsTheme1.StartPosition = FormStartPosition.CenterScreen
         NsTheme1.TabIndex = 5
@@ -58,14 +58,14 @@ Partial Class frmMulti
         pUserControl.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
         pUserControl.Location = New Point(6, 36)
         pUserControl.Name = "pUserControl"
-        pUserControl.Size = New Size(272, 169)
+        pUserControl.Size = New Size(322, 219)
         pUserControl.TabIndex = 6
         ' 
         ' btnClose
         ' 
         btnClose.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         btnClose.ControlButton = NSControlButton.Button.Close
-        btnClose.Location = New Point(261, 5)
+        btnClose.Location = New Point(311, 5)
         btnClose.Margin = New Padding(0)
         btnClose.MaximumSize = New Size(18, 20)
         btnClose.MinimumSize = New Size(18, 20)
@@ -78,7 +78,7 @@ Partial Class frmMulti
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(284, 211)
+        ClientSize = New Size(334, 261)
         Controls.Add(NsTheme1)
         FormBorderStyle = FormBorderStyle.FixedSingle
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
