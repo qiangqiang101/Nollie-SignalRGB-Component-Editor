@@ -57,7 +57,6 @@
 
         Text = loc.LShape
         ParentForm.Text = loc.LShape
-
         lblOrder.Value1 = loc.Order
         btnOK.Text = loc.Confirm
         lblSpacing.Value1 = loc.Spacing
@@ -65,78 +64,82 @@
 
         Select Case UserMemory.UShapeOrder
             Case eUShapeOrder.DownRightUp
-                lblX.Value1 = loc.Down
-                lblY.Value1 = loc.Right
-                lblZ.Value1 = loc.Up
+                lblX.Value1 = loc.DownAmount
+                lblY.Value1 = loc.RightAmount
+                lblZ.Value1 = loc.UpAmount
             Case eUShapeOrder.DownLeftUp
-                lblX.Value1 = loc.Down
-                lblY.Value1 = loc.Left
-                lblZ.Value1 = loc.Up
+                lblX.Value1 = loc.DownAmount
+                lblY.Value1 = loc.LeftAmount
+                lblZ.Value1 = loc.UpAmount
             Case eUShapeOrder.UpRightDown
-                lblX.Value1 = loc.Up
-                lblY.Value1 = loc.Right
-                lblZ.Value1 = loc.Down
+                lblX.Value1 = loc.UpAmount
+                lblY.Value1 = loc.RightAmount
+                lblZ.Value1 = loc.DownAmount
             Case eUShapeOrder.UpLeftDown
-                lblX.Value1 = loc.Up
-                lblY.Value1 = loc.Left
-                lblZ.Value1 = loc.Down
+                lblX.Value1 = loc.UpAmount
+                lblY.Value1 = loc.LeftAmount
+                lblZ.Value1 = loc.DownAmount
             Case eUShapeOrder.RightDownLeft
-                lblX.Value1 = loc.Right
-                lblY.Value1 = loc.Down
-                lblZ.Value1 = loc.Left
+                lblX.Value1 = loc.RightAmount
+                lblY.Value1 = loc.DownAmount
+                lblZ.Value1 = loc.LeftAmount
             Case eUShapeOrder.RightUpLeft
-                lblX.Value1 = loc.Right
-                lblY.Value1 = loc.Up
-                lblZ.Value1 = loc.Left
+                lblX.Value1 = loc.RightAmount
+                lblY.Value1 = loc.UpAmount
+                lblZ.Value1 = loc.LeftAmount
             Case eUShapeOrder.LeftDownRight
-                lblX.Value1 = loc.Left
-                lblY.Value1 = loc.Down
-                lblZ.Value1 = loc.Right
+                lblX.Value1 = loc.LeftAmount
+                lblY.Value1 = loc.DownAmount
+                lblZ.Value1 = loc.RightAmount
             Case eUShapeOrder.LeftUpRight
-                lblX.Value1 = loc.Left
-                lblY.Value1 = loc.Up
-                lblZ.Value1 = loc.Right
+                lblX.Value1 = loc.LeftAmount
+                lblY.Value1 = loc.UpAmount
+                lblZ.Value1 = loc.RightAmount
         End Select
     End Sub
 
     Private Sub cmbOrder_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbOrder.SelectedIndexChanged
         Dim loc = Translation.Localization
-        Dim selectedItem As eUShapeOrder = DirectCast([Enum].Parse(GetType(eUShapeOrder), cmbOrder.SelectedValue.ToString), eUShapeOrder)
+        Try
+            Dim selectedItem As eUShapeOrder = DirectCast([Enum].Parse(GetType(eUShapeOrder), cmbOrder.SelectedValue.ToString), eUShapeOrder)
 
-        Select Case selectedItem
-            Case eUShapeOrder.DownRightUp
-                lblX.Value1 = loc.Down
-                lblY.Value1 = loc.Right
-                lblZ.Value1 = loc.Up
-            Case eUShapeOrder.DownLeftUp
-                lblX.Value1 = loc.Down
-                lblY.Value1 = loc.Left
-                lblZ.Value1 = loc.Up
-            Case eUShapeOrder.UpRightDown
-                lblX.Value1 = loc.Up
-                lblY.Value1 = loc.Right
-                lblZ.Value1 = loc.Down
-            Case eUShapeOrder.UpLeftDown
-                lblX.Value1 = loc.Up
-                lblY.Value1 = loc.Left
-                lblZ.Value1 = loc.Down
-            Case eUShapeOrder.RightDownLeft
-                lblX.Value1 = loc.Right
-                lblY.Value1 = loc.Down
-                lblZ.Value1 = loc.Left
-            Case eUShapeOrder.RightUpLeft
-                lblX.Value1 = loc.Right
-                lblY.Value1 = loc.Up
-                lblZ.Value1 = loc.Left
-            Case eUShapeOrder.LeftDownRight
-                lblX.Value1 = loc.Left
-                lblY.Value1 = loc.Down
-                lblZ.Value1 = loc.Right
-            Case eUShapeOrder.LeftUpRight
-                lblX.Value1 = loc.Left
-                lblY.Value1 = loc.Up
-                lblZ.Value1 = loc.Right
-        End Select
+            Select Case selectedItem
+                Case eUShapeOrder.DownRightUp
+                    lblX.Value1 = loc.DownAmount
+                    lblY.Value1 = loc.RightAmount
+                    lblZ.Value1 = loc.UpAmount
+                Case eUShapeOrder.DownLeftUp
+                    lblX.Value1 = loc.DownAmount
+                    lblY.Value1 = loc.LeftAmount
+                    lblZ.Value1 = loc.UpAmount
+                Case eUShapeOrder.UpRightDown
+                    lblX.Value1 = loc.UpAmount
+                    lblY.Value1 = loc.RightAmount
+                    lblZ.Value1 = loc.DownAmount
+                Case eUShapeOrder.UpLeftDown
+                    lblX.Value1 = loc.UpAmount
+                    lblY.Value1 = loc.LeftAmount
+                    lblZ.Value1 = loc.DownAmount
+                Case eUShapeOrder.RightDownLeft
+                    lblX.Value1 = loc.RightAmount
+                    lblY.Value1 = loc.DownAmount
+                    lblZ.Value1 = loc.LeftAmount
+                Case eUShapeOrder.RightUpLeft
+                    lblX.Value1 = loc.RightAmount
+                    lblY.Value1 = loc.UpAmount
+                    lblZ.Value1 = loc.LeftAmount
+                Case eUShapeOrder.LeftDownRight
+                    lblX.Value1 = loc.LeftAmount
+                    lblY.Value1 = loc.DownAmount
+                    lblZ.Value1 = loc.RightAmount
+                Case eUShapeOrder.LeftUpRight
+                    lblX.Value1 = loc.LeftAmount
+                    lblY.Value1 = loc.UpAmount
+                    lblZ.Value1 = loc.RightAmount
+            End Select
+        Catch ex As Exception
+            'shut up
+        End Try
     End Sub
 
     Private Sub numAmount_ValueChanged(sender As Object, e As EventArgs) Handles numAmountX.ValueChanged, numAmountX.TextChanged,

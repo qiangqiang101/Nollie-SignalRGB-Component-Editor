@@ -22,29 +22,29 @@ Partial Class ucLShape
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        lblNumOfLeds = New NSLabel()
+        lblX = New NSLabel()
         btnOK = New NSButton()
-        numAmount = New NSNumericUpDown()
+        numAmountX = New NSNumericUpDown()
         lblOrder = New NSLabel()
         cmbOrder = New NSComboBox()
-        lblBend = New NSLabel()
-        numBendAfter = New NSNumericUpDown()
+        lblY = New NSLabel()
+        numAmountY = New NSNumericUpDown()
         lblSpacing = New NSLabel()
         numSpacing = New NSNumericUpDown()
         cbRoundedCorners = New NSOnOffBox()
         lblRoundedCorners = New NSLabel()
         SuspendLayout()
         ' 
-        ' lblNumOfLeds
+        ' lblX
         ' 
-        lblNumOfLeds.Font = New Font("Segoe UI", 9F)
-        lblNumOfLeds.Location = New Point(3, 3)
-        lblNumOfLeds.Name = "lblNumOfLeds"
-        lblNumOfLeds.Size = New Size(99, 24)
-        lblNumOfLeds.TabIndex = 13
-        lblNumOfLeds.Text = "Number of LEDs"
-        lblNumOfLeds.Value1 = "Number of LEDs"
-        lblNumOfLeds.Value2 = ""
+        lblX.Font = New Font("Segoe UI", 9F)
+        lblX.Location = New Point(3, 33)
+        lblX.Name = "lblX"
+        lblX.Size = New Size(99, 24)
+        lblX.TabIndex = 13
+        lblX.Text = "Number of LEDs"
+        lblX.Value1 = "X"
+        lblX.Value2 = ""
         ' 
         ' btnOK
         ' 
@@ -55,27 +55,27 @@ Partial Class ucLShape
         btnOK.TabIndex = 5
         btnOK.Text = "Confirm"
         ' 
-        ' numAmount
+        ' numAmountX
         ' 
-        numAmount.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        numAmount.DecimalPlaces = 0
-        numAmount.Increment = 1
-        numAmount.InterceptArrowKeys = True
-        numAmount.Location = New Point(108, 3)
-        numAmount.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        numAmount.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        numAmount.Name = "numAmount"
-        numAmount.ReadOnly = False
-        numAmount.Size = New Size(161, 24)
-        numAmount.TabIndex = 0
-        numAmount.TextAlign = HorizontalAlignment.Right
-        numAmount.ThousandsSeparator = False
-        numAmount.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        numAmountX.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        numAmountX.DecimalPlaces = 0
+        numAmountX.Increment = 1
+        numAmountX.InterceptArrowKeys = True
+        numAmountX.Location = New Point(108, 33)
+        numAmountX.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        numAmountX.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        numAmountX.Name = "numAmountX"
+        numAmountX.ReadOnly = False
+        numAmountX.Size = New Size(161, 24)
+        numAmountX.TabIndex = 1
+        numAmountX.TextAlign = HorizontalAlignment.Right
+        numAmountX.ThousandsSeparator = False
+        numAmountX.Value = New Decimal(New Integer() {1, 0, 0, 0})
         ' 
         ' lblOrder
         ' 
         lblOrder.Font = New Font("Segoe UI", 9F)
-        lblOrder.Location = New Point(3, 33)
+        lblOrder.Location = New Point(3, 3)
         lblOrder.Name = "lblOrder"
         lblOrder.Size = New Size(99, 24)
         lblOrder.TabIndex = 22
@@ -91,38 +91,38 @@ Partial Class ucLShape
         cmbOrder.DropDownStyle = ComboBoxStyle.DropDownList
         cmbOrder.ForeColor = Color.White
         cmbOrder.FormattingEnabled = True
-        cmbOrder.Location = New Point(108, 33)
+        cmbOrder.Location = New Point(108, 3)
         cmbOrder.Name = "cmbOrder"
         cmbOrder.Size = New Size(161, 24)
-        cmbOrder.TabIndex = 1
+        cmbOrder.TabIndex = 0
         ' 
-        ' lblBend
+        ' lblY
         ' 
-        lblBend.Font = New Font("Segoe UI", 9F)
-        lblBend.Location = New Point(3, 63)
-        lblBend.Name = "lblBend"
-        lblBend.Size = New Size(99, 24)
-        lblBend.TabIndex = 24
-        lblBend.Text = "Bend after"
-        lblBend.Value1 = "Bend after"
-        lblBend.Value2 = ""
+        lblY.Font = New Font("Segoe UI", 9F)
+        lblY.Location = New Point(3, 63)
+        lblY.Name = "lblY"
+        lblY.Size = New Size(99, 24)
+        lblY.TabIndex = 24
+        lblY.Text = "Bend after"
+        lblY.Value1 = "Y"
+        lblY.Value2 = ""
         ' 
-        ' numBendAfter
+        ' numAmountY
         ' 
-        numBendAfter.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        numBendAfter.DecimalPlaces = 0
-        numBendAfter.Increment = 1
-        numBendAfter.InterceptArrowKeys = True
-        numBendAfter.Location = New Point(108, 63)
-        numBendAfter.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        numBendAfter.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        numBendAfter.Name = "numBendAfter"
-        numBendAfter.ReadOnly = False
-        numBendAfter.Size = New Size(161, 24)
-        numBendAfter.TabIndex = 2
-        numBendAfter.TextAlign = HorizontalAlignment.Right
-        numBendAfter.ThousandsSeparator = False
-        numBendAfter.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        numAmountY.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        numAmountY.DecimalPlaces = 0
+        numAmountY.Increment = 1
+        numAmountY.InterceptArrowKeys = True
+        numAmountY.Location = New Point(108, 63)
+        numAmountY.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
+        numAmountY.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        numAmountY.Name = "numAmountY"
+        numAmountY.ReadOnly = False
+        numAmountY.Size = New Size(161, 24)
+        numAmountY.TabIndex = 2
+        numAmountY.TextAlign = HorizontalAlignment.Right
+        numAmountY.ThousandsSeparator = False
+        numAmountY.Value = New Decimal(New Integer() {1, 0, 0, 0})
         ' 
         ' lblSpacing
         ' 
@@ -184,26 +184,26 @@ Partial Class ucLShape
         Controls.Add(cbRoundedCorners)
         Controls.Add(lblSpacing)
         Controls.Add(numSpacing)
-        Controls.Add(lblBend)
-        Controls.Add(numBendAfter)
+        Controls.Add(lblY)
+        Controls.Add(numAmountY)
         Controls.Add(lblOrder)
         Controls.Add(cmbOrder)
-        Controls.Add(lblNumOfLeds)
+        Controls.Add(lblX)
         Controls.Add(btnOK)
-        Controls.Add(numAmount)
+        Controls.Add(numAmountX)
         ForeColor = Color.White
         Name = "ucLShape"
         Size = New Size(272, 182)
         ResumeLayout(False)
     End Sub
 
-    Friend WithEvents lblNumOfLeds As NSLabel
+    Friend WithEvents lblX As NSLabel
     Friend WithEvents btnOK As NSButton
-    Friend WithEvents numAmount As NSNumericUpDown
+    Friend WithEvents numAmountX As NSNumericUpDown
     Friend WithEvents lblOrder As NSLabel
     Friend WithEvents cmbOrder As NSComboBox
-    Friend WithEvents lblBend As NSLabel
-    Friend WithEvents numBendAfter As NSNumericUpDown
+    Friend WithEvents lblY As NSLabel
+    Friend WithEvents numAmountY As NSNumericUpDown
     Friend WithEvents lblSpacing As NSLabel
     Friend WithEvents numSpacing As NSNumericUpDown
     Friend WithEvents cbRoundedCorners As NSOnOffBox

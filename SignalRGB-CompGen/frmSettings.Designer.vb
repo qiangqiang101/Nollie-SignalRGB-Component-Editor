@@ -62,10 +62,11 @@ Partial Class frmSettings
         ' 
         ' cbShiftLedPosition
         ' 
+        cbShiftLedPosition.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         cbShiftLedPosition.Checked = False
         cbShiftLedPosition.Location = New Point(12, 96)
         cbShiftLedPosition.Name = "cbShiftLedPosition"
-        cbShiftLedPosition.Size = New Size(188, 19)
+        cbShiftLedPosition.Size = New Size(360, 19)
         cbShiftLedPosition.TabIndex = 3
         cbShiftLedPosition.Text = "Shift Displaying LED index by 1"
         ' 
@@ -80,10 +81,11 @@ Partial Class frmSettings
         ' 
         ' cbConsole
         ' 
+        cbConsole.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         cbConsole.Checked = False
         cbConsole.Location = New Point(12, 121)
         cbConsole.Name = "cbConsole"
-        cbConsole.Size = New Size(69, 19)
+        cbConsole.Size = New Size(360, 19)
         cbConsole.TabIndex = 4
         cbConsole.Text = "Console"
         ' 
@@ -121,6 +123,7 @@ Partial Class frmSettings
         ' 
         ' numWidth
         ' 
+        numWidth.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         numWidth.DecimalPlaces = 0
         numWidth.Increment = 1
         numWidth.InterceptArrowKeys = True
@@ -137,6 +140,7 @@ Partial Class frmSettings
         ' 
         ' numHeight
         ' 
+        numHeight.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         numHeight.DecimalPlaces = 0
         numHeight.Increment = 1
         numHeight.InterceptArrowKeys = True

@@ -9,6 +9,7 @@ Imports Newtonsoft.Json
 
 Public Class frmMain
 
+    Private MarginAll As Integer = 100
     Public FileName As String = Nothing
     Public Component As New Component()
     Public WithEvents ucCompoment As ucComponent = Nothing
@@ -47,7 +48,7 @@ Public Class frmMain
             Next
 
             ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.None,
-                .Size = New Size(Component.Width * 50 + ucCompoment.Margin.All, Component.Height * 50 + ucCompoment.Margin.All), .LEDs = LEDs,
+                .Size = New Size(Component.Width * 50 + MarginAll, Component.Height * 50 + MarginAll), .LEDs = LEDs,
                 .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
             SplitContainer1.Panel1.Controls.Add(ucCompoment)
             ucCompoment.Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
@@ -143,7 +144,7 @@ Public Class frmMain
         numHeight.Value = Setting.DefaultSize.Height
 
         ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = Setting.DefaultSize.Width, ._Height = Setting.DefaultSize.Height,
-            .BorderStyle = BorderStyle.None, .Location = New Point(0, 0), .Size = New Size(350, 350),
+            .BorderStyle = BorderStyle.None, .Location = New Point(0, 0), .Size = New Size(Setting.DefaultSize.Width * 50 + MarginAll, Setting.DefaultSize.Width * 50 + MarginAll),
             .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
         SplitContainer1.Panel1.Controls.Add(ucCompoment)
         ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
@@ -279,15 +280,15 @@ Public Class frmMain
         txtBrand.Clear
         txtProduct.Clear
         txtName.Clear
-        numWidth.Value = 5
-        numHeight.Value = 5
+        numWidth.Value = Setting.DefaultSize.Width
+        numHeight.Value = Setting.DefaultSize.Height
         txtLedCount.Text = 0
         cmbType.SelectedIndex = 0
         pbImage.Image = My.Resources._1
         txtWebImageUrl.Clear
 
         ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = Setting.DefaultSize.Width, ._Height = Setting.DefaultSize.Height, .ForeColor = Color.White,
-            .BorderStyle = BorderStyle.None, .Size = New Size(350, 350), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
+            .BorderStyle = BorderStyle.None, .Size = New Size(Setting.DefaultSize.Width * 50 + MarginAll, Setting.DefaultSize.Width * 50 + MarginAll), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
         SplitContainer1.Panel1.Controls.Add(ucCompoment)
         ucCompoment.Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
         ucCompoment.BringToFront()
@@ -336,7 +337,7 @@ Public Class frmMain
                 Next
 
                 ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.None,
-                    .Size = New Size((Component.Width * 50) + ucCompoment.Margin.All, (Component.Height * 50) + ucCompoment.Margin.All), .LEDs = LEDs,
+                    .Size = New Size((Component.Width * 50) + MarginAll, (Component.Height * 50) + MarginAll), .LEDs = LEDs,
                     .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
                 SplitContainer1.Panel1.Controls.Add(ucCompoment)
                 ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))

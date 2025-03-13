@@ -698,6 +698,7 @@ Partial Class frmMain
         Name = "frmMain"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Untitled - Nollie x SignalRGB Custom Component Editor"
+        WindowState = FormWindowState.Maximized
         RightPanel.ResumeLayout(False)
         RightPanel.PerformLayout()
         tlpImageControls.ResumeLayout(False)

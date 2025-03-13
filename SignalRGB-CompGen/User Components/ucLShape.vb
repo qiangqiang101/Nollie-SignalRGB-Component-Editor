@@ -16,15 +16,15 @@
     End Sub
 
     Private Sub btnOK_Click(sender As Object, e As EventArgs) Handles btnOK.Click
-        Component.AddLShape(CInt(numAmount.Value), LEDPos, CType(cmbOrder.SelectedValue, eLShapeOrder),
-                            CInt(numBendAfter.Value), CInt(numSpacing.Value), cbRoundedCorners.Checked)
+        Component.AddLShape(CInt(numAmountX.Value), CInt(numAmountY.Value), LEDPos, CType(cmbOrder.SelectedValue, eLShapeOrder),
+                            CInt(numSpacing.Value), cbRoundedCorners.Checked)
         Component.Invalidate()
 
         'Save to temporary memory
         With UserMemory
-            .LEDAmount = CInt(numAmount.Value)
             .LShapeOrder = CType(cmbOrder.SelectedValue, eLShapeOrder)
-            .BendAfter = CInt(numBendAfter.Value)
+            .LShapeX = CInt(numAmountX.Value)
+            .LShapeY = CInt(numAmountY.Value)
             .Spacing = CInt(numSpacing.Value)
             .RoundedCorners = cbRoundedCorners.Checked
         End With
@@ -43,9 +43,9 @@
         End With
 
         'Load from temporary memory
-        numAmount.Value = UserMemory.LEDAmount
         cmbOrder.SelectedValue = UserMemory.LShapeOrder
-        numBendAfter.Value = UserMemory.BendAfter
+        numAmountX.Value = UserMemory.LShapeX
+        numAmountY.Value = UserMemory.LShapeY
         numSpacing.Value = UserMemory.Spacing
         cbRoundedCorners.Checked = UserMemory.RoundedCorners
     End Sub
@@ -55,17 +55,82 @@
 
         Text = loc.LShape
         ParentForm.Text = loc.LShape
-        lblNumOfLeds.Value1 = loc.NumberOfLEDs
         lblOrder.Value1 = loc.Order
-        lblBend.Value1 = loc.BendAfter
         btnOK.Text = loc.Confirm
         lblSpacing.Value1 = loc.Spacing
         lblRoundedCorners.Value1 = loc.RoundedCorners
+
+        Select Case UserMemory.LShapeOrder
+            Case eLShapeOrder.DownRight
+                lblX.Value1 = loc.DownAmount
+                lblY.Value1 = loc.RightAmount
+            Case eLShapeOrder.DownLeft
+                lblX.Value1 = loc.DownAmount
+                lblY.Value1 = loc.LeftAmount
+            Case eLShapeOrder.UpRight
+                lblX.Value1 = loc.UpAmount
+                lblY.Value1 = loc.RightAmount
+            Case eLShapeOrder.UpLeft
+                lblX.Value1 = loc.UpAmount
+                lblY.Value1 = loc.LeftAmount
+            Case eLShapeOrder.RightDown
+                lblX.Value1 = loc.RightAmount
+                lblY.Value1 = loc.DownAmount
+            Case eLShapeOrder.RightUp
+                lblX.Value1 = loc.RightAmount
+                lblY.Value1 = loc.UpAmount
+            Case eLShapeOrder.LeftDown
+                lblX.Value1 = loc.LeftAmount
+                lblY.Value1 = loc.DownAmount
+            Case eLShapeOrder.LeftUp
+                lblX.Value1 = loc.LeftAmount
+                lblY.Value1 = loc.UpAmount
+        End Select
+
     End Sub
 
-    Private Sub numAmount_ValueChanged(sender As Object, e As EventArgs) Handles numAmount.ValueChanged, numAmount.TextChanged
-        If CInt(numAmount.Value) > MaximumLED Then numAmount.Value = MaximumLED
-        numBendAfter.Maximum = numAmount.Value
+    Private Sub cmbOrder_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cmbOrder.SelectedIndexChanged
+        Dim loc = Translation.Localization
+        Try
+            Dim selectedItem As eLShapeOrder = DirectCast([Enum].Parse(GetType(eLShapeOrder), cmbOrder.SelectedValue.ToString), eLShapeOrder)
+
+            Select Case selectedItem
+                Case eLShapeOrder.DownRight
+                    lblX.Value1 = loc.DownAmount
+                    lblY.Value1 = loc.RightAmount
+                Case eLShapeOrder.DownLeft
+                    lblX.Value1 = loc.DownAmount
+                    lblY.Value1 = loc.LeftAmount
+                Case eLShapeOrder.UpRight
+                    lblX.Value1 = loc.UpAmount
+                    lblY.Value1 = loc.RightAmount
+                Case eLShapeOrder.UpLeft
+                    lblX.Value1 = loc.UpAmount
+                    lblY.Value1 = loc.LeftAmount
+                Case eLShapeOrder.RightDown
+                    lblX.Value1 = loc.RightAmount
+                    lblY.Value1 = loc.DownAmount
+                Case eLShapeOrder.RightUp
+                    lblX.Value1 = loc.RightAmount
+                    lblY.Value1 = loc.UpAmount
+                Case eLShapeOrder.LeftDown
+                    lblX.Value1 = loc.LeftAmount
+                    lblY.Value1 = loc.DownAmount
+                Case eLShapeOrder.LeftUp
+                    lblX.Value1 = loc.LeftAmount
+                    lblY.Value1 = loc.UpAmount
+            End Select
+        Catch ex As Exception
+            'shut up
+        End Try
+
     End Sub
 
+    Private Sub numAmount_ValueChanged(sender As Object, e As EventArgs) Handles numAmountX.ValueChanged, numAmountX.TextChanged, numAmountY.ValueChanged, numAmountY.TextChanged
+        Dim max As Integer = Math.Floor(MaximumLED / 3)
+        If (CInt(numAmountX.Value) + CInt(numAmountY.Value)) > MaximumLED Then
+            numAmountX.Value = max
+            numAmountY.Value = max
+        End If
+    End Sub
 End Class

@@ -9,7 +9,8 @@ Public Class Memory
     Public MatrixSize As Size
     Public LShapeOrder As eLShapeOrder
     Public UShapeOrder As eUShapeOrder
-    Public BendAfter As Integer
+    Public LShapeX As Integer
+    Public LShapeY As Integer
     Public UShapeX As Integer
     Public UShapeY As Integer
     Public UShapeZ As Integer
@@ -24,7 +25,8 @@ Public Class Memory
         MatrixSize = New Size(1, 1)
         LShapeOrder = eLShapeOrder.DownRight
         UShapeOrder = eUShapeOrder.DownRightUp
-        BendAfter = 1
+        LShapeX = 1
+        LShapeY = 1
         UShapeX = 1
         UShapeY = 1
         UShapeZ = 1
