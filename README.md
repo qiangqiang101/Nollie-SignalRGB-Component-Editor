@@ -10,7 +10,7 @@
 [![Donate via PayPal](https://img.shields.io/badge/Donate-Paypal-brightgreen)](https://paypal.me/imnotmental)
 [![Follow on Patreon](https://img.shields.io/badge/Donate-Patreon-orange)](https://www.patreon.com/imnotmental)
 
-Yet another SignalRGB Component Editor coded with Visual Basic
+Yet another SignalRGB Component Generator & Editor coded with Visual Basic
 ![image](https://github.com/user-attachments/assets/ab56f636-dbf8-49be-9428-47e7c351450c)
 
 # Download
