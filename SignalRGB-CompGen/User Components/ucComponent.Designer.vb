@@ -118,7 +118,6 @@ Partial Class ucComponent
         tsmiRectangle.Name = "tsmiRectangle"
         tsmiRectangle.Size = New Size(180, 22)
         tsmiRectangle.Text = "Rectangle"
-        tsmiRectangle.Visible = False
         ' 
         ' ToolStripSeparator2
         ' 

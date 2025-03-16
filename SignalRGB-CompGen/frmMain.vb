@@ -6,6 +6,7 @@ Imports System.Security.Cryptography
 Imports System.Security.Policy
 Imports Microsoft.Win32.SafeHandles
 Imports Newtonsoft.Json
+Imports SignalRGB_CompGen.NSListView
 
 Public Class frmMain
 
@@ -65,9 +66,35 @@ Public Class frmMain
             pbImage.Image = Component.ToImage
             txtWebImageUrl.Text = Component.ImageUrl
 
+            UserMemory.ClearAllGeneratedObjects()
+            UserMemory.AddGeneratedObject(Component.DisplayName, -1, ucCompoment.LedCount)
+
             Text = String.Format(Translation.Localization.Title, FileName)
             NsTheme1.Text = Text
         End If
+    End Sub
+
+    Public Sub AddGeneratedObjectToListview([object] As GeneratedObject)
+        Dim subitems As List(Of NSListViewSubItem) = New List(Of NSListViewSubItem)()
+
+        Dim startIndex = If(Setting.ShiftIndex, [object].StartIndex + 2, [object].StartIndex + 1)
+        Dim endIndex = If(Setting.ShiftIndex, [object].StartIndex + [object].LEDs + 1, [object].StartIndex + [object].LEDs)
+
+        Dim subitem As New NSListViewSubItem() With {.Text = $"{If([object].LEDs = 1, startIndex, $"{startIndex} - {endIndex}")}"} '[object].LEDs
+        subitems.Add(subitem)
+
+        Dim lvi As New NSListViewItem()
+        With lvi
+            .Text = [object].Name
+            .SubItems = subitems
+            .Tag = [object]
+        End With
+        lvObjects.AddItem(lvi)
+    End Sub
+
+    Public Sub RemoveLastGeneratedObjectFromListview([object] As GeneratedObject)
+        Dim lvi = lvObjects.Items.SingleOrDefault(Function(x) x.Tag = [object])
+        If lvi IsNot Nothing Then lvObjects.RemoveItem(lvi)
     End Sub
 
     Private Sub Save(file As String)
@@ -189,6 +216,14 @@ Public Class frmMain
                                         New DropdownListItem(Of eUShapeOrder)(loc.RightUpLeft, eUShapeOrder.RightUpLeft),
                                         New DropdownListItem(Of eUShapeOrder)(loc.LeftDownRight, eUShapeOrder.LeftDownRight),
                                         New DropdownListItem(Of eUShapeOrder)(loc.LeftUpRight, eUShapeOrder.LeftUpRight)})
+            RectangleDropdownList.AddRange({New DropdownListItem(Of eRectOrder)(loc.DownRightUpLeft, eRectOrder.DownRightUpLeft),
+                                          New DropdownListItem(Of eRectOrder)(loc.DownLeftUpRight, eRectOrder.DownLeftUpRight),
+                                          New DropdownListItem(Of eRectOrder)(loc.UpRightDownLeft, eRectOrder.UpRightDownLeft),
+                                          New DropdownListItem(Of eRectOrder)(loc.UpLeftDownRight, eRectOrder.UpLeftDownRight),
+                                          New DropdownListItem(Of eRectOrder)(loc.RightDownLeftUp, eRectOrder.RightDownLeftUp),
+                                          New DropdownListItem(Of eRectOrder)(loc.RightUpLeftDown, eRectOrder.RightUpLeftDown),
+                                          New DropdownListItem(Of eRectOrder)(loc.LeftDownRightUp, eRectOrder.LeftDownRightUp),
+                                          New DropdownListItem(Of eRectOrder)(loc.LeftUpRightDown, eRectOrder.LeftUpRightDown)})
 
             Text = String.Format(loc.Title, loc.Untitled)
             NsTheme1.Text = Text
@@ -221,6 +256,10 @@ Public Class frmMain
             gbControls.Title = loc.Controls
             btnAutoResize.Text = loc.AutoResize
             lblWebImage.Value1 = loc.ImageURL
+
+            gbObjects.Title = loc.Objects
+            lvObjects.Columns(0).Text = loc.Name
+            lvObjects.Columns(1).Text = loc.Index
         End If
     End Sub
 
@@ -293,6 +332,8 @@ Public Class frmMain
         ucCompoment.Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
         ucCompoment.BringToFront()
         mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
+
+        UserMemory.ClearAllGeneratedObjects()
     End Sub
 
     Private Sub tsmiControls_Click(sender As Object, e As EventArgs) Handles tsmiControls.Click
@@ -353,6 +394,9 @@ Public Class frmMain
                 cmbType.SelectedValue = Component.Type.ToLower
                 pbImage.Image = Component.ToImage
                 txtWebImageUrl.Text = Component.ImageUrl
+
+                UserMemory.ClearAllGeneratedObjects()
+                UserMemory.AddGeneratedObject(Component.DisplayName, -1, ucCompoment.LedCount)
 
                 Text = String.Format(Translation.Localization.Title, FileName)
                 NsTheme1.Text = Text
@@ -435,5 +479,16 @@ Public Class frmMain
                 MsgBox(ex.Message, MsgBoxStyle.Critical, "Error")
             End Try
         End If
+    End Sub
+
+    Private Sub lvObjects_SelectedItemsChanged(sender As Object, e As EventArgs) Handles lvObjects.SelectedItemsChanged
+        Dim selecteditem = lvObjects.SelectedItems.First
+        If selecteditem Is Nothing Then
+            ucCompoment.SelectedObject = Nothing
+        Else
+            Dim selectedObject = CType(selecteditem.Tag, GeneratedObject)
+            ucCompoment.SelectedObject = selectedObject
+        End If
+        ucCompoment.Focus()
     End Sub
 End Class

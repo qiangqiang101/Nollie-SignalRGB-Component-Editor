@@ -25,6 +25,7 @@
             .MatrixSerpentine = cbSerpentine.Checked
             .MatrixSize = New Size(numWidth.Value, numHeight.Value)
             .Spacing = numSpacing.Value
+            .AddGeneratedObject(Translation.Localization.Matrix, Component.LedCount - CInt(numWidth.Value * numHeight.Value) - 1, CInt(numWidth.Value * numHeight.Value))
         End With
 
         ParentForm.Close()

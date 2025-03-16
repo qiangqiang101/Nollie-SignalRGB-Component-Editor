@@ -51,7 +51,7 @@ Public Class Localization
     Public Settings As String = "Settings"
     Public Help As String = "Help"
     Public Controls As String = "Controls"
-    Public ControlMsg As String = "Mouse Controls: {0}Left Click: Select LED/Move LED{0}Left Double Click: Add LED{0}Middle Click: Move Map{0}Scroll: Zoom{0}Right Click: Show Menu{0}{0}Keyboard Controls: {0}Spacebar: Add LED on Mouse Position{0}Delete Tap: Remove last LED{0}Delete Hold: Remove All LEDs{0}Arrow keys: Move LEDs"
+    Public ControlMsg As String = "Mouse Controls: {0}Left Click: Select LED/Move LED{0}Left Double Click: Add LED{0}Middle Click: Move Map{0}Scroll: Zoom{0}Right Click: Show Menu{0}{0}Keyboard Controls: {0}Spacebar: Add LED on Mouse Position{0}Delete Tap: Remove last Object{0}Delete Hold: Remove All Objects{0}Arrow keys: Move All Object{0}Shift + Arrow keys: Move Selected Objects"
     Public VisitSignalRGB As String = "Visit SignalRGB Website"
     Public VisitNollie As String = "Visit Nollie Website"
     Public VisitMentaL As String = "Visit I'm Not MentaL Website"
@@ -156,5 +156,22 @@ Public Class Localization
     Public UpAmount As String = "Upwards LED Amount"
     Public LeftAmount As String = "Leftwards LED Amount"
     Public RightAmount As String = "Rightwards LED Amount"
+
+    'Added on 17/03/2025
+    Public Objects As String = "Objects"
+    Public Index As String = "Index"
+    Public AllObjects As String = "All Objects"
+    Public LastObject As String = "Last Object: {0}"
+    Public [Single] As String = "Single"
+    Public RemoveLastObject As String = "Remove Last Object"
+    Public Removezz As String = "Remove.."
+    Public DownRightUpLeft As String = "Down, Right, Up and Left"
+    Public DownLeftUpRight As String = "Down, Left, Up and Right"
+    Public UpRightDownLeft As String = "Up, Right, Down and Left"
+    Public UpLeftDownRight As String = "Up, Left, Down and Right"
+    Public RightDownLeftUp As String = "Right, Down, Left and Up"
+    Public RightUpLeftDown As String = "Right, Up, Left and Down"
+    Public LeftDownRightUp As String = "Left, Down, Right and Up"
+    Public LeftUpRightDown As String = "Left, Up, Right and Down"
 
 End Class

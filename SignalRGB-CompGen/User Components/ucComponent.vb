@@ -71,7 +71,7 @@ Public Class ucComponent
     Public Function AddLeds(_leds As Integer, _pos As Point, Optional direction As eDirection = eDirection.Right,
                             Optional spacing As Integer = 0, Optional updatefont As Boolean = True) As Point
         Dim result As Point = Point.Empty
-        If LEDs.Count = 0 Then
+        If LedCount = 0 Then
             For i As Integer = 0 To _leds - 1
                 Dim index = i
                 Dim name = $"Led{i + 1}"
@@ -94,6 +94,51 @@ Public Class ucComponent
 
         Return result
     End Function
+
+    Public Sub AddRectangle(g1 As Integer, g2 As Integer, g3 As Integer, g4 As Integer, _pos As Point, order As eRectOrder, spacing As Integer, rounded As Boolean)
+        Select Case order
+            Case eRectOrder.DownRightUpLeft
+                Dim pos1 = AddLShape(g1, g2, _pos, eLShapeOrder.DownRight, spacing, rounded)
+                Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Right, spacing)
+                If rounded Then pos2 = GetNextPointFrom(pos1, 1, eLShapeOrder.RightUp, spacing)
+                AddLShape(g3, g4, pos2, eLShapeOrder.UpLeft, spacing, rounded)
+            Case eRectOrder.DownLeftUpRight
+                Dim pos1 = AddLShape(g1, g2, _pos, eLShapeOrder.DownLeft, spacing, rounded)
+                Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Left, spacing)
+                If rounded Then pos2 = GetNextPointFrom(pos1, 1, eLShapeOrder.LeftUp, spacing)
+                AddLShape(g3, g4, pos2, eLShapeOrder.UpRight, spacing, rounded)
+            Case eRectOrder.UpRightDownLeft
+                Dim pos1 = AddLShape(g1, g2, _pos, eLShapeOrder.UpRight, spacing, rounded)
+                Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Right, spacing)
+                If rounded Then pos2 = GetNextPointFrom(pos1, 1, eLShapeOrder.RightDown, spacing)
+                AddLShape(g3, g4, pos2, eLShapeOrder.DownLeft, spacing, rounded)
+            Case eRectOrder.UpLeftDownRight
+                Dim pos1 = AddLShape(g1, g2, _pos, eLShapeOrder.UpLeft, spacing, rounded)
+                Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Left, spacing)
+                If rounded Then pos2 = GetNextPointFrom(pos1, 1, eLShapeOrder.LeftDown, spacing)
+                AddLShape(g3, g4, pos2, eLShapeOrder.DownRight, spacing, rounded)
+            Case eRectOrder.RightDownLeftUp
+                Dim pos1 = AddLShape(g1, g2, _pos, eLShapeOrder.RightDown, spacing, rounded)
+                Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Down, spacing)
+                If rounded Then pos2 = GetNextPointFrom(pos1, 1, eLShapeOrder.DownLeft, spacing)
+                AddLShape(g3, g4, pos2, eLShapeOrder.LeftUp, spacing, rounded)
+            Case eRectOrder.RightUpLeftDown
+                Dim pos1 = AddLShape(g1, g2, _pos, eLShapeOrder.RightUp, spacing, rounded)
+                Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Up, spacing)
+                If rounded Then pos2 = GetNextPointFrom(pos1, 1, eLShapeOrder.UpLeft, spacing)
+                AddLShape(g3, g4, pos2, eLShapeOrder.LeftDown, spacing, rounded)
+            Case eRectOrder.LeftDownRightUp
+                Dim pos1 = AddLShape(g1, g2, _pos, eLShapeOrder.LeftDown, spacing, rounded)
+                Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Down, spacing)
+                If rounded Then pos2 = GetNextPointFrom(pos1, 1, eLShapeOrder.DownRight, spacing)
+                AddLShape(g3, g4, pos2, eLShapeOrder.RightUp, spacing, rounded)
+            Case eRectOrder.LeftUpRightDown
+                Dim pos1 = AddLShape(g1, g2, _pos, eLShapeOrder.LeftUp, spacing, rounded)
+                Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Up, spacing)
+                If rounded Then pos2 = GetNextPointFrom(pos1, 1, eLShapeOrder.UpRight, spacing)
+                AddLShape(g3, g4, pos2, eLShapeOrder.RightDown, spacing, rounded)
+        End Select
+    End Sub
 
     Public Sub AddUShape(g1 As Integer, g2 As Integer, g3 As Integer, _pos As Point, order As eUShapeOrder, spacing As Integer, rounded As Boolean)
         Select Case order
@@ -166,52 +211,56 @@ Public Class ucComponent
         PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)
     End Sub
 
-    Public Sub AddLShape(g1 As Integer, g2 As Integer, _pos As Point, order As eLShapeOrder, spacing As Integer, rounded As Boolean)
+    Public Function AddLShape(g1 As Integer, g2 As Integer, _pos As Point, order As eLShapeOrder, spacing As Integer, rounded As Boolean) As Point
+        Dim result As Point = Point.Empty
+
         Select Case order
             Case eLShapeOrder.DownRight
                 Dim pos1 = AddLeds(g1, _pos, eDirection.Down, spacing, False)
                 Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Right, spacing)
                 If rounded Then pos2 = GetNextPointFrom(pos1, 1, order, spacing)
-                AddLeds(g2, pos2, eDirection.Right, spacing, False)
+                result = AddLeds(g2, pos2, eDirection.Right, spacing, False)
             Case eLShapeOrder.DownLeft
                 Dim pos1 = AddLeds(g1, _pos, eDirection.Down, spacing, False)
                 Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Left, spacing)
                 If rounded Then pos2 = GetNextPointFrom(pos1, 1, order, spacing)
-                AddLeds(g2, pos2, eDirection.Left, spacing, False)
+                result = AddLeds(g2, pos2, eDirection.Left, spacing, False)
             Case eLShapeOrder.UpRight
                 Dim pos1 = AddLeds(g1, _pos, eDirection.Up, spacing, False)
                 Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Right, spacing)
                 If rounded Then pos2 = GetNextPointFrom(pos1, 1, order, spacing)
-                AddLeds(g2, pos2, eDirection.Right, spacing, False)
+                result = AddLeds(g2, pos2, eDirection.Right, spacing, False)
             Case eLShapeOrder.UpLeft
                 Dim pos1 = AddLeds(g1, _pos, eDirection.Up, spacing, False)
                 Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Left, spacing)
                 If rounded Then pos2 = GetNextPointFrom(pos1, 1, order, spacing)
-                AddLeds(g2, pos2, eDirection.Left, spacing, False)
+                result = AddLeds(g2, pos2, eDirection.Left, spacing, False)
             Case eLShapeOrder.RightDown
                 Dim pos1 = AddLeds(g1, _pos, eDirection.Right, spacing, False)
                 Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Down, spacing)
                 If rounded Then pos2 = GetNextPointFrom(pos1, 1, order, spacing)
-                AddLeds(g2, pos2, eDirection.Down, spacing, False)
+                result = AddLeds(g2, pos2, eDirection.Down, spacing, False)
             Case eLShapeOrder.RightUp
                 Dim pos1 = AddLeds(g1, _pos, eDirection.Right, spacing, False)
                 Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Up, spacing)
                 If rounded Then pos2 = GetNextPointFrom(pos1, 1, order, spacing)
-                AddLeds(g2, pos2, eDirection.Up, spacing, False)
+                result = AddLeds(g2, pos2, eDirection.Up, spacing, False)
             Case eLShapeOrder.LeftDown
                 Dim pos1 = AddLeds(g1, _pos, eDirection.Left, spacing, False)
                 Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Down, spacing)
                 If rounded Then pos2 = GetNextPointFrom(pos1, 1, order, spacing)
-                AddLeds(g2, pos2, eDirection.Down, spacing, False)
+                result = AddLeds(g2, pos2, eDirection.Down, spacing, False)
             Case eLShapeOrder.LeftUp
                 Dim pos1 = AddLeds(g1, _pos, eDirection.Left, spacing, False)
                 Dim pos2 = GetNextPointFrom(pos1, 1, eDirection.Up, spacing)
                 If rounded Then pos2 = GetNextPointFrom(pos1, 1, order, spacing)
-                AddLeds(g2, pos2, eDirection.Up, spacing, False)
+                result = AddLeds(g2, pos2, eDirection.Up, spacing, False)
         End Select
 
         PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)
-    End Sub
+
+        Return result
+    End Function
 
     Public Sub AddMatrix(_pos As Point, order As eMatrixOrder, serpentine As Boolean, _size As Size, spacing As Integer)
         Dim offset = spacing + 1
@@ -385,6 +434,7 @@ Public Class ucComponent
     End Function
 
     Public SelectedItem As Led = Nothing
+    Public SelectedObject As GeneratedObject = Nothing
 
     Public Sub RemoveLed(led As Led)
         LEDs.Remove(led)
@@ -394,6 +444,21 @@ Public Class ucComponent
     Public Sub RemoveLeds()
         LEDs.RemoveAll(Function(x) x.Index.HasValue)
         RaiseEvent LEDsChanged(Me, New EventArgs())
+    End Sub
+
+    Public Sub RemoveLastObject()
+        If UserMemory.LastGeneratedObject <> Nothing Then
+            Dim lastNthLeds = LEDs.OrderByDescending(Function(x) x.MappingIndex).Take(UserMemory.LastGeneratedObject.LEDs)
+            For Each led In lastNthLeds
+                RemoveLed(led)
+                Invalidate()
+            Next
+
+            'Save to temporary memory
+            With UserMemory
+                .RemoveLastGeneratedObject()
+            End With
+        End If
     End Sub
 
     Public Sub New()
@@ -600,8 +665,11 @@ Public Class ucComponent
     Private Sub ucComponent_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Me.MouseDoubleClick
         Select Case e.Button
             Case MouseButtons.Left
-                If SelectedItem = Nothing Then AddLeds(1, _ledPos)
-                Invalidate()
+                If SelectedItem = Nothing Then
+                    AddLeds(1, _ledPos)
+                    UserMemory.AddGeneratedObject(Translation.Localization.Single, LedCount - 2, 1)
+                    Invalidate()
+                End If
         End Select
     End Sub
 
@@ -629,85 +697,97 @@ Public Class ucComponent
 
     Private Sub tsmiAddLed_Click(sender As Object, e As EventArgs) Handles tsmiAddLed.Click
         AddLeds(1, CType(NsContextMenu1.Tag, Point))
+        UserMemory.AddGeneratedObject(Translation.Localization.Single, LedCount - 2, 1)
         Invalidate()
     End Sub
 
     Private Sub tsmiRemoveLed_Click(sender As Object, e As EventArgs) Handles tsmiRemoveLed.Click
-        If LEDs.Count <> 0 Then
-            RemoveLed(LEDs.Last)
-            Invalidate()
-        End If
+        RemoveLastObject()
     End Sub
 
     Private Sub ucComponent_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         Select Case e.KeyCode
             Case Keys.Delete
-                If LEDs.Count <> 0 Then
+                If LedCount <> 0 Then
                     timerTicks += 1
                 End If
         End Select
     End Sub
 
     Private Sub ucComponent_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
-        Select Case e.KeyCode
-            Case Keys.Delete
-                If LEDs.Count <> 0 Then
-                    If timerTicks > 30 Then
-                        RemoveLeds()
-                        Invalidate()
-                    Else
-                        RemoveLed(LEDs.Last)
-                        Invalidate()
+        If e.Modifiers = Keys.Shift Then
+            Select Case e.KeyCode
+                Case Keys.Left
+                    MoveLeft(SelectedObject)
+                Case Keys.Right
+                    MoveRight(SelectedObject)
+                Case Keys.Up
+                    MoveUp(SelectedObject)
+                Case Keys.Down
+                    MoveDown(SelectedObject)
+            End Select
+        Else
+            Select Case e.KeyCode
+                Case Keys.Delete
+                    If LedCount <> 0 Then
+                        If timerTicks > 30 Then
+                            RemoveLeds()
+                            UserMemory.ClearAllGeneratedObjects()
+                            Invalidate()
+                        Else
+                            RemoveLastObject()
+                        End If
+                        timerTicks = 0
                     End If
-                    timerTicks = 0
-                End If
-            Case Keys.Space
-                AddLeds(1, _ledPos)
-                Invalidate()
-            Case Keys.Left
-                MoveLeft
-            Case Keys.Right
-                MoveRight()
-            Case Keys.Up
-                MoveUp()
-            Case Keys.Down
-                MoveDown()
-        End Select
+                Case Keys.Space
+                    AddLeds(1, _ledPos)
+                    UserMemory.AddGeneratedObject(Translation.Localization.Single, LedCount - 2, 1)
+                    Invalidate()
+                Case Keys.Left
+                    MoveLeft()
+                Case Keys.Right
+                    MoveRight()
+                Case Keys.Up
+                    MoveUp()
+                Case Keys.Down
+                    MoveDown()
+            End Select
+        End If
     End Sub
 
     Private Sub tsmiLinear_Click(sender As Object, e As EventArgs) Handles tsmiLinear.Click
-        Dim max = (numRows * numCols) - LEDs.Count
+        Dim max = (numRows * numCols) - LedCount
         Dim fmt As New frmMulti(eMode.AddLinear, max, Me, NsContextMenu1.Tag)
         fmt.Show()
     End Sub
 
     Private Sub tsmiMatrix_Click(sender As Object, e As EventArgs) Handles tsmiMatrix.Click
-        Dim max = (numRows * numCols) - LEDs.Count
+        Dim max = (numRows * numCols) - LedCount
         Dim fmt As New frmMulti(eMode.AddMatrix, max, Me, NsContextMenu1.Tag)
         fmt.Show()
     End Sub
 
     Private Sub tsmiLShape_Click(sender As Object, e As EventArgs) Handles tsmiLShape.Click
-        Dim max = (numRows * numCols) - LEDs.Count
+        Dim max = (numRows * numCols) - LedCount
         Dim fmt As New frmMulti(eMode.AddLShape, max, Me, NsContextMenu1.Tag)
         fmt.Show()
     End Sub
 
     Private Sub tsmiUShape_Click(sender As Object, e As EventArgs) Handles tsmiUShape.Click
-        Dim max = (numRows * numCols) - LEDs.Count
+        Dim max = (numRows * numCols) - LedCount
         Dim fmt As New frmMulti(eMode.AddUShape, max, Me, NsContextMenu1.Tag)
         fmt.Show()
     End Sub
 
     Private Sub tsmiRectangle_Click(sender As Object, e As EventArgs) Handles tsmiRectangle.Click
-        Dim max = (numRows * numCols) - LEDs.Count
+        Dim max = (numRows * numCols) - LedCount
         Dim fmt As New frmMulti(eMode.AddRectangle, max, Me, NsContextMenu1.Tag)
         fmt.Show()
     End Sub
 
     Private Sub tsmiRemoveLastLEDs_Click(sender As Object, e As EventArgs) Handles tsmiRemoveLastLEDs.Click
-        If LEDs.Count <> 0 Then
-            Dim fmt As New frmMulti(eMode.Remove, LEDs.Count, Me, CType(NsContextMenu1.Tag, Point))
+        If LedCount <> 0 Then
+            Dim fmt As New frmMulti(eMode.Remove, LedCount, Me, CType(NsContextMenu1.Tag, Point))
             fmt.Show()
         End If
     End Sub
@@ -717,8 +797,8 @@ Public Class ucComponent
 
         tsmiAddLed.Text = loc.AddLED
         tsmiEditLED.Text = loc.EditLED
-        tsmiRemoveLed.Text = loc.RemoveLastLED
-        tsmiRemoveLastLEDs.Text = loc.RemoveLastLEDs
+        tsmiRemoveLed.Text = loc.RemoveLastObject
+        tsmiRemoveLastLEDs.Text = loc.Removezz
         tsmiAutoResize.Text = loc.AutoResize
 
         tsmiGenerate.Text = loc.Generate
@@ -729,44 +809,80 @@ Public Class ucComponent
         tsmiRectangle.Text = loc.Rectangle
     End Sub
 
-    Public Sub MoveUp()
-        For i As Integer = 0 To LEDs.Count - 1
-            Dim led = LEDs(i)
-            Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y - 1)
-            LEDs(i).LedCoordinates = newPos
-        Next
+    Public Sub MoveUp(Optional [object] As GeneratedObject = Nothing)
+        If [object] = Nothing Then
+            For i As Integer = 0 To LedCount - 1
+                Dim led = LEDs(i)
+                Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y - 1)
+                LEDs(i).LedCoordinates = newPos
+            Next
+        Else
+            For i As Integer = [object].StartIndex + 1 To ([object].StartIndex + [object].LEDs)
+                Dim led = LEDs(i)
+                Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y - 1)
+                LEDs(i).LedCoordinates = newPos
+            Next
+        End If
+
         Invalidate()
     End Sub
 
-    Public Sub MoveDown()
-        For i As Integer = 0 To LEDs.Count - 1
-            Dim led = LEDs(i)
-            Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y + 1)
-            LEDs(i).LedCoordinates = newPos
-        Next
+    Public Sub MoveDown(Optional [object] As GeneratedObject = Nothing)
+        If [object] = Nothing Then
+            For i As Integer = 0 To LedCount - 1
+                Dim led = LEDs(i)
+                Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y + 1)
+                LEDs(i).LedCoordinates = newPos
+            Next
+        Else
+            For i As Integer = [object].StartIndex + 1 To ([object].StartIndex + [object].LEDs)
+                Dim led = LEDs(i)
+                Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y + 1)
+                LEDs(i).LedCoordinates = newPos
+            Next
+        End If
+
         Invalidate()
     End Sub
 
-    Public Sub MoveLeft()
-        For i As Integer = 0 To LEDs.Count - 1
-            Dim led = LEDs(i)
-            Dim newPos As New Point(led.LedCoordinates.X - 1, led.LedCoordinates.Y)
-            LEDs(i).LedCoordinates = newPos
-        Next
+    Public Sub MoveLeft(Optional [object] As GeneratedObject = Nothing)
+        If [object] = Nothing Then
+            For i As Integer = 0 To LedCount - 1
+                Dim led = LEDs(i)
+                Dim newPos As New Point(led.LedCoordinates.X - 1, led.LedCoordinates.Y)
+                LEDs(i).LedCoordinates = newPos
+            Next
+        Else
+            For i As Integer = [object].StartIndex + 1 To ([object].StartIndex + [object].LEDs)
+                Dim led = LEDs(i)
+                Dim newPos As New Point(led.LedCoordinates.X - 1, led.LedCoordinates.Y)
+                LEDs(i).LedCoordinates = newPos
+            Next
+        End If
+
         Invalidate()
     End Sub
 
-    Public Sub MoveRight()
-        For i As Integer = 0 To LEDs.Count - 1
-            Dim led = LEDs(i)
-            Dim newPos As New Point(led.LedCoordinates.X + 1, led.LedCoordinates.Y)
-            LEDs(i).LedCoordinates = newPos
-        Next
+    Public Sub MoveRight(Optional [object] As GeneratedObject = Nothing)
+        If [object] = Nothing Then
+            For i As Integer = 0 To LedCount - 1
+                Dim led = LEDs(i)
+                Dim newPos As New Point(led.LedCoordinates.X + 1, led.LedCoordinates.Y)
+                LEDs(i).LedCoordinates = newPos
+            Next
+        Else
+            For i As Integer = [object].StartIndex + 1 To ([object].StartIndex + [object].LEDs)
+                Dim led = LEDs(i)
+                Dim newPos As New Point(led.LedCoordinates.X + 1, led.LedCoordinates.Y)
+                LEDs(i).LedCoordinates = newPos
+            Next
+        End If
+
         Invalidate()
     End Sub
 
     Public Sub AutoResize()
-        If LEDs.Count <> 0 Then
+        If LedCount <> 0 Then
             Dim leftest = LEDs.MinBy(Function(x) x.LedCoordinates.X)
             If leftest.LedCoordinates.X < 0 Then
                 Do While leftest.LedCoordinates.X < 0

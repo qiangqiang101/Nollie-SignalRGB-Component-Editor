@@ -84,3 +84,4 @@ C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-Comp
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\ref\compeditor.dll
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.ucLShape.resources
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.ucUShape.resources
+C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.ucRectangle.resources

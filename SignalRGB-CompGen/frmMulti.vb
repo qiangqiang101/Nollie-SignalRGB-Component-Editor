@@ -67,7 +67,9 @@
                 NsTheme1.Text = Text
 
                 Height = 300
-                'todo
+                Dim rectangle As New ucRectangle(MaximumLED, Component, LEDPos)
+                pUserControl.Controls.Add(rectangle)
+                rectangle.Dock = DockStyle.Fill
             Case eMode.Edit
                 Text = Translation.Localization.EditLED
                 NsTheme1.Text = Text

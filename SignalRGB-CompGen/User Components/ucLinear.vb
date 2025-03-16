@@ -24,6 +24,7 @@
             .LEDAmount = CInt(numAmount.Value)
             .Direction = CType(cmbDirection.SelectedValue, eDirection)
             .Spacing = CInt(numSpacing.Value)
+            .AddGeneratedObject(Translation.Localization.Linear, Component.LedCount - CInt(numAmount.Value) - 1, CInt(numAmount.Value))
         End With
 
         ParentForm.Close()

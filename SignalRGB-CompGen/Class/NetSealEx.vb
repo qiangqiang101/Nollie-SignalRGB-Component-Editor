@@ -475,6 +475,8 @@ Class NSListView
         Public Property Text() As String
         <DesignerSerializationVisibility(DesignerSerializationVisibility.Content)>
         Public Property SubItems() As List(Of NSListViewSubItem)
+        Public Property Tag() As Object
+
         Protected UniqueId As Guid
 
         Public Sub New()
@@ -530,6 +532,8 @@ Class NSListView
 
     Private _SelectedItems As List(Of NSListViewItem) = New List(Of NSListViewItem)()
 
+    Public Event SelectedItemsChanged(sender As Object, e As EventArgs)
+
     Public ReadOnly Property SelectedItems As NSListViewItem()
         Get
             Return _SelectedItems.ToArray()
@@ -560,6 +564,7 @@ Class NSListView
 
             If _SelectedItems.Count > 1 Then
                 _SelectedItems.RemoveRange(1, _SelectedItems.Count - 1)
+                RaiseEvent SelectedItemsChanged(Me, New EventArgs())
             End If
 
             Invalidate()
@@ -601,6 +606,11 @@ Class NSListView
         InvalidateScroll()
     End Sub
 
+    Public Sub AddItem(item As NSListViewItem)
+        _Items.Add(item)
+        InvalidateScroll()
+    End Sub
+
     Public Sub RemoveItemAt(ByVal index As Integer)
         _Items.RemoveAt(index)
         InvalidateScroll()
@@ -615,6 +625,12 @@ Class NSListView
         For Each I As NSListViewItem In items
             _Items.Remove(I)
         Next
+
+        InvalidateScroll()
+    End Sub
+
+    Public Sub Clear()
+        _Items.Clear()
 
         InvalidateScroll()
     End Sub
@@ -692,12 +708,15 @@ Class NSListView
 
                     If _SelectedItems.Contains(_Items(Index)) Then
                         _SelectedItems.Remove(_Items(Index))
+                        RaiseEvent SelectedItemsChanged(Me, New EventArgs())
                     Else
                         _SelectedItems.Add(_Items(Index))
+                        RaiseEvent SelectedItemsChanged(Me, New EventArgs())
                     End If
                 Else
                     _SelectedItems.Clear()
                     _SelectedItems.Add(_Items(Index))
+                    RaiseEvent SelectedItemsChanged(Me, New EventArgs())
                 End If
             End If
 

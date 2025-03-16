@@ -22,65 +22,60 @@ Partial Class ucDelete
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        lblNumOfLeds = New NSLabel()
         btnOK = New NSButton()
-        numAmount = New NSNumericUpDown()
+        lblObjects = New NSLabel()
+        cmbHistory = New NSComboBox()
         SuspendLayout()
-        ' 
-        ' lblNumOfLeds
-        ' 
-        lblNumOfLeds.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        lblNumOfLeds.Font = New Font("Segoe UI", 9F)
-        lblNumOfLeds.Location = New Point(3, 3)
-        lblNumOfLeds.Name = "lblNumOfLeds"
-        lblNumOfLeds.Size = New Size(99, 24)
-        lblNumOfLeds.TabIndex = 9
-        lblNumOfLeds.Text = "Number of LEDs"
-        lblNumOfLeds.Value1 = "Number of LEDs"
-        lblNumOfLeds.Value2 = ""
         ' 
         ' btnOK
         ' 
         btnOK.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnOK.Location = New Point(194, 32)
+        btnOK.Location = New Point(194, 62)
         btnOK.Name = "btnOK"
         btnOK.Size = New Size(75, 23)
-        btnOK.TabIndex = 1
+        btnOK.TabIndex = 2
         btnOK.Text = "Confirm"
         ' 
-        ' numAmount
+        ' lblObjects
         ' 
-        numAmount.Anchor = AnchorStyles.Top Or AnchorStyles.Right
-        numAmount.DecimalPlaces = 0
-        numAmount.Increment = 1
-        numAmount.InterceptArrowKeys = True
-        numAmount.Location = New Point(108, 3)
-        numAmount.Maximum = New Decimal(New Integer() {1000, 0, 0, 0})
-        numAmount.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        numAmount.Name = "numAmount"
-        numAmount.ReadOnly = False
-        numAmount.Size = New Size(161, 24)
-        numAmount.TabIndex = 0
-        numAmount.TextAlign = HorizontalAlignment.Right
-        numAmount.ThousandsSeparator = False
-        numAmount.Value = New Decimal(New Integer() {1, 0, 0, 0})
+        lblObjects.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        lblObjects.Font = New Font("Segoe UI", 9F)
+        lblObjects.Location = New Point(3, 3)
+        lblObjects.Name = "lblObjects"
+        lblObjects.Size = New Size(99, 24)
+        lblObjects.TabIndex = 22
+        lblObjects.Text = "Direction"
+        lblObjects.Value1 = "Objects"
+        lblObjects.Value2 = ""
+        ' 
+        ' cmbHistory
+        ' 
+        cmbHistory.Anchor = AnchorStyles.Top Or AnchorStyles.Right
+        cmbHistory.BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        cmbHistory.DrawMode = DrawMode.OwnerDrawFixed
+        cmbHistory.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbHistory.ForeColor = Color.White
+        cmbHistory.FormattingEnabled = True
+        cmbHistory.Location = New Point(108, 3)
+        cmbHistory.Name = "cmbHistory"
+        cmbHistory.Size = New Size(161, 24)
+        cmbHistory.TabIndex = 0
         ' 
         ' ucDelete
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
-        Controls.Add(lblNumOfLeds)
+        Controls.Add(lblObjects)
+        Controls.Add(cmbHistory)
         Controls.Add(btnOK)
-        Controls.Add(numAmount)
         ForeColor = Color.White
         Name = "ucDelete"
-        Size = New Size(272, 58)
+        Size = New Size(272, 88)
         ResumeLayout(False)
     End Sub
-
-    Friend WithEvents lblNumOfLeds As NSLabel
     Friend WithEvents btnOK As NSButton
-    Friend WithEvents numAmount As NSNumericUpDown
+    Friend WithEvents lblObjects As NSLabel
+    Friend WithEvents cmbHistory As NSComboBox
 
 End Class

@@ -15,6 +15,7 @@ Module Helper
     Public MatrixDropdownList As New List(Of DropdownListItem(Of eMatrixOrder))
     Public LShapeDropdownList As New List(Of DropdownListItem(Of eLShapeOrder))
     Public UShapeDropdownList As New List(Of DropdownListItem(Of eUShapeOrder))
+    Public RectangleDropdownList As New List(Of DropdownListItem(Of eRectOrder))
     Public Translation As MyLanguage = New MyLanguage()
     Public UserMemory As New Memory()
 
@@ -245,4 +246,15 @@ Public Enum eUShapeOrder
     RightUpLeft
     LeftDownRight
     LeftUpRight
+End Enum
+
+Public Enum eRectOrder
+    DownRightUpLeft
+    DownLeftUpRight
+    UpRightDownLeft
+    UpLeftDownRight
+    RightDownLeftUp
+    RightUpLeftDown
+    LeftDownRightUp
+    LeftUpRightDown
 End Enum

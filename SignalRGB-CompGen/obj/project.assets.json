@@ -59,7 +59,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "1.9.1",
+    "version": "2.0.0",
     "restore": {
       "projectUniqueName": "C:\\Users\\ADMIN\\Documents\\GitHub\\Nollie-SignalRGB-Component-Editor\\SignalRGB-CompGen\\SignalRGB-CompGen.vbproj",
       "projectName": "compeditor",

@@ -23,8 +23,12 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
+        Dim NsListViewColumnHeader3 As SignalRGB_CompGen.NSListView.NSListViewColumnHeader = New NSListView.NSListViewColumnHeader()
+        Dim NsListViewColumnHeader4 As SignalRGB_CompGen.NSListView.NSListViewColumnHeader = New NSListView.NSListViewColumnHeader()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         RightPanel = New Panel()
+        gbObjects = New NSGroupBox()
+        lvObjects = New NSListView()
         txtWebImageUrl = New NSTextBox()
         lblWebImage = New NSLabel()
         tlpImageControls = New TableLayoutPanel()
@@ -78,6 +82,7 @@ Partial Class frmMain
         btnMax = New NSControlButton()
         btnClose = New NSControlButton()
         RightPanel.SuspendLayout()
+        gbObjects.SuspendLayout()
         tlpImageControls.SuspendLayout()
         gbImage.SuspendLayout()
         CType(pbImage, ComponentModel.ISupportInitialize).BeginInit()
@@ -92,6 +97,7 @@ Partial Class frmMain
         ' 
         ' RightPanel
         ' 
+        RightPanel.Controls.Add(gbObjects)
         RightPanel.Controls.Add(txtWebImageUrl)
         RightPanel.Controls.Add(lblWebImage)
         RightPanel.Controls.Add(tlpImageControls)
@@ -117,6 +123,35 @@ Partial Class frmMain
         RightPanel.Padding = New Padding(3)
         RightPanel.Size = New Size(312, 687)
         RightPanel.TabIndex = 0
+        ' 
+        ' gbObjects
+        ' 
+        gbObjects.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        gbObjects.Controls.Add(lvObjects)
+        gbObjects.DrawSeperator = True
+        gbObjects.Location = New Point(6, 464)
+        gbObjects.Name = "gbObjects"
+        gbObjects.Padding = New Padding(3, 31, 3, 3)
+        gbObjects.Size = New Size(300, 191)
+        gbObjects.SubTitle = ""
+        gbObjects.TabIndex = 10
+        gbObjects.Text = "NsGroupBox1"
+        gbObjects.Title = "Generated Objects"
+        ' 
+        ' lvObjects
+        ' 
+        lvObjects.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
+        NsListViewColumnHeader3.Text = "Name"
+        NsListViewColumnHeader3.Width = 180
+        NsListViewColumnHeader4.Text = "Index"
+        NsListViewColumnHeader4.Width = 50
+        lvObjects.Columns = New NSListView.NSListViewColumnHeader() {NsListViewColumnHeader3, NsListViewColumnHeader4}
+        lvObjects.Location = New Point(6, 34)
+        lvObjects.MultiSelect = False
+        lvObjects.Name = "lvObjects"
+        lvObjects.Size = New Size(288, 151)
+        lvObjects.TabIndex = 0
+        lvObjects.Text = "NsListView1"
         ' 
         ' txtWebImageUrl
         ' 
@@ -151,12 +186,12 @@ Partial Class frmMain
         tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         tlpImageControls.Controls.Add(gbImage, 0, 0)
         tlpImageControls.Controls.Add(gbControls, 1, 0)
-        tlpImageControls.Location = New Point(6, 257)
+        tlpImageControls.Location = New Point(3, 257)
         tlpImageControls.Name = "tlpImageControls"
         tlpImageControls.RowCount = 1
         tlpImageControls.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
-        tlpImageControls.Size = New Size(300, 201)
-        tlpImageControls.TabIndex = 23
+        tlpImageControls.Size = New Size(306, 201)
+        tlpImageControls.TabIndex = 9
         ' 
         ' gbImage
         ' 
@@ -167,9 +202,9 @@ Partial Class frmMain
         gbImage.Location = New Point(3, 3)
         gbImage.Name = "gbImage"
         gbImage.Padding = New Padding(3, 31, 3, 3)
-        gbImage.Size = New Size(144, 195)
+        gbImage.Size = New Size(147, 195)
         gbImage.SubTitle = ""
-        gbImage.TabIndex = 8
+        gbImage.TabIndex = 0
         gbImage.Title = "Component Image"
         ' 
         ' pbImage
@@ -178,7 +213,7 @@ Partial Class frmMain
         pbImage.Image = My.Resources.Resources._1
         pbImage.Location = New Point(3, 31)
         pbImage.Name = "pbImage"
-        pbImage.Size = New Size(138, 138)
+        pbImage.Size = New Size(141, 138)
         pbImage.SizeMode = PictureBoxSizeMode.Zoom
         pbImage.TabIndex = 13
         pbImage.TabStop = False
@@ -188,8 +223,8 @@ Partial Class frmMain
         btnChangeImage.Dock = DockStyle.Bottom
         btnChangeImage.Location = New Point(3, 169)
         btnChangeImage.Name = "btnChangeImage"
-        btnChangeImage.Size = New Size(138, 23)
-        btnChangeImage.TabIndex = 1
+        btnChangeImage.Size = New Size(141, 23)
+        btnChangeImage.TabIndex = 0
         btnChangeImage.Text = "Select Image"
         ' 
         ' gbControls
@@ -198,12 +233,12 @@ Partial Class frmMain
         gbControls.Controls.Add(btnAutoResize)
         gbControls.Dock = DockStyle.Fill
         gbControls.DrawSeperator = True
-        gbControls.Location = New Point(153, 3)
+        gbControls.Location = New Point(156, 3)
         gbControls.Name = "gbControls"
         gbControls.Padding = New Padding(3, 31, 3, 3)
-        gbControls.Size = New Size(144, 195)
+        gbControls.Size = New Size(147, 195)
         gbControls.SubTitle = ""
-        gbControls.TabIndex = 9
+        gbControls.TabIndex = 0
         gbControls.Title = "Controls"
         ' 
         ' TableLayoutPanel1
@@ -223,16 +258,16 @@ Partial Class frmMain
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 33.3333321F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 33.3333321F))
         TableLayoutPanel1.RowStyles.Add(New RowStyle(SizeType.Percent, 33.3333321F))
-        TableLayoutPanel1.Size = New Size(138, 138)
+        TableLayoutPanel1.Size = New Size(141, 138)
         TableLayoutPanel1.TabIndex = 0
         ' 
         ' btnUp
         ' 
         btnUp.Dock = DockStyle.Fill
         btnUp.Font = New Font("Marlett", 11F)
-        btnUp.Location = New Point(49, 3)
+        btnUp.Location = New Point(50, 3)
         btnUp.Name = "btnUp"
-        btnUp.Size = New Size(40, 40)
+        btnUp.Size = New Size(41, 40)
         btnUp.TabIndex = 0
         btnUp.Text = "5"
         ' 
@@ -242,28 +277,28 @@ Partial Class frmMain
         btnLeft.Font = New Font("Marlett", 11F)
         btnLeft.Location = New Point(3, 49)
         btnLeft.Name = "btnLeft"
-        btnLeft.Size = New Size(40, 40)
-        btnLeft.TabIndex = 1
+        btnLeft.Size = New Size(41, 40)
+        btnLeft.TabIndex = 0
         btnLeft.Text = "3"
         ' 
         ' btnRight
         ' 
         btnRight.Dock = DockStyle.Fill
         btnRight.Font = New Font("Marlett", 11F)
-        btnRight.Location = New Point(95, 49)
+        btnRight.Location = New Point(97, 49)
         btnRight.Name = "btnRight"
-        btnRight.Size = New Size(40, 40)
-        btnRight.TabIndex = 2
+        btnRight.Size = New Size(41, 40)
+        btnRight.TabIndex = 0
         btnRight.Text = "4"
         ' 
         ' btnDown
         ' 
         btnDown.Dock = DockStyle.Fill
         btnDown.Font = New Font("Marlett", 11F)
-        btnDown.Location = New Point(49, 95)
+        btnDown.Location = New Point(50, 95)
         btnDown.Name = "btnDown"
-        btnDown.Size = New Size(40, 40)
-        btnDown.TabIndex = 3
+        btnDown.Size = New Size(41, 40)
+        btnDown.TabIndex = 0
         btnDown.Text = "6"
         ' 
         ' btnAutoResize
@@ -271,8 +306,8 @@ Partial Class frmMain
         btnAutoResize.Dock = DockStyle.Bottom
         btnAutoResize.Location = New Point(3, 169)
         btnAutoResize.Name = "btnAutoResize"
-        btnAutoResize.Size = New Size(138, 23)
-        btnAutoResize.TabIndex = 2
+        btnAutoResize.Size = New Size(141, 23)
+        btnAutoResize.TabIndex = 1
         btnAutoResize.Text = "Auto Resize"
         ' 
         ' msMainMenu
@@ -701,6 +736,7 @@ Partial Class frmMain
         WindowState = FormWindowState.Maximized
         RightPanel.ResumeLayout(False)
         RightPanel.PerformLayout()
+        gbObjects.ResumeLayout(False)
         tlpImageControls.ResumeLayout(False)
         gbImage.ResumeLayout(False)
         CType(pbImage, ComponentModel.ISupportInitialize).EndInit()
@@ -769,5 +805,7 @@ Partial Class frmMain
     Friend WithEvents lblWebImage As NSLabel
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents tsmiImport As ToolStripMenuItem
+    Friend WithEvents gbObjects As NSGroupBox
+    Friend WithEvents lvObjects As NSListView
 
 End Class

@@ -46,6 +46,9 @@
     <Compile Update="User Components\ucMatrix.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="User Components\ucRectangle.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="User Components\ucUShape.vb">
       <SubType>UserControl</SubType>
     </Compile>

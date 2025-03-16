@@ -28,6 +28,7 @@
             .UShapeZ = CInt(numAmountZ.Value)
             .Spacing = CInt(numSpacing.Value)
             .RoundedCorners = cbRoundedCorners.Checked
+            .AddGeneratedObject(Translation.Localization.UShape, Component.LedCount - CInt(numAmountX.Value + numAmountY.Value + numAmountZ.Value) - 1, CInt(numAmountX.Value + numAmountY.Value + numAmountZ.Value))
         End With
 
         ParentForm.Close()
@@ -145,7 +146,7 @@
     Private Sub numAmount_ValueChanged(sender As Object, e As EventArgs) Handles numAmountX.ValueChanged, numAmountX.TextChanged,
         numAmountY.ValueChanged, numAmountY.TextChanged, numAmountZ.ValueChanged, numAmountZ.TextChanged
         Dim max As Integer = Math.Floor((MaximumLED / 3) / 3)
-        If (CInt(numAmountX.Value) + CInt(numAmountY.Value) + CInt(numAmountZ.Value)) > MaximumLED Then
+        If CInt(numAmountX.Value + numAmountY.Value + numAmountZ.Value) > MaximumLED Then
             numAmountX.Value = max
             numAmountY.Value = max
             numAmountZ.Value = max
