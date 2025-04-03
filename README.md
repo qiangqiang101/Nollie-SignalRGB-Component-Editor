@@ -15,6 +15,7 @@ Yet another SignalRGB Component Generator & Editor coded with Visual Basic
 
 # Download
 [Gitlab](https://gitlab.com/nollie/Nollie-SignalRGB-Component-Editor/-/releases)
+
 [GitHub](https://github.com/qiangqiang101/SignalRGB-CompGen/releases)
 
 # Prerequisite
