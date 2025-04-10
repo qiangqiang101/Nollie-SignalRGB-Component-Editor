@@ -14,9 +14,8 @@ Yet another SignalRGB Component Generator & Editor coded with Visual Basic
 ![image](https://github.com/user-attachments/assets/f54da1f5-a179-410d-9a35-94ec790cb869)
 
 # Download
-[Gitlab](https://gitlab.com/nollie/Nollie-SignalRGB-Component-Editor/-/releases)
-
-[GitHub](https://github.com/qiangqiang101/SignalRGB-CompGen/releases)
+[![Gitlab](https://raw.githubusercontent.com/qiangqiang101/Nollie-SignalRGB-Component-Editor/refs/heads/main/gitlabd.png)](https://gitlab.com/nollie/Nollie-SignalRGB-Component-Editor/-/releases)
+[![GitHub](https://raw.githubusercontent.com/qiangqiang101/Nollie-SignalRGB-Component-Editor/refs/heads/main/githubd.png)](https://github.com/qiangqiang101/SignalRGB-CompGen/releases)
 
 # Prerequisite
 [.NET 8.0 Runtime](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)
