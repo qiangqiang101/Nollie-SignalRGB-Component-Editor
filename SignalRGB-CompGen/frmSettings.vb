@@ -53,6 +53,8 @@ Public Class frmSettings
     End Sub
 
     Private Sub ScanForLanguageFiles()
+        LanguageDropdownList.Clear()
+
         Dim langDir = New DirectoryInfo("languages")
         Dim files = langDir.GetFiles("*.json")
         For Each file In files

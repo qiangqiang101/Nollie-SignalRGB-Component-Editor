@@ -182,6 +182,20 @@ Module Helper
         Return curSize
     End Function
 
+    <Extension>
+    Public Function CapitalizeFirstLetter(ByVal input As String, Optional recurrent As Boolean = False) As String
+        If recurrent Then
+            Dim result As String = Nothing
+            For Each word As String In input.Split(" "c)
+                result &= word.CapitalizeFirstLetter(False)
+            Next
+            Return result
+        Else
+            If String.IsNullOrEmpty(input) Then Return input
+            Return Char.ToUpper(input(0)) & input.Substring(1)
+        End If
+    End Function
+
 End Module
 
 Public Enum eMode

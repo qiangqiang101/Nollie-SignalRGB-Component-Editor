@@ -62,7 +62,18 @@ Public Class frmMain
             numWidth.Value = Component.Width
             numHeight.Value = Component.Height
             txtLedCount.Text = Component.LedCount
-            cmbType.SelectedValue = Component.Type.ToLower
+            If Component.Type = Component.Type.ToLower() Then
+                Select Case Component.Type
+                    Case "aio"
+                        cmbType.SelectedValue = "AIO"
+                    Case "gpu"
+                        cmbType.SelectedValue = "GPU"
+                    Case Else
+                        cmbType.SelectedValue = Component.Type.CapitalizeFirstLetter(True)
+                End Select
+            Else
+                cmbType.SelectedValue = Component.Type
+            End If
             pbImage.Image = Component.ToImage
             txtWebImageUrl.Text = Component.ImageUrl
 
@@ -186,12 +197,12 @@ Public Class frmMain
 
             DirectionDropdownList.AddRange({New DropdownListItem(Of eDirection)(loc.Up, eDirection.Up), New DropdownListItem(Of eDirection)(loc.Right, eDirection.Right),
                                            New DropdownListItem(Of eDirection)(loc.Down, eDirection.Down), New DropdownListItem(Of eDirection)(loc.Left, eDirection.Left)})
-            TypeDropdownList.AddRange({New DropdownListItem(Of String)(loc.AIO, "aio"), New DropdownListItem(Of String)(loc.Cable, "cable"),
-                                      New DropdownListItem(Of String)(loc.Case, "case"), New DropdownListItem(Of String)(loc.Chair, "chair"),
-                                      New DropdownListItem(Of String)(loc.Fan, "fan"), New DropdownListItem(Of String)(loc.Custom, "custom"),
-                                      New DropdownListItem(Of String)(loc.Strip, "strip"), New DropdownListItem(Of String)(loc.WaterBlock, "water block"),
-                                      New DropdownListItem(Of String)(loc.Tower, "tower"), New DropdownListItem(Of String)(loc.Heatsink, "heatsink"),
-                                      New DropdownListItem(Of String)(loc.Desk, "desk")})
+            TypeDropdownList.AddRange({New DropdownListItem(Of String)(loc.AIO, "AIO"), New DropdownListItem(Of String)(loc.Cable, "Cable"), New DropdownListItem(Of String)(loc.Case, "Case"),
+                                      New DropdownListItem(Of String)(loc.Chair, "Chair"), New DropdownListItem(Of String)(loc.Cooler, "Cooler"), New DropdownListItem(Of String)(loc.Desk, "Desk"),
+                                      New DropdownListItem(Of String)(loc.Fan, "Fan"), New DropdownListItem(Of String)(loc.GPU, "GPU"), New DropdownListItem(Of String)(loc.Heatsink, "Heatsink"),
+                                      New DropdownListItem(Of String)(loc.MatrixPanel, "Matrix Panel"), New DropdownListItem(Of String)(loc.Memory, "Memory"), New DropdownListItem(Of String)(loc.Storage, "Storage"),
+                                      New DropdownListItem(Of String)(loc.Strip, "Strip"), New DropdownListItem(Of String)(loc.Tower, "Tower"), New DropdownListItem(Of String)(loc.WaterBlock, "Water Block"),
+                                      New DropdownListItem(Of String)(loc.Custom, "Custom")})
             MatrixDropdownList.AddRange({New DropdownListItem(Of eMatrixOrder)(loc.HorizontalTopLeft, eMatrixOrder.HorizontalTopLeft),
                                         New DropdownListItem(Of eMatrixOrder)(loc.HorizontalTopRight, eMatrixOrder.HorizontalTopRight),
                                         New DropdownListItem(Of eMatrixOrder)(loc.HorizontalBottomLeft, eMatrixOrder.HorizontalBottomLeft),
@@ -390,8 +401,18 @@ Public Class frmMain
                 txtName.Text = Component.DisplayName
                 numWidth.Value = Component.Width
                 numHeight.Value = Component.Height
-                txtLedCount.Text = Component.LedCount
-                cmbType.SelectedValue = Component.Type.ToLower
+                If Component.Type = Component.Type.ToLower() Then
+                    Select Case Component.Type
+                        Case "aio"
+                            cmbType.SelectedValue = "AIO"
+                        Case "gpu"
+                            cmbType.SelectedValue = "GPU"
+                        Case Else
+                            cmbType.SelectedValue = Component.Type.CapitalizeFirstLetter(True)
+                    End Select
+                Else
+                    cmbType.SelectedValue = Component.Type
+                End If
                 pbImage.Image = Component.ToImage
                 txtWebImageUrl.Text = Component.ImageUrl
 
