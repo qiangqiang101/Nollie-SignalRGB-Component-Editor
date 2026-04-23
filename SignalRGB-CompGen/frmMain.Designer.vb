@@ -23,8 +23,8 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim NsListViewColumnHeader3 As SignalRGB_CompGen.NSListView.NSListViewColumnHeader = New NSListView.NSListViewColumnHeader()
-        Dim NsListViewColumnHeader4 As SignalRGB_CompGen.NSListView.NSListViewColumnHeader = New NSListView.NSListViewColumnHeader()
+        Dim NsListViewColumnHeader1 As SignalRGB_CompGen.NSListView.NSListViewColumnHeader = New NSListView.NSListViewColumnHeader()
+        Dim NsListViewColumnHeader2 As SignalRGB_CompGen.NSListView.NSListViewColumnHeader = New NSListView.NSListViewColumnHeader()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         RightPanel = New Panel()
         gbObjects = New NSGroupBox()
@@ -141,11 +141,11 @@ Partial Class frmMain
         ' lvObjects
         ' 
         lvObjects.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        NsListViewColumnHeader3.Text = "Name"
-        NsListViewColumnHeader3.Width = 180
-        NsListViewColumnHeader4.Text = "Index"
-        NsListViewColumnHeader4.Width = 50
-        lvObjects.Columns = New NSListView.NSListViewColumnHeader() {NsListViewColumnHeader3, NsListViewColumnHeader4}
+        NsListViewColumnHeader1.Text = "Name"
+        NsListViewColumnHeader1.Width = 180
+        NsListViewColumnHeader2.Text = "Index"
+        NsListViewColumnHeader2.Width = 50
+        lvObjects.Columns = New NSListView.NSListViewColumnHeader() {NsListViewColumnHeader1, NsListViewColumnHeader2}
         lvObjects.Location = New Point(6, 34)
         lvObjects.MultiSelect = False
         lvObjects.Name = "lvObjects"
@@ -487,7 +487,7 @@ Partial Class frmMain
         numWidth.Increment = 1
         numWidth.InterceptArrowKeys = True
         numWidth.Location = New Point(86, 150)
-        numWidth.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
+        numWidth.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numWidth.Name = "numWidth"
         numWidth.ReadOnly = False
@@ -544,7 +544,7 @@ Partial Class frmMain
         numHeight.Increment = 1
         numHeight.InterceptArrowKeys = True
         numHeight.Location = New Point(199, 150)
-        numHeight.Maximum = New Decimal(New Integer() {300, 0, 0, 0})
+        numHeight.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numHeight.Name = "numHeight"
         numHeight.ReadOnly = False
