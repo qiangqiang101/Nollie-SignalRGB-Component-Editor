@@ -41,7 +41,7 @@ Partial Class ucMatrix
         numHeight.Increment = 1
         numHeight.InterceptArrowKeys = True
         numHeight.Location = New Point(191, 3)
-        numHeight.Maximum = New Decimal(New Integer() {100, 0, 0, 0})
+        numHeight.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         numHeight.Minimum = New Decimal(New Integer() {2, 0, 0, 0})
         numHeight.Name = "numHeight"
         numHeight.ReadOnly = False
@@ -58,7 +58,7 @@ Partial Class ucMatrix
         numWidth.Increment = 1
         numWidth.InterceptArrowKeys = True
         numWidth.Location = New Point(108, 3)
-        numWidth.Maximum = New Decimal(New Integer() {100, 0, 0, 0})
+        numWidth.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         numWidth.Minimum = New Decimal(New Integer() {2, 0, 0, 0})
         numWidth.Name = "numWidth"
         numWidth.ReadOnly = False
