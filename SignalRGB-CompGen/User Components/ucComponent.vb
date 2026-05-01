@@ -1,7 +1,6 @@
-﻿Imports System.Drawing.Drawing2D
-Imports System.Drawing.Printing
-Imports System.Security.Cryptography.Pkcs
-Imports Windows.Win32.System
+﻿Imports System.Drawing
+Imports System.Drawing.Drawing2D
+Imports System.Drawing.Imaging
 
 Public Class ucComponent
 
@@ -14,9 +13,49 @@ Public Class ucComponent
     Public numRows As Integer = 0
     Public numCols As Integer = 0
 
+    Public SelectedItems As New List(Of Led)
+    Private SelectionStart As Point = Point.Empty
+    Private SelectionEnd As Point = Point.Empty
+    Private IsSelecting As Boolean = False
+    Private DragOffset As New List(Of PointF)
+
+    Private DragStartGrid As Point = Point.Empty
+    Private IsDragging As Boolean = False
+    Private IsPlaceLedDragging As Boolean = False
+    Private PixelFont As Font = Font
+    Private PixelRect As RectangleF
+
+    Private ImageBounds As New RectangleF(10, 10, 100, 100)
+    Private IsResizing As Boolean = False
+    Private IsDraggingImage As Boolean = False
+    Private Const ResizeMargin As Integer = 5 ' How close to the edge to trigger resize
+    Private ImageDragOffset As New PointF(0, 0)
+    Private ActiveEdge As eResizeEdge = eResizeEdge.None
+    Private LastControlSize As Size = Size.Empty
+
+    Private _bgImg As Image = Nothing
+    Public Property BgImg() As Image
+        Get
+            Return _bgImg
+        End Get
+        Set(value As Image)
+            _bgImg = value
+            Invalidate()
+        End Set
+    End Property
     Public ReadOnly Property LedCount() As Integer
         Get
             Return LEDs.Count
+        End Get
+    End Property
+    Public ReadOnly Property VmapLedCount() As Integer
+        Get
+            Return LEDs.Where(Function(x) Not x.Hidden).Count()
+        End Get
+    End Property
+    Public ReadOnly Property VmapZLedCount() As Integer
+        Get
+            Return LEDs.Where(Function(x) x.Hidden).Count()
         End Get
     End Property
     Private __width As Integer = 0
@@ -57,10 +96,6 @@ Public Class ucComponent
             Return points
         End Get
     End Property
-    Private IsDragging As Boolean = False
-
-    Private PixelFont As Font = Font
-    Private PixelRect As RectangleF
 
     Public Sub AddLed(index As Integer, mindex As Integer, name As String, point As Point)
         LEDs.Add(New Led(mindex, name, point) With {.Index = index})
@@ -433,32 +468,16 @@ Public Class ucComponent
         Return LEDs.FirstOrDefault(Function(x) x.LedCoordinates = _ledPos)
     End Function
 
-    Public SelectedItem As Led = Nothing
-    Public SelectedObject As GeneratedObject = Nothing
-
     Public Sub RemoveLed(led As Led)
         LEDs.Remove(led)
+        If SelectedItems.Contains(led) Then SelectedItems.Remove(led)
         RaiseEvent LEDsChanged(Me, New EventArgs())
     End Sub
 
     Public Sub RemoveLeds()
         LEDs.RemoveAll(Function(x) x.Index.HasValue)
+        SelectedItems.Clear()
         RaiseEvent LEDsChanged(Me, New EventArgs())
-    End Sub
-
-    Public Sub RemoveLastObject()
-        If UserMemory.LastGeneratedObject <> Nothing Then
-            Dim lastNthLeds = LEDs.OrderByDescending(Function(x) x.MappingIndex).Take(UserMemory.LastGeneratedObject.LEDs)
-            For Each led In lastNthLeds
-                RemoveLed(led)
-                Invalidate()
-            Next
-
-            'Save to temporary memory
-            With UserMemory
-                .RemoveLastGeneratedObject()
-            End With
-        End If
     End Sub
 
     Public Sub New()
@@ -468,6 +487,7 @@ Public Class ucComponent
 
         ' Add any initialization after the InitializeComponent() call.
 
+        LastControlSize = Me.Size
         DoubleBuffered = True
 
         Translate()
@@ -489,120 +509,148 @@ Public Class ucComponent
         Dim rectSize As New SizeF((Width - (Margin.Left + Margin.Right)) / _Width, (Height - (Margin.Top + Margin.Bottom)) / _Height)
         If rectSize.Width > rectSize.Height Then rectSize.Width = rectSize.Height Else rectSize.Height = rectSize.Width
 
-        Dim matrix(_Width - 1, _Height - 1) As Integer
-        Dim count As Integer = 0
+        If BgImg IsNot Nothing Then
+            g.DrawImage(BgImg, ImageBounds)
 
-        Dim dragRect As RectangleF = Nothing
-        For row As Integer = 0 To matrix.GetUpperBound(0)
-            For col As Integer = 0 To matrix.GetUpperBound(1)
+            If frmMain.rbToolResizeGI.Checked Then
+                If IsResizing OrElse ImageBounds.Contains(PointToClient(MousePosition)) Then
+                    Using pen As New Pen(Color.FromArgb(205, 150, 0), 1.0F)
+                        g.DrawRectangle(pen, Rectangle.Round(ImageBounds))
+                    End Using
 
-                Using sb As New SolidBrush(Color.FromArgb(55, 55, 55))
-                    numRows = matrix.GetUpperBound(1) + 1
-                    numCols = matrix.GetUpperBound(0) + 1
+                    Dim h As Integer = 8 ' Size of the corner square
+                    Dim halfH As Integer = h / 2
 
-                    Dim x As Single = (rectSize.Width * row) + Margin.Left
-                    Dim y As Single = (rectSize.Height * col) + Margin.Top
-                    Dim w As Single = rectSize.Width
-                    Dim h As Single = rectSize.Height
-                    Dim p As Single = 3.0F
-                    Dim r As New RectangleF(x + p, y + p, w - p, h - p)
-                    Dim index As Integer = col * numCols + row
+                    ' Define the 4 corner rectangles
+                    Dim corners As RectangleF() = {
+                        New RectangleF(ImageBounds.X - halfH, ImageBounds.Y - halfH, h, h), ' Top-Left
+                        New RectangleF(ImageBounds.Right - halfH, ImageBounds.Y - halfH, h, h), ' Top-Right
+                        New RectangleF(ImageBounds.X - halfH, ImageBounds.Bottom - halfH, h, h), ' Bottom-Left
+                        New RectangleF(ImageBounds.Right - halfH, ImageBounds.Bottom - halfH, h, h) ' Bottom-Right
+                    }
 
-                    Dim approximatelySize As New Size((numCols * rectSize.Width) + (p * 3) + Margin.Left + Margin.Right, (numRows * rectSize.Height) + (p * 3) + Margin.Top + Margin.Bottom)
-                    If Width > approximatelySize.Width Then Width = approximatelySize.Width + (Margin.Right)
-                    If Height > approximatelySize.Height Then Height = approximatelySize.Height + (Margin.Bottom)
+                    ' Draw each handle
+                    For Each rect In corners
+                        ' Fill with white and draw a black border for visibility on any background[cite: 3]
+                        g.FillRectangle(Brushes.White, rect)
+                        g.DrawRectangle(Pens.Black, rect.X, rect.Y, rect.Width, rect.Height)
+                    Next
 
-                    Dim renderRect As New RectangleF(x, y, rectSize.Width, rectSize.Height)
-                    PixelRect = renderRect
-                    If renderRect.Contains(PointToClient(Control.MousePosition)) Then
-                        _ledPos = New Point(row, col)
-                    End If
+                    ' Optional: Draw a dashed border around the whole image to show it is "Active"[cite: 3]
+                    Using p As New Pen(Color.White, 1.0F)
+                        p.DashStyle = DashStyle.Dash
+                        g.DrawRectangle(p, Rectangle.Round(ImageBounds))
+                    End Using
+                End If
+            End If
+        End If
 
-                    If LedCoordinatesPoints.Contains(New Point(row, col)) Then
-                        Dim led = LEDs.Find(Function(xy) xy.LedCoordinates.X = row And xy.LedCoordinates.Y = col)
-                        Dim displayIndex = If(Setting.ShiftIndex, led.MappingIndex + 1, led.MappingIndex)
+        numRows = _Height
+        numCols = _Width
 
-                        'Update LED Index if it has no value.
-                        If Not led.Index.HasValue Then
-                            Dim idx = LEDs.IndexOf(led)
-                            led.Index = led.MappingIndex
-                            LEDs(idx) = led
-                        End If
+        For row As Integer = 0 To numCols - 1
+            For col As Integer = 0 To numRows - 1
+                Dim x As Single = (rectSize.Width * row) + Margin.Left
+                Dim y As Single = (rectSize.Height * col) + Margin.Top
+                Dim p As Single = 3.0F
+                Dim r As New RectangleF(x + p, y + p, rectSize.Width - p, rectSize.Height - p)
 
-                        If led = SelectedItem Then
-                            dragRect = r
-                            Using sb2 As New SolidBrush(Color.LightBlue)
-                                'g.FillRectangle(sb2, r)
+                Dim renderRect As New RectangleF(x, y, rectSize.Width, rectSize.Height)
+                PixelRect = renderRect
+
+                If renderRect.Contains(PointToClient(Control.MousePosition)) Then
+                    _ledPos = New Point(row, col)
+                End If
+
+                If LedCoordinatesPoints.Contains(New Point(row, col)) Then
+                    Dim led = LEDs.Find(Function(xy) xy.LedCoordinates.X = row And xy.LedCoordinates.Y = col)
+                    Dim displayIndex = If(Setting.ShiftIndex, led.MappingIndex + 1, led.MappingIndex)
+                    Dim isSelected As Boolean = SelectedItems.Contains(led)
+
+                    If isSelected Then
+                        ' DRAW SELECTED STATE (Blue highlight)
+                        Using sb2 As New SolidBrush(Color.LightBlue)
+                            g.FillRoundedRectangle(sb2, r.ToRect, 7)
+                        End Using
+                        Using sb2 As New SolidBrush(Color.Blue)
+                            g.DrawString(displayIndex.ToString(), PixelFont, sb2, renderRect, sf)
+                        End Using
+                    ElseIf renderRect.Contains(PointToClient(Control.MousePosition)) Then
+                        ' DRAW HOVER STATE (Yellow/Gold highlight)
+                        Using sb2 As New SolidBrush(Color.FromArgb(240, 220, 160))
+                            g.FillRoundedRectangle(sb2, r.ToRect, 7)
+                        End Using
+                        Using sb2 As New SolidBrush(Color.FromArgb(205, 150, 0))
+                            g.DrawString(displayIndex.ToString(), PixelFont, sb2, renderRect, sf)
+                        End Using
+                    Else
+
+                        If led.Hidden Then
+                            ' DRAW HIDDEN STATE (Silver)
+                            Using sb2 As New SolidBrush(Color.FromArgb(112, 111, 109))
                                 g.FillRoundedRectangle(sb2, r.ToRect, 7)
                             End Using
-                            Using sb2 As New SolidBrush(Color.Blue)
-                                Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
-                                Dim text As String = displayIndex
-                                g.DrawString(text, PixelFont, Brushes.Black, srect, sf)
-                                g.DrawString(text, PixelFont, sb2, renderRect, sf)
-                            End Using
                         Else
-                            If renderRect.Contains(PointToClient(Control.MousePosition)) Then
-                                Using sb2 As New SolidBrush(Color.FromArgb(240, 220, 160))
-                                    'g.FillRectangle(sb2, r)
-                                    g.FillRoundedRectangle(sb2, r.ToRect, 7)
-                                End Using
-                                Using sb2 As New SolidBrush(Color.FromArgb(205, 150, 0))
-                                    Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
-                                    Dim text As String = displayIndex
-                                    g.DrawString(text, PixelFont, Brushes.Black, srect, sf)
-                                    g.DrawString(text, PixelFont, sb2, renderRect, sf)
-                                End Using
-                            Else
-                                Using sb2 As New SolidBrush(Color.FromArgb(205, 150, 0))
-                                    'g.FillRectangle(sb2, r)
-                                    g.FillRoundedRectangle(sb2, r.ToRect, 7)
-                                End Using
-                                Using sb2 As New SolidBrush(ForeColor)
-                                    Dim srect = New RectangleF(renderRect.X + 1, renderRect.Y + 1, renderRect.Width, renderRect.Height)
-                                    Dim text As String = displayIndex
-                                    g.DrawString(text, PixelFont, Brushes.Black, srect, sf)
-                                    g.DrawString(text, PixelFont, sb2, renderRect, sf)
-                                End Using
-                            End If
+                            ' DRAW DEFAULT STATE (Standard Orange)
+                            Using sb2 As New SolidBrush(Color.FromArgb(205, 150, 0))
+                                g.FillRoundedRectangle(sb2, r.ToRect, 7)
+                            End Using
                         End If
-                    Else
-                        'g.FillRectangle(sb, r)
-                        g.FillRoundedRectangle(sb, r.ToRect, 7)
-                    End If
 
-                    Using pen As New Pen(Color.FromArgb(35, 35, 35), 1.0F)
-                        'g.DrawRectangle(pen, r)
-                        g.DrawRoundedRectangle(pen, r.ToRect, 7)
-                    End Using
+                        Using sb2 As New SolidBrush(ForeColor)
+                            g.DrawString(displayIndex.ToString(), PixelFont, sb2, renderRect, sf)
+                        End Using
+                    End If
+                End If
+
+                Using pen As New Pen(Color.FromArgb(35, 35, 35), 1.0F)
+                    g.DrawRoundedRectangle(pen, r.ToRect, 7)
                 End Using
-                count += 1
-                If count >= LedCount Then count = 0
             Next
         Next
 
-        If IsDragging Then
-            'If led = SelectedItem Then
-            Dim cursor = PointToClient(Control.MousePosition)
-            Dim dr As New RectangleF(cursor.X - dragRect.Width / 2, cursor.Y - dragRect.Height / 2, dragRect.Width, dragRect.Height)
-            Using sb As New SolidBrush(Color.FromArgb(125, Color.LightBlue))
-                'g.FillRectangle(sb, dr)
-                g.FillRoundedRectangle(sb, dr.ToRect, 7)
+        If IsSelecting Then
+            Dim selRect = GetSelectionRect()
+            Using sb As New SolidBrush(Color.FromArgb(50, Color.LightBlue))
+                g.FillRectangle(sb, selRect)
+                g.DrawRectangle(Pens.DodgerBlue, selRect)
             End Using
-            Using sb2 As New SolidBrush(Color.Blue)
-                Dim srect = New RectangleF(dr.X + 1, dr.Y + 1, dr.Width, dr.Height)
-                Dim text As String = If(Setting.ShiftIndex, SelectedItem.Index + 1, SelectedItem.Index)
-                g.DrawString(text, PixelFont, Brushes.Black, srect, sf)
-                g.DrawString(text, PixelFont, sb2, dr, sf)
-            End Using
-            Using pen As New Pen(Color.White, 1.0F)
-                'g.DrawRectangle(pen, dr)
-                g.DrawRoundedRectangle(pen, dr.ToRect, 7)
-            End Using
-            'End If
         End If
 
-        'drawing the bubble on hover
+        If IsDragging Then
+            Dim rectSizeW As Single = (Width - (Margin.Left + Margin.Right)) / _Width
+            Dim rectSizeH As Single = (Height - (Margin.Top + Margin.Bottom)) / _Height
+            If rectSizeW > rectSizeH Then rectSizeW = rectSizeH Else rectSizeH = rectSizeW
+
+            Dim cursor = PointToClient(Control.MousePosition)
+
+            For i As Integer = 0 To SelectedItems.Count - 1
+                Dim led = SelectedItems(i)
+                Dim offset = DragOffset(i)
+
+                Dim x As Single = cursor.X - offset.X
+                Dim y As Single = cursor.Y - offset.Y
+                Dim p As Single = 3.0F
+                Dim dr As New RectangleF(x + p, y + p, rectSizeW - p, rectSizeH - p)
+                Dim renderRect As New RectangleF(x, y, rectSizeW, rectSizeH)
+
+                Dim displayIndex = If(Setting.ShiftIndex, led.MappingIndex + 1, led.MappingIndex)
+
+                Using sb As New SolidBrush(Color.FromArgb(125, Color.LightBlue))
+                    g.FillRoundedRectangle(sb, dr.ToRect, 7)
+                End Using
+
+                Using sb2 As New SolidBrush(Color.Blue)
+                    g.DrawString(displayIndex.ToString(), PixelFont, Brushes.Black, New RectangleF(dr.X + 1, dr.Y + 1, dr.Width, dr.Height), sf)
+                    g.DrawString(displayIndex.ToString(), PixelFont, sb2, renderRect, sf)
+                End Using
+
+                Using pen As New Pen(Color.White, 1.0F)
+                    g.DrawRoundedRectangle(pen, dr.ToRect, 7)
+                End Using
+            Next
+        End If
+
         If ItemOnHover() <> Nothing Then
             Dim itm = ItemOnHover()
             Dim info = String.Format(Translation.Localization.LEDInfo, vbCrLf, itm.MappingIndex, itm.LedName, itm.LedCoordinates.X, itm.LedCoordinates.Y)
@@ -632,77 +680,270 @@ Public Class ucComponent
         End If
     End Sub
 
+    Private Function GetSelectionRect() As Rectangle
+        Dim x = Math.Min(SelectionStart.X, SelectionEnd.X)
+        Dim y = Math.Min(SelectionStart.Y, SelectionEnd.Y)
+        Dim w = Math.Abs(SelectionStart.X - SelectionEnd.X)
+        Dim h = Math.Abs(SelectionStart.Y - SelectionEnd.Y)
+        Return New Rectangle(x, y, w, h)
+    End Function
+
     Private Sub ucComponent_SizeChanged(sender As Object, e As EventArgs) Handles Me.SizeChanged
         Invalidate()
     End Sub
 
     Private Sub ucComponent_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
+        Dim oldWidth As Integer = Me.Width
+        Dim oldHeight As Integer = Me.Height
+
         If e.Delta > 0 Then
             Width += 100
             Height += 100
         Else
-            Width -= 100
-            Height -= 100
+            If Width > 100 And Height > 100 Then
+                Width -= 100
+                Height -= 100
+            End If
         End If
 
+        Dim ratioX As Single = Me.Width / oldWidth
+        Dim ratioY As Single = Me.Height / oldHeight
+
+        ImageBounds = New RectangleF(
+            ImageBounds.X * ratioX,
+            ImageBounds.Y * ratioY,
+            ImageBounds.Width * ratioX,
+            ImageBounds.Height * ratioY
+        )
+
         PixelFont = New Font(Font.FontFamily, GetFontSizeMatch("9999", Font, PixelRect.Size.ToSize), Font.Style)
+        Invalidate()
     End Sub
 
     Private Sub ucComponent_MouseMove(sender As Object, e As MouseEventArgs) Handles Me.MouseMove
+        If frmMain.rbToolResizeGI.Checked Then
+            Dim h As Integer = 10
+            Dim rect = ImageBounds
+
+            If New RectangleF(rect.X, rect.Y, h, h).Contains(e.Location) OrElse activeEdge = eResizeEdge.TopLeft Then
+                Me.Cursor = Cursors.SizeNWSE
+            ElseIf New RectangleF(rect.Right - h, rect.Y, h, h).Contains(e.Location) OrElse activeEdge = eResizeEdge.TopRight Then
+                Me.Cursor = Cursors.SizeNESW
+            ElseIf New RectangleF(rect.X, rect.Bottom - h, h, h).Contains(e.Location) OrElse activeEdge = eResizeEdge.BottomLeft Then
+                Me.Cursor = Cursors.SizeNESW
+            ElseIf New RectangleF(rect.Right - h, rect.Bottom - h, h, h).Contains(e.Location) OrElse activeEdge = eResizeEdge.BottomRight Then
+                Me.Cursor = Cursors.SizeNWSE
+            ElseIf rect.Contains(e.Location) OrElse IsDraggingImage Then
+                Me.Cursor = Cursors.SizeAll
+            Else
+                Me.Cursor = Cursors.Default
+            End If
+        End If
+
+        Select Case True
+            Case frmMain.rbToolSelect.Checked
+                If IsSelecting Then
+                    SelectionEnd = e.Location
+
+                    If (ModifierKeys And Keys.Control) <> Keys.Control Then
+                        SelectedItems.Clear()
+                    End If
+
+                    Dim selRect = GetSelectionRect()
+                    Dim rectSizeW As Single = (Width - (Margin.Left + Margin.Right)) / _Width
+                    Dim rectSizeH As Single = (Height - (Margin.Top + Margin.Bottom)) / _Height
+                    If rectSizeW > rectSizeH Then rectSizeW = rectSizeH Else rectSizeH = rectSizeW
+
+                    For Each led In LEDs
+                        Dim lx As Single = (rectSizeW * led.LedCoordinates.X) + Margin.Left
+                        Dim ly As Single = (rectSizeH * led.LedCoordinates.Y) + Margin.Top
+                        Dim lRect = New RectangleF(lx, ly, rectSizeW, rectSizeH)
+
+                        If selRect.IntersectsWith(lRect.ToRect) Then
+                            If Not SelectedItems.Contains(led) Then SelectedItems.Add(led)
+                        End If
+                    Next
+                End If
+
+            Case frmMain.rbToolPlaceLED.Checked
+                If IsPlaceLedDragging Then
+                    Dim hovered = ItemOnHover()
+                    If hovered Is Nothing Then
+                        AddLeds(1, _ledPos)
+                        Invalidate()
+                    End If
+                End If
+
+            Case frmMain.rbToolResizeGI.Checked
+                If activeEdge <> eResizeEdge.None Then
+                    Dim newX = ImageBounds.X
+                    Dim newY = ImageBounds.Y
+                    Dim newW = ImageBounds.Width
+                    Dim newH = ImageBounds.Height
+
+                    Select Case activeEdge
+                        Case eResizeEdge.TopLeft
+                            newX = e.X
+                            newY = e.Y
+                            newW = ImageBounds.Right - e.X
+                            newH = ImageBounds.Bottom - e.Y
+                        Case eResizeEdge.TopRight
+                            newY = e.Y
+                            newW = e.X - ImageBounds.X
+                            newH = ImageBounds.Bottom - e.Y
+                        Case eResizeEdge.BottomLeft
+                            newX = e.X
+                            newW = ImageBounds.Right - e.X
+                            newH = e.Y - ImageBounds.Y
+                        Case eResizeEdge.BottomRight
+                            newW = e.X - ImageBounds.X
+                            newH = e.Y - ImageBounds.Y
+                    End Select
+
+                    If newW > 20 Then
+                        ImageBounds.X = newX
+                        ImageBounds.Width = newW
+                    End If
+                    If newH > 20 Then
+                        ImageBounds.Y = newY
+                        ImageBounds.Height = newH
+                    End If
+
+                ElseIf IsDraggingImage Then
+                    ImageBounds.X = e.X - ImageDragOffset.X
+                    ImageBounds.Y = e.Y - ImageDragOffset.Y
+                End If
+                Invalidate()
+        End Select
+
         Invalidate()
     End Sub
 
     Private Sub ucComponent_MouseClick(sender As Object, e As MouseEventArgs) Handles Me.MouseClick
+        If IsSelecting Or IsDragging Then Return
+
         Select Case e.Button
             Case MouseButtons.Right
                 NsContextMenu1.Show(MousePosition)
                 NsContextMenu1.Tag = _ledPos
             Case MouseButtons.Left
-                If Not IsDragging Then SelectedItem = ItemOnHover()
-        End Select
-    End Sub
+                Select Case True
+                    Case frmMain.rbToolSelect.Checked
+                        Dim hovered = ItemOnHover()
 
-    Private Sub ucComponent_MouseDoubleClick(sender As Object, e As MouseEventArgs) Handles Me.MouseDoubleClick
-        Select Case e.Button
-            Case MouseButtons.Left
-                If SelectedItem = Nothing Then
-                    AddLeds(1, _ledPos)
-                    UserMemory.AddGeneratedObject(Translation.Localization.Single, LedCount - 2, 1)
-                    Invalidate()
-                End If
+                        If (ModifierKeys And Keys.Control) <> Keys.Control Then
+                            SelectedItems.Clear()
+                        End If
+
+                        If hovered IsNot Nothing Then
+                            SelectedItems.Add(hovered)
+                        End If
+                        Invalidate()
+                    Case frmMain.rbToolPlaceLED.Checked
+                        If IsPlaceLedDragging Then
+                            Dim hovered = ItemOnHover()
+                            If hovered Is Nothing Then
+                                AddLeds(1, _ledPos)
+                                Invalidate()
+                            End If
+                        End If
+                End Select
         End Select
     End Sub
 
     Private Sub ucComponent_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
         Select Case e.Button
             Case MouseButtons.Left
-                If ItemOnHover() <> Nothing Then
-                    IsDragging = True
-                    SelectedItem = ItemOnHover()
-                End If
+                Select Case True
+                    Case frmMain.rbToolSelect.Checked
+                        Dim hovered = ItemOnHover()
+                        If hovered IsNot Nothing Then
+                            If Not SelectedItems.Contains(hovered) Then
+                                If (ModifierKeys And Keys.Control) <> Keys.Control Then SelectedItems.Clear()
+                                SelectedItems.Add(hovered)
+                            End If
+
+                            IsDragging = True
+                            DragStartGrid = _ledPos
+                            DragOffset.Clear()
+
+                            Dim rectSizeW As Single = (Width - (Margin.Left + Margin.Right)) / _Width
+                            Dim rectSizeH As Single = (Height - (Margin.Top + Margin.Bottom)) / _Height
+
+                            If rectSizeW > rectSizeH Then rectSizeW = rectSizeH Else rectSizeH = rectSizeW
+
+                            For Each led In SelectedItems
+                                Dim ledScreenX As Single = (rectSizeW * led.LedCoordinates.X) + Margin.Left
+                                Dim ledScreenY As Single = (rectSizeH * led.LedCoordinates.Y) + Margin.Top
+
+                                DragOffset.Add(New PointF(e.X - ledScreenX, e.Y - ledScreenY))
+                            Next
+                        Else
+                            If (ModifierKeys And Keys.Control) <> Keys.Control Then
+                                SelectedItems.Clear()
+                            End If
+
+                            IsSelecting = True
+                            SelectionStart = e.Location
+                            SelectionEnd = e.Location
+                        End If
+                        Invalidate()
+
+                    Case frmMain.rbToolPlaceLED.Checked
+                        IsPlaceLedDragging = True
+
+                    Case frmMain.rbToolResizeGI.Checked
+                        Dim h As Integer = 10 ' Handle size
+                        Dim rect = ImageBounds
+
+                        If New RectangleF(rect.X, rect.Y, h, h).Contains(e.Location) Then
+                            activeEdge = eResizeEdge.TopLeft
+                        ElseIf New RectangleF(rect.Right - h, rect.Y, h, h).Contains(e.Location) Then
+                            activeEdge = eResizeEdge.TopRight
+                        ElseIf New RectangleF(rect.X, rect.Bottom - h, h, h).Contains(e.Location) Then
+                            activeEdge = eResizeEdge.BottomLeft
+                        ElseIf New RectangleF(rect.Right - h, rect.Bottom - h, h, h).Contains(e.Location) Then
+                            activeEdge = eResizeEdge.BottomRight
+                        ElseIf rect.Contains(e.Location) Then
+                            IsDraggingImage = True
+                            ImageDragOffset = New PointF(e.X - rect.X, e.Y - rect.Y)
+                        End If
+                        Invalidate()
+                End Select
         End Select
     End Sub
 
     Private Sub ucComponent_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
-        Select Case e.Button
-            Case MouseButtons.Left
-                IsDragging = False
-                If SelectedItem <> Nothing Then
-                    Dim idx = LEDs.IndexOf(SelectedItem)
-                    SelectedItem.LedCoordinates = _ledPos
-                    LEDs(idx) = SelectedItem
+        Select Case True
+            Case frmMain.rbToolSelect.Checked
+                If IsSelecting Then
+                    IsSelecting = False
+                ElseIf IsDragging Then
+                    IsDragging = False
+
+                    Dim deltaX As Integer = _ledPos.X - DragStartGrid.X
+                    Dim deltaY As Integer = _ledPos.Y - DragStartGrid.Y
+
+                    If deltaX <> 0 OrElse deltaY <> 0 Then
+                        For Each led In SelectedItems
+                            led.LedCoordinates = New Point(led.LedCoordinates.X + deltaX, led.LedCoordinates.Y + deltaY)
+                        Next
+                        RaiseEvent LEDsChanged(Me, New EventArgs())
+                    End If
                 End If
+                Invalidate()
+            Case frmMain.rbToolPlaceLED.Checked
+                IsPlaceLedDragging = False
+            Case frmMain.rbToolResizeGI.Checked
+                IsResizing = False
+                IsDraggingImage = False
+                activeEdge = eResizeEdge.None
         End Select
     End Sub
 
     Private Sub tsmiAddLed_Click(sender As Object, e As EventArgs) Handles tsmiAddLed.Click
         AddLeds(1, CType(NsContextMenu1.Tag, Point))
-        UserMemory.AddGeneratedObject(Translation.Localization.Single, LedCount - 2, 1)
         Invalidate()
-    End Sub
-
-    Private Sub tsmiRemoveLed_Click(sender As Object, e As EventArgs) Handles tsmiRemoveLed.Click
-        RemoveLastObject()
     End Sub
 
     Private Sub ucComponent_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
@@ -718,13 +959,13 @@ Public Class ucComponent
         If e.Modifiers = Keys.Shift Then
             Select Case e.KeyCode
                 Case Keys.Left
-                    MoveLeft(SelectedObject)
+                    MoveLeft()
                 Case Keys.Right
-                    MoveRight(SelectedObject)
+                    MoveRight()
                 Case Keys.Up
-                    MoveUp(SelectedObject)
+                    MoveUp()
                 Case Keys.Down
-                    MoveDown(SelectedObject)
+                    MoveDown()
             End Select
         Else
             Select Case e.KeyCode
@@ -732,16 +973,15 @@ Public Class ucComponent
                     If LedCount <> 0 Then
                         If timerTicks > 30 Then
                             RemoveLeds()
-                            UserMemory.ClearAllGeneratedObjects()
                             Invalidate()
                         Else
-                            RemoveLastObject()
+                            LEDs.RemoveAt(LedCount - 1)
+                            Invalidate()
                         End If
                         timerTicks = 0
                     End If
                 Case Keys.Space
                     AddLeds(1, _ledPos)
-                    UserMemory.AddGeneratedObject(Translation.Localization.Single, LedCount - 2, 1)
                     Invalidate()
                 Case Keys.Left
                     MoveLeft()
@@ -785,21 +1025,14 @@ Public Class ucComponent
         fmt.Show()
     End Sub
 
-    Private Sub tsmiRemoveLastLEDs_Click(sender As Object, e As EventArgs) Handles tsmiRemoveLastLEDs.Click
-        If LedCount <> 0 Then
-            Dim fmt As New frmMulti(eMode.Remove, LedCount, Me, CType(NsContextMenu1.Tag, Point))
-            fmt.Show()
-        End If
-    End Sub
-
     Private Sub Translate()
         Dim loc = Translation.Localization
 
         tsmiAddLed.Text = loc.AddLED
         tsmiEditLED.Text = loc.EditLED
         tsmiRemoveLed.Text = loc.RemoveLastObject
-        tsmiRemoveLastLEDs.Text = loc.Removezz
         tsmiAutoResize.Text = loc.AutoResize
+        tsmiInsertBgImage.Text = loc.InsertGuideImage
 
         tsmiGenerate.Text = loc.Generate
         tsmiLinear.Text = loc.Linear
@@ -809,74 +1042,42 @@ Public Class ucComponent
         tsmiRectangle.Text = loc.Rectangle
     End Sub
 
-    Public Sub MoveUp(Optional [object] As GeneratedObject = Nothing)
-        If [object] = Nothing Then
-            For i As Integer = 0 To LedCount - 1
-                Dim led = LEDs(i)
-                Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y - 1)
-                LEDs(i).LedCoordinates = newPos
-            Next
-        Else
-            For i As Integer = [object].StartIndex + 1 To ([object].StartIndex + [object].LEDs)
-                Dim led = LEDs(i)
-                Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y - 1)
-                LEDs(i).LedCoordinates = newPos
-            Next
-        End If
+    Public Sub MoveUp()
+        For i As Integer = 0 To LedCount - 1
+            Dim led = LEDs(i)
+            Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y - 1)
+            LEDs(i).LedCoordinates = newPos
+        Next
 
         Invalidate()
     End Sub
 
-    Public Sub MoveDown(Optional [object] As GeneratedObject = Nothing)
-        If [object] = Nothing Then
-            For i As Integer = 0 To LedCount - 1
-                Dim led = LEDs(i)
-                Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y + 1)
-                LEDs(i).LedCoordinates = newPos
-            Next
-        Else
-            For i As Integer = [object].StartIndex + 1 To ([object].StartIndex + [object].LEDs)
-                Dim led = LEDs(i)
-                Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y + 1)
-                LEDs(i).LedCoordinates = newPos
-            Next
-        End If
+    Public Sub MoveDown()
+        For i As Integer = 0 To LedCount - 1
+            Dim led = LEDs(i)
+            Dim newPos As New Point(led.LedCoordinates.X, led.LedCoordinates.Y + 1)
+            LEDs(i).LedCoordinates = newPos
+        Next
 
         Invalidate()
     End Sub
 
-    Public Sub MoveLeft(Optional [object] As GeneratedObject = Nothing)
-        If [object] = Nothing Then
-            For i As Integer = 0 To LedCount - 1
-                Dim led = LEDs(i)
-                Dim newPos As New Point(led.LedCoordinates.X - 1, led.LedCoordinates.Y)
-                LEDs(i).LedCoordinates = newPos
-            Next
-        Else
-            For i As Integer = [object].StartIndex + 1 To ([object].StartIndex + [object].LEDs)
-                Dim led = LEDs(i)
-                Dim newPos As New Point(led.LedCoordinates.X - 1, led.LedCoordinates.Y)
-                LEDs(i).LedCoordinates = newPos
-            Next
-        End If
+    Public Sub MoveLeft()
+        For i As Integer = 0 To LedCount - 1
+            Dim led = LEDs(i)
+            Dim newPos As New Point(led.LedCoordinates.X - 1, led.LedCoordinates.Y)
+            LEDs(i).LedCoordinates = newPos
+        Next
 
         Invalidate()
     End Sub
 
-    Public Sub MoveRight(Optional [object] As GeneratedObject = Nothing)
-        If [object] = Nothing Then
-            For i As Integer = 0 To LedCount - 1
-                Dim led = LEDs(i)
-                Dim newPos As New Point(led.LedCoordinates.X + 1, led.LedCoordinates.Y)
-                LEDs(i).LedCoordinates = newPos
-            Next
-        Else
-            For i As Integer = [object].StartIndex + 1 To ([object].StartIndex + [object].LEDs)
-                Dim led = LEDs(i)
-                Dim newPos As New Point(led.LedCoordinates.X + 1, led.LedCoordinates.Y)
-                LEDs(i).LedCoordinates = newPos
-            Next
-        End If
+    Public Sub MoveRight()
+        For i As Integer = 0 To LedCount - 1
+            Dim led = LEDs(i)
+            Dim newPos As New Point(led.LedCoordinates.X + 1, led.LedCoordinates.Y)
+            LEDs(i).LedCoordinates = newPos
+        Next
 
         Invalidate()
     End Sub
@@ -919,7 +1120,7 @@ Public Class ucComponent
     End Sub
 
     Public Sub EditLED(_pos As Point)
-        Dim item As Led = SelectedItem
+        Dim item As Led = SelectedItems.FirstOrDefault(Function(x) x.LedCoordinates = _pos)
         If item = Nothing Then item = ItemOnHover()
 
         If item <> Nothing Then
@@ -934,6 +1135,131 @@ Public Class ucComponent
 
     Private Sub tsmiEditLED_Click(sender As Object, e As EventArgs) Handles tsmiEditLED.Click
         EditLED(CType(NsContextMenu1.Tag, Point))
+    End Sub
+
+    Private Sub tsmiRemoveLed_Click(sender As Object, e As EventArgs) Handles tsmiRemoveLed.Click
+        LEDs.RemoveAt(LedCount - 1)
+        Invalidate()
+    End Sub
+
+    Private Sub tsmiInsertBgImage_Click(sender As Object, e As EventArgs) Handles tsmiInsertBgImage.Click
+        Dim ofd As New OpenFileDialog
+        With ofd
+            Dim codecs = ImageCodecInfo.GetImageEncoders
+            Dim sep = String.Empty
+            For Each c In codecs
+                Dim codecName = c.CodecName.Substring(8).Replace("Codec", "Files").Trim
+                .Filter = String.Format("{0}{1}{2} ({3})|{3}", ofd.Filter, sep, codecName, c.FilenameExtension)
+                sep = "|"
+            Next c
+            .Filter = String.Format("{0}{1}{2} ({3})|{3}", ofd.Filter, sep, "All Files", "*.*")
+            .InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyPictures)
+            .Title = Translation.Localization.SelectImageFile
+            .Multiselect = False
+        End With
+        If ofd.ShowDialog <> DialogResult.Cancel Then
+            _bgImg = Image.FromFile(ofd.FileName)
+        End If
+    End Sub
+
+    Public Sub RotateLEDsClockwise()
+        If LEDs.Count = 0 Then Return
+
+        If SelectedItems.Any() Then
+            Dim oldWidth As Integer = _Width
+            Dim oldHeight As Integer = _Height
+
+            For Each led In SelectedItems
+                Dim oldX = led.LedCoordinates.X
+                Dim oldY = led.LedCoordinates.Y
+                led.LedCoordinates = New Point((oldHeight - 1) - oldY, oldX)
+            Next
+
+            _Width = oldHeight
+            _Height = oldWidth
+
+            frmMain.numWidth.Value = _Width
+            frmMain.numHeight.Value = _Height
+
+            RaiseEvent LEDsChanged(Me, New EventArgs())
+            Invalidate()
+        Else
+            Dim oldWidth As Integer = _Width
+            Dim oldHeight As Integer = _Height
+
+            For Each led In LEDs
+                Dim oldX = led.LedCoordinates.X
+                Dim oldY = led.LedCoordinates.Y
+                led.LedCoordinates = New Point((oldHeight - 1) - oldY, oldX)
+            Next
+
+            _Width = oldHeight
+            _Height = oldWidth
+
+            frmMain.numWidth.Value = _Width
+            frmMain.numHeight.Value = _Height
+
+            RaiseEvent LEDsChanged(Me, New EventArgs())
+            Invalidate()
+        End If
+    End Sub
+
+    Public Sub RotateLEDsCounterClockwise()
+        If LEDs.Count = 0 Then Return
+
+        If SelectedItems.Any() Then
+            Dim oldWidth As Integer = _Width
+            Dim oldHeight As Integer = _Height
+
+            For Each led In SelectedItems
+                Dim oldX = led.LedCoordinates.X
+                Dim oldY = led.LedCoordinates.Y
+                led.LedCoordinates = New Point(oldY, (oldWidth - 1) - oldX)
+            Next
+
+            _Width = oldHeight
+            _Height = oldWidth
+
+            frmMain.numWidth.Value = _Width
+            frmMain.numHeight.Value = _Height
+
+            RaiseEvent LEDsChanged(Me, New EventArgs())
+            Invalidate()
+        Else
+            Dim oldWidth As Integer = _Width
+            Dim oldHeight As Integer = _Height
+
+            For Each led In LEDs
+                Dim oldX = led.LedCoordinates.X
+                Dim oldY = led.LedCoordinates.Y
+                led.LedCoordinates = New Point(oldY, (oldWidth - 1) - oldX)
+            Next
+
+            _Width = oldHeight
+            _Height = oldWidth
+
+            frmMain.numWidth.Value = _Width
+            frmMain.numHeight.Value = _Height
+
+            RaiseEvent LEDsChanged(Me, New EventArgs())
+            Invalidate()
+        End If
+    End Sub
+
+    Public Sub SetLEDsHidden()
+        If LEDs.Count = 0 Then Return
+
+        If SelectedItems.Any() Then
+            For Each led In SelectedItems
+                led.Hidden = Not led.Hidden
+            Next
+            Invalidate()
+        Else
+            For Each led In LEDs
+                led.Hidden = Not led.Hidden
+            Next
+            Invalidate()
+        End If
     End Sub
 
 End Class

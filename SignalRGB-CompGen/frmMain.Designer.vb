@@ -23,12 +23,12 @@ Partial Class frmMain
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        Dim NsListViewColumnHeader1 As SignalRGB_CompGen.NSListView.NSListViewColumnHeader = New NSListView.NSListViewColumnHeader()
-        Dim NsListViewColumnHeader2 As SignalRGB_CompGen.NSListView.NSListViewColumnHeader = New NSListView.NSListViewColumnHeader()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         RightPanel = New Panel()
-        gbObjects = New NSGroupBox()
-        lvObjects = New NSListView()
+        gbTools = New NSGroupBox()
+        rbToolResizeGI = New NSRadioButton()
+        rbToolPlaceLED = New NSRadioButton()
+        rbToolSelect = New NSRadioButton()
         txtWebImageUrl = New NSTextBox()
         lblWebImage = New NSLabel()
         tlpImageControls = New TableLayoutPanel()
@@ -37,17 +37,24 @@ Partial Class frmMain
         btnChangeImage = New NSButton()
         gbControls = New NSGroupBox()
         TableLayoutPanel1 = New TableLayoutPanel()
+        btnHideLed = New NSButton()
+        btnRotateLeft = New NSButton()
         btnUp = New NSButton()
         btnLeft = New NSButton()
         btnRight = New NSButton()
         btnDown = New NSButton()
+        btnRotateRight = New NSButton()
         btnAutoResize = New NSButton()
         msMainMenu = New NSMenuStrip()
         tsmiFile = New ToolStripMenuItem()
         tsmiNew = New ToolStripMenuItem()
         tsmiOpen = New ToolStripMenuItem()
         tsmiSave = New ToolStripMenuItem()
+        tsmiSaveSRGB = New ToolStripMenuItem()
+        tsmiSaveNRGB = New ToolStripMenuItem()
         tsmiSaveAs = New ToolStripMenuItem()
+        tsmiSaveAsSRGB = New ToolStripMenuItem()
+        tsmiSaveAsNRGB = New ToolStripMenuItem()
         ToolStripSeparator3 = New ToolStripSeparator()
         tsmiImport = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
@@ -82,7 +89,7 @@ Partial Class frmMain
         btnMax = New NSControlButton()
         btnClose = New NSControlButton()
         RightPanel.SuspendLayout()
-        gbObjects.SuspendLayout()
+        gbTools.SuspendLayout()
         tlpImageControls.SuspendLayout()
         gbImage.SuspendLayout()
         CType(pbImage, ComponentModel.ISupportInitialize).BeginInit()
@@ -97,7 +104,7 @@ Partial Class frmMain
         ' 
         ' RightPanel
         ' 
-        RightPanel.Controls.Add(gbObjects)
+        RightPanel.Controls.Add(gbTools)
         RightPanel.Controls.Add(txtWebImageUrl)
         RightPanel.Controls.Add(lblWebImage)
         RightPanel.Controls.Add(tlpImageControls)
@@ -121,37 +128,50 @@ Partial Class frmMain
         RightPanel.Location = New Point(0, 0)
         RightPanel.Name = "RightPanel"
         RightPanel.Padding = New Padding(3)
-        RightPanel.Size = New Size(312, 687)
+        RightPanel.Size = New Size(312, 663)
         RightPanel.TabIndex = 0
         ' 
-        ' gbObjects
+        ' gbTools
         ' 
-        gbObjects.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        gbObjects.Controls.Add(lvObjects)
-        gbObjects.DrawSeperator = True
-        gbObjects.Location = New Point(6, 464)
-        gbObjects.Name = "gbObjects"
-        gbObjects.Padding = New Padding(3, 31, 3, 3)
-        gbObjects.Size = New Size(300, 191)
-        gbObjects.SubTitle = ""
-        gbObjects.TabIndex = 10
-        gbObjects.Text = "NsGroupBox1"
-        gbObjects.Title = "Generated Objects"
+        gbTools.Controls.Add(rbToolResizeGI)
+        gbTools.Controls.Add(rbToolPlaceLED)
+        gbTools.Controls.Add(rbToolSelect)
+        gbTools.DrawSeperator = True
+        gbTools.Location = New Point(6, 464)
+        gbTools.Name = "gbTools"
+        gbTools.Padding = New Padding(3, 31, 3, 3)
+        gbTools.Size = New Size(300, 123)
+        gbTools.SubTitle = ""
+        gbTools.TabIndex = 10
+        gbTools.Text = "NsGroupBox1"
+        gbTools.Title = "Tools"
         ' 
-        ' lvObjects
+        ' rbToolResizeGI
         ' 
-        lvObjects.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        NsListViewColumnHeader1.Text = "Name"
-        NsListViewColumnHeader1.Width = 180
-        NsListViewColumnHeader2.Text = "Index"
-        NsListViewColumnHeader2.Width = 50
-        lvObjects.Columns = New NSListView.NSListViewColumnHeader() {NsListViewColumnHeader1, NsListViewColumnHeader2}
-        lvObjects.Location = New Point(6, 34)
-        lvObjects.MultiSelect = False
-        lvObjects.Name = "lvObjects"
-        lvObjects.Size = New Size(288, 151)
-        lvObjects.TabIndex = 0
-        lvObjects.Text = "NsListView1"
+        rbToolResizeGI.Checked = False
+        rbToolResizeGI.Location = New Point(6, 92)
+        rbToolResizeGI.Name = "rbToolResizeGI"
+        rbToolResizeGI.Size = New Size(288, 23)
+        rbToolResizeGI.TabIndex = 2
+        rbToolResizeGI.Text = "Resize Guide Image"
+        ' 
+        ' rbToolPlaceLED
+        ' 
+        rbToolPlaceLED.Checked = False
+        rbToolPlaceLED.Location = New Point(6, 63)
+        rbToolPlaceLED.Name = "rbToolPlaceLED"
+        rbToolPlaceLED.Size = New Size(288, 23)
+        rbToolPlaceLED.TabIndex = 1
+        rbToolPlaceLED.Text = "Place LED Tool"
+        ' 
+        ' rbToolSelect
+        ' 
+        rbToolSelect.Checked = True
+        rbToolSelect.Location = New Point(6, 34)
+        rbToolSelect.Name = "rbToolSelect"
+        rbToolSelect.Size = New Size(288, 23)
+        rbToolSelect.TabIndex = 0
+        rbToolSelect.Text = "Select Tool"
         ' 
         ' txtWebImageUrl
         ' 
@@ -247,10 +267,13 @@ Partial Class frmMain
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
         TableLayoutPanel1.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
+        TableLayoutPanel1.Controls.Add(btnHideLed, 1, 1)
+        TableLayoutPanel1.Controls.Add(btnRotateLeft, 0, 0)
         TableLayoutPanel1.Controls.Add(btnUp, 1, 0)
         TableLayoutPanel1.Controls.Add(btnLeft, 0, 1)
         TableLayoutPanel1.Controls.Add(btnRight, 2, 1)
         TableLayoutPanel1.Controls.Add(btnDown, 1, 2)
+        TableLayoutPanel1.Controls.Add(btnRotateRight, 2, 0)
         TableLayoutPanel1.Dock = DockStyle.Fill
         TableLayoutPanel1.Location = New Point(3, 31)
         TableLayoutPanel1.Name = "TableLayoutPanel1"
@@ -261,10 +284,30 @@ Partial Class frmMain
         TableLayoutPanel1.Size = New Size(141, 138)
         TableLayoutPanel1.TabIndex = 0
         ' 
+        ' btnHideLed
+        ' 
+        btnHideLed.Dock = DockStyle.Fill
+        btnHideLed.Font = New Font("Segoe UI", 26F)
+        btnHideLed.Location = New Point(50, 49)
+        btnHideLed.Name = "btnHideLed"
+        btnHideLed.Size = New Size(41, 40)
+        btnHideLed.TabIndex = 3
+        btnHideLed.Text = "⊘"
+        ' 
+        ' btnRotateLeft
+        ' 
+        btnRotateLeft.Dock = DockStyle.Fill
+        btnRotateLeft.Font = New Font("Segoe UI", 21F)
+        btnRotateLeft.Location = New Point(3, 3)
+        btnRotateLeft.Name = "btnRotateLeft"
+        btnRotateLeft.Size = New Size(41, 40)
+        btnRotateLeft.TabIndex = 2
+        btnRotateLeft.Text = "↺"
+        ' 
         ' btnUp
         ' 
         btnUp.Dock = DockStyle.Fill
-        btnUp.Font = New Font("Marlett", 11F)
+        btnUp.Font = New Font("Marlett", 19F)
         btnUp.Location = New Point(50, 3)
         btnUp.Name = "btnUp"
         btnUp.Size = New Size(41, 40)
@@ -274,7 +317,7 @@ Partial Class frmMain
         ' btnLeft
         ' 
         btnLeft.Dock = DockStyle.Fill
-        btnLeft.Font = New Font("Marlett", 11F)
+        btnLeft.Font = New Font("Marlett", 19F)
         btnLeft.Location = New Point(3, 49)
         btnLeft.Name = "btnLeft"
         btnLeft.Size = New Size(41, 40)
@@ -284,7 +327,7 @@ Partial Class frmMain
         ' btnRight
         ' 
         btnRight.Dock = DockStyle.Fill
-        btnRight.Font = New Font("Marlett", 11F)
+        btnRight.Font = New Font("Marlett", 19F)
         btnRight.Location = New Point(97, 49)
         btnRight.Name = "btnRight"
         btnRight.Size = New Size(41, 40)
@@ -294,12 +337,22 @@ Partial Class frmMain
         ' btnDown
         ' 
         btnDown.Dock = DockStyle.Fill
-        btnDown.Font = New Font("Marlett", 11F)
+        btnDown.Font = New Font("Marlett", 19F)
         btnDown.Location = New Point(50, 95)
         btnDown.Name = "btnDown"
         btnDown.Size = New Size(41, 40)
         btnDown.TabIndex = 0
         btnDown.Text = "6"
+        ' 
+        ' btnRotateRight
+        ' 
+        btnRotateRight.Dock = DockStyle.Fill
+        btnRotateRight.Font = New Font("Segoe UI", 21F)
+        btnRotateRight.Location = New Point(97, 3)
+        btnRotateRight.Name = "btnRotateRight"
+        btnRotateRight.Size = New Size(41, 40)
+        btnRotateRight.TabIndex = 1
+        btnRotateRight.Text = "↻"
         ' 
         ' btnAutoResize
         ' 
@@ -344,17 +397,47 @@ Partial Class frmMain
         ' 
         ' tsmiSave
         ' 
+        tsmiSave.DropDownItems.AddRange(New ToolStripItem() {tsmiSaveSRGB, tsmiSaveNRGB})
         tsmiSave.ForeColor = Color.White
         tsmiSave.Name = "tsmiSave"
         tsmiSave.Size = New Size(225, 22)
         tsmiSave.Text = "Save"
         ' 
+        ' tsmiSaveSRGB
+        ' 
+        tsmiSaveSRGB.ForeColor = Color.White
+        tsmiSaveSRGB.Name = "tsmiSaveSRGB"
+        tsmiSaveSRGB.Size = New Size(195, 22)
+        tsmiSaveSRGB.Text = "SignalRGB Component"
+        ' 
+        ' tsmiSaveNRGB
+        ' 
+        tsmiSaveNRGB.ForeColor = Color.White
+        tsmiSaveNRGB.Name = "tsmiSaveNRGB"
+        tsmiSaveNRGB.Size = New Size(195, 22)
+        tsmiSaveNRGB.Text = "NollieRGB VMAP"
+        ' 
         ' tsmiSaveAs
         ' 
+        tsmiSaveAs.DropDownItems.AddRange(New ToolStripItem() {tsmiSaveAsSRGB, tsmiSaveAsNRGB})
         tsmiSaveAs.ForeColor = Color.White
         tsmiSaveAs.Name = "tsmiSaveAs"
         tsmiSaveAs.Size = New Size(225, 22)
         tsmiSaveAs.Text = "Save As.."
+        ' 
+        ' tsmiSaveAsSRGB
+        ' 
+        tsmiSaveAsSRGB.ForeColor = Color.White
+        tsmiSaveAsSRGB.Name = "tsmiSaveAsSRGB"
+        tsmiSaveAsSRGB.Size = New Size(195, 22)
+        tsmiSaveAsSRGB.Text = "SignalRGB Component"
+        ' 
+        ' tsmiSaveAsNRGB
+        ' 
+        tsmiSaveAsNRGB.ForeColor = Color.White
+        tsmiSaveAsNRGB.Name = "tsmiSaveAsNRGB"
+        tsmiSaveAsNRGB.Size = New Size(195, 22)
+        tsmiSaveAsNRGB.Text = "NollieRGB VMAP"
         ' 
         ' ToolStripSeparator3
         ' 
@@ -439,7 +522,7 @@ Partial Class frmMain
         ' 
         nslblPosition.Dock = DockStyle.Bottom
         nslblPosition.Font = New Font("Segoe UI", 9F)
-        nslblPosition.Location = New Point(3, 661)
+        nslblPosition.Location = New Point(3, 637)
         nslblPosition.Name = "nslblPosition"
         nslblPosition.Size = New Size(306, 23)
         nslblPosition.TabIndex = 21
@@ -643,7 +726,7 @@ Partial Class frmMain
         ' SplitContainer1.Panel2
         ' 
         SplitContainer1.Panel2.Controls.Add(RightPanel)
-        SplitContainer1.Size = New Size(996, 687)
+        SplitContainer1.Size = New Size(996, 663)
         SplitContainer1.SplitterDistance = 680
         SplitContainer1.TabIndex = 3
         ' 
@@ -671,7 +754,7 @@ Partial Class frmMain
         NsTheme1.NoRounding = False
         NsTheme1.Padding = New Padding(3, 33, 3, 3)
         NsTheme1.Sizable = True
-        NsTheme1.Size = New Size(1008, 729)
+        NsTheme1.Size = New Size(1008, 705)
         NsTheme1.SmartBounds = True
         NsTheme1.StartPosition = FormStartPosition.CenterScreen
         NsTheme1.TabIndex = 4
@@ -723,7 +806,7 @@ Partial Class frmMain
         AllowDrop = True
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1008, 729)
+        ClientSize = New Size(1008, 705)
         ControlBox = False
         Controls.Add(NsTheme1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
@@ -736,7 +819,7 @@ Partial Class frmMain
         WindowState = FormWindowState.Maximized
         RightPanel.ResumeLayout(False)
         RightPanel.PerformLayout()
-        gbObjects.ResumeLayout(False)
+        gbTools.ResumeLayout(False)
         tlpImageControls.ResumeLayout(False)
         gbImage.ResumeLayout(False)
         CType(pbImage, ComponentModel.ISupportInitialize).EndInit()
@@ -805,7 +888,16 @@ Partial Class frmMain
     Friend WithEvents lblWebImage As NSLabel
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents tsmiImport As ToolStripMenuItem
-    Friend WithEvents gbObjects As NSGroupBox
-    Friend WithEvents lvObjects As NSListView
+    Friend WithEvents gbTools As NSGroupBox
+    Friend WithEvents rbToolPlaceLED As NSRadioButton
+    Friend WithEvents rbToolSelect As NSRadioButton
+    Friend WithEvents rbToolResizeGI As NSRadioButton
+    Friend WithEvents btnRotateRight As NSButton
+    Friend WithEvents btnRotateLeft As NSButton
+    Friend WithEvents btnHideLed As NSButton
+    Friend WithEvents tsmiSaveSRGB As ToolStripMenuItem
+    Friend WithEvents tsmiSaveNRGB As ToolStripMenuItem
+    Friend WithEvents tsmiSaveAsSRGB As ToolStripMenuItem
+    Friend WithEvents tsmiSaveAsNRGB As ToolStripMenuItem
 
 End Class

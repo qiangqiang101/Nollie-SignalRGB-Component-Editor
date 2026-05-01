@@ -28,7 +28,6 @@
             .UShapeZ = CInt(numAmountZ.Value)
             .Spacing = CInt(numSpacing.Value)
             .RoundedCorners = cbRoundedCorners.Checked
-            .AddGeneratedObject(Translation.Localization.UShape, Component.LedCount - CInt(numAmountX.Value + numAmountY.Value + numAmountZ.Value) - 1, CInt(numAmountX.Value + numAmountY.Value + numAmountZ.Value))
         End With
 
         ParentForm.Close()

@@ -205,7 +205,6 @@ Public Enum eMode
     AddUShape
     AddRectangle
     Edit
-    Remove
 End Enum
 
 Public Enum eDirection
@@ -271,4 +270,12 @@ Public Enum eRectOrder
     RightUpLeftDown
     LeftDownRightUp
     LeftUpRightDown
+End Enum
+
+Public Enum eResizeEdge
+    None
+    TopLeft
+    TopRight
+    BottomLeft
+    BottomRight
 End Enum

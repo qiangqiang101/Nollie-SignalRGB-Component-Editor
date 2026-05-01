@@ -45,7 +45,6 @@ C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-Comp
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.frmSettings.resources
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.Resources.resources
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.ucComponent.resources
-C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.ucDelete.resources
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.ucEdit.resources
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.ucLinear.resources
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.ucLShape.resources

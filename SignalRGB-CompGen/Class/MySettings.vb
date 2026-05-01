@@ -180,4 +180,16 @@ Public Class Localization
     Public LeftDownRightUp As String = "Left, Down, Right and Up"
     Public LeftUpRightDown As String = "Left, Up, Right and Down"
 
+    'Added on 02/05/2026
+    Public InsertGuideImage As String = "Insert Guide Image"
+    Public SaveVMAPFileAs As String = "Save VMAP file as..."
+    Public InvalidFile As String = "Invalid file."
+    Public Tools As String = "Tools"
+    Public SelectTool As String = "Select Tool"
+    Public PlaceLEDTool As String = "Place LED Tool"
+    Public ResizeGuideImage As String = "Resize Guide Image"
+    Public SignalRGBComponent As String = "SignalRGB Component"
+    Public NollieRGBVMAP As String = "NollieRGB VMAP"
+    Public Copy As String = "Copy"
+    Public Paste As String = "Paste"
 End Class
