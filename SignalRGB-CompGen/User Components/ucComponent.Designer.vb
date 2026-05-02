@@ -66,7 +66,7 @@ Partial Class ucComponent
         NsContextMenu1.ForeColor = Color.White
         NsContextMenu1.Items.AddRange(New ToolStripItem() {tsmiEditLED, tsmiGenerate, ToolStripSeparator1, tsmiRemoveLed, ToolStripSeparator2, tsmiAutoResize, tsmiInsertBgImage, tsmiRotateLeft, tsmiRotateRight, tsmiFlipHorizontal, tsmiFlipVertical, tsmiHideLEDs, ToolStripSeparator3, tsmiCopy, tsmiPaste})
         NsContextMenu1.Name = "NsContextMenu1"
-        NsContextMenu1.Size = New Size(211, 286)
+        NsContextMenu1.Size = New Size(211, 308)
         ' 
         ' tsmiEditLED
         ' 
@@ -195,7 +195,7 @@ Partial Class ucComponent
         ' 
         tsmiPaste.Image = My.Resources.Resources.content_paste_custom
         tsmiPaste.Name = "tsmiPaste"
-        tsmiPaste.ShortcutKeys = Keys.Control Or Keys.Z
+        tsmiPaste.ShortcutKeys = Keys.Control Or Keys.V
         tsmiPaste.Size = New Size(210, 22)
         tsmiPaste.Text = "Paste"
         ' 
