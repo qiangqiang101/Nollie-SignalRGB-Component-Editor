@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="Current" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <_LastSelectedProfileId>C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\My Project\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
+    <_LastSelectedProfileId>D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\My Project\PublishProfiles\FolderProfile.pubxml</_LastSelectedProfileId>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="Class\FormEx.vb">
@@ -29,9 +29,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="User Components\ucLShape.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Update="User Components\ucDelete.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="User Components\ucComponent.vb">

@@ -6,11 +6,13 @@ Public Class Led
     Public Property MappingIndex() As Integer
     Public Property LedName() As String
     Public Property LedCoordinates() As Point
+    Public Property Hidden() As Boolean
 
     Public Sub New(mindex As Integer, name As String, coord As Point)
         MappingIndex = mindex
         LedName = name
         LedCoordinates = coord
+        Hidden = False
     End Sub
 
     Public Shared Operator =(a As Led, b As Led) As Boolean

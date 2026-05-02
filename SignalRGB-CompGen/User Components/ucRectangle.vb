@@ -29,7 +29,6 @@
             .RectZ = CInt(numAmountZ.Value)
             .Spacing = CInt(numSpacing.Value)
             .RoundedCorners = cbRoundedCorners.Checked
-            .AddGeneratedObject(Translation.Localization.Rectangle, Component.LedCount - CInt(numAmountW.Value + numAmountX.Value + numAmountY.Value + numAmountZ.Value) - 1, CInt(numAmountW.Value + numAmountX.Value + numAmountY.Value + numAmountZ.Value))
         End With
 
         ParentForm.Close()

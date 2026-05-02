@@ -78,14 +78,6 @@
                 Dim edit As New ucEdit(Component, SelectedItem)
                 pUserControl.Controls.Add(edit)
                 edit.Dock = DockStyle.Fill
-            Case eMode.Remove
-                Text = Translation.Localization.RemoveLastLEDs
-                NsTheme1.Text = Text
-
-                Height = 110
-                Dim delete As New ucDelete(MaximumLED, Component, LEDPos)
-                pUserControl.Controls.Add(delete)
-                delete.Dock = DockStyle.Fill
         End Select
     End Sub
 

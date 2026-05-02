@@ -69,9 +69,6 @@ Public Class frmImport
         frmMain.pbImage.Image = newComp.ToImage
         frmMain.txtWebImageUrl.Text = newComp.ImageUrl
 
-        UserMemory.ClearAllGeneratedObjects()
-        UserMemory.AddGeneratedObject(zone.controller.name, -1, LEDs.Count)
-
         Text = String.Format(Translation.Localization.Title, frmMain.FileName)
         NsTheme1.Text = Text
         Close()

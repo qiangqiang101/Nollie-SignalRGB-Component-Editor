@@ -1,28 +1,26 @@
-﻿Imports System.ComponentModel
-Imports System.IO
-Imports System.Text.Json.Nodes
-Imports Newtonsoft.Json
+﻿Imports Newtonsoft.Json
 
-Public Structure Component
+Public Class Component
 
-    Public ProductName As String
-    Public DisplayName As String
-    Public Brand As String
-    Public Type As String
-    Public LedCount As Integer
-    Public Width As Integer
-    Public Height As Integer
-    Public LedMapping As Integer()
-    Public LedCoordinates As List(Of Integer())
-    Public LedNames As String()
-    Public Image As String
-    Public ImageUrl As String
+    Public Property ProductName As String
+    Public Property DisplayName As String
+    Public Property Brand As String
+    Public Property Type As String
+    Public Property LedCount As Integer
+    Public Property Width As Integer
+    Public Property Height As Integer
+    Public Property LedMapping As Integer()
+    Public Property LedCoordinates As List(Of Integer())
+    Public Property LedNames As String()
+    Public Property Image As String
+    Public Property ImageUrl As String
 
     Public Function ToImage() As Image
+        If String.IsNullOrEmpty(Image) Then Return Nothing
         Return Image.Base64ToImage()
     End Function
 
-    Public Function Load(filename As String) As Component
+    Public Shared Function Load(filename As String) As Component
         Try
             Return JsonConvert.DeserializeObject(Of Component)(IO.File.ReadAllText(filename))
         Catch ex As Exception
@@ -48,10 +46,10 @@ Public Structure Component
     End Sub
 
     Public Function Serialize() As String
-        Return JsonConvert.SerializeObject(Me, Formatting.Indented) ', New CustomJsonConverter
+        Return JsonConvert.SerializeObject(Me, Formatting.Indented)
     End Function
 
-End Structure
+End Class
 
 Public Structure ComponentF
 

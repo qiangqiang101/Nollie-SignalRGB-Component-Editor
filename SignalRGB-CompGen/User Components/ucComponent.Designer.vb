@@ -23,10 +23,8 @@ Partial Class ucComponent
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        tsmiAddLed = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
         tsmiRemoveLed = New ToolStripMenuItem()
-        tsmiRemoveLastLEDs = New ToolStripMenuItem()
         NsContextMenu1 = New NSContextMenu()
         tsmiEditLED = New ToolStripMenuItem()
         tsmiGenerate = New ToolStripMenuItem()
@@ -37,98 +35,169 @@ Partial Class ucComponent
         tsmiRectangle = New ToolStripMenuItem()
         ToolStripSeparator2 = New ToolStripSeparator()
         tsmiAutoResize = New ToolStripMenuItem()
+        tsmiInsertBgImage = New ToolStripMenuItem()
+        tsmiRotateLeft = New ToolStripMenuItem()
+        tsmiRotateRight = New ToolStripMenuItem()
+        tsmiFlipHorizontal = New ToolStripMenuItem()
+        tsmiFlipVertical = New ToolStripMenuItem()
+        tsmiHideLEDs = New ToolStripMenuItem()
+        ToolStripSeparator3 = New ToolStripSeparator()
+        tsmiCopy = New ToolStripMenuItem()
+        tsmiPaste = New ToolStripMenuItem()
         tPressHold = New Timer(components)
         NsContextMenu1.SuspendLayout()
         SuspendLayout()
         ' 
-        ' tsmiAddLed
-        ' 
-        tsmiAddLed.Name = "tsmiAddLed"
-        tsmiAddLed.Size = New Size(180, 22)
-        tsmiAddLed.Text = "Add LED"
-        ' 
         ' ToolStripSeparator1
         ' 
         ToolStripSeparator1.Name = "ToolStripSeparator1"
-        ToolStripSeparator1.Size = New Size(177, 6)
+        ToolStripSeparator1.Size = New Size(207, 6)
         ' 
         ' tsmiRemoveLed
         ' 
+        tsmiRemoveLed.Image = My.Resources.Resources.led_variant_outline_remove_custom
         tsmiRemoveLed.Name = "tsmiRemoveLed"
-        tsmiRemoveLed.Size = New Size(180, 22)
+        tsmiRemoveLed.ShortcutKeys = Keys.Delete
+        tsmiRemoveLed.Size = New Size(210, 22)
         tsmiRemoveLed.Text = "Remove last LED"
-        ' 
-        ' tsmiRemoveLastLEDs
-        ' 
-        tsmiRemoveLastLEDs.Name = "tsmiRemoveLastLEDs"
-        tsmiRemoveLastLEDs.Size = New Size(180, 22)
-        tsmiRemoveLastLEDs.Text = "Remove last LEDs"
         ' 
         ' NsContextMenu1
         ' 
         NsContextMenu1.ForeColor = Color.White
-        NsContextMenu1.Items.AddRange(New ToolStripItem() {tsmiAddLed, tsmiEditLED, tsmiGenerate, ToolStripSeparator1, tsmiRemoveLed, tsmiRemoveLastLEDs, ToolStripSeparator2, tsmiAutoResize})
+        NsContextMenu1.Items.AddRange(New ToolStripItem() {tsmiEditLED, tsmiGenerate, ToolStripSeparator1, tsmiRemoveLed, ToolStripSeparator2, tsmiAutoResize, tsmiInsertBgImage, tsmiRotateLeft, tsmiRotateRight, tsmiFlipHorizontal, tsmiFlipVertical, tsmiHideLEDs, ToolStripSeparator3, tsmiCopy, tsmiPaste})
         NsContextMenu1.Name = "NsContextMenu1"
-        NsContextMenu1.Size = New Size(181, 170)
+        NsContextMenu1.Size = New Size(211, 286)
         ' 
         ' tsmiEditLED
         ' 
+        tsmiEditLED.Image = My.Resources.Resources.led_variant_outline_edit_custom
         tsmiEditLED.Name = "tsmiEditLED"
-        tsmiEditLED.Size = New Size(180, 22)
+        tsmiEditLED.Size = New Size(210, 22)
         tsmiEditLED.Text = "Edit LED"
         ' 
         ' tsmiGenerate
         ' 
         tsmiGenerate.DropDownItems.AddRange(New ToolStripItem() {tsmiLinear, tsmiMatrix, tsmiLShape, tsmiUShape, tsmiRectangle})
+        tsmiGenerate.Image = My.Resources.Resources.dots_horizontal_circle_outline_custom
         tsmiGenerate.Name = "tsmiGenerate"
-        tsmiGenerate.Size = New Size(180, 22)
+        tsmiGenerate.Size = New Size(210, 22)
         tsmiGenerate.Text = "Generate.."
         ' 
         ' tsmiLinear
         ' 
         tsmiLinear.ForeColor = Color.White
+        tsmiLinear.Image = My.Resources.Resources.dots_horizontal_custom
         tsmiLinear.Name = "tsmiLinear"
-        tsmiLinear.Size = New Size(180, 22)
+        tsmiLinear.Size = New Size(126, 22)
         tsmiLinear.Text = "Linear"
         ' 
         ' tsmiMatrix
         ' 
         tsmiMatrix.ForeColor = Color.White
+        tsmiMatrix.Image = My.Resources.Resources.dots_grid_custom
         tsmiMatrix.Name = "tsmiMatrix"
-        tsmiMatrix.Size = New Size(180, 22)
+        tsmiMatrix.Size = New Size(126, 22)
         tsmiMatrix.Text = "Matrix"
         ' 
         ' tsmiLShape
         ' 
         tsmiLShape.ForeColor = Color.White
+        tsmiLShape.Image = My.Resources.Resources.dots_lshape_custom
         tsmiLShape.Name = "tsmiLShape"
-        tsmiLShape.Size = New Size(180, 22)
+        tsmiLShape.Size = New Size(126, 22)
         tsmiLShape.Text = "L Shape"
         ' 
         ' tsmiUShape
         ' 
         tsmiUShape.ForeColor = Color.White
+        tsmiUShape.Image = My.Resources.Resources.dots_ushape_custom
         tsmiUShape.Name = "tsmiUShape"
-        tsmiUShape.Size = New Size(180, 22)
+        tsmiUShape.Size = New Size(126, 22)
         tsmiUShape.Text = "U Shape"
         ' 
         ' tsmiRectangle
         ' 
         tsmiRectangle.ForeColor = Color.White
+        tsmiRectangle.Image = My.Resources.Resources.dots_square_custom
         tsmiRectangle.Name = "tsmiRectangle"
-        tsmiRectangle.Size = New Size(180, 22)
+        tsmiRectangle.Size = New Size(126, 22)
         tsmiRectangle.Text = "Rectangle"
         ' 
         ' ToolStripSeparator2
         ' 
         ToolStripSeparator2.Name = "ToolStripSeparator2"
-        ToolStripSeparator2.Size = New Size(177, 6)
+        ToolStripSeparator2.Size = New Size(207, 6)
         ' 
         ' tsmiAutoResize
         ' 
+        tsmiAutoResize.Image = My.Resources.Resources.resize_custom
         tsmiAutoResize.Name = "tsmiAutoResize"
-        tsmiAutoResize.Size = New Size(180, 22)
+        tsmiAutoResize.Size = New Size(210, 22)
         tsmiAutoResize.Text = "Auto Resize"
+        ' 
+        ' tsmiInsertBgImage
+        ' 
+        tsmiInsertBgImage.Image = My.Resources.Resources.image_plus_outline_custom
+        tsmiInsertBgImage.Name = "tsmiInsertBgImage"
+        tsmiInsertBgImage.Size = New Size(210, 22)
+        tsmiInsertBgImage.Text = "Insert Guide Image"
+        ' 
+        ' tsmiRotateLeft
+        ' 
+        tsmiRotateLeft.Image = My.Resources.Resources.rotate_left_custom
+        tsmiRotateLeft.Name = "tsmiRotateLeft"
+        tsmiRotateLeft.Size = New Size(210, 22)
+        tsmiRotateLeft.Text = "Rotate Counter Clockwise"
+        ' 
+        ' tsmiRotateRight
+        ' 
+        tsmiRotateRight.Image = My.Resources.Resources.rotate_right_custom
+        tsmiRotateRight.Name = "tsmiRotateRight"
+        tsmiRotateRight.Size = New Size(210, 22)
+        tsmiRotateRight.Text = "Rotate Clockwise"
+        ' 
+        ' tsmiFlipHorizontal
+        ' 
+        tsmiFlipHorizontal.Image = My.Resources.Resources.flip_horizontal_custom1
+        tsmiFlipHorizontal.Name = "tsmiFlipHorizontal"
+        tsmiFlipHorizontal.Size = New Size(210, 22)
+        tsmiFlipHorizontal.Text = "Flip Horizontal"
+        ' 
+        ' tsmiFlipVertical
+        ' 
+        tsmiFlipVertical.Image = My.Resources.Resources.flip_vertical_custom1
+        tsmiFlipVertical.Name = "tsmiFlipVertical"
+        tsmiFlipVertical.Size = New Size(210, 22)
+        tsmiFlipVertical.Text = "Flip Vertical"
+        ' 
+        ' tsmiHideLEDs
+        ' 
+        tsmiHideLEDs.Image = My.Resources.Resources.eye_off_outline_custom
+        tsmiHideLEDs.Name = "tsmiHideLEDs"
+        tsmiHideLEDs.ShortcutKeys = Keys.Control Or Keys.H
+        tsmiHideLEDs.Size = New Size(210, 22)
+        tsmiHideLEDs.Text = "Show/Hide LEDs"
+        ' 
+        ' ToolStripSeparator3
+        ' 
+        ToolStripSeparator3.Name = "ToolStripSeparator3"
+        ToolStripSeparator3.Size = New Size(207, 6)
+        ' 
+        ' tsmiCopy
+        ' 
+        tsmiCopy.Image = My.Resources.Resources.content_copy_custom
+        tsmiCopy.Name = "tsmiCopy"
+        tsmiCopy.ShortcutKeys = Keys.Control Or Keys.C
+        tsmiCopy.Size = New Size(210, 22)
+        tsmiCopy.Text = "Copy"
+        ' 
+        ' tsmiPaste
+        ' 
+        tsmiPaste.Image = My.Resources.Resources.content_paste_custom
+        tsmiPaste.Name = "tsmiPaste"
+        tsmiPaste.ShortcutKeys = Keys.Control Or Keys.Z
+        tsmiPaste.Size = New Size(210, 22)
+        tsmiPaste.Text = "Paste"
         ' 
         ' tPressHold
         ' 
@@ -147,10 +216,8 @@ Partial Class ucComponent
         NsContextMenu1.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
-    Friend WithEvents tsmiAddLed As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents tsmiRemoveLed As ToolStripMenuItem
-    Friend WithEvents tsmiRemoveLastLEDs As ToolStripMenuItem
     Friend WithEvents NsContextMenu1 As NSContextMenu
     Friend WithEvents ToolStripSeparator2 As ToolStripSeparator
     Friend WithEvents tsmiAutoResize As ToolStripMenuItem
@@ -162,5 +229,14 @@ Partial Class ucComponent
     Friend WithEvents tsmiRectangle As ToolStripMenuItem
     Friend WithEvents tsmiUShape As ToolStripMenuItem
     Friend WithEvents tPressHold As Timer
+    Friend WithEvents tsmiInsertBgImage As ToolStripMenuItem
+    Friend WithEvents tsmiRotateLeft As ToolStripMenuItem
+    Friend WithEvents tsmiRotateRight As ToolStripMenuItem
+    Friend WithEvents tsmiHideLEDs As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
+    Friend WithEvents tsmiCopy As ToolStripMenuItem
+    Friend WithEvents tsmiPaste As ToolStripMenuItem
+    Friend WithEvents tsmiFlipHorizontal As ToolStripMenuItem
+    Friend WithEvents tsmiFlipVertical As ToolStripMenuItem
 
 End Class

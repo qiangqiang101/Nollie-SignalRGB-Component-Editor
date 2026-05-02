@@ -21,36 +21,6 @@ Public Class Memory
     Public RectZ As Integer
     Public Spacing As Integer
     Public RoundedCorners As Boolean
-    Public GeneratedObjects As List(Of GeneratedObject)
-
-    Public Function LastGeneratedObject() As GeneratedObject
-        If GeneratedObjects.Count = 0 Then
-            Return Nothing
-        Else
-            Return GeneratedObjects.OrderByDescending(Function(x) x.TimeStamp).First()
-        End If
-    End Function
-
-    Public Sub AddGeneratedObject(name As String, start As Integer, value As Integer)
-        Dim go As New GeneratedObject(name, start, value)
-        GeneratedObjects.Add(go)
-        frmMain.AddGeneratedObjectToListview(go)
-        Console.WriteLine($"Name: {name}, Start Index: {start}, Amount: {value}")
-    End Sub
-
-    Public Sub RemoveLastGeneratedObject()
-        If GeneratedObjects.Count <> 0 Then
-            frmMain.RemoveLastGeneratedObjectFromListview(LastGeneratedObject)
-            GeneratedObjects.Remove(LastGeneratedObject)
-        End If
-    End Sub
-
-    Public Sub ClearAllGeneratedObjects()
-        If GeneratedObjects.Count <> 0 Then
-            frmMain.lvObjects.Clear()
-            GeneratedObjects.Clear()
-        End If
-    End Sub
 
     Public Sub New()
         Direction = eDirection.Up
@@ -72,38 +42,6 @@ Public Class Memory
         RectZ = 1
         Spacing = 0
         RoundedCorners = False
-        GeneratedObjects = New List(Of GeneratedObject)
     End Sub
-
-End Class
-
-Public Class GeneratedObject
-
-    Public Name As String
-    Public StartIndex As Integer
-    Public LEDs As Integer
-    Public TimeStamp As Long
-
-    Public Sub New(name As String, start As Integer, leds As Integer)
-        Me.Name = name
-        StartIndex = start
-        Me.LEDs = leds
-        TimeStamp = Now.Ticks
-    End Sub
-
-    Public Sub New()
-        Name = Nothing
-        StartIndex = 0
-        LEDs = 0
-        TimeStamp = Now.Ticks
-    End Sub
-
-    Public Shared Operator =(a As GeneratedObject, b As GeneratedObject) As Boolean
-        Return a Is b
-    End Operator
-
-    Public Shared Operator <>(a As GeneratedObject, b As GeneratedObject) As Boolean
-        Return a IsNot b
-    End Operator
 
 End Class
