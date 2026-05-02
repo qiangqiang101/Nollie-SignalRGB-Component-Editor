@@ -835,3 +835,220 @@ Class NSListView
     End Sub
 
 End Class
+
+Class NSImgButton
+    Inherits Control
+
+    Sub New()
+        SetStyle(DirectCast(139286, ControlStyles), True)
+        SetStyle(ControlStyles.Selectable, False)
+
+        P1 = New Pen(Color.FromArgb(35, 35, 35))
+        P2 = New Pen(Color.FromArgb(65, 65, 65))
+        PF = New Pen(Color.FromArgb(205, 150, 0))
+    End Sub
+
+    Private IsMouseDown As Boolean
+
+    Private GP1, GP2 As GraphicsPath
+
+    Private SZ1 As SizeF
+    Private PT1 As PointF
+
+    Private P1, P2, PF As Pen
+
+    Private PB1 As PathGradientBrush
+    Private GB1 As LinearGradientBrush
+
+    Protected Overrides Sub OnPaint(e As System.Windows.Forms.PaintEventArgs)
+        G = e.Graphics
+        G.TextRenderingHint = TextRenderingHint.ClearTypeGridFit
+
+        G.Clear(BackColor)
+        G.SmoothingMode = SmoothingMode.AntiAlias
+
+        GP1 = CreateRound(0, 0, Width - 1, Height - 1, 7)
+        GP2 = CreateRound(1, 1, Width - 3, Height - 3, 7)
+
+        If IsMouseDown Then
+            PB1 = New PathGradientBrush(GP1)
+            PB1.CenterColor = Color.FromArgb(60, 60, 60)
+            PB1.SurroundColors = {Color.FromArgb(55, 55, 55)}
+            PB1.FocusScales = New PointF(0.8F, 0.5F)
+
+            G.FillPath(PB1, GP1)
+
+            G.DrawPath(PF, GP1)
+        Else
+            GB1 = New LinearGradientBrush(ClientRectangle, Color.FromArgb(60, 60, 60), Color.FromArgb(55, 55, 55), 90.0F)
+            G.FillPath(GB1, GP1)
+
+            G.DrawPath(P1, GP1)
+        End If
+
+
+        G.DrawPath(P2, GP2)
+
+        'SZ1 = G.MeasureString(Text, Font)
+        'PT1 = New PointF(5, Height \ 2 - SZ1.Height / 2)
+
+        If IsMouseDown Then
+            PT1.X += 1.0F
+            PT1.Y += 1.0F
+        End If
+
+        'G.DrawString(Text, Font, Brushes.Black, PT1.X + 1, PT1.Y + 1)
+        'G.DrawString(Text, Font, Brushes.White, PT1)
+
+        If BackgroundImage IsNot Nothing Then
+            G.DrawImage(BackgroundImage, New Rectangle(Padding.Left, Padding.Top, Width - (Padding.Right * 2), Height - (Padding.Bottom * 2)))
+        End If
+    End Sub
+
+    Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
+        IsMouseDown = True
+        Invalidate()
+    End Sub
+
+    Protected Overrides Sub OnMouseUp(e As MouseEventArgs)
+        IsMouseDown = False
+        Invalidate()
+    End Sub
+
+End Class
+
+<DefaultEvent("CheckedChanged")>
+Public Class NSImgRadioButton
+    Inherits Control
+
+    Public Event CheckedChanged(sender As Object)
+
+    Sub New()
+        ' Set styles for smooth drawing and to prevent flickering
+        SetStyle(ControlStyles.AllPaintingInWmPaint Or ControlStyles.UserPaint Or
+                 ControlStyles.OptimizedDoubleBuffer Or ControlStyles.ResizeRedraw, True)
+        SetStyle(ControlStyles.Selectable, False)
+
+        ' Initialize Pens from NSImgButton style
+        P1 = New Pen(Color.FromArgb(35, 35, 35))
+        P2 = New Pen(Color.FromArgb(65, 65, 65))
+        PF = New Pen(Color.FromArgb(205, 150, 0)) ' Orange/Gold highlight for Checked state
+    End Sub
+
+    ' Logic from NSRadioButton
+    Private _Checked As Boolean
+    Public Property Checked() As Boolean
+        Get
+            Return _Checked
+        End Get
+        Set(ByVal value As Boolean)
+            If _Checked <> value Then
+                _Checked = value
+
+                If _Checked Then
+                    InvalidateParent()
+                End If
+
+                RaiseEvent CheckedChanged(Me)
+                Invalidate()
+            End If
+        End Set
+    End Property
+
+    ' Ensures only one button in a group is selected
+    Private Sub InvalidateParent()
+        If Parent Is Nothing Then Return
+        For Each C As Control In Parent.Controls
+            If Not (C Is Me) AndAlso (TypeOf C Is NSImgRadioButton) Then
+                DirectCast(C, NSImgRadioButton).Checked = False
+            End If
+        Next
+    End Sub
+
+    ' Rendering Variables
+    Private GP1, GP2 As GraphicsPath
+    Private P1, P2, PF As Pen
+    Private PB1 As PathGradientBrush
+    Private GB1 As LinearGradientBrush
+
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
+        Dim G As Graphics = e.Graphics
+        G.TextRenderingHint = TextRenderingHint.ClearTypeGridFit
+        G.SmoothingMode = SmoothingMode.AntiAlias
+        G.Clear(BackColor)
+
+        ' 1. Create the Shapes
+        GP1 = CreateRound(0, 0, Width - 1, Height - 1, 7)
+        GP2 = CreateRound(1, 1, Width - 3, Height - 3, 7)
+
+        ' 2. Draw Background State
+        If _Checked Then
+            Using PB1 As New PathGradientBrush(GP1)
+                PB1.CenterColor = Color.FromArgb(60, 60, 60)
+                PB1.SurroundColors = {Color.FromArgb(55, 55, 55)}
+                PB1.FocusScales = New PointF(0.8F, 0.5F)
+                G.FillPath(PB1, GP1)
+            End Using
+            G.DrawPath(PF, GP1)
+        Else
+            Using GB1 As New LinearGradientBrush(ClientRectangle, Color.FromArgb(60, 60, 60), Color.FromArgb(55, 55, 55), 90.0F)
+                G.FillPath(GB1, GP1)
+            End Using
+            G.DrawPath(P1, GP1)
+        End If
+        G.DrawPath(P2, GP2)
+
+        ' 3. Calculate Dimensions for Centering
+        Dim spacing As Integer = 6
+        Dim SZ1 As SizeF = G.MeasureString(Text, Font)
+        Dim iconSize As Integer = Height - (Padding.Top + Padding.Bottom + 4)
+
+        Dim totalWidth As Single = SZ1.Width
+        If BackgroundImage IsNot Nothing Then
+            totalWidth += iconSize + spacing
+        End If
+
+        ' Find the starting X to keep the whole group centered
+        Dim startX As Single = (Width / 2) - (totalWidth / 2)
+        Dim centerY As Single = (Height / 2)
+
+        ' Shift for "pressed" effect
+        If _Checked Then
+            startX += 1.0F
+            centerY += 1.0F
+        End If
+
+        ' 4. Draw Image (Centered Group)
+        Dim currentX As Single = startX
+        If BackgroundImage IsNot Nothing Then
+            Dim imgRect As New Rectangle(CInt(currentX), CInt(centerY - (iconSize / 2)), iconSize, iconSize)
+            G.DrawImage(BackgroundImage, imgRect)
+            currentX += iconSize + spacing
+        End If
+
+        ' 5. Draw Text (Centered Group)
+        Dim textY As Single = centerY - (SZ1.Height / 2)
+
+        ' Shadow and Text
+        G.DrawString(Text, Font, Brushes.Black, currentX + 1, textY + 1)
+        G.DrawString(Text, Font, Brushes.White, currentX, textY)
+    End Sub
+
+    ' Helper to create rounded corners (Ensure this exists in your project or use this one)
+    Private Function CreateRound(x As Integer, y As Integer, width As Integer, height As Integer, slope As Integer) As GraphicsPath
+        Dim GP As New GraphicsPath()
+        Dim arcSize As Integer = slope * 2
+        GP.AddArc(x, y, arcSize, arcSize, 180, 90)
+        GP.AddArc(x + width - arcSize, y, arcSize, arcSize, 270, 90)
+        GP.AddArc(x + width - arcSize, y + height - arcSize, arcSize, arcSize, 0, 90)
+        GP.AddArc(x, y + height - arcSize, arcSize, arcSize, 90, 90)
+        GP.CloseAllFigures()
+        Return GP
+    End Function
+
+    Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
+        If Not _Checked Then Checked = True
+        MyBase.OnMouseDown(e)
+    End Sub
+
+End Class

@@ -315,7 +315,6 @@ Public Class frmMain
             tsmiExit.Text = loc.Exit
             tsmiSettings.Text = loc.Settings
             tsmiHelp.Text = loc.Help
-            tsmiControls.Text = loc.Controls
             tsmiSRGB.Text = loc.VisitSignalRGB
             tsmiNollie.Text = loc.VisitNollie
             tsmiMentaL.Text = loc.VisitMentaL
@@ -335,6 +334,16 @@ Public Class frmMain
             gbControls.Title = loc.Controls
             btnAutoResize.Text = loc.AutoResize
             lblWebImage.Value1 = loc.ImageURL
+
+            ' Added 02/05/2026
+            gbTools.Title = loc.Tools
+            rbToolSelect.Text = loc.SelectTool
+            rbToolPlaceLED.Text = loc.PlaceLEDTool
+            rbToolResizeGI.Text = loc.ResizeGuideImage
+            tsmiSaveSRGB.Text = loc.SignalRGBComponent
+            tsmiSaveNRGB.Text = loc.NollieRGBVMAP
+            tsmiSaveAsSRGB.Text = loc.SignalRGBComponent
+            tsmiSaveAsNRGB.Text = loc.NollieRGBVMAP
         End If
     End Sub
 
@@ -409,7 +418,7 @@ Public Class frmMain
         mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
     End Sub
 
-    Private Sub tsmiControls_Click(sender As Object, e As EventArgs) Handles tsmiControls.Click
+    Private Sub tsmiControls_Click(sender As Object, e As EventArgs)
         MsgBox(String.Format(Translation.Localization.ControlMsg, vbCrLf), MsgBoxStyle.Information, Translation.Localization.Controls)
     End Sub
 
@@ -681,6 +690,18 @@ Public Class frmMain
             FileName = sfd.FileName
             Text = String.Format(Translation.Localization.Title, FileName)
             NsTheme1.Text = Text
+        End If
+    End Sub
+
+    Private Sub btnFlipLeftRight_Click(sender As Object, e As EventArgs) Handles btnFlipLeftRight.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.FlipLEDsHorizontal()
+        End If
+    End Sub
+
+    Private Sub btnFlipUpDown_Click(sender As Object, e As EventArgs) Handles btnFlipUpDown.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.flipLEDsVertical()
         End If
     End Sub
 End Class

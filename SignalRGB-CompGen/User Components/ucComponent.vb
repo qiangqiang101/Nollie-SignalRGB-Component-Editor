@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing
 Imports System.Drawing.Drawing2D
 Imports System.Drawing.Imaging
+Imports Newtonsoft.Json
 
 Public Class ucComponent
 
@@ -725,13 +726,13 @@ Public Class ucComponent
             Dim h As Integer = 10
             Dim rect = ImageBounds
 
-            If New RectangleF(rect.X, rect.Y, h, h).Contains(e.Location) OrElse activeEdge = eResizeEdge.TopLeft Then
+            If New RectangleF(rect.X, rect.Y, h, h).Contains(e.Location) OrElse ActiveEdge = eResizeEdge.TopLeft Then
                 Me.Cursor = Cursors.SizeNWSE
-            ElseIf New RectangleF(rect.Right - h, rect.Y, h, h).Contains(e.Location) OrElse activeEdge = eResizeEdge.TopRight Then
+            ElseIf New RectangleF(rect.Right - h, rect.Y, h, h).Contains(e.Location) OrElse ActiveEdge = eResizeEdge.TopRight Then
                 Me.Cursor = Cursors.SizeNESW
-            ElseIf New RectangleF(rect.X, rect.Bottom - h, h, h).Contains(e.Location) OrElse activeEdge = eResizeEdge.BottomLeft Then
+            ElseIf New RectangleF(rect.X, rect.Bottom - h, h, h).Contains(e.Location) OrElse ActiveEdge = eResizeEdge.BottomLeft Then
                 Me.Cursor = Cursors.SizeNESW
-            ElseIf New RectangleF(rect.Right - h, rect.Bottom - h, h, h).Contains(e.Location) OrElse activeEdge = eResizeEdge.BottomRight Then
+            ElseIf New RectangleF(rect.Right - h, rect.Bottom - h, h, h).Contains(e.Location) OrElse ActiveEdge = eResizeEdge.BottomRight Then
                 Me.Cursor = Cursors.SizeNWSE
             ElseIf rect.Contains(e.Location) OrElse IsDraggingImage Then
                 Me.Cursor = Cursors.SizeAll
@@ -775,13 +776,13 @@ Public Class ucComponent
                 End If
 
             Case frmMain.rbToolResizeGI.Checked
-                If activeEdge <> eResizeEdge.None Then
+                If ActiveEdge <> eResizeEdge.None Then
                     Dim newX = ImageBounds.X
                     Dim newY = ImageBounds.Y
                     Dim newW = ImageBounds.Width
                     Dim newH = ImageBounds.Height
 
-                    Select Case activeEdge
+                    Select Case ActiveEdge
                         Case eResizeEdge.TopLeft
                             newX = e.X
                             newY = e.Y
@@ -897,13 +898,13 @@ Public Class ucComponent
                         Dim rect = ImageBounds
 
                         If New RectangleF(rect.X, rect.Y, h, h).Contains(e.Location) Then
-                            activeEdge = eResizeEdge.TopLeft
+                            ActiveEdge = eResizeEdge.TopLeft
                         ElseIf New RectangleF(rect.Right - h, rect.Y, h, h).Contains(e.Location) Then
-                            activeEdge = eResizeEdge.TopRight
+                            ActiveEdge = eResizeEdge.TopRight
                         ElseIf New RectangleF(rect.X, rect.Bottom - h, h, h).Contains(e.Location) Then
-                            activeEdge = eResizeEdge.BottomLeft
+                            ActiveEdge = eResizeEdge.BottomLeft
                         ElseIf New RectangleF(rect.Right - h, rect.Bottom - h, h, h).Contains(e.Location) Then
-                            activeEdge = eResizeEdge.BottomRight
+                            ActiveEdge = eResizeEdge.BottomRight
                         ElseIf rect.Contains(e.Location) Then
                             IsDraggingImage = True
                             ImageDragOffset = New PointF(e.X - rect.X, e.Y - rect.Y)
@@ -937,13 +938,8 @@ Public Class ucComponent
             Case frmMain.rbToolResizeGI.Checked
                 IsResizing = False
                 IsDraggingImage = False
-                activeEdge = eResizeEdge.None
+                ActiveEdge = eResizeEdge.None
         End Select
-    End Sub
-
-    Private Sub tsmiAddLed_Click(sender As Object, e As EventArgs) Handles tsmiAddLed.Click
-        AddLeds(1, CType(NsContextMenu1.Tag, Point))
-        Invalidate()
     End Sub
 
     Private Sub ucComponent_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
@@ -956,16 +952,14 @@ Public Class ucComponent
     End Sub
 
     Private Sub ucComponent_KeyUp(sender As Object, e As KeyEventArgs) Handles Me.KeyUp
-        If e.Modifiers = Keys.Shift Then
+        If e.Modifiers = Keys.Control Then
             Select Case e.KeyCode
-                Case Keys.Left
-                    MoveLeft()
-                Case Keys.Right
-                    MoveRight()
-                Case Keys.Up
-                    MoveUp()
-                Case Keys.Down
-                    MoveDown()
+                Case Keys.C
+                    Copy()
+                Case Keys.V
+                    Paste(_ledPos)
+                Case Keys.H
+                    SetLEDsHidden()
             End Select
         Else
             Select Case e.KeyCode
@@ -980,9 +974,6 @@ Public Class ucComponent
                         End If
                         timerTicks = 0
                     End If
-                Case Keys.Space
-                    AddLeds(1, _ledPos)
-                    Invalidate()
                 Case Keys.Left
                     MoveLeft()
                 Case Keys.Right
@@ -1028,7 +1019,6 @@ Public Class ucComponent
     Private Sub Translate()
         Dim loc = Translation.Localization
 
-        tsmiAddLed.Text = loc.AddLED
         tsmiEditLED.Text = loc.EditLED
         tsmiRemoveLed.Text = loc.RemoveLastObject
         tsmiAutoResize.Text = loc.AutoResize
@@ -1040,6 +1030,14 @@ Public Class ucComponent
         tsmiLShape.Text = loc.LShape
         tsmiUShape.Text = loc.UShape
         tsmiRectangle.Text = loc.Rectangle
+
+        ' Added 02/05/2026
+        tsmiInsertBgImage.Text = loc.InsertGuideImage
+        tsmiRotateLeft.Text = loc.RotateCounterclockwise
+        tsmiRotateRight.Text = loc.RotateClockwise
+        tsmiHideLEDs.Text = loc.HideLEDs
+        tsmiCopy.Text = loc.Copy
+        tsmiPaste.Text = loc.Paste
     End Sub
 
     Public Sub MoveUp()
@@ -1246,6 +1244,36 @@ Public Class ucComponent
         End If
     End Sub
 
+    Public Sub FlipLEDsHorizontal()
+        If LEDs.Count = 0 Then Return
+        If SelectedItems.Any() Then
+            For Each led In SelectedItems
+                led.LedCoordinates = New Point((_Width - 1) - led.LedCoordinates.X, led.LedCoordinates.Y)
+            Next
+            Invalidate()
+        Else
+            For Each led In LEDs
+                led.LedCoordinates = New Point((_Width - 1) - led.LedCoordinates.X, led.LedCoordinates.Y)
+            Next
+            Invalidate()
+        End If
+    End Sub
+
+    Public Sub flipLEDsVertical()
+        If LEDs.Count = 0 Then Return
+        If SelectedItems.Any() Then
+            For Each led In SelectedItems
+                led.LedCoordinates = New Point(led.LedCoordinates.X, (_Height - 1) - led.LedCoordinates.Y)
+            Next
+            Invalidate()
+        Else
+            For Each led In LEDs
+                led.LedCoordinates = New Point(led.LedCoordinates.X, (_Height - 1) - led.LedCoordinates.Y)
+            Next
+            Invalidate()
+        End If
+    End Sub
+
     Public Sub SetLEDsHidden()
         If LEDs.Count = 0 Then Return
 
@@ -1262,4 +1290,60 @@ Public Class ucComponent
         End If
     End Sub
 
+    Public Sub Copy()
+        Dim selectedLeds = SelectedItems
+        If selectedLeds.Count > 0 Then
+            Dim jsonExport As String = JsonConvert.SerializeObject(selectedLeds, Formatting.Indented)
+            Clipboard.SetData("Component_LEDs", jsonExport)
+        End If
+    End Sub
+
+    Public Sub Paste(position As Point)
+        If Clipboard.ContainsData("Component_LEDs") Then
+            Dim jsonImport As String = Clipboard.GetData("Component_LEDs").ToString()
+            Try
+                Dim importedLeds As List(Of Led) = JsonConvert.DeserializeObject(Of List(Of Led))(jsonImport)
+                SelectedItems.Clear()
+
+                For Each led In importedLeds
+                    Dim offsetX As Integer = position.X - importedLeds(0).LedCoordinates.X
+                    Dim offsetY As Integer = position.Y - importedLeds(0).LedCoordinates.Y
+                    Dim coordinates = New Point(led.LedCoordinates.X + offsetX, led.LedCoordinates.Y + offsetY)
+                    AddLeds(1, coordinates)
+                Next
+                SelectedItems = LEDs.Skip(LedCount - importedLeds.Count).Take(importedLeds.Count).ToList()
+                Invalidate()
+            Catch ex As Exception
+                MsgBox("Failed to paste LEDs: " & ex.Message, MsgBoxStyle.Critical, "Error")
+            End Try
+        End If
+    End Sub
+
+    Private Sub tsmiCopy_Click(sender As Object, e As EventArgs) Handles tsmiCopy.Click
+        Copy()
+    End Sub
+
+    Private Sub tsmiPaste_Click(sender As Object, e As EventArgs) Handles tsmiPaste.Click
+        Paste(CType(NsContextMenu1.Tag, Point))
+    End Sub
+
+    Private Sub tsmiHideLEDs_Click(sender As Object, e As EventArgs) Handles tsmiHideLEDs.Click
+        SetLEDsHidden()
+    End Sub
+
+    Private Sub tsmiRotateLeft_Click(sender As Object, e As EventArgs) Handles tsmiRotateLeft.Click
+        RotateLEDsCounterClockwise()
+    End Sub
+
+    Private Sub tsmiRotateRight_Click(sender As Object, e As EventArgs) Handles tsmiRotateRight.Click
+        RotateLEDsClockwise()
+    End Sub
+
+    Private Sub tsmiFlipHorizontal_Click(sender As Object, e As EventArgs) Handles tsmiFlipHorizontal.Click
+        FlipLEDsHorizontal()
+    End Sub
+
+    Private Sub tsmiFlipVertical_Click(sender As Object, e As EventArgs) Handles tsmiFlipVertical.Click
+        flipLEDsVertical()
+    End Sub
 End Class

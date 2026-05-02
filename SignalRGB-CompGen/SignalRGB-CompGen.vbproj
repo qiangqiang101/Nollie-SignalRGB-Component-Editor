@@ -9,15 +9,15 @@
     <MyType>WindowsForms</MyType>
     <AssemblyName>compeditor</AssemblyName>
     <ApplicationIcon>1.ico</ApplicationIcon>
-    <Version>2.1.0</Version>
+    <Version>3.0</Version>
     <Authors>I'm Not MentaL</Authors>
     <Company>Haikou Nuoli Trading Co., Ltd.</Company>
     <PackageProjectUrl>https://nolliergb.cn</PackageProjectUrl>
     <PackageIcon>nollie.png</PackageIcon>
     <RepositoryUrl>https://github.com/qiangqiang101/SignalRGB-CompGen</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
-    <AssemblyVersion>2.1.0</AssemblyVersion>
-    <FileVersion>2.1.0</FileVersion>
+    <AssemblyVersion>3.0</AssemblyVersion>
+    <FileVersion>3.0</FileVersion>
   </PropertyGroup>
 
   <ItemGroup>
@@ -52,6 +52,11 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="My Project\Settings.Designer.vb">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -66,6 +71,11 @@
     <None Update="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Update="My Project\Settings.settings">
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
   </ItemGroup>
 

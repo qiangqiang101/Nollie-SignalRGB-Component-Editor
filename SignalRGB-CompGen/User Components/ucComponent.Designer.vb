@@ -23,7 +23,6 @@ Partial Class ucComponent
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         components = New ComponentModel.Container()
-        tsmiAddLed = New ToolStripMenuItem()
         ToolStripSeparator1 = New ToolStripSeparator()
         tsmiRemoveLed = New ToolStripMenuItem()
         NsContextMenu1 = New NSContextMenu()
@@ -37,21 +36,17 @@ Partial Class ucComponent
         ToolStripSeparator2 = New ToolStripSeparator()
         tsmiAutoResize = New ToolStripMenuItem()
         tsmiInsertBgImage = New ToolStripMenuItem()
-        tPressHold = New Timer(components)
-        tsmiRotateRight = New ToolStripMenuItem()
         tsmiRotateLeft = New ToolStripMenuItem()
+        tsmiRotateRight = New ToolStripMenuItem()
+        tsmiFlipHorizontal = New ToolStripMenuItem()
+        tsmiFlipVertical = New ToolStripMenuItem()
         tsmiHideLEDs = New ToolStripMenuItem()
         ToolStripSeparator3 = New ToolStripSeparator()
         tsmiCopy = New ToolStripMenuItem()
         tsmiPaste = New ToolStripMenuItem()
+        tPressHold = New Timer(components)
         NsContextMenu1.SuspendLayout()
         SuspendLayout()
-        ' 
-        ' tsmiAddLed
-        ' 
-        tsmiAddLed.Name = "tsmiAddLed"
-        tsmiAddLed.Size = New Size(210, 22)
-        tsmiAddLed.Text = "Add LED"
         ' 
         ' ToolStripSeparator1
         ' 
@@ -60,19 +55,22 @@ Partial Class ucComponent
         ' 
         ' tsmiRemoveLed
         ' 
+        tsmiRemoveLed.Image = My.Resources.Resources.led_variant_outline_remove_custom
         tsmiRemoveLed.Name = "tsmiRemoveLed"
+        tsmiRemoveLed.ShortcutKeys = Keys.Delete
         tsmiRemoveLed.Size = New Size(210, 22)
         tsmiRemoveLed.Text = "Remove last LED"
         ' 
         ' NsContextMenu1
         ' 
         NsContextMenu1.ForeColor = Color.White
-        NsContextMenu1.Items.AddRange(New ToolStripItem() {tsmiAddLed, tsmiEditLED, tsmiGenerate, ToolStripSeparator1, tsmiRemoveLed, ToolStripSeparator2, tsmiAutoResize, tsmiInsertBgImage, tsmiRotateLeft, tsmiRotateRight, tsmiHideLEDs, ToolStripSeparator3, tsmiCopy, tsmiPaste})
+        NsContextMenu1.Items.AddRange(New ToolStripItem() {tsmiEditLED, tsmiGenerate, ToolStripSeparator1, tsmiRemoveLed, ToolStripSeparator2, tsmiAutoResize, tsmiInsertBgImage, tsmiRotateLeft, tsmiRotateRight, tsmiFlipHorizontal, tsmiFlipVertical, tsmiHideLEDs, ToolStripSeparator3, tsmiCopy, tsmiPaste})
         NsContextMenu1.Name = "NsContextMenu1"
         NsContextMenu1.Size = New Size(211, 286)
         ' 
         ' tsmiEditLED
         ' 
+        tsmiEditLED.Image = My.Resources.Resources.led_variant_outline_edit_custom
         tsmiEditLED.Name = "tsmiEditLED"
         tsmiEditLED.Size = New Size(210, 22)
         tsmiEditLED.Text = "Edit LED"
@@ -80,6 +78,7 @@ Partial Class ucComponent
         ' tsmiGenerate
         ' 
         tsmiGenerate.DropDownItems.AddRange(New ToolStripItem() {tsmiLinear, tsmiMatrix, tsmiLShape, tsmiUShape, tsmiRectangle})
+        tsmiGenerate.Image = My.Resources.Resources.dots_horizontal_circle_outline_custom
         tsmiGenerate.Name = "tsmiGenerate"
         tsmiGenerate.Size = New Size(210, 22)
         tsmiGenerate.Text = "Generate.."
@@ -87,6 +86,7 @@ Partial Class ucComponent
         ' tsmiLinear
         ' 
         tsmiLinear.ForeColor = Color.White
+        tsmiLinear.Image = My.Resources.Resources.dots_horizontal_custom
         tsmiLinear.Name = "tsmiLinear"
         tsmiLinear.Size = New Size(126, 22)
         tsmiLinear.Text = "Linear"
@@ -94,6 +94,7 @@ Partial Class ucComponent
         ' tsmiMatrix
         ' 
         tsmiMatrix.ForeColor = Color.White
+        tsmiMatrix.Image = My.Resources.Resources.dots_grid_custom
         tsmiMatrix.Name = "tsmiMatrix"
         tsmiMatrix.Size = New Size(126, 22)
         tsmiMatrix.Text = "Matrix"
@@ -101,6 +102,7 @@ Partial Class ucComponent
         ' tsmiLShape
         ' 
         tsmiLShape.ForeColor = Color.White
+        tsmiLShape.Image = My.Resources.Resources.dots_lshape_custom
         tsmiLShape.Name = "tsmiLShape"
         tsmiLShape.Size = New Size(126, 22)
         tsmiLShape.Text = "L Shape"
@@ -108,6 +110,7 @@ Partial Class ucComponent
         ' tsmiUShape
         ' 
         tsmiUShape.ForeColor = Color.White
+        tsmiUShape.Image = My.Resources.Resources.dots_ushape_custom
         tsmiUShape.Name = "tsmiUShape"
         tsmiUShape.Size = New Size(126, 22)
         tsmiUShape.Text = "U Shape"
@@ -115,6 +118,7 @@ Partial Class ucComponent
         ' tsmiRectangle
         ' 
         tsmiRectangle.ForeColor = Color.White
+        tsmiRectangle.Image = My.Resources.Resources.dots_square_custom
         tsmiRectangle.Name = "tsmiRectangle"
         tsmiRectangle.Size = New Size(126, 22)
         tsmiRectangle.Text = "Rectangle"
@@ -126,36 +130,51 @@ Partial Class ucComponent
         ' 
         ' tsmiAutoResize
         ' 
+        tsmiAutoResize.Image = My.Resources.Resources.resize_custom
         tsmiAutoResize.Name = "tsmiAutoResize"
         tsmiAutoResize.Size = New Size(210, 22)
         tsmiAutoResize.Text = "Auto Resize"
         ' 
         ' tsmiInsertBgImage
         ' 
+        tsmiInsertBgImage.Image = My.Resources.Resources.image_plus_outline_custom
         tsmiInsertBgImage.Name = "tsmiInsertBgImage"
         tsmiInsertBgImage.Size = New Size(210, 22)
         tsmiInsertBgImage.Text = "Insert Guide Image"
         ' 
-        ' tPressHold
-        ' 
-        tPressHold.Enabled = True
-        tPressHold.Interval = 60
-        ' 
-        ' tsmiRotateRight
-        ' 
-        tsmiRotateRight.Name = "tsmiRotateRight"
-        tsmiRotateRight.Size = New Size(210, 22)
-        tsmiRotateRight.Text = "Rotate Clockwise"
-        ' 
         ' tsmiRotateLeft
         ' 
+        tsmiRotateLeft.Image = My.Resources.Resources.rotate_left_custom
         tsmiRotateLeft.Name = "tsmiRotateLeft"
         tsmiRotateLeft.Size = New Size(210, 22)
         tsmiRotateLeft.Text = "Rotate Counter Clockwise"
         ' 
+        ' tsmiRotateRight
+        ' 
+        tsmiRotateRight.Image = My.Resources.Resources.rotate_right_custom
+        tsmiRotateRight.Name = "tsmiRotateRight"
+        tsmiRotateRight.Size = New Size(210, 22)
+        tsmiRotateRight.Text = "Rotate Clockwise"
+        ' 
+        ' tsmiFlipHorizontal
+        ' 
+        tsmiFlipHorizontal.Image = My.Resources.Resources.flip_horizontal_custom1
+        tsmiFlipHorizontal.Name = "tsmiFlipHorizontal"
+        tsmiFlipHorizontal.Size = New Size(210, 22)
+        tsmiFlipHorizontal.Text = "Flip Horizontal"
+        ' 
+        ' tsmiFlipVertical
+        ' 
+        tsmiFlipVertical.Image = My.Resources.Resources.flip_vertical_custom1
+        tsmiFlipVertical.Name = "tsmiFlipVertical"
+        tsmiFlipVertical.Size = New Size(210, 22)
+        tsmiFlipVertical.Text = "Flip Vertical"
+        ' 
         ' tsmiHideLEDs
         ' 
+        tsmiHideLEDs.Image = My.Resources.Resources.eye_off_outline_custom
         tsmiHideLEDs.Name = "tsmiHideLEDs"
+        tsmiHideLEDs.ShortcutKeys = Keys.Control Or Keys.H
         tsmiHideLEDs.Size = New Size(210, 22)
         tsmiHideLEDs.Text = "Show/Hide LEDs"
         ' 
@@ -166,15 +185,24 @@ Partial Class ucComponent
         ' 
         ' tsmiCopy
         ' 
+        tsmiCopy.Image = My.Resources.Resources.content_copy_custom
         tsmiCopy.Name = "tsmiCopy"
+        tsmiCopy.ShortcutKeys = Keys.Control Or Keys.C
         tsmiCopy.Size = New Size(210, 22)
         tsmiCopy.Text = "Copy"
         ' 
         ' tsmiPaste
         ' 
+        tsmiPaste.Image = My.Resources.Resources.content_paste_custom
         tsmiPaste.Name = "tsmiPaste"
+        tsmiPaste.ShortcutKeys = Keys.Control Or Keys.Z
         tsmiPaste.Size = New Size(210, 22)
         tsmiPaste.Text = "Paste"
+        ' 
+        ' tPressHold
+        ' 
+        tPressHold.Enabled = True
+        tPressHold.Interval = 60
         ' 
         ' ucComponent
         ' 
@@ -188,7 +216,6 @@ Partial Class ucComponent
         NsContextMenu1.ResumeLayout(False)
         ResumeLayout(False)
     End Sub
-    Friend WithEvents tsmiAddLed As ToolStripMenuItem
     Friend WithEvents ToolStripSeparator1 As ToolStripSeparator
     Friend WithEvents tsmiRemoveLed As ToolStripMenuItem
     Friend WithEvents NsContextMenu1 As NSContextMenu
@@ -209,5 +236,7 @@ Partial Class ucComponent
     Friend WithEvents ToolStripSeparator3 As ToolStripSeparator
     Friend WithEvents tsmiCopy As ToolStripMenuItem
     Friend WithEvents tsmiPaste As ToolStripMenuItem
+    Friend WithEvents tsmiFlipHorizontal As ToolStripMenuItem
+    Friend WithEvents tsmiFlipVertical As ToolStripMenuItem
 
 End Class

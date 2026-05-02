@@ -192,4 +192,10 @@ Public Class Localization
     Public NollieRGBVMAP As String = "NollieRGB VMAP"
     Public Copy As String = "Copy"
     Public Paste As String = "Paste"
+
+    Public RotateCounterclockwise As String = "Rotate Counterclockwise"
+    Public RotateClockwise As String = "Rotate Clockwise"
+    Public HideLEDs As String = "Show/Hide LEDs"
+    Public FlipHorizontal As String = "Flip Horizontal"
+    Public FlipVertical As String = "Flip Vertical"
 End Class
