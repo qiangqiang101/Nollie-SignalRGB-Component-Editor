@@ -69,7 +69,7 @@ Public Class frmMain
                 numWidth.Value = VMAP.Component.Width
                 numHeight.Value = VMAP.Component.Height
                 txtLedCount.Text = VMAP.Component.LedCount
-                If VMAP.Component.Type = Component.Type.ToLower() Then
+                If VMAP.Component.Type = VMAP.Component.Type.ToLower() Then
                     Select Case VMAP.Component.Type
                         Case "aio"
                             cmbType.SelectedValue = "AIO"
