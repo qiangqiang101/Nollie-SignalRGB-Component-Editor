@@ -11,7 +11,16 @@
 [![Follow on Patreon](https://img.shields.io/badge/Donate-Patreon-orange)](https://www.patreon.com/imnotmental)
 
 Yet another SignalRGB Component Generator & Editor coded with Visual Basic
-![image](https://github.com/user-attachments/assets/f54da1f5-a179-410d-9a35-94ec790cb869)
+<img width="1024" height="721" alt="image" src="https://github.com/user-attachments/assets/30bb3510-d570-494c-9bc8-e96446a7e204" />
+
+# Features
+- Draw your own components with Place LED Tool.
+- Combine your components into a single component with copy & paste.
+- Multi-Select LEDs for better quality of life.
+- Import a guide image for complex device component.
+- Rotate and flip components with a click!
+- Save as NollieRGB VMAP format with LED hiding feature.
+- Transfer OpenRGB Visual Map? You got it! 
 
 # Download
 [![Gitlab](https://raw.githubusercontent.com/qiangqiang101/Nollie-SignalRGB-Component-Editor/refs/heads/main/gitlabd.png)](https://gitlab.com/nollie/Nollie-SignalRGB-Component-Editor/-/releases)
