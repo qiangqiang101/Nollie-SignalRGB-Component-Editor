@@ -131,19 +131,20 @@ Partial Class frmMain
         RightPanel.Location = New Point(0, 0)
         RightPanel.Name = "RightPanel"
         RightPanel.Padding = New Padding(3)
-        RightPanel.Size = New Size(312, 663)
+        RightPanel.Size = New Size(392, 687)
         RightPanel.TabIndex = 0
         ' 
         ' gbTools
         ' 
+        gbTools.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         gbTools.Controls.Add(rbToolResizeGI)
         gbTools.Controls.Add(rbToolPlaceLED)
         gbTools.Controls.Add(rbToolSelect)
         gbTools.DrawSeperator = True
-        gbTools.Location = New Point(6, 479)
+        gbTools.Location = New Point(6, 526)
         gbTools.Name = "gbTools"
         gbTools.Padding = New Padding(3, 31, 3, 3)
-        gbTools.Size = New Size(300, 144)
+        gbTools.Size = New Size(380, 144)
         gbTools.SubTitle = ""
         gbTools.TabIndex = 10
         gbTools.Text = "NsGroupBox1"
@@ -151,57 +152,63 @@ Partial Class frmMain
         ' 
         ' rbToolResizeGI
         ' 
+        rbToolResizeGI.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         rbToolResizeGI.BackgroundImage = My.Resources.Resources.image_area_custom
         rbToolResizeGI.Checked = False
+        rbToolResizeGI.ImageOnTop = False
         rbToolResizeGI.Location = New Point(6, 106)
         rbToolResizeGI.Name = "rbToolResizeGI"
         rbToolResizeGI.Padding = New Padding(3)
-        rbToolResizeGI.Size = New Size(288, 30)
+        rbToolResizeGI.Size = New Size(368, 30)
         rbToolResizeGI.TabIndex = 2
         rbToolResizeGI.Text = "Resize Guide Image"
         ' 
         ' rbToolPlaceLED
         ' 
+        rbToolPlaceLED.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         rbToolPlaceLED.BackgroundImage = My.Resources.Resources.led_variant_outline_custom
         rbToolPlaceLED.Checked = False
+        rbToolPlaceLED.ImageOnTop = False
         rbToolPlaceLED.Location = New Point(6, 70)
         rbToolPlaceLED.Name = "rbToolPlaceLED"
         rbToolPlaceLED.Padding = New Padding(3)
-        rbToolPlaceLED.Size = New Size(288, 30)
+        rbToolPlaceLED.Size = New Size(368, 30)
         rbToolPlaceLED.TabIndex = 1
         rbToolPlaceLED.Text = "Place LED Tool"
         ' 
         ' rbToolSelect
         ' 
+        rbToolSelect.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         rbToolSelect.BackgroundImage = My.Resources.Resources.selection_drag_custom
         rbToolSelect.Checked = True
+        rbToolSelect.ImageOnTop = False
         rbToolSelect.Location = New Point(6, 34)
         rbToolSelect.Name = "rbToolSelect"
         rbToolSelect.Padding = New Padding(3)
-        rbToolSelect.Size = New Size(288, 30)
+        rbToolSelect.Size = New Size(368, 30)
         rbToolSelect.TabIndex = 0
         rbToolSelect.Text = "Select Tool"
         ' 
         ' txtWebImageUrl
         ' 
         txtWebImageUrl.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtWebImageUrl.Location = New Point(86, 210)
+        txtWebImageUrl.Location = New Point(116, 210)
         txtWebImageUrl.MaxLength = 32767
         txtWebImageUrl.Multiline = False
         txtWebImageUrl.Name = "txtWebImageUrl"
         txtWebImageUrl.ReadOnly = False
-        txtWebImageUrl.Size = New Size(220, 24)
+        txtWebImageUrl.Size = New Size(270, 24)
         txtWebImageUrl.TabIndex = 8
         txtWebImageUrl.TextAlign = HorizontalAlignment.Left
         txtWebImageUrl.UseSystemPasswordChar = False
         ' 
         ' lblWebImage
         ' 
-        lblWebImage.Font = New Font("Segoe UI", 9.0F)
+        lblWebImage.Font = New Font("Segoe UI", 9F)
         lblWebImage.ForeColor = Color.White
         lblWebImage.Location = New Point(6, 210)
         lblWebImage.Name = "lblWebImage"
-        lblWebImage.Size = New Size(74, 24)
+        lblWebImage.Size = New Size(104, 24)
         lblWebImage.TabIndex = 25
         lblWebImage.Text = "Web Image"
         lblWebImage.Value1 = "Image URL"
@@ -211,15 +218,15 @@ Partial Class frmMain
         ' 
         tlpImageControls.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         tlpImageControls.ColumnCount = 2
-        tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
-        tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50.0F))
+        tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
+        tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         tlpImageControls.Controls.Add(gbImage, 0, 0)
         tlpImageControls.Controls.Add(gbControls, 1, 0)
         tlpImageControls.Location = New Point(3, 257)
         tlpImageControls.Name = "tlpImageControls"
         tlpImageControls.RowCount = 1
-        tlpImageControls.RowStyles.Add(New RowStyle(SizeType.Percent, 50.0F))
-        tlpImageControls.Size = New Size(306, 216)
+        tlpImageControls.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        tlpImageControls.Size = New Size(386, 263)
         tlpImageControls.TabIndex = 9
         ' 
         ' gbImage
@@ -230,7 +237,7 @@ Partial Class frmMain
         gbImage.Location = New Point(3, 3)
         gbImage.Name = "gbImage"
         gbImage.Padding = New Padding(3, 31, 3, 3)
-        gbImage.Size = New Size(147, 210)
+        gbImage.Size = New Size(187, 257)
         gbImage.SubTitle = ""
         gbImage.TabIndex = 0
         gbImage.Title = "Component Image"
@@ -238,24 +245,24 @@ Partial Class frmMain
         ' tlpImage
         ' 
         tlpImage.ColumnCount = 1
-        tlpImage.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100.0F))
+        tlpImage.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 100F))
         tlpImage.Controls.Add(btnChangeImage, 0, 1)
         tlpImage.Controls.Add(pbImage, 0, 0)
         tlpImage.Dock = DockStyle.Fill
         tlpImage.Location = New Point(3, 31)
         tlpImage.Name = "tlpImage"
         tlpImage.RowCount = 2
-        tlpImage.RowStyles.Add(New RowStyle(SizeType.Percent, 81.0F))
-        tlpImage.RowStyles.Add(New RowStyle(SizeType.Percent, 19.0F))
-        tlpImage.Size = New Size(141, 176)
+        tlpImage.RowStyles.Add(New RowStyle(SizeType.Percent, 81F))
+        tlpImage.RowStyles.Add(New RowStyle(SizeType.Percent, 19F))
+        tlpImage.Size = New Size(181, 223)
         tlpImage.TabIndex = 0
         ' 
         ' btnChangeImage
         ' 
         btnChangeImage.Dock = DockStyle.Fill
-        btnChangeImage.Location = New Point(3, 145)
+        btnChangeImage.Location = New Point(3, 183)
         btnChangeImage.Name = "btnChangeImage"
-        btnChangeImage.Size = New Size(135, 28)
+        btnChangeImage.Size = New Size(175, 37)
         btnChangeImage.TabIndex = 0
         btnChangeImage.Text = "Select Image"
         ' 
@@ -265,7 +272,7 @@ Partial Class frmMain
         pbImage.Image = My.Resources.Resources._1
         pbImage.Location = New Point(3, 3)
         pbImage.Name = "pbImage"
-        pbImage.Size = New Size(135, 136)
+        pbImage.Size = New Size(175, 174)
         pbImage.SizeMode = PictureBoxSizeMode.Zoom
         pbImage.TabIndex = 13
         pbImage.TabStop = False
@@ -275,10 +282,10 @@ Partial Class frmMain
         gbControls.Controls.Add(tlpControls)
         gbControls.Dock = DockStyle.Fill
         gbControls.DrawSeperator = True
-        gbControls.Location = New Point(156, 3)
+        gbControls.Location = New Point(196, 3)
         gbControls.Name = "gbControls"
         gbControls.Padding = New Padding(3, 31, 3, 3)
-        gbControls.Size = New Size(147, 210)
+        gbControls.Size = New Size(187, 257)
         gbControls.SubTitle = ""
         gbControls.TabIndex = 0
         gbControls.Title = "Controls"
@@ -303,20 +310,20 @@ Partial Class frmMain
         tlpControls.Location = New Point(3, 31)
         tlpControls.Name = "tlpControls"
         tlpControls.RowCount = 4
-        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 27.0F))
-        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 27.0F))
-        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 27.0F))
-        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 19.0F))
-        tlpControls.Size = New Size(141, 176)
+        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 27F))
+        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 27F))
+        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 27F))
+        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 19F))
+        tlpControls.Size = New Size(181, 223)
         tlpControls.TabIndex = 0
         ' 
         ' btnAutoResize
         ' 
         tlpControls.SetColumnSpan(btnAutoResize, 3)
         btnAutoResize.Dock = DockStyle.Fill
-        btnAutoResize.Location = New Point(3, 144)
+        btnAutoResize.Location = New Point(3, 183)
         btnAutoResize.Name = "btnAutoResize"
-        btnAutoResize.Size = New Size(135, 29)
+        btnAutoResize.Size = New Size(175, 37)
         btnAutoResize.TabIndex = 6
         btnAutoResize.Text = "Auto Resize"
         ' 
@@ -324,11 +331,11 @@ Partial Class frmMain
         ' 
         btnFlipUpDown.BackgroundImage = My.Resources.Resources.flip_vertical_custom1
         btnFlipUpDown.Dock = DockStyle.Fill
-        btnFlipUpDown.Font = New Font("Segoe UI", 21.0F)
-        btnFlipUpDown.Location = New Point(97, 97)
+        btnFlipUpDown.Font = New Font("Segoe UI", 21F)
+        btnFlipUpDown.Location = New Point(123, 123)
         btnFlipUpDown.Name = "btnFlipUpDown"
         btnFlipUpDown.Padding = New Padding(10)
-        btnFlipUpDown.Size = New Size(41, 41)
+        btnFlipUpDown.Size = New Size(55, 54)
         btnFlipUpDown.TabIndex = 5
         btnFlipUpDown.Text = "↺"
         ' 
@@ -336,11 +343,11 @@ Partial Class frmMain
         ' 
         btnFlipLeftRight.BackgroundImage = My.Resources.Resources.flip_horizontal_custom1
         btnFlipLeftRight.Dock = DockStyle.Fill
-        btnFlipLeftRight.Font = New Font("Segoe UI", 21.0F)
-        btnFlipLeftRight.Location = New Point(3, 97)
+        btnFlipLeftRight.Font = New Font("Segoe UI", 21F)
+        btnFlipLeftRight.Location = New Point(3, 123)
         btnFlipLeftRight.Name = "btnFlipLeftRight"
         btnFlipLeftRight.Padding = New Padding(10)
-        btnFlipLeftRight.Size = New Size(41, 41)
+        btnFlipLeftRight.Size = New Size(54, 54)
         btnFlipLeftRight.TabIndex = 4
         btnFlipLeftRight.Text = "↺"
         ' 
@@ -348,11 +355,11 @@ Partial Class frmMain
         ' 
         btnHideLed.BackgroundImage = My.Resources.Resources.eye_off_outline_custom
         btnHideLed.Dock = DockStyle.Fill
-        btnHideLed.Font = New Font("Segoe UI", 26.0F)
-        btnHideLed.Location = New Point(50, 50)
+        btnHideLed.Font = New Font("Segoe UI", 26F)
+        btnHideLed.Location = New Point(63, 63)
         btnHideLed.Name = "btnHideLed"
         btnHideLed.Padding = New Padding(10)
-        btnHideLed.Size = New Size(41, 41)
+        btnHideLed.Size = New Size(54, 54)
         btnHideLed.TabIndex = 3
         btnHideLed.Text = "⊘"
         ' 
@@ -360,11 +367,11 @@ Partial Class frmMain
         ' 
         btnRotateLeft.BackgroundImage = My.Resources.Resources.rotate_left_custom
         btnRotateLeft.Dock = DockStyle.Fill
-        btnRotateLeft.Font = New Font("Segoe UI", 21.0F)
+        btnRotateLeft.Font = New Font("Segoe UI", 21F)
         btnRotateLeft.Location = New Point(3, 3)
         btnRotateLeft.Name = "btnRotateLeft"
         btnRotateLeft.Padding = New Padding(10)
-        btnRotateLeft.Size = New Size(41, 41)
+        btnRotateLeft.Size = New Size(54, 54)
         btnRotateLeft.TabIndex = 2
         btnRotateLeft.Text = "↺"
         ' 
@@ -372,11 +379,11 @@ Partial Class frmMain
         ' 
         btnUp.BackgroundImage = My.Resources.Resources.arrow_up_custom
         btnUp.Dock = DockStyle.Fill
-        btnUp.Font = New Font("Marlett", 19.0F)
-        btnUp.Location = New Point(50, 3)
+        btnUp.Font = New Font("Marlett", 19F)
+        btnUp.Location = New Point(63, 3)
         btnUp.Name = "btnUp"
         btnUp.Padding = New Padding(10)
-        btnUp.Size = New Size(41, 41)
+        btnUp.Size = New Size(54, 54)
         btnUp.TabIndex = 0
         btnUp.Text = "5"
         ' 
@@ -384,11 +391,11 @@ Partial Class frmMain
         ' 
         btnLeft.BackgroundImage = My.Resources.Resources.arrow_left_custom
         btnLeft.Dock = DockStyle.Fill
-        btnLeft.Font = New Font("Marlett", 19.0F)
-        btnLeft.Location = New Point(3, 50)
+        btnLeft.Font = New Font("Marlett", 19F)
+        btnLeft.Location = New Point(3, 63)
         btnLeft.Name = "btnLeft"
         btnLeft.Padding = New Padding(10)
-        btnLeft.Size = New Size(41, 41)
+        btnLeft.Size = New Size(54, 54)
         btnLeft.TabIndex = 0
         btnLeft.Text = "3"
         ' 
@@ -396,11 +403,11 @@ Partial Class frmMain
         ' 
         btnRight.BackgroundImage = My.Resources.Resources.arrow_right_custom
         btnRight.Dock = DockStyle.Fill
-        btnRight.Font = New Font("Marlett", 19.0F)
-        btnRight.Location = New Point(97, 50)
+        btnRight.Font = New Font("Marlett", 19F)
+        btnRight.Location = New Point(123, 63)
         btnRight.Name = "btnRight"
         btnRight.Padding = New Padding(10)
-        btnRight.Size = New Size(41, 41)
+        btnRight.Size = New Size(55, 54)
         btnRight.TabIndex = 0
         btnRight.Text = "4"
         ' 
@@ -408,11 +415,11 @@ Partial Class frmMain
         ' 
         btnDown.BackgroundImage = My.Resources.Resources.arrow_down_custom
         btnDown.Dock = DockStyle.Fill
-        btnDown.Font = New Font("Marlett", 19.0F)
-        btnDown.Location = New Point(50, 97)
+        btnDown.Font = New Font("Marlett", 19F)
+        btnDown.Location = New Point(63, 123)
         btnDown.Name = "btnDown"
         btnDown.Padding = New Padding(10)
-        btnDown.Size = New Size(41, 41)
+        btnDown.Size = New Size(54, 54)
         btnDown.TabIndex = 0
         btnDown.Text = "6"
         ' 
@@ -420,11 +427,11 @@ Partial Class frmMain
         ' 
         btnRotateRight.BackgroundImage = My.Resources.Resources.rotate_right_custom
         btnRotateRight.Dock = DockStyle.Fill
-        btnRotateRight.Font = New Font("Segoe UI", 21.0F)
-        btnRotateRight.Location = New Point(97, 3)
+        btnRotateRight.Font = New Font("Segoe UI", 21F)
+        btnRotateRight.Location = New Point(123, 3)
         btnRotateRight.Name = "btnRotateRight"
         btnRotateRight.Padding = New Padding(10)
-        btnRotateRight.Size = New Size(41, 41)
+        btnRotateRight.Size = New Size(55, 54)
         btnRotateRight.TabIndex = 1
         btnRotateRight.Text = "↻"
         ' 
@@ -435,7 +442,7 @@ Partial Class frmMain
         msMainMenu.Items.AddRange(New ToolStripItem() {tsmiFile, tsmiSettings, tsmiHelp})
         msMainMenu.Location = New Point(3, 3)
         msMainMenu.Name = "msMainMenu"
-        msMainMenu.Size = New Size(306, 24)
+        msMainMenu.Size = New Size(386, 24)
         msMainMenu.TabIndex = 22
         msMainMenu.Text = "NsMenuStrip1"
         ' 
@@ -585,10 +592,10 @@ Partial Class frmMain
         ' nslblPosition
         ' 
         nslblPosition.Dock = DockStyle.Bottom
-        nslblPosition.Font = New Font("Segoe UI", 9.0F)
-        nslblPosition.Location = New Point(3, 637)
+        nslblPosition.Font = New Font("Segoe UI", 9F)
+        nslblPosition.Location = New Point(3, 661)
         nslblPosition.Name = "nslblPosition"
-        nslblPosition.Size = New Size(306, 23)
+        nslblPosition.Size = New Size(386, 23)
         nslblPosition.TabIndex = 21
         nslblPosition.Text = "NsLabel1"
         nslblPosition.Value1 = "Position: 0, 0"
@@ -596,32 +603,33 @@ Partial Class frmMain
         ' 
         ' NsSeperator1
         ' 
+        NsSeperator1.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
         NsSeperator1.Location = New Point(6, 240)
         NsSeperator1.Name = "NsSeperator1"
-        NsSeperator1.Size = New Size(300, 11)
+        NsSeperator1.Size = New Size(380, 11)
         NsSeperator1.TabIndex = 19
         NsSeperator1.Text = "NsSeperator1"
         ' 
         ' txtName
         ' 
         txtName.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtName.Location = New Point(86, 30)
+        txtName.Location = New Point(116, 30)
         txtName.MaxLength = 32767
         txtName.Multiline = False
         txtName.Name = "txtName"
         txtName.ReadOnly = False
-        txtName.Size = New Size(220, 24)
+        txtName.Size = New Size(270, 24)
         txtName.TabIndex = 1
         txtName.TextAlign = HorizontalAlignment.Left
         txtName.UseSystemPasswordChar = False
         ' 
         ' lblVendor
         ' 
-        lblVendor.Font = New Font("Segoe UI", 9.0F)
+        lblVendor.Font = New Font("Segoe UI", 9F)
         lblVendor.ForeColor = Color.White
         lblVendor.Location = New Point(6, 60)
         lblVendor.Name = "lblVendor"
-        lblVendor.Size = New Size(74, 24)
+        lblVendor.Size = New Size(104, 24)
         lblVendor.TabIndex = 8
         lblVendor.Text = "Vendor"
         lblVendor.Value1 = "Brand"
@@ -633,12 +641,12 @@ Partial Class frmMain
         numWidth.DecimalPlaces = 0
         numWidth.Increment = 1
         numWidth.InterceptArrowKeys = True
-        numWidth.Location = New Point(86, 150)
+        numWidth.Location = New Point(116, 150)
         numWidth.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numWidth.Name = "numWidth"
         numWidth.ReadOnly = False
-        numWidth.Size = New Size(107, 24)
+        numWidth.Size = New Size(132, 24)
         numWidth.TabIndex = 5
         numWidth.TextAlign = HorizontalAlignment.Right
         numWidth.ThousandsSeparator = False
@@ -647,12 +655,12 @@ Partial Class frmMain
         ' txtProduct
         ' 
         txtProduct.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtProduct.Location = New Point(86, 90)
+        txtProduct.Location = New Point(116, 90)
         txtProduct.MaxLength = 32767
         txtProduct.Multiline = False
         txtProduct.Name = "txtProduct"
         txtProduct.ReadOnly = False
-        txtProduct.Size = New Size(220, 24)
+        txtProduct.Size = New Size(270, 24)
         txtProduct.TabIndex = 3
         txtProduct.TextAlign = HorizontalAlignment.Left
         txtProduct.UseSystemPasswordChar = False
@@ -660,12 +668,12 @@ Partial Class frmMain
         ' txtLedCount
         ' 
         txtLedCount.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtLedCount.Location = New Point(86, 180)
+        txtLedCount.Location = New Point(116, 180)
         txtLedCount.MaxLength = 32767
         txtLedCount.Multiline = False
         txtLedCount.Name = "txtLedCount"
         txtLedCount.ReadOnly = True
-        txtLedCount.Size = New Size(220, 24)
+        txtLedCount.Size = New Size(270, 24)
         txtLedCount.TabIndex = 7
         txtLedCount.Text = "0"
         txtLedCount.TextAlign = HorizontalAlignment.Right
@@ -674,12 +682,12 @@ Partial Class frmMain
         ' txtBrand
         ' 
         txtBrand.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtBrand.Location = New Point(86, 60)
+        txtBrand.Location = New Point(116, 60)
         txtBrand.MaxLength = 32767
         txtBrand.Multiline = False
         txtBrand.Name = "txtBrand"
         txtBrand.ReadOnly = False
-        txtBrand.Size = New Size(220, 24)
+        txtBrand.Size = New Size(270, 24)
         txtBrand.TabIndex = 2
         txtBrand.TextAlign = HorizontalAlignment.Left
         txtBrand.UseSystemPasswordChar = False
@@ -690,12 +698,12 @@ Partial Class frmMain
         numHeight.DecimalPlaces = 0
         numHeight.Increment = 1
         numHeight.InterceptArrowKeys = True
-        numHeight.Location = New Point(199, 150)
+        numHeight.Location = New Point(254, 150)
         numHeight.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
         numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
         numHeight.Name = "numHeight"
         numHeight.ReadOnly = False
-        numHeight.Size = New Size(107, 24)
+        numHeight.Size = New Size(132, 24)
         numHeight.TabIndex = 6
         numHeight.TextAlign = HorizontalAlignment.Right
         numHeight.ThousandsSeparator = False
@@ -703,11 +711,11 @@ Partial Class frmMain
         ' 
         ' lblProduct
         ' 
-        lblProduct.Font = New Font("Segoe UI", 9.0F)
+        lblProduct.Font = New Font("Segoe UI", 9F)
         lblProduct.ForeColor = Color.White
         lblProduct.Location = New Point(6, 90)
         lblProduct.Name = "lblProduct"
-        lblProduct.Size = New Size(74, 24)
+        lblProduct.Size = New Size(104, 24)
         lblProduct.TabIndex = 10
         lblProduct.Text = "Product"
         lblProduct.Value1 = "Product"
@@ -715,11 +723,11 @@ Partial Class frmMain
         ' 
         ' lblLedCount
         ' 
-        lblLedCount.Font = New Font("Segoe UI", 9.0F)
+        lblLedCount.Font = New Font("Segoe UI", 9F)
         lblLedCount.ForeColor = Color.White
         lblLedCount.Location = New Point(6, 180)
         lblLedCount.Name = "lblLedCount"
-        lblLedCount.Size = New Size(74, 24)
+        lblLedCount.Size = New Size(104, 24)
         lblLedCount.TabIndex = 17
         lblLedCount.Text = "LED Count"
         lblLedCount.Value1 = "LED Count"
@@ -727,11 +735,11 @@ Partial Class frmMain
         ' 
         ' lblName
         ' 
-        lblName.Font = New Font("Segoe UI", 9.0F)
+        lblName.Font = New Font("Segoe UI", 9F)
         lblName.ForeColor = Color.White
         lblName.Location = New Point(6, 30)
         lblName.Name = "lblName"
-        lblName.Size = New Size(74, 24)
+        lblName.Size = New Size(104, 24)
         lblName.TabIndex = 6
         lblName.Text = "Name"
         lblName.Value1 = "Name"
@@ -739,11 +747,11 @@ Partial Class frmMain
         ' 
         ' lblSize
         ' 
-        lblSize.Font = New Font("Segoe UI", 9.0F)
+        lblSize.Font = New Font("Segoe UI", 9F)
         lblSize.ForeColor = Color.White
         lblSize.Location = New Point(6, 150)
         lblSize.Name = "lblSize"
-        lblSize.Size = New Size(74, 24)
+        lblSize.Size = New Size(104, 24)
         lblSize.TabIndex = 3
         lblSize.Text = "Size"
         lblSize.Value1 = "Size"
@@ -757,18 +765,18 @@ Partial Class frmMain
         cmbType.DropDownStyle = ComboBoxStyle.DropDownList
         cmbType.ForeColor = Color.White
         cmbType.FormattingEnabled = True
-        cmbType.Location = New Point(86, 120)
+        cmbType.Location = New Point(116, 120)
         cmbType.Name = "cmbType"
-        cmbType.Size = New Size(220, 24)
+        cmbType.Size = New Size(270, 24)
         cmbType.TabIndex = 4
         ' 
         ' lblType
         ' 
-        lblType.Font = New Font("Segoe UI", 9.0F)
+        lblType.Font = New Font("Segoe UI", 9F)
         lblType.ForeColor = Color.White
         lblType.Location = New Point(6, 120)
         lblType.Name = "lblType"
-        lblType.Size = New Size(74, 24)
+        lblType.Size = New Size(104, 24)
         lblType.TabIndex = 12
         lblType.Text = "Type"
         lblType.Value1 = "Type"
@@ -790,8 +798,8 @@ Partial Class frmMain
         ' SplitContainer1.Panel2
         ' 
         SplitContainer1.Panel2.Controls.Add(RightPanel)
-        SplitContainer1.Size = New Size(996, 663)
-        SplitContainer1.SplitterDistance = 680
+        SplitContainer1.Size = New Size(996, 687)
+        SplitContainer1.SplitterDistance = 600
         SplitContainer1.TabIndex = 3
         ' 
         ' Timer1
@@ -809,7 +817,7 @@ Partial Class frmMain
         NsTheme1.Controls.Add(SplitContainer1)
         NsTheme1.Customization = ""
         NsTheme1.Dock = DockStyle.Fill
-        NsTheme1.Font = New Font("Segoe UI", 9.0F)
+        NsTheme1.Font = New Font("Segoe UI", 9F)
         NsTheme1.Image = Nothing
         NsTheme1.Location = New Point(0, 0)
         NsTheme1.MinimumSize = New Size(1000, 700)
@@ -818,7 +826,7 @@ Partial Class frmMain
         NsTheme1.NoRounding = False
         NsTheme1.Padding = New Padding(3, 33, 3, 3)
         NsTheme1.Sizable = True
-        NsTheme1.Size = New Size(1008, 705)
+        NsTheme1.Size = New Size(1008, 729)
         NsTheme1.SmartBounds = True
         NsTheme1.StartPosition = FormStartPosition.CenterScreen
         NsTheme1.TabIndex = 4
@@ -868,15 +876,15 @@ Partial Class frmMain
         ' frmMain
         ' 
         AllowDrop = True
-        AutoScaleDimensions = New SizeF(7.0F, 15.0F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1008, 705)
+        ClientSize = New Size(1008, 729)
         ControlBox = False
         Controls.Add(NsTheme1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         Location = New Point(0, 0)
         MainMenuStrip = msMainMenu
-        MinimumSize = New Size(1000, 700)
+        MinimumSize = New Size(1000, 768)
         Name = "frmMain"
         StartPosition = FormStartPosition.CenterScreen
         Text = "Untitled - Nollie x SignalRGB Custom Component Editor"

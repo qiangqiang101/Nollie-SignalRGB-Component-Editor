@@ -8,7 +8,7 @@
     <UseWindowsForms>true</UseWindowsForms>
     <MyType>WindowsForms</MyType>
     <AssemblyName>compeditor</AssemblyName>
-    <ApplicationIcon>1.ico</ApplicationIcon>
+    <ApplicationIcon>2.ico</ApplicationIcon>
     <Version>3.0.2</Version>
     <Authors>I'm Not MentaL</Authors>
     <Company>Haikou Nuoli Trading Co., Ltd.</Company>
@@ -21,7 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="1.ico" />
+    <Content Include="2.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -39,6 +39,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Svg" Version="3.4.7" />
   </ItemGroup>
 
   <ItemGroup>

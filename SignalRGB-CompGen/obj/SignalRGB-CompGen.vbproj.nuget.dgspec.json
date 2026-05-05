@@ -54,6 +54,10 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "Svg": {
+              "target": "Package",
+              "version": "[3.4.7, )"
             }
           },
           "imports": [

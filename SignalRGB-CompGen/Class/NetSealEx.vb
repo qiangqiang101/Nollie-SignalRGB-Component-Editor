@@ -955,6 +955,16 @@ Public Class NSImgRadioButton
         End Set
     End Property
 
+    Private _ImgOnTop As Boolean
+    Public Property ImageOnTop() As Boolean
+        Get
+            Return _ImgOnTop
+        End Get
+        Set(value As Boolean)
+            _ImgOnTop = value
+        End Set
+    End Property
+
     ' Ensures only one button in a group is selected
     Private Sub InvalidateParent()
         If Parent Is Nothing Then Return
@@ -975,13 +985,14 @@ Public Class NSImgRadioButton
         Dim G As Graphics = e.Graphics
         G.TextRenderingHint = TextRenderingHint.ClearTypeGridFit
         G.SmoothingMode = SmoothingMode.AntiAlias
+        G.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
         G.Clear(BackColor)
 
-        ' 1. Create the Shapes
+        ' 1. Background Shapes & Rendering
         GP1 = CreateRound(0, 0, Width - 1, Height - 1, 7)
         GP2 = CreateRound(1, 1, Width - 3, Height - 3, 7)
 
-        ' 2. Draw Background State
+        ' (Keep your existing Background State drawing code here...)
         If _Checked Then
             Using PB1 As New PathGradientBrush(GP1)
                 PB1.CenterColor = Color.FromArgb(60, 60, 60)
@@ -998,40 +1009,62 @@ Public Class NSImgRadioButton
         End If
         G.DrawPath(P2, GP2)
 
-        ' 3. Calculate Dimensions for Centering
+        ' 2. Dimensions and Alignment
         Dim spacing As Integer = 6
         Dim SZ1 As SizeF = G.MeasureString(Text, Font)
-        Dim iconSize As Integer = Height - (Padding.Top + Padding.Bottom + 4)
+        Dim iconH As Integer = 0
+        Dim iconW As Integer = 0
 
-        Dim totalWidth As Single = SZ1.Width
+        ' Determine Icon Size based on mode
         If BackgroundImage IsNot Nothing Then
-            totalWidth += iconSize + spacing
+            ' If on top, take 45% of height. If side, take full height minus padding.
+            iconH = If(_ImgOnTop, CInt(Height * 0.45), Height - (Padding.Top + Padding.Bottom + 8))
+            Dim ratio As Single = CSng(BackgroundImage.Width) / CSng(BackgroundImage.Height)
+            iconW = CInt(iconH * ratio)
         End If
 
-        ' Find the starting X to keep the whole group centered
-        Dim startX As Single = (Width / 2) - (totalWidth / 2)
-        Dim centerY As Single = (Height / 2)
+        ' Initial Start Positions (Center of Control)
+        Dim drawX As Single = 0
+        Dim drawY As Single = 0
+        Dim textX As Single = 0
+        Dim textY As Single = 0
+
+        ' 3. Layout Logic
+        If _ImgOnTop Then
+            ' VERTICAL LAYOUT
+            Dim totalH As Single = SZ1.Height + (If(BackgroundImage IsNot Nothing, iconH + spacing, 0))
+
+            drawX = (Width / 2) - (iconW / 2)
+            drawY = (Height / 2) - (totalH / 2)
+
+            textX = (Width / 2) - (SZ1.Width / 2)
+            textY = drawY + (If(BackgroundImage IsNot Nothing, iconH + spacing, 0))
+        Else
+            ' HORIZONTAL LAYOUT
+            Dim totalW As Single = SZ1.Width + (If(BackgroundImage IsNot Nothing, iconW + spacing, 0))
+
+            drawX = (Width / 2) - (totalW / 2)
+            drawY = (Height / 2) - (iconH / 2)
+
+            textX = drawX + (If(BackgroundImage IsNot Nothing, iconW + spacing, 0))
+            textY = (Height / 2) - (SZ1.Height / 2)
+        End If
 
         ' Shift for "pressed" effect
         If _Checked Then
-            startX += 1.0F
-            centerY += 1.0F
+            drawX += 1 : drawY += 1 : textX += 1 : textY += 1
         End If
 
-        ' 4. Draw Image (Centered Group)
-        Dim currentX As Single = startX
+        ' 4. Final Draw
         If BackgroundImage IsNot Nothing Then
-            Dim imgRect As New Rectangle(CInt(currentX), CInt(centerY - (iconSize / 2)), iconSize, iconSize)
-            G.DrawImage(BackgroundImage, imgRect)
-            currentX += iconSize + spacing
+            G.DrawImage(BackgroundImage, New Rectangle(CInt(drawX), CInt(drawY), iconW, iconH))
         End If
-
-        ' 5. Draw Text (Centered Group)
-        Dim textY As Single = centerY - (SZ1.Height / 2)
 
         ' Shadow and Text
-        G.DrawString(Text, Font, Brushes.Black, currentX + 1, textY + 1)
-        G.DrawString(Text, Font, Brushes.White, currentX, textY)
+        Using shadowBrush As New SolidBrush(Color.FromArgb(100, Color.Black))
+            G.DrawString(Text, Font, shadowBrush, textX + 1, textY + 1)
+        End Using
+        G.DrawString(Text, Font, Brushes.White, textX, textY)
     End Sub
 
     ' Helper to create rounded corners (Ensure this exists in your project or use this one)
@@ -1049,6 +1082,11 @@ Public Class NSImgRadioButton
     Protected Overrides Sub OnMouseDown(e As MouseEventArgs)
         If Not _Checked Then Checked = True
         MyBase.OnMouseDown(e)
+    End Sub
+
+    Protected Overrides Sub OnTextChanged(e As EventArgs)
+        MyBase.OnTextChanged(e)
+        Invalidate()
     End Sub
 
 End Class

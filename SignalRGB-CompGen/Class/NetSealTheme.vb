@@ -198,6 +198,11 @@ Class NSButton
         Invalidate()
     End Sub
 
+    Protected Overrides Sub OnTextChanged(e As EventArgs)
+        MyBase.OnTextChanged(e)
+        Invalidate()
+    End Sub
+
 End Class
 
 Class NSProgressBar

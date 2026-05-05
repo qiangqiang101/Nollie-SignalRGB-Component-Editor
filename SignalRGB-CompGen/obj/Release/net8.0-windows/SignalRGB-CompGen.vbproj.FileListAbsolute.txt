@@ -62,3 +62,6 @@ C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-Comp
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\compeditor.pdb
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB-CompGen.genruntimeconfig.cache
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\ref\compeditor.dll
+D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.frmFirst.resources
+D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\bin\Release\net8.0-windows\ExCSS.dll
+D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\bin\Release\net8.0-windows\Svg.dll

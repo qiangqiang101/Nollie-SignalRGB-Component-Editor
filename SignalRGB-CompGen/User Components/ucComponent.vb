@@ -573,6 +573,9 @@ Public Class ucComponent
                         Using sb2 As New SolidBrush(Color.LightBlue)
                             g.FillRoundedRectangle(sb2, r.ToRect, 7)
                         End Using
+                        Using shadowBrush As New SolidBrush(Color.FromArgb(100, Color.Black))
+                            g.DrawString(Text, Font, shadowBrush, renderRect.X + 1, renderRect.Y + 1)
+                        End Using
                         Using sb2 As New SolidBrush(Color.Blue)
                             g.DrawString(displayIndex.ToString(), PixelFont, sb2, renderRect, sf)
                         End Using
@@ -580,6 +583,9 @@ Public Class ucComponent
                         ' DRAW HOVER STATE (Yellow/Gold highlight)
                         Using sb2 As New SolidBrush(Color.FromArgb(240, 220, 160))
                             g.FillRoundedRectangle(sb2, r.ToRect, 7)
+                        End Using
+                        Using shadowBrush As New SolidBrush(Color.FromArgb(100, Color.Black))
+                            g.DrawString(Text, Font, shadowBrush, renderRect.X + 1, renderRect.Y + 1)
                         End Using
                         Using sb2 As New SolidBrush(Color.FromArgb(205, 150, 0))
                             g.DrawString(displayIndex.ToString(), PixelFont, sb2, renderRect, sf)
@@ -598,6 +604,9 @@ Public Class ucComponent
                             End Using
                         End If
 
+                        Using shadowBrush As New SolidBrush(Color.FromArgb(100, Color.Black))
+                            g.DrawString(Text, Font, shadowBrush, renderRect.X + 1, renderRect.Y + 1)
+                        End Using
                         Using sb2 As New SolidBrush(ForeColor)
                             g.DrawString(displayIndex.ToString(), PixelFont, sb2, renderRect, sf)
                         End Using

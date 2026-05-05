@@ -1,6 +1,4 @@
-﻿Imports System.Configuration
-Imports System.Drawing.Imaging
-Imports System.IO
+﻿Imports System.IO
 
 Public Class frmSettings
     Private Sub frmSettings_Load(sender As Object, e As EventArgs) Handles Me.Load
@@ -31,6 +29,8 @@ Public Class frmSettings
             End With
             sett.Save(SettingFile)
             Setting = sett
+
+            frmMain.Translate(True)
 
             MsgBox(Translation.Localization.SettingSaveMsg, MsgBoxStyle.Information, Translation.Localization.Settings)
             Me.Close()

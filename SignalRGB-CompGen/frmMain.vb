@@ -1,9 +1,6 @@
-﻿Imports System.ComponentModel
-Imports System.Drawing.Imaging
+﻿Imports System.Drawing.Imaging
 Imports System.IO
-Imports System.Net.Http.Headers
 Imports System.Runtime.InteropServices
-Imports System.Security.Cryptography
 Imports System.Security.Policy
 Imports Newtonsoft.Json.Linq
 
@@ -15,6 +12,20 @@ Public Class frmMain
     Public VMAP As New NollieVmap()
     Public WithEvents ucCompoment As ucComponent = Nothing
     Public mouseHandler As MouseHandler = Nothing
+
+    Public Sub New()
+        ' This call is required by the designer.
+        InitializeComponent()
+
+        ' Add any initialization after the InitializeComponent() call.
+
+        If File.Exists(SettingFile) Then
+            Setting = New MySettings().Load(SettingFile)
+        Else
+            frmFirst.Show()
+        End If
+        Translate()
+    End Sub
 
     Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
         If ucCompoment IsNot Nothing Then
@@ -235,8 +246,6 @@ Public Class frmMain
     Private Sub frmMain_Load(sender As Object, e As EventArgs) Handles Me.Load
         DoubleBuffered = True
 
-        If File.Exists(SettingFile) Then Setting = New MySettings().Load(SettingFile)
-        Translate()
         If Setting.Debug Then AllocConsole()
 
         With cmbType
@@ -258,10 +267,21 @@ Public Class frmMain
         mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
     End Sub
 
-    Private Sub Translate()
+    Public Sub Translate(Optional disposeOldData As Boolean = False)
         If File.Exists($"languages\{Setting.Language}.json") Then
             Translation = New MyLanguage().Load($"languages\{Setting.Language}.json")
             Dim loc = Translation.Localization
+
+            If disposeOldData Then
+                cmbType.DataSource = Nothing
+
+                DirectionDropdownList.Clear()
+                TypeDropdownList.Clear()
+                MatrixDropdownList.Clear()
+                LShapeDropdownList.Clear()
+                UShapeDropdownList.Clear()
+                RectangleDropdownList.Clear()
+            End If
 
             DirectionDropdownList.AddRange({New DropdownListItem(Of eDirection)(loc.Up, eDirection.Up), New DropdownListItem(Of eDirection)(loc.Right, eDirection.Right),
                                            New DropdownListItem(Of eDirection)(loc.Down, eDirection.Down), New DropdownListItem(Of eDirection)(loc.Left, eDirection.Left)})
@@ -303,6 +323,15 @@ Public Class frmMain
                                           New DropdownListItem(Of eRectOrder)(loc.RightUpLeftDown, eRectOrder.RightUpLeftDown),
                                           New DropdownListItem(Of eRectOrder)(loc.LeftDownRightUp, eRectOrder.LeftDownRightUp),
                                           New DropdownListItem(Of eRectOrder)(loc.LeftUpRightDown, eRectOrder.LeftUpRightDown)})
+
+            If disposeOldData Then
+                With cmbType
+                    .DataSource = TypeDropdownList
+                    .DisplayMember = "Text"
+                    .ValueMember = "Value"
+                    .SelectedIndex = 0
+                End With
+            End If
 
             Text = String.Format(loc.Title, loc.Untitled)
             NsTheme1.Text = Text
