@@ -50,9 +50,9 @@ Partial Class ucLShape
         ' btnOK
         ' 
         btnOK.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnOK.Location = New Point(194, 156)
+        btnOK.Location = New Point(179, 156)
         btnOK.Name = "btnOK"
-        btnOK.Size = New Size(75, 23)
+        btnOK.Size = New Size(90, 23)
         btnOK.TabIndex = 5
         btnOK.Text = "Confirm"
         ' 

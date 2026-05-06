@@ -192,10 +192,17 @@ Public Class Localization
     Public NollieRGBVMAP As String = "NollieRGB VMAP"
     Public Copy As String = "Copy"
     Public Paste As String = "Paste"
-
     Public RotateCounterclockwise As String = "Rotate Counterclockwise"
     Public RotateClockwise As String = "Rotate Clockwise"
     Public HideLEDs As String = "Show/Hide LEDs"
     Public FlipHorizontal As String = "Flip Horizontal"
     Public FlipVertical As String = "Flip Vertical"
+
+    ' Added on 06/05/2026
+    Public ComponentDetails As String = "Component Details"
+    Public TutComponentDetails As String = "Here you can edit the component's name, vendor, product and type. These details are only for organizational purposes within SignalRGB and do not affect the output VMAP file."
+    Public TutComponentImage As String = "Here you can set an image for the component. This image is used as a reference when placing LEDs and is also shown in the component list in SignalRGB. You can select an image file from your computer or enter an image URL above. If both are provided, the image URL will be used."
+    Public TutControls As String = "Here you can find the controls for flipping, rotating, hiding, moving LEDs and component generators. You can also find the keyboard shortcuts for these actions in the context menu."
+    Public TutTools As String = "Here you can find tools for placing LEDs in common patterns and for resizing the guide image. These tools can save you time when setting up your component."
+    Public TutUcComponent As String = "This is the component editor. You can place LEDs on the guide image here. You can select, move and delete LEDs as well as flip and rotate them. You can also use the tools to place LEDs in common patterns or to resize the guide image."
 End Class

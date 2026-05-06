@@ -73,9 +73,9 @@ Partial Class frmSettings
         ' btnSave
         ' 
         btnSave.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnSave.Location = New Point(297, 156)
+        btnSave.Location = New Point(288, 162)
         btnSave.Name = "btnSave"
-        btnSave.Size = New Size(75, 23)
+        btnSave.Size = New Size(90, 23)
         btnSave.TabIndex = 5
         btnSave.Text = "Save"
         ' 

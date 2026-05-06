@@ -98,11 +98,14 @@ Public Class ucComponent
         End Get
     End Property
 
-    Public Sub AddLed(index As Integer, mindex As Integer, name As String, point As Point)
-        LEDs.Add(New Led(mindex, name, point) With {.Index = index})
+    Public Function AddLed(index As Integer, mindex As Integer, name As String, point As Point) As Led
+        Dim newLed As New Led(mindex, name, point) With {.Index = index}
+        LEDs.Add(newLed)
 
         RaiseEvent LEDsChanged(Me, New EventArgs())
-    End Sub
+
+        Return newLed
+    End Function
 
     Public Function AddLeds(_leds As Integer, _pos As Point, Optional direction As eDirection = eDirection.Right,
                             Optional spacing As Integer = 0, Optional updatefont As Boolean = True) As Point
@@ -112,8 +115,9 @@ Public Class ucComponent
                 Dim index = i
                 Dim name = $"Led{i + 1}"
                 Dim pos = GetNextPointFrom(_pos, i, direction, spacing * i)
-                AddLed(index, index, name, pos)
+                Dim led = AddLed(index, index, name, pos)
                 If i = _leds - 1 Then result = pos
+                SelectedItems.Add(led)
             Next i
         Else
             Dim lastLed As Led = LEDs.Last
@@ -121,8 +125,9 @@ Public Class ucComponent
                 Dim index = If(lastLed.Index.HasValue, lastLed.Index.Value + i + 1, lastLed.MappingIndex + i + 1)
                 Dim name = $"Led{index + 1}"
                 Dim pos = GetNextPointFrom(_pos, i, direction, spacing * i)
-                AddLed(index, index, name, pos)
+                Dim led = AddLed(index, index, name, pos)
                 If i = _leds - 1 Then result = pos
+                SelectedItems.Add(led)
             Next i
         End If
 
@@ -1047,6 +1052,8 @@ Public Class ucComponent
         tsmiHideLEDs.Text = loc.HideLEDs
         tsmiCopy.Text = loc.Copy
         tsmiPaste.Text = loc.Paste
+        tsmiFlipVertical.Text = loc.FlipVertical
+        tsmiFlipHorizontal.Text = loc.FlipHorizontal
     End Sub
 
     Public Sub MoveUp()

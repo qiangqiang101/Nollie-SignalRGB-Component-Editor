@@ -190,9 +190,9 @@ Partial Class ucRectangle
         ' btnOK
         ' 
         btnOK.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnOK.Location = New Point(194, 216)
+        btnOK.Location = New Point(179, 216)
         btnOK.Name = "btnOK"
-        btnOK.Size = New Size(75, 23)
+        btnOK.Size = New Size(90, 23)
         btnOK.TabIndex = 7
         btnOK.Text = "Confirm"
         ' 

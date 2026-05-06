@@ -25,12 +25,26 @@ Partial Class frmMain
         components = New ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmMain))
         RightPanel = New Panel()
+        gbDetails = New NSGroupBox()
+        txtName = New NSTextBox()
+        txtWebImageUrl = New NSTextBox()
+        lblType = New NSLabel()
+        lblWebImage = New NSLabel()
+        txtProduct = New NSTextBox()
+        lblSize = New NSLabel()
+        txtLedCount = New NSTextBox()
+        lblName = New NSLabel()
+        numHeight = New NSNumericUpDown()
+        lblLedCount = New NSLabel()
+        numWidth = New NSNumericUpDown()
+        lblProduct = New NSLabel()
+        cmbType = New NSComboBox()
+        lblVendor = New NSLabel()
+        txtBrand = New NSTextBox()
         gbTools = New NSGroupBox()
         rbToolResizeGI = New NSImgRadioButton()
         rbToolPlaceLED = New NSImgRadioButton()
         rbToolSelect = New NSImgRadioButton()
-        txtWebImageUrl = New NSTextBox()
-        lblWebImage = New NSLabel()
         tlpImageControls = New TableLayoutPanel()
         gbImage = New NSGroupBox()
         tlpImage = New TableLayoutPanel()
@@ -38,6 +52,11 @@ Partial Class frmMain
         pbImage = New PictureBox()
         gbControls = New NSGroupBox()
         tlpControls = New TableLayoutPanel()
+        btnGenRectangle = New NSImgButton()
+        btnGenUShape = New NSImgButton()
+        btnGenLShape = New NSImgButton()
+        btnGenMatrix = New NSImgButton()
+        btnGenLinear = New NSImgButton()
         btnAutoResize = New NSButton()
         btnFlipUpDown = New NSImgButton()
         btnFlipLeftRight = New NSImgButton()
@@ -70,20 +89,6 @@ Partial Class frmMain
         ToolStripSeparator2 = New ToolStripSeparator()
         tsmiBuy = New ToolStripMenuItem()
         nslblPosition = New NSLabel()
-        NsSeperator1 = New NSSeperator()
-        txtName = New NSTextBox()
-        lblVendor = New NSLabel()
-        numWidth = New NSNumericUpDown()
-        txtProduct = New NSTextBox()
-        txtLedCount = New NSTextBox()
-        txtBrand = New NSTextBox()
-        numHeight = New NSNumericUpDown()
-        lblProduct = New NSLabel()
-        lblLedCount = New NSLabel()
-        lblName = New NSLabel()
-        lblSize = New NSLabel()
-        cmbType = New NSComboBox()
-        lblType = New NSLabel()
         SplitContainer1 = New SplitContainer()
         Timer1 = New Timer(components)
         NsTheme1 = New NSTheme()
@@ -91,6 +96,7 @@ Partial Class frmMain
         btnMax = New NSControlButton()
         btnClose = New NSControlButton()
         RightPanel.SuspendLayout()
+        gbDetails.SuspendLayout()
         gbTools.SuspendLayout()
         tlpImageControls.SuspendLayout()
         gbImage.SuspendLayout()
@@ -107,32 +113,241 @@ Partial Class frmMain
         ' 
         ' RightPanel
         ' 
+        RightPanel.Controls.Add(gbDetails)
         RightPanel.Controls.Add(gbTools)
-        RightPanel.Controls.Add(txtWebImageUrl)
-        RightPanel.Controls.Add(lblWebImage)
         RightPanel.Controls.Add(tlpImageControls)
         RightPanel.Controls.Add(msMainMenu)
         RightPanel.Controls.Add(nslblPosition)
-        RightPanel.Controls.Add(NsSeperator1)
-        RightPanel.Controls.Add(txtName)
-        RightPanel.Controls.Add(lblVendor)
-        RightPanel.Controls.Add(numWidth)
-        RightPanel.Controls.Add(txtProduct)
-        RightPanel.Controls.Add(txtLedCount)
-        RightPanel.Controls.Add(txtBrand)
-        RightPanel.Controls.Add(numHeight)
-        RightPanel.Controls.Add(lblProduct)
-        RightPanel.Controls.Add(lblLedCount)
-        RightPanel.Controls.Add(lblName)
-        RightPanel.Controls.Add(lblSize)
-        RightPanel.Controls.Add(cmbType)
-        RightPanel.Controls.Add(lblType)
         RightPanel.Dock = DockStyle.Fill
         RightPanel.Location = New Point(0, 0)
         RightPanel.Name = "RightPanel"
         RightPanel.Padding = New Padding(3)
-        RightPanel.Size = New Size(392, 687)
+        RightPanel.Size = New Size(392, 710)
         RightPanel.TabIndex = 0
+        ' 
+        ' gbDetails
+        ' 
+        gbDetails.Controls.Add(txtName)
+        gbDetails.Controls.Add(txtWebImageUrl)
+        gbDetails.Controls.Add(lblType)
+        gbDetails.Controls.Add(lblWebImage)
+        gbDetails.Controls.Add(txtProduct)
+        gbDetails.Controls.Add(lblSize)
+        gbDetails.Controls.Add(txtLedCount)
+        gbDetails.Controls.Add(lblName)
+        gbDetails.Controls.Add(numHeight)
+        gbDetails.Controls.Add(lblLedCount)
+        gbDetails.Controls.Add(numWidth)
+        gbDetails.Controls.Add(lblProduct)
+        gbDetails.Controls.Add(cmbType)
+        gbDetails.Controls.Add(lblVendor)
+        gbDetails.Controls.Add(txtBrand)
+        gbDetails.DrawSeperator = True
+        gbDetails.Location = New Point(6, 30)
+        gbDetails.Name = "gbDetails"
+        gbDetails.Padding = New Padding(3, 31, 3, 3)
+        gbDetails.Size = New Size(380, 246)
+        gbDetails.SubTitle = ""
+        gbDetails.TabIndex = 1
+        gbDetails.Text = "NsGroupBox1"
+        gbDetails.Title = "Component Details"
+        ' 
+        ' txtName
+        ' 
+        txtName.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtName.Location = New Point(118, 34)
+        txtName.MaxLength = 32767
+        txtName.Multiline = False
+        txtName.Name = "txtName"
+        txtName.ReadOnly = False
+        txtName.Size = New Size(256, 24)
+        txtName.TabIndex = 1
+        txtName.TextAlign = HorizontalAlignment.Left
+        txtName.UseSystemPasswordChar = False
+        ' 
+        ' txtWebImageUrl
+        ' 
+        txtWebImageUrl.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtWebImageUrl.Location = New Point(118, 214)
+        txtWebImageUrl.MaxLength = 32767
+        txtWebImageUrl.Multiline = False
+        txtWebImageUrl.Name = "txtWebImageUrl"
+        txtWebImageUrl.ReadOnly = False
+        txtWebImageUrl.Size = New Size(256, 24)
+        txtWebImageUrl.TabIndex = 8
+        txtWebImageUrl.TextAlign = HorizontalAlignment.Left
+        txtWebImageUrl.UseSystemPasswordChar = False
+        ' 
+        ' lblType
+        ' 
+        lblType.Font = New Font("Segoe UI", 9F)
+        lblType.ForeColor = Color.White
+        lblType.Location = New Point(6, 124)
+        lblType.Name = "lblType"
+        lblType.Size = New Size(104, 24)
+        lblType.TabIndex = 12
+        lblType.Text = "Type"
+        lblType.Value1 = "Type"
+        lblType.Value2 = ""
+        ' 
+        ' lblWebImage
+        ' 
+        lblWebImage.Font = New Font("Segoe UI", 9F)
+        lblWebImage.ForeColor = Color.White
+        lblWebImage.Location = New Point(6, 214)
+        lblWebImage.Name = "lblWebImage"
+        lblWebImage.Size = New Size(104, 24)
+        lblWebImage.TabIndex = 25
+        lblWebImage.Text = "Web Image"
+        lblWebImage.Value1 = "Image URL"
+        lblWebImage.Value2 = ""
+        ' 
+        ' txtProduct
+        ' 
+        txtProduct.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtProduct.Location = New Point(118, 94)
+        txtProduct.MaxLength = 32767
+        txtProduct.Multiline = False
+        txtProduct.Name = "txtProduct"
+        txtProduct.ReadOnly = False
+        txtProduct.Size = New Size(256, 24)
+        txtProduct.TabIndex = 3
+        txtProduct.TextAlign = HorizontalAlignment.Left
+        txtProduct.UseSystemPasswordChar = False
+        ' 
+        ' lblSize
+        ' 
+        lblSize.Font = New Font("Segoe UI", 9F)
+        lblSize.ForeColor = Color.White
+        lblSize.Location = New Point(6, 154)
+        lblSize.Name = "lblSize"
+        lblSize.Size = New Size(104, 24)
+        lblSize.TabIndex = 3
+        lblSize.Text = "Size"
+        lblSize.Value1 = "Size"
+        lblSize.Value2 = ""
+        ' 
+        ' txtLedCount
+        ' 
+        txtLedCount.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtLedCount.Location = New Point(118, 184)
+        txtLedCount.MaxLength = 32767
+        txtLedCount.Multiline = False
+        txtLedCount.Name = "txtLedCount"
+        txtLedCount.ReadOnly = True
+        txtLedCount.Size = New Size(256, 24)
+        txtLedCount.TabIndex = 7
+        txtLedCount.Text = "0"
+        txtLedCount.TextAlign = HorizontalAlignment.Right
+        txtLedCount.UseSystemPasswordChar = False
+        ' 
+        ' lblName
+        ' 
+        lblName.Font = New Font("Segoe UI", 9F)
+        lblName.ForeColor = Color.White
+        lblName.Location = New Point(6, 34)
+        lblName.Name = "lblName"
+        lblName.Size = New Size(104, 24)
+        lblName.TabIndex = 6
+        lblName.Text = "Name"
+        lblName.Value1 = "Name"
+        lblName.Value2 = ""
+        ' 
+        ' numHeight
+        ' 
+        numHeight.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        numHeight.DecimalPlaces = 0
+        numHeight.Increment = 1
+        numHeight.InterceptArrowKeys = True
+        numHeight.Location = New Point(249, 154)
+        numHeight.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        numHeight.Name = "numHeight"
+        numHeight.ReadOnly = False
+        numHeight.Size = New Size(125, 24)
+        numHeight.TabIndex = 6
+        numHeight.TextAlign = HorizontalAlignment.Right
+        numHeight.ThousandsSeparator = False
+        numHeight.Value = New Decimal(New Integer() {5, 0, 0, 0})
+        ' 
+        ' lblLedCount
+        ' 
+        lblLedCount.Font = New Font("Segoe UI", 9F)
+        lblLedCount.ForeColor = Color.White
+        lblLedCount.Location = New Point(6, 184)
+        lblLedCount.Name = "lblLedCount"
+        lblLedCount.Size = New Size(104, 24)
+        lblLedCount.TabIndex = 17
+        lblLedCount.Text = "LED Count"
+        lblLedCount.Value1 = "LED Count"
+        lblLedCount.Value2 = ""
+        ' 
+        ' numWidth
+        ' 
+        numWidth.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        numWidth.DecimalPlaces = 0
+        numWidth.Increment = 1
+        numWidth.InterceptArrowKeys = True
+        numWidth.Location = New Point(118, 154)
+        numWidth.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
+        numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
+        numWidth.Name = "numWidth"
+        numWidth.ReadOnly = False
+        numWidth.Size = New Size(125, 24)
+        numWidth.TabIndex = 5
+        numWidth.TextAlign = HorizontalAlignment.Right
+        numWidth.ThousandsSeparator = False
+        numWidth.Value = New Decimal(New Integer() {5, 0, 0, 0})
+        ' 
+        ' lblProduct
+        ' 
+        lblProduct.Font = New Font("Segoe UI", 9F)
+        lblProduct.ForeColor = Color.White
+        lblProduct.Location = New Point(6, 94)
+        lblProduct.Name = "lblProduct"
+        lblProduct.Size = New Size(104, 24)
+        lblProduct.TabIndex = 10
+        lblProduct.Text = "Product"
+        lblProduct.Value1 = "Product"
+        lblProduct.Value2 = ""
+        ' 
+        ' cmbType
+        ' 
+        cmbType.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        cmbType.BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        cmbType.DrawMode = DrawMode.OwnerDrawFixed
+        cmbType.DropDownStyle = ComboBoxStyle.DropDownList
+        cmbType.ForeColor = Color.White
+        cmbType.FormattingEnabled = True
+        cmbType.Location = New Point(118, 124)
+        cmbType.Name = "cmbType"
+        cmbType.Size = New Size(256, 24)
+        cmbType.TabIndex = 4
+        ' 
+        ' lblVendor
+        ' 
+        lblVendor.Font = New Font("Segoe UI", 9F)
+        lblVendor.ForeColor = Color.White
+        lblVendor.Location = New Point(6, 64)
+        lblVendor.Name = "lblVendor"
+        lblVendor.Size = New Size(104, 24)
+        lblVendor.TabIndex = 8
+        lblVendor.Text = "Vendor"
+        lblVendor.Value1 = "Brand"
+        lblVendor.Value2 = ""
+        ' 
+        ' txtBrand
+        ' 
+        txtBrand.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
+        txtBrand.Location = New Point(118, 64)
+        txtBrand.MaxLength = 32767
+        txtBrand.Multiline = False
+        txtBrand.Name = "txtBrand"
+        txtBrand.ReadOnly = False
+        txtBrand.Size = New Size(256, 24)
+        txtBrand.TabIndex = 2
+        txtBrand.TextAlign = HorizontalAlignment.Left
+        txtBrand.UseSystemPasswordChar = False
         ' 
         ' gbTools
         ' 
@@ -141,12 +356,12 @@ Partial Class frmMain
         gbTools.Controls.Add(rbToolPlaceLED)
         gbTools.Controls.Add(rbToolSelect)
         gbTools.DrawSeperator = True
-        gbTools.Location = New Point(6, 526)
+        gbTools.Location = New Point(6, 515)
         gbTools.Name = "gbTools"
         gbTools.Padding = New Padding(3, 31, 3, 3)
         gbTools.Size = New Size(380, 144)
         gbTools.SubTitle = ""
-        gbTools.TabIndex = 10
+        gbTools.TabIndex = 3
         gbTools.Text = "NsGroupBox1"
         gbTools.Title = "Tools"
         ' 
@@ -189,31 +404,6 @@ Partial Class frmMain
         rbToolSelect.TabIndex = 0
         rbToolSelect.Text = "Select Tool"
         ' 
-        ' txtWebImageUrl
-        ' 
-        txtWebImageUrl.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtWebImageUrl.Location = New Point(116, 210)
-        txtWebImageUrl.MaxLength = 32767
-        txtWebImageUrl.Multiline = False
-        txtWebImageUrl.Name = "txtWebImageUrl"
-        txtWebImageUrl.ReadOnly = False
-        txtWebImageUrl.Size = New Size(270, 24)
-        txtWebImageUrl.TabIndex = 8
-        txtWebImageUrl.TextAlign = HorizontalAlignment.Left
-        txtWebImageUrl.UseSystemPasswordChar = False
-        ' 
-        ' lblWebImage
-        ' 
-        lblWebImage.Font = New Font("Segoe UI", 9F)
-        lblWebImage.ForeColor = Color.White
-        lblWebImage.Location = New Point(6, 210)
-        lblWebImage.Name = "lblWebImage"
-        lblWebImage.Size = New Size(104, 24)
-        lblWebImage.TabIndex = 25
-        lblWebImage.Text = "Web Image"
-        lblWebImage.Value1 = "Image URL"
-        lblWebImage.Value2 = ""
-        ' 
         ' tlpImageControls
         ' 
         tlpImageControls.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
@@ -222,12 +412,12 @@ Partial Class frmMain
         tlpImageControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 50F))
         tlpImageControls.Controls.Add(gbImage, 0, 0)
         tlpImageControls.Controls.Add(gbControls, 1, 0)
-        tlpImageControls.Location = New Point(3, 257)
+        tlpImageControls.Location = New Point(3, 282)
         tlpImageControls.Name = "tlpImageControls"
         tlpImageControls.RowCount = 1
         tlpImageControls.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
-        tlpImageControls.Size = New Size(386, 263)
-        tlpImageControls.TabIndex = 9
+        tlpImageControls.Size = New Size(386, 224)
+        tlpImageControls.TabIndex = 2
         ' 
         ' gbImage
         ' 
@@ -237,7 +427,7 @@ Partial Class frmMain
         gbImage.Location = New Point(3, 3)
         gbImage.Name = "gbImage"
         gbImage.Padding = New Padding(3, 31, 3, 3)
-        gbImage.Size = New Size(187, 257)
+        gbImage.Size = New Size(187, 218)
         gbImage.SubTitle = ""
         gbImage.TabIndex = 0
         gbImage.Title = "Component Image"
@@ -254,15 +444,15 @@ Partial Class frmMain
         tlpImage.RowCount = 2
         tlpImage.RowStyles.Add(New RowStyle(SizeType.Percent, 81F))
         tlpImage.RowStyles.Add(New RowStyle(SizeType.Percent, 19F))
-        tlpImage.Size = New Size(181, 223)
+        tlpImage.Size = New Size(181, 184)
         tlpImage.TabIndex = 0
         ' 
         ' btnChangeImage
         ' 
         btnChangeImage.Dock = DockStyle.Fill
-        btnChangeImage.Location = New Point(3, 183)
+        btnChangeImage.Location = New Point(3, 152)
         btnChangeImage.Name = "btnChangeImage"
-        btnChangeImage.Size = New Size(175, 37)
+        btnChangeImage.Size = New Size(175, 29)
         btnChangeImage.TabIndex = 0
         btnChangeImage.Text = "Select Image"
         ' 
@@ -272,7 +462,7 @@ Partial Class frmMain
         pbImage.Image = My.Resources.Resources._1
         pbImage.Location = New Point(3, 3)
         pbImage.Name = "pbImage"
-        pbImage.Size = New Size(175, 174)
+        pbImage.Size = New Size(175, 143)
         pbImage.SizeMode = PictureBoxSizeMode.Zoom
         pbImage.TabIndex = 13
         pbImage.TabStop = False
@@ -285,17 +475,23 @@ Partial Class frmMain
         gbControls.Location = New Point(196, 3)
         gbControls.Name = "gbControls"
         gbControls.Padding = New Padding(3, 31, 3, 3)
-        gbControls.Size = New Size(187, 257)
+        gbControls.Size = New Size(187, 218)
         gbControls.SubTitle = ""
         gbControls.TabIndex = 0
         gbControls.Title = "Controls"
         ' 
         ' tlpControls
         ' 
-        tlpControls.ColumnCount = 3
-        tlpControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
-        tlpControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
-        tlpControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 33.3333321F))
+        tlpControls.ColumnCount = 4
+        tlpControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
+        tlpControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
+        tlpControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
+        tlpControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
+        tlpControls.Controls.Add(btnGenRectangle, 2, 3)
+        tlpControls.Controls.Add(btnGenUShape, 3, 3)
+        tlpControls.Controls.Add(btnGenLShape, 3, 2)
+        tlpControls.Controls.Add(btnGenMatrix, 3, 1)
+        tlpControls.Controls.Add(btnGenLinear, 3, 0)
         tlpControls.Controls.Add(btnAutoResize, 0, 3)
         tlpControls.Controls.Add(btnFlipUpDown, 2, 2)
         tlpControls.Controls.Add(btnFlipLeftRight, 0, 2)
@@ -310,20 +506,80 @@ Partial Class frmMain
         tlpControls.Location = New Point(3, 31)
         tlpControls.Name = "tlpControls"
         tlpControls.RowCount = 4
-        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 27F))
-        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 27F))
-        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 27F))
-        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 19F))
-        tlpControls.Size = New Size(181, 223)
+        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 25F))
+        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 25F))
+        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 25F))
+        tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 25F))
+        tlpControls.Size = New Size(181, 184)
         tlpControls.TabIndex = 0
+        ' 
+        ' btnGenRectangle
+        ' 
+        btnGenRectangle.BackgroundImage = My.Resources.Resources.dots_square_custom
+        btnGenRectangle.Dock = DockStyle.Fill
+        btnGenRectangle.Font = New Font("Segoe UI", 21F)
+        btnGenRectangle.Location = New Point(93, 141)
+        btnGenRectangle.Name = "btnGenRectangle"
+        btnGenRectangle.Padding = New Padding(10)
+        btnGenRectangle.Size = New Size(39, 40)
+        btnGenRectangle.TabIndex = 11
+        btnGenRectangle.Text = "↻"
+        ' 
+        ' btnGenUShape
+        ' 
+        btnGenUShape.BackgroundImage = My.Resources.Resources.dots_ushape_custom
+        btnGenUShape.Dock = DockStyle.Fill
+        btnGenUShape.Font = New Font("Segoe UI", 21F)
+        btnGenUShape.Location = New Point(138, 141)
+        btnGenUShape.Name = "btnGenUShape"
+        btnGenUShape.Padding = New Padding(10)
+        btnGenUShape.Size = New Size(40, 40)
+        btnGenUShape.TabIndex = 10
+        btnGenUShape.Text = "↻"
+        ' 
+        ' btnGenLShape
+        ' 
+        btnGenLShape.BackgroundImage = My.Resources.Resources.dots_lshape_custom
+        btnGenLShape.Dock = DockStyle.Fill
+        btnGenLShape.Font = New Font("Segoe UI", 21F)
+        btnGenLShape.Location = New Point(138, 95)
+        btnGenLShape.Name = "btnGenLShape"
+        btnGenLShape.Padding = New Padding(10)
+        btnGenLShape.Size = New Size(40, 40)
+        btnGenLShape.TabIndex = 9
+        btnGenLShape.Text = "↻"
+        ' 
+        ' btnGenMatrix
+        ' 
+        btnGenMatrix.BackgroundImage = My.Resources.Resources.dots_grid_custom
+        btnGenMatrix.Dock = DockStyle.Fill
+        btnGenMatrix.Font = New Font("Segoe UI", 21F)
+        btnGenMatrix.Location = New Point(138, 49)
+        btnGenMatrix.Name = "btnGenMatrix"
+        btnGenMatrix.Padding = New Padding(10)
+        btnGenMatrix.Size = New Size(40, 40)
+        btnGenMatrix.TabIndex = 8
+        btnGenMatrix.Text = "↻"
+        ' 
+        ' btnGenLinear
+        ' 
+        btnGenLinear.BackgroundImage = My.Resources.Resources.dots_horizontal_custom
+        btnGenLinear.Dock = DockStyle.Fill
+        btnGenLinear.Font = New Font("Segoe UI", 21F)
+        btnGenLinear.Location = New Point(138, 3)
+        btnGenLinear.Name = "btnGenLinear"
+        btnGenLinear.Padding = New Padding(10)
+        btnGenLinear.Size = New Size(40, 40)
+        btnGenLinear.TabIndex = 7
+        btnGenLinear.Text = "↻"
         ' 
         ' btnAutoResize
         ' 
-        tlpControls.SetColumnSpan(btnAutoResize, 3)
+        tlpControls.SetColumnSpan(btnAutoResize, 2)
         btnAutoResize.Dock = DockStyle.Fill
-        btnAutoResize.Location = New Point(3, 183)
+        btnAutoResize.Location = New Point(3, 141)
         btnAutoResize.Name = "btnAutoResize"
-        btnAutoResize.Size = New Size(175, 37)
+        btnAutoResize.Size = New Size(84, 40)
         btnAutoResize.TabIndex = 6
         btnAutoResize.Text = "Auto Resize"
         ' 
@@ -332,10 +588,10 @@ Partial Class frmMain
         btnFlipUpDown.BackgroundImage = My.Resources.Resources.flip_vertical_custom1
         btnFlipUpDown.Dock = DockStyle.Fill
         btnFlipUpDown.Font = New Font("Segoe UI", 21F)
-        btnFlipUpDown.Location = New Point(123, 123)
+        btnFlipUpDown.Location = New Point(93, 95)
         btnFlipUpDown.Name = "btnFlipUpDown"
         btnFlipUpDown.Padding = New Padding(10)
-        btnFlipUpDown.Size = New Size(55, 54)
+        btnFlipUpDown.Size = New Size(39, 40)
         btnFlipUpDown.TabIndex = 5
         btnFlipUpDown.Text = "↺"
         ' 
@@ -344,10 +600,10 @@ Partial Class frmMain
         btnFlipLeftRight.BackgroundImage = My.Resources.Resources.flip_horizontal_custom1
         btnFlipLeftRight.Dock = DockStyle.Fill
         btnFlipLeftRight.Font = New Font("Segoe UI", 21F)
-        btnFlipLeftRight.Location = New Point(3, 123)
+        btnFlipLeftRight.Location = New Point(3, 95)
         btnFlipLeftRight.Name = "btnFlipLeftRight"
         btnFlipLeftRight.Padding = New Padding(10)
-        btnFlipLeftRight.Size = New Size(54, 54)
+        btnFlipLeftRight.Size = New Size(39, 40)
         btnFlipLeftRight.TabIndex = 4
         btnFlipLeftRight.Text = "↺"
         ' 
@@ -356,10 +612,10 @@ Partial Class frmMain
         btnHideLed.BackgroundImage = My.Resources.Resources.eye_off_outline_custom
         btnHideLed.Dock = DockStyle.Fill
         btnHideLed.Font = New Font("Segoe UI", 26F)
-        btnHideLed.Location = New Point(63, 63)
+        btnHideLed.Location = New Point(48, 49)
         btnHideLed.Name = "btnHideLed"
         btnHideLed.Padding = New Padding(10)
-        btnHideLed.Size = New Size(54, 54)
+        btnHideLed.Size = New Size(39, 40)
         btnHideLed.TabIndex = 3
         btnHideLed.Text = "⊘"
         ' 
@@ -371,7 +627,7 @@ Partial Class frmMain
         btnRotateLeft.Location = New Point(3, 3)
         btnRotateLeft.Name = "btnRotateLeft"
         btnRotateLeft.Padding = New Padding(10)
-        btnRotateLeft.Size = New Size(54, 54)
+        btnRotateLeft.Size = New Size(39, 40)
         btnRotateLeft.TabIndex = 2
         btnRotateLeft.Text = "↺"
         ' 
@@ -380,10 +636,10 @@ Partial Class frmMain
         btnUp.BackgroundImage = My.Resources.Resources.arrow_up_custom
         btnUp.Dock = DockStyle.Fill
         btnUp.Font = New Font("Marlett", 19F)
-        btnUp.Location = New Point(63, 3)
+        btnUp.Location = New Point(48, 3)
         btnUp.Name = "btnUp"
         btnUp.Padding = New Padding(10)
-        btnUp.Size = New Size(54, 54)
+        btnUp.Size = New Size(39, 40)
         btnUp.TabIndex = 0
         btnUp.Text = "5"
         ' 
@@ -392,10 +648,10 @@ Partial Class frmMain
         btnLeft.BackgroundImage = My.Resources.Resources.arrow_left_custom
         btnLeft.Dock = DockStyle.Fill
         btnLeft.Font = New Font("Marlett", 19F)
-        btnLeft.Location = New Point(3, 63)
+        btnLeft.Location = New Point(3, 49)
         btnLeft.Name = "btnLeft"
         btnLeft.Padding = New Padding(10)
-        btnLeft.Size = New Size(54, 54)
+        btnLeft.Size = New Size(39, 40)
         btnLeft.TabIndex = 0
         btnLeft.Text = "3"
         ' 
@@ -404,10 +660,10 @@ Partial Class frmMain
         btnRight.BackgroundImage = My.Resources.Resources.arrow_right_custom
         btnRight.Dock = DockStyle.Fill
         btnRight.Font = New Font("Marlett", 19F)
-        btnRight.Location = New Point(123, 63)
+        btnRight.Location = New Point(93, 49)
         btnRight.Name = "btnRight"
         btnRight.Padding = New Padding(10)
-        btnRight.Size = New Size(55, 54)
+        btnRight.Size = New Size(39, 40)
         btnRight.TabIndex = 0
         btnRight.Text = "4"
         ' 
@@ -416,10 +672,10 @@ Partial Class frmMain
         btnDown.BackgroundImage = My.Resources.Resources.arrow_down_custom
         btnDown.Dock = DockStyle.Fill
         btnDown.Font = New Font("Marlett", 19F)
-        btnDown.Location = New Point(63, 123)
+        btnDown.Location = New Point(48, 95)
         btnDown.Name = "btnDown"
         btnDown.Padding = New Padding(10)
-        btnDown.Size = New Size(54, 54)
+        btnDown.Size = New Size(39, 40)
         btnDown.TabIndex = 0
         btnDown.Text = "6"
         ' 
@@ -428,10 +684,10 @@ Partial Class frmMain
         btnRotateRight.BackgroundImage = My.Resources.Resources.rotate_right_custom
         btnRotateRight.Dock = DockStyle.Fill
         btnRotateRight.Font = New Font("Segoe UI", 21F)
-        btnRotateRight.Location = New Point(123, 3)
+        btnRotateRight.Location = New Point(93, 3)
         btnRotateRight.Name = "btnRotateRight"
         btnRotateRight.Padding = New Padding(10)
-        btnRotateRight.Size = New Size(55, 54)
+        btnRotateRight.Size = New Size(39, 40)
         btnRotateRight.TabIndex = 1
         btnRotateRight.Text = "↻"
         ' 
@@ -443,7 +699,7 @@ Partial Class frmMain
         msMainMenu.Location = New Point(3, 3)
         msMainMenu.Name = "msMainMenu"
         msMainMenu.Size = New Size(386, 24)
-        msMainMenu.TabIndex = 22
+        msMainMenu.TabIndex = 0
         msMainMenu.Text = "NsMenuStrip1"
         ' 
         ' tsmiFile
@@ -593,194 +849,13 @@ Partial Class frmMain
         ' 
         nslblPosition.Dock = DockStyle.Bottom
         nslblPosition.Font = New Font("Segoe UI", 9F)
-        nslblPosition.Location = New Point(3, 661)
+        nslblPosition.Location = New Point(3, 684)
         nslblPosition.Name = "nslblPosition"
         nslblPosition.Size = New Size(386, 23)
-        nslblPosition.TabIndex = 21
+        nslblPosition.TabIndex = 4
         nslblPosition.Text = "NsLabel1"
         nslblPosition.Value1 = "Position: 0, 0"
         nslblPosition.Value2 = ""
-        ' 
-        ' NsSeperator1
-        ' 
-        NsSeperator1.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        NsSeperator1.Location = New Point(6, 240)
-        NsSeperator1.Name = "NsSeperator1"
-        NsSeperator1.Size = New Size(380, 11)
-        NsSeperator1.TabIndex = 19
-        NsSeperator1.Text = "NsSeperator1"
-        ' 
-        ' txtName
-        ' 
-        txtName.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtName.Location = New Point(116, 30)
-        txtName.MaxLength = 32767
-        txtName.Multiline = False
-        txtName.Name = "txtName"
-        txtName.ReadOnly = False
-        txtName.Size = New Size(270, 24)
-        txtName.TabIndex = 1
-        txtName.TextAlign = HorizontalAlignment.Left
-        txtName.UseSystemPasswordChar = False
-        ' 
-        ' lblVendor
-        ' 
-        lblVendor.Font = New Font("Segoe UI", 9F)
-        lblVendor.ForeColor = Color.White
-        lblVendor.Location = New Point(6, 60)
-        lblVendor.Name = "lblVendor"
-        lblVendor.Size = New Size(104, 24)
-        lblVendor.TabIndex = 8
-        lblVendor.Text = "Vendor"
-        lblVendor.Value1 = "Brand"
-        lblVendor.Value2 = ""
-        ' 
-        ' numWidth
-        ' 
-        numWidth.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        numWidth.DecimalPlaces = 0
-        numWidth.Increment = 1
-        numWidth.InterceptArrowKeys = True
-        numWidth.Location = New Point(116, 150)
-        numWidth.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        numWidth.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        numWidth.Name = "numWidth"
-        numWidth.ReadOnly = False
-        numWidth.Size = New Size(132, 24)
-        numWidth.TabIndex = 5
-        numWidth.TextAlign = HorizontalAlignment.Right
-        numWidth.ThousandsSeparator = False
-        numWidth.Value = New Decimal(New Integer() {5, 0, 0, 0})
-        ' 
-        ' txtProduct
-        ' 
-        txtProduct.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtProduct.Location = New Point(116, 90)
-        txtProduct.MaxLength = 32767
-        txtProduct.Multiline = False
-        txtProduct.Name = "txtProduct"
-        txtProduct.ReadOnly = False
-        txtProduct.Size = New Size(270, 24)
-        txtProduct.TabIndex = 3
-        txtProduct.TextAlign = HorizontalAlignment.Left
-        txtProduct.UseSystemPasswordChar = False
-        ' 
-        ' txtLedCount
-        ' 
-        txtLedCount.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtLedCount.Location = New Point(116, 180)
-        txtLedCount.MaxLength = 32767
-        txtLedCount.Multiline = False
-        txtLedCount.Name = "txtLedCount"
-        txtLedCount.ReadOnly = True
-        txtLedCount.Size = New Size(270, 24)
-        txtLedCount.TabIndex = 7
-        txtLedCount.Text = "0"
-        txtLedCount.TextAlign = HorizontalAlignment.Right
-        txtLedCount.UseSystemPasswordChar = False
-        ' 
-        ' txtBrand
-        ' 
-        txtBrand.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        txtBrand.Location = New Point(116, 60)
-        txtBrand.MaxLength = 32767
-        txtBrand.Multiline = False
-        txtBrand.Name = "txtBrand"
-        txtBrand.ReadOnly = False
-        txtBrand.Size = New Size(270, 24)
-        txtBrand.TabIndex = 2
-        txtBrand.TextAlign = HorizontalAlignment.Left
-        txtBrand.UseSystemPasswordChar = False
-        ' 
-        ' numHeight
-        ' 
-        numHeight.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        numHeight.DecimalPlaces = 0
-        numHeight.Increment = 1
-        numHeight.InterceptArrowKeys = True
-        numHeight.Location = New Point(254, 150)
-        numHeight.Maximum = New Decimal(New Integer() {500, 0, 0, 0})
-        numHeight.Minimum = New Decimal(New Integer() {1, 0, 0, 0})
-        numHeight.Name = "numHeight"
-        numHeight.ReadOnly = False
-        numHeight.Size = New Size(132, 24)
-        numHeight.TabIndex = 6
-        numHeight.TextAlign = HorizontalAlignment.Right
-        numHeight.ThousandsSeparator = False
-        numHeight.Value = New Decimal(New Integer() {5, 0, 0, 0})
-        ' 
-        ' lblProduct
-        ' 
-        lblProduct.Font = New Font("Segoe UI", 9F)
-        lblProduct.ForeColor = Color.White
-        lblProduct.Location = New Point(6, 90)
-        lblProduct.Name = "lblProduct"
-        lblProduct.Size = New Size(104, 24)
-        lblProduct.TabIndex = 10
-        lblProduct.Text = "Product"
-        lblProduct.Value1 = "Product"
-        lblProduct.Value2 = ""
-        ' 
-        ' lblLedCount
-        ' 
-        lblLedCount.Font = New Font("Segoe UI", 9F)
-        lblLedCount.ForeColor = Color.White
-        lblLedCount.Location = New Point(6, 180)
-        lblLedCount.Name = "lblLedCount"
-        lblLedCount.Size = New Size(104, 24)
-        lblLedCount.TabIndex = 17
-        lblLedCount.Text = "LED Count"
-        lblLedCount.Value1 = "LED Count"
-        lblLedCount.Value2 = ""
-        ' 
-        ' lblName
-        ' 
-        lblName.Font = New Font("Segoe UI", 9F)
-        lblName.ForeColor = Color.White
-        lblName.Location = New Point(6, 30)
-        lblName.Name = "lblName"
-        lblName.Size = New Size(104, 24)
-        lblName.TabIndex = 6
-        lblName.Text = "Name"
-        lblName.Value1 = "Name"
-        lblName.Value2 = ""
-        ' 
-        ' lblSize
-        ' 
-        lblSize.Font = New Font("Segoe UI", 9F)
-        lblSize.ForeColor = Color.White
-        lblSize.Location = New Point(6, 150)
-        lblSize.Name = "lblSize"
-        lblSize.Size = New Size(104, 24)
-        lblSize.TabIndex = 3
-        lblSize.Text = "Size"
-        lblSize.Value1 = "Size"
-        lblSize.Value2 = ""
-        ' 
-        ' cmbType
-        ' 
-        cmbType.Anchor = AnchorStyles.Top Or AnchorStyles.Left Or AnchorStyles.Right
-        cmbType.BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
-        cmbType.DrawMode = DrawMode.OwnerDrawFixed
-        cmbType.DropDownStyle = ComboBoxStyle.DropDownList
-        cmbType.ForeColor = Color.White
-        cmbType.FormattingEnabled = True
-        cmbType.Location = New Point(116, 120)
-        cmbType.Name = "cmbType"
-        cmbType.Size = New Size(270, 24)
-        cmbType.TabIndex = 4
-        ' 
-        ' lblType
-        ' 
-        lblType.Font = New Font("Segoe UI", 9F)
-        lblType.ForeColor = Color.White
-        lblType.Location = New Point(6, 120)
-        lblType.Name = "lblType"
-        lblType.Size = New Size(104, 24)
-        lblType.TabIndex = 12
-        lblType.Text = "Type"
-        lblType.Value1 = "Type"
-        lblType.Value2 = ""
         ' 
         ' SplitContainer1
         ' 
@@ -798,7 +873,7 @@ Partial Class frmMain
         ' SplitContainer1.Panel2
         ' 
         SplitContainer1.Panel2.Controls.Add(RightPanel)
-        SplitContainer1.Size = New Size(996, 687)
+        SplitContainer1.Size = New Size(996, 710)
         SplitContainer1.SplitterDistance = 600
         SplitContainer1.TabIndex = 3
         ' 
@@ -826,7 +901,7 @@ Partial Class frmMain
         NsTheme1.NoRounding = False
         NsTheme1.Padding = New Padding(3, 33, 3, 3)
         NsTheme1.Sizable = True
-        NsTheme1.Size = New Size(1008, 729)
+        NsTheme1.Size = New Size(1008, 752)
         NsTheme1.SmartBounds = True
         NsTheme1.StartPosition = FormStartPosition.CenterScreen
         NsTheme1.TabIndex = 4
@@ -878,7 +953,7 @@ Partial Class frmMain
         AllowDrop = True
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        ClientSize = New Size(1008, 729)
+        ClientSize = New Size(1008, 752)
         ControlBox = False
         Controls.Add(NsTheme1)
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
@@ -891,6 +966,7 @@ Partial Class frmMain
         WindowState = FormWindowState.Maximized
         RightPanel.ResumeLayout(False)
         RightPanel.PerformLayout()
+        gbDetails.ResumeLayout(False)
         gbTools.ResumeLayout(False)
         tlpImageControls.ResumeLayout(False)
         gbImage.ResumeLayout(False)
@@ -930,7 +1006,6 @@ Partial Class frmMain
     Friend WithEvents btnClose As NSControlButton
     Friend WithEvents btnMin As NSControlButton
     Friend WithEvents btnMax As NSControlButton
-    Friend WithEvents NsSeperator1 As NSSeperator
     Friend WithEvents gbImage As NSGroupBox
     Friend WithEvents nslblPosition As NSLabel
     Friend WithEvents gbControls As NSGroupBox
@@ -974,5 +1049,11 @@ Partial Class frmMain
     Friend WithEvents btnFlipUpDown As NSImgButton
     Friend WithEvents btnAutoResize As NSButton
     Friend WithEvents tlpImage As TableLayoutPanel
+    Friend WithEvents gbDetails As NSGroupBox
+    Friend WithEvents btnGenMatrix As NSImgButton
+    Friend WithEvents btnGenLinear As NSImgButton
+    Friend WithEvents btnGenLShape As NSImgButton
+    Friend WithEvents btnGenRectangle As NSImgButton
+    Friend WithEvents btnGenUShape As NSImgButton
 
 End Class

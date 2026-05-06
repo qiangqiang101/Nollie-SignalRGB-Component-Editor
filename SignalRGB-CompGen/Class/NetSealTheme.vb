@@ -147,45 +147,93 @@ Class NSButton
     Private PB1 As PathGradientBrush
     Private GB1 As LinearGradientBrush
 
-    Protected Overrides Sub OnPaint(e As System.Windows.Forms.PaintEventArgs)
-        G = e.Graphics
-        G.TextRenderingHint = TextRenderingHint.ClearTypeGridFit
+    'Protected Overrides Sub OnPaint(e As System.Windows.Forms.PaintEventArgs)
+    '    G = e.Graphics
+    '    G.TextRenderingHint = TextRenderingHint.ClearTypeGridFit
 
+    '    G.Clear(BackColor)
+    '    G.SmoothingMode = SmoothingMode.AntiAlias
+
+    '    GP1 = CreateRound(0, 0, Width - 1, Height - 1, 7)
+    '    GP2 = CreateRound(1, 1, Width - 3, Height - 3, 7)
+
+    '    If IsMouseDown Then
+    '        PB1 = New PathGradientBrush(GP1)
+    '        PB1.CenterColor = Color.FromArgb(60, 60, 60)
+    '        PB1.SurroundColors = {Color.FromArgb(55, 55, 55)}
+    '        PB1.FocusScales = New PointF(0.8F, 0.5F)
+
+    '        G.FillPath(PB1, GP1)
+
+    '        G.DrawPath(PF, GP1)
+    '    Else
+    '        GB1 = New LinearGradientBrush(ClientRectangle, Color.FromArgb(60, 60, 60), Color.FromArgb(55, 55, 55), 90.0F)
+    '        G.FillPath(GB1, GP1)
+
+    '        G.DrawPath(P1, GP1)
+    '    End If
+
+
+    '    G.DrawPath(P2, GP2)
+
+    '    SZ1 = G.MeasureString(Text, Font)
+    '    PT1 = New PointF(5, Height \ 2 - SZ1.Height / 2)
+
+    '    If IsMouseDown Then
+    '        PT1.X += 1.0F
+    '        PT1.Y += 1.0F
+    '    End If
+
+    '    G.DrawString(Text, Font, Brushes.Black, PT1.X + 1, PT1.Y + 1)
+    '    G.DrawString(Text, Font, Brushes.White, PT1)
+    'End Sub
+
+    Protected Overrides Sub OnPaint(e As System.Windows.Forms.PaintEventArgs)
+        Dim G As Graphics = e.Graphics
+        G.TextRenderingHint = TextRenderingHint.ClearTypeGridFit
         G.Clear(BackColor)
         G.SmoothingMode = SmoothingMode.AntiAlias
 
+        ' Draw Background
         GP1 = CreateRound(0, 0, Width - 1, Height - 1, 7)
         GP2 = CreateRound(1, 1, Width - 3, Height - 3, 7)
 
         If IsMouseDown Then
-            PB1 = New PathGradientBrush(GP1)
-            PB1.CenterColor = Color.FromArgb(60, 60, 60)
-            PB1.SurroundColors = {Color.FromArgb(55, 55, 55)}
-            PB1.FocusScales = New PointF(0.8F, 0.5F)
-
-            G.FillPath(PB1, GP1)
-
+            Using PB1 As New PathGradientBrush(GP1)
+                PB1.CenterColor = Color.FromArgb(60, 60, 60)
+                PB1.SurroundColors = {Color.FromArgb(55, 55, 55)}
+                PB1.FocusScales = New PointF(0.8F, 0.5F)
+                G.FillPath(PB1, GP1)
+            End Using
             G.DrawPath(PF, GP1)
         Else
-            GB1 = New LinearGradientBrush(ClientRectangle, Color.FromArgb(60, 60, 60), Color.FromArgb(55, 55, 55), 90.0F)
-            G.FillPath(GB1, GP1)
-
+            Using GB1 As New LinearGradientBrush(ClientRectangle, Color.FromArgb(60, 60, 60), Color.FromArgb(55, 55, 55), 90.0F)
+                G.FillPath(GB1, GP1)
+            End Using
             G.DrawPath(P1, GP1)
         End If
-
-
         G.DrawPath(P2, GP2)
 
-        SZ1 = G.MeasureString(Text, Font)
-        PT1 = New PointF(5, Height \ 2 - SZ1.Height / 2)
+        ' --- WRAPPING LOGIC START ---
+        Dim margin As Integer = 8
+        Dim availableWidth As Integer = Width - (margin * 2)
+
+        ' Measure string with a width constraint to enable wrapping
+        Dim SZ1 As SizeF = G.MeasureString(Text, Font, availableWidth)
+
+        ' Define the area for the text
+        Dim textRect As New RectangleF(margin, (Height / 2) - (SZ1.Height / 2), availableWidth, SZ1.Height)
 
         If IsMouseDown Then
-            PT1.X += 1.0F
-            PT1.Y += 1.0F
+            textRect.X += 1.0F
+            textRect.Y += 1.0F
         End If
 
-        G.DrawString(Text, Font, Brushes.Black, PT1.X + 1, PT1.Y + 1)
-        G.DrawString(Text, Font, Brushes.White, PT1)
+        ' Draw the Shadow and the Text
+        Dim shadowRect As New RectangleF(textRect.X + 1, textRect.Y + 1, textRect.Width, textRect.Height)
+        G.DrawString(Text, Font, Brushes.Black, shadowRect)
+        G.DrawString(Text, Font, Brushes.White, textRect)
+        ' --- WRAPPING LOGIC END ---
     End Sub
 
     Protected Overrides Sub OnMouseDown(e As MouseEventArgs)

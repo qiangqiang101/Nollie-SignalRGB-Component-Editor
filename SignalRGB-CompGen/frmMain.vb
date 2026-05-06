@@ -13,6 +13,8 @@ Public Class frmMain
     Public WithEvents ucCompoment As ucComponent = Nothing
     Public mouseHandler As MouseHandler = Nothing
 
+    Private tutorialSteps As New Queue(Of (ctrl As Control, msg As String))
+
     Public Sub New()
         ' This call is required by the designer.
         InitializeComponent()
@@ -373,6 +375,9 @@ Public Class frmMain
             tsmiSaveNRGB.Text = loc.NollieRGBVMAP
             tsmiSaveAsSRGB.Text = loc.SignalRGBComponent
             tsmiSaveAsNRGB.Text = loc.NollieRGBVMAP
+
+            ' Added 06/05/2026
+            gbDetails.Title = loc.ComponentDetails
         End If
     End Sub
 
@@ -731,6 +736,61 @@ Public Class frmMain
     Private Sub btnFlipUpDown_Click(sender As Object, e As EventArgs) Handles btnFlipUpDown.Click
         If ucCompoment IsNot Nothing Then
             ucCompoment.flipLEDsVertical()
+        End If
+    End Sub
+
+    Public Sub StartTutorial()
+        Dim loc = Translation.Localization
+        tutorialSteps.Enqueue((gbDetails, loc.TutComponentDetails))
+        tutorialSteps.Enqueue((gbImage, loc.TutComponentImage))
+        tutorialSteps.Enqueue((gbControls, loc.TutControls))
+        tutorialSteps.Enqueue((gbTools, loc.TutTools))
+        tutorialSteps.Enqueue((ucCompoment, loc.TutUcComponent))
+
+        ShowNextStep()
+    End Sub
+
+    Private Sub ShowNextStep()
+        If tutorialSteps.Count > 0 Then
+            Dim stepData = tutorialSteps.Dequeue()
+            Dim overlay As New frmTutorialOverlay()
+            overlay.Show()
+            overlay.HighlightControl(stepData.ctrl, stepData.msg)
+
+            AddHandler overlay.Click, Sub()
+                                          overlay.Close()
+                                          ShowNextStep()
+                                      End Sub
+        End If
+    End Sub
+
+    Private Sub btnGenLinear_Click(sender As Object, e As EventArgs) Handles btnGenLinear.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.tsmiLinear.PerformClick()
+        End If
+    End Sub
+
+    Private Sub btnGenMatrix_Click(sender As Object, e As EventArgs) Handles btnGenMatrix.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.tsmiMatrix.PerformClick()
+        End If
+    End Sub
+
+    Private Sub btnGenLShape_Click(sender As Object, e As EventArgs) Handles btnGenLShape.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.tsmiLShape.PerformClick()
+        End If
+    End Sub
+
+    Private Sub btnGenUShape_Click(sender As Object, e As EventArgs) Handles btnGenUShape.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.tsmiUShape.PerformClick()
+        End If
+    End Sub
+
+    Private Sub btnGenRectangle_Click(sender As Object, e As EventArgs) Handles btnGenRectangle.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.tsmiRectangle.PerformClick()
         End If
     End Sub
 End Class

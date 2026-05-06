@@ -58,9 +58,9 @@ Partial Class ucLinear
         ' btnOK
         ' 
         btnOK.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnOK.Location = New Point(194, 92)
+        btnOK.Location = New Point(179, 92)
         btnOK.Name = "btnOK"
-        btnOK.Size = New Size(75, 23)
+        btnOK.Size = New Size(90, 23)
         btnOK.TabIndex = 3
         btnOK.Text = "Confirm"
         ' 

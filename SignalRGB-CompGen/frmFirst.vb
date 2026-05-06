@@ -55,6 +55,7 @@ Public Class frmFirst
             Setting = sett
 
             frmMain.Translate(True)
+            frmMain.StartTutorial()
 
             Me.Close()
         Catch ex As Exception
