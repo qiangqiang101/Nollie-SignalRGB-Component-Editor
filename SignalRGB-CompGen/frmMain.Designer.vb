@@ -442,17 +442,17 @@ Partial Class frmMain
         tlpImage.Location = New Point(3, 31)
         tlpImage.Name = "tlpImage"
         tlpImage.RowCount = 2
-        tlpImage.RowStyles.Add(New RowStyle(SizeType.Percent, 81F))
-        tlpImage.RowStyles.Add(New RowStyle(SizeType.Percent, 19F))
+        tlpImage.RowStyles.Add(New RowStyle(SizeType.Percent, 75F))
+        tlpImage.RowStyles.Add(New RowStyle(SizeType.Percent, 25F))
         tlpImage.Size = New Size(181, 184)
         tlpImage.TabIndex = 0
         ' 
         ' btnChangeImage
         ' 
         btnChangeImage.Dock = DockStyle.Fill
-        btnChangeImage.Location = New Point(3, 152)
+        btnChangeImage.Location = New Point(3, 141)
         btnChangeImage.Name = "btnChangeImage"
-        btnChangeImage.Size = New Size(175, 29)
+        btnChangeImage.Size = New Size(175, 40)
         btnChangeImage.TabIndex = 0
         btnChangeImage.Text = "Select Image"
         ' 
@@ -462,7 +462,7 @@ Partial Class frmMain
         pbImage.Image = My.Resources.Resources._1
         pbImage.Location = New Point(3, 3)
         pbImage.Name = "pbImage"
-        pbImage.Size = New Size(175, 143)
+        pbImage.Size = New Size(175, 132)
         pbImage.SizeMode = PictureBoxSizeMode.Zoom
         pbImage.TabIndex = 13
         pbImage.TabStop = False

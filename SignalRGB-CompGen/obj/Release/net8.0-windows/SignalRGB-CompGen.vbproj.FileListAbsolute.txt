@@ -69,3 +69,4 @@ C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-Comp
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\bin\Release\net8.0-windows\Svg.dll
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.frmFirst.resources
 C:\Users\ADMIN\Documents\GitHub\Nollie-SignalRGB-Component-Editor\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.frmTutorialOverlay.resources
+D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Release\net8.0-windows\SignalRGB_CompGen.frmTutorialOverlay.resources

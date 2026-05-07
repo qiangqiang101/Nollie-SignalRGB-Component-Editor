@@ -1,6 +1,7 @@
 ﻿Imports System.Drawing.Imaging
 Imports System.IO
 Imports System.Runtime.InteropServices
+Imports System.Security.Cryptography
 Imports System.Security.Policy
 Imports Newtonsoft.Json.Linq
 
@@ -13,7 +14,7 @@ Public Class frmMain
     Public WithEvents ucCompoment As ucComponent = Nothing
     Public mouseHandler As MouseHandler = Nothing
 
-    Private tutorialSteps As New Queue(Of (ctrl As Control, msg As String))
+    Private tutorialSteps As New Queue(Of (ctrl As Control, msg As String, act As Action))
 
     Public Sub New()
         ' This call is required by the designer.
@@ -23,6 +24,7 @@ Public Class frmMain
 
         If File.Exists(SettingFile) Then
             Setting = New MySettings().Load(SettingFile)
+            frmFirst.Show() ' Later remove
         Else
             frmFirst.Show()
         End If
@@ -46,78 +48,98 @@ Public Class frmMain
             .Multiselect = False
         End With
         If ofd.ShowDialog <> DialogResult.Cancel Then
-            Dim jsonContent = File.ReadAllText(ofd.FileName)
-            Dim jsonObj As JObject = JObject.Parse(jsonContent)
+            OpenFile(ofd.FileName)
+        End If
+    End Sub
 
-            If jsonObj("fx_ch_led_num") IsNot Nothing Then
-                ' It is a vmap file, we will convert it to component first before loading, and we will not keep the vmap data since this editor is mainly for editing component files, and the vmap import/export is just a secondary feature for compatibility with OpenRGB
+    Private Sub OpenFile(open_file As String, Optional disposeUC As Boolean = True)
+        Dim jsonContent = File.ReadAllText(open_file)
+        Dim jsonObj As JObject = JObject.Parse(jsonContent)
 
-                If ucCompoment IsNot Nothing Then
-                    Controls.Remove(ucCompoment)
-                    ucCompoment.Dispose()
-                End If
-                FileName = ofd.FileName
-                VMAP = NollieVmap.Load(FileName)
+        If jsonObj("fx_ch_led_num") IsNot Nothing Then
+            ' It is a vmap file, we will convert it to component first before loading, and we will not keep the vmap data since this editor is mainly for editing component files, and the vmap import/export is just a secondary feature for compatibility with OpenRGB
 
-                Dim LEDs As New List(Of Led)
-                For i = 0 To VMAP.Component.LedCoordinates.Count - 1
-                    Dim name = VMAP.Component.LedNames(i)
-                    Dim index = VMAP.Component.LedMapping(i)
-                    Dim point = VMAP.Component.LedCoordinates(i)
-                    Dim hidden = VMAP.Component.ZLedMapping.Contains(index)
-                    LEDs.Add(New Led(index, name, New Point(point(0), point(1))) With {.Hidden = hidden})
-                Next
+            If ucCompoment IsNot Nothing AndAlso disposeUC Then
+                Controls.Remove(ucCompoment)
+                ucCompoment.Dispose()
+            End If
+            FileName = open_file
+            VMAP = NollieVmap.Load(FileName)
 
+            Dim LEDs As New List(Of Led)
+            For i = 0 To VMAP.Component.LedCoordinates.Count - 1
+                Dim name = VMAP.Component.LedNames(i)
+                Dim index = VMAP.Component.LedMapping(i)
+                Dim point = VMAP.Component.LedCoordinates(i)
+                Dim hidden = VMAP.Component.ZLedMapping.Contains(index)
+                LEDs.Add(New Led(index, name, New Point(point(0), point(1))) With {.Hidden = hidden})
+            Next
+
+            If disposeUC Then
                 ucCompoment = New ucComponent With {.Width = VMAP.Component.Width, .Height = VMAP.Component.Height, .BorderStyle = BorderStyle.None,
-                    .Size = New Size(VMAP.Component.Width * 50 + MarginAll, VMAP.Component.Height * 50 + MarginAll), .LEDs = LEDs,
-                    .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
+                .Size = New Size(VMAP.Component.Width * 50 + MarginAll, VMAP.Component.Height * 50 + MarginAll), .LEDs = LEDs,
+                .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
                 SplitContainer1.Panel1.Controls.Add(ucCompoment)
                 ucCompoment.Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
                 ucCompoment.BringToFront()
                 mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
+            Else
+                With ucCompoment
+                    .Width = VMAP.Component.Width
+                    .Height = VMAP.Component.Height
+                    .BorderStyle = BorderStyle.None
+                    .Size = New Size(VMAP.Component.Width * 50 + MarginAll, VMAP.Component.Height * 50 + MarginAll)
+                    .LEDs = LEDs
+                    .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right
+                    .ForeColor = Color.White
+                    .Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
+                End With
 
-                txtBrand.Text = VMAP.Component.Brand
-                txtProduct.Text = VMAP.Component.ProductName
-                txtName.Text = VMAP.Component.DisplayName
-                numWidth.Value = VMAP.Component.Width
-                numHeight.Value = VMAP.Component.Height
-                txtLedCount.Text = VMAP.Component.LedCount
-                If VMAP.Component.Type = VMAP.Component.Type.ToLower() Then
-                    Select Case VMAP.Component.Type
-                        Case "aio"
-                            cmbType.SelectedValue = "AIO"
-                        Case "gpu"
-                            cmbType.SelectedValue = "GPU"
-                        Case Else
-                            cmbType.SelectedValue = VMAP.Component.Type.CapitalizeFirstLetter(True)
-                    End Select
-                Else
-                    cmbType.SelectedValue = VMAP.Component.Type
-                End If
-                pbImage.Image = VMAP.Component.ToImage
-                txtWebImageUrl.Text = VMAP.Component.ImageUrl
+            End If
 
-                Text = String.Format(Translation.Localization.Title, FileName)
-                NsTheme1.Text = Text
+            txtBrand.Text = VMAP.Component.Brand
+            txtProduct.Text = VMAP.Component.ProductName
+            txtName.Text = VMAP.Component.DisplayName
+            numWidth.Value = VMAP.Component.Width
+            numHeight.Value = VMAP.Component.Height
+            txtLedCount.Text = VMAP.Component.LedCount
+            If VMAP.Component.Type = VMAP.Component.Type.ToLower() Then
+                Select Case VMAP.Component.Type
+                    Case "aio"
+                        cmbType.SelectedValue = "AIO"
+                    Case "gpu"
+                        cmbType.SelectedValue = "GPU"
+                    Case Else
+                        cmbType.SelectedValue = VMAP.Component.Type.CapitalizeFirstLetter(True)
+                End Select
+            Else
+                cmbType.SelectedValue = VMAP.Component.Type
+            End If
+            pbImage.Image = VMAP.Component.ToImage
+            txtWebImageUrl.Text = VMAP.Component.ImageUrl
 
-            ElseIf jsonObj("LedCount") IsNot Nothing Then
-                ' It is a component file, we can load it directly
+            Text = String.Format(Translation.Localization.Title, FileName)
+            NsTheme1.Text = Text
 
-                If ucCompoment IsNot Nothing Then
-                    Controls.Remove(ucCompoment)
-                    ucCompoment.Dispose()
-                End If
-                FileName = ofd.FileName
-                Component = Component.Load(FileName)
+        ElseIf jsonObj("LedCount") IsNot Nothing Then
+            ' It is a component file, we can load it directly
 
-                Dim LEDs As New List(Of Led)
-                For i = 0 To Component.LedCoordinates.Count - 1
-                    Dim name = Component.LedNames(i)
-                    Dim index = Component.LedMapping(i)
-                    Dim point = Component.LedCoordinates(i)
-                    LEDs.Add(New Led(index, name, New Point(point(0), point(1))))
-                Next
+            If ucCompoment IsNot Nothing AndAlso disposeUC Then
+                Controls.Remove(ucCompoment)
+                ucCompoment.Dispose()
+            End If
+            FileName = open_file
+            Component = Component.Load(FileName)
 
+            Dim LEDs As New List(Of Led)
+            For i = 0 To Component.LedCoordinates.Count - 1
+                Dim name = Component.LedNames(i)
+                Dim index = Component.LedMapping(i)
+                Dim point = Component.LedCoordinates(i)
+                LEDs.Add(New Led(index, name, New Point(point(0), point(1))))
+            Next
+
+            If disposeUC Then
                 ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.None,
                     .Size = New Size(Component.Width * 50 + MarginAll, Component.Height * 50 + MarginAll), .LEDs = LEDs,
                     .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
@@ -125,34 +147,45 @@ Public Class frmMain
                 ucCompoment.Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
                 ucCompoment.BringToFront()
                 mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
-
-                txtBrand.Text = Component.Brand
-                txtProduct.Text = Component.ProductName
-                txtName.Text = Component.DisplayName
-                numWidth.Value = Component.Width
-                numHeight.Value = Component.Height
-                txtLedCount.Text = Component.LedCount
-                If Component.Type = Component.Type.ToLower() Then
-                    Select Case Component.Type
-                        Case "aio"
-                            cmbType.SelectedValue = "AIO"
-                        Case "gpu"
-                            cmbType.SelectedValue = "GPU"
-                        Case Else
-                            cmbType.SelectedValue = Component.Type.CapitalizeFirstLetter(True)
-                    End Select
-                Else
-                    cmbType.SelectedValue = Component.Type
-                End If
-                pbImage.Image = Component.ToImage
-                txtWebImageUrl.Text = Component.ImageUrl
-
-                Text = String.Format(Translation.Localization.Title, FileName)
-                NsTheme1.Text = Text
             Else
-                MsgBox(Translation.Localization.InvalidFile, MsgBoxStyle.Critical, "Error")
-                Return
+                With ucCompoment
+                    .Width = Component.Width
+                    .Height = Component.Height
+                    .BorderStyle = BorderStyle.None
+                    .Size = New Size(Component.Width * 50 + MarginAll, Component.Height * 50 + MarginAll)
+                    .LEDs = LEDs
+                    .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right
+                    .ForeColor = Color.White
+                    .Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
+                End With
             End If
+
+            txtBrand.Text = Component.Brand
+            txtProduct.Text = Component.ProductName
+            txtName.Text = Component.DisplayName
+            numWidth.Value = Component.Width
+            numHeight.Value = Component.Height
+            txtLedCount.Text = Component.LedCount
+            If Component.Type = Component.Type.ToLower() Then
+                Select Case Component.Type
+                    Case "aio"
+                        cmbType.SelectedValue = "AIO"
+                    Case "gpu"
+                        cmbType.SelectedValue = "GPU"
+                    Case Else
+                        cmbType.SelectedValue = Component.Type.CapitalizeFirstLetter(True)
+                End Select
+            Else
+                cmbType.SelectedValue = Component.Type
+            End If
+            pbImage.Image = Component.ToImage
+            txtWebImageUrl.Text = Component.ImageUrl
+
+            Text = String.Format(Translation.Localization.Title, FileName)
+            NsTheme1.Text = Text
+        Else
+            MsgBox(Translation.Localization.InvalidFile, MsgBoxStyle.Critical, "Error")
+            Return
         End If
     End Sub
 
@@ -478,112 +511,9 @@ Public Class frmMain
 
         If firstFile <> Nothing Then
             If Path.GetExtension(files.FirstOrDefault).ToLower() = ".json" Then
-                Dim jsonContent = File.ReadAllText(firstFile)
-                Dim jsonObj As JObject = JObject.Parse(jsonContent)
-
-                If jsonObj("fx_ch_led_num") IsNot Nothing Then
-                    ' It is a vmap file, we will convert it to component first before loading, and we will not keep the vmap data since this editor is mainly for editing component files, and the vmap import/export is just a secondary feature for compatibility with OpenRGB
-
-                    If ucCompoment IsNot Nothing Then
-                        Controls.Remove(ucCompoment)
-                        ucCompoment.Dispose()
-                    End If
-                    FileName = firstFile
-                    VMAP = NollieVmap.Load(FileName)
-
-                    Dim LEDs As New List(Of Led)
-                    For i = 0 To VMAP.Component.LedCoordinates.Count - 1
-                        Dim name = VMAP.Component.LedNames(i)
-                        Dim index = VMAP.Component.LedMapping(i)
-                        Dim point = VMAP.Component.LedCoordinates(i)
-                        Dim hidden = VMAP.Component.ZLedMapping.Contains(index)
-                        LEDs.Add(New Led(index, name, New Point(point(0), point(1))) With {.Hidden = hidden})
-                    Next
-
-                    ucCompoment = New ucComponent With {.Width = VMAP.Component.Width, .Height = VMAP.Component.Height, .BorderStyle = BorderStyle.None,
-                        .Size = New Size(VMAP.Component.Width * 50 + MarginAll, VMAP.Component.Height * 50 + MarginAll), .LEDs = LEDs,
-                        .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
-                    SplitContainer1.Panel1.Controls.Add(ucCompoment)
-                    ucCompoment.Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
-                    ucCompoment.BringToFront()
-                    mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
-
-                    txtBrand.Text = VMAP.Component.Brand
-                    txtProduct.Text = VMAP.Component.ProductName
-                    txtName.Text = VMAP.Component.DisplayName
-                    numWidth.Value = VMAP.Component.Width
-                    numHeight.Value = VMAP.Component.Height
-                    txtLedCount.Text = VMAP.Component.LedCount
-                    If VMAP.Component.Type = Component.Type.ToLower() Then
-                        Select Case VMAP.Component.Type
-                            Case "aio"
-                                cmbType.SelectedValue = "AIO"
-                            Case "gpu"
-                                cmbType.SelectedValue = "GPU"
-                            Case Else
-                                cmbType.SelectedValue = VMAP.Component.Type.CapitalizeFirstLetter(True)
-                        End Select
-                    Else
-                        cmbType.SelectedValue = VMAP.Component.Type
-                    End If
-                    pbImage.Image = VMAP.Component.ToImage
-                    txtWebImageUrl.Text = VMAP.Component.ImageUrl
-
-                    Text = String.Format(Translation.Localization.Title, FileName)
-                    NsTheme1.Text = Text
-
-                ElseIf jsonObj("LedCount") IsNot Nothing Then
-                    ' It is a component file, we can load it directly
-
-                    If ucCompoment IsNot Nothing Then
-                        Controls.Remove(ucCompoment)
-                        ucCompoment.Dispose()
-                    End If
-                    FileName = firstFile
-                    Component = Component.Load(FileName)
-
-                    Dim LEDs As New List(Of Led)
-                    For i As Integer = 0 To Component.LedCoordinates.Count - 1
-                        Dim name As String = Component.LedNames(i)
-                        Dim index As Integer = Component.LedMapping(i)
-                        Dim point As Integer() = Component.LedCoordinates(i)
-                        LEDs.Add(New Led(index, name, New Point(point(0), point(1))))
-                    Next
-
-                    ucCompoment = New ucComponent With {._Width = Component.Width, ._Height = Component.Height, .BorderStyle = BorderStyle.None,
-                            .Size = New Size((Component.Width * 50) + MarginAll, (Component.Height * 50) + MarginAll), .LEDs = LEDs,
-                            .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right, .ForeColor = Color.White}
-                    SplitContainer1.Panel1.Controls.Add(ucCompoment)
-                    ucCompoment.Location = New Point((SplitContainer1.Panel1.Width / 2) - (ucCompoment.Width / 2), (SplitContainer1.Panel1.Height / 2) - (ucCompoment.Height / 2))
-                    ucCompoment.BringToFront()
-                    mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
-
-                    txtBrand.Text = Component.Brand
-                    txtProduct.Text = Component.ProductName
-                    txtName.Text = Component.DisplayName
-                    numWidth.Value = Component.Width
-                    numHeight.Value = Component.Height
-                    If Component.Type = Component.Type.ToLower() Then
-                        Select Case Component.Type
-                            Case "aio"
-                                cmbType.SelectedValue = "AIO"
-                            Case "gpu"
-                                cmbType.SelectedValue = "GPU"
-                            Case Else
-                                cmbType.SelectedValue = Component.Type.CapitalizeFirstLetter(True)
-                        End Select
-                    Else
-                        cmbType.SelectedValue = Component.Type
-                    End If
-                    pbImage.Image = Component.ToImage
-                    txtWebImageUrl.Text = Component.ImageUrl
-
-                    Text = String.Format(Translation.Localization.Title, FileName)
-                    NsTheme1.Text = Text
-                End If
+                OpenFile(firstFile)
             End If
         End If
-
     End Sub
 
     Private Sub frmMain_DragEnter(sender As Object, e As DragEventArgs) Handles Me.DragEnter
@@ -741,11 +671,25 @@ Public Class frmMain
 
     Public Sub StartTutorial()
         Dim loc = Translation.Localization
-        tutorialSteps.Enqueue((gbDetails, loc.TutComponentDetails))
-        tutorialSteps.Enqueue((gbImage, loc.TutComponentImage))
-        tutorialSteps.Enqueue((gbControls, loc.TutControls))
-        tutorialSteps.Enqueue((gbTools, loc.TutTools))
-        tutorialSteps.Enqueue((ucCompoment, loc.TutUcComponent))
+        tutorialSteps.Enqueue((gbDetails, loc.TutComponentDetails,
+                              Sub()
+                                  Dim tutDir = New DirectoryInfo("tutorial")
+                                  OpenFile($"{tutDir.FullName}\tutorial_component.json", False)
+                              End Sub))
+        tutorialSteps.Enqueue((gbImage, loc.TutComponentImage,
+                              Sub()
+                                  gbImage.Enabled = False
+                              End Sub))
+        tutorialSteps.Enqueue((gbControls, loc.TutControls,
+                              Sub()
+                                  gbImage.Enabled = True
+                                  gbControls.Enabled = False
+                              End Sub))
+        tutorialSteps.Enqueue((gbTools, loc.TutTools,
+                              Sub()
+                                  gbControls.Enabled = True
+                              End Sub))
+        tutorialSteps.Enqueue((ucCompoment, loc.TutUcComponent, Nothing))
 
         ShowNextStep()
     End Sub
@@ -753,6 +697,8 @@ Public Class frmMain
     Private Sub ShowNextStep()
         If tutorialSteps.Count > 0 Then
             Dim stepData = tutorialSteps.Dequeue()
+            If stepData.act IsNot Nothing Then stepData.act.Invoke()
+
             Dim overlay As New frmTutorialOverlay()
             overlay.Show()
             overlay.HighlightControl(stepData.ctrl, stepData.msg)

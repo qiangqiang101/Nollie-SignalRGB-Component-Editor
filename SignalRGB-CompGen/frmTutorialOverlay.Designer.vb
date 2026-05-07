@@ -32,14 +32,16 @@ Partial Class frmTutorialOverlay
         BackColor = Color.Black
         ClientSize = New Size(800, 450)
         ControlBox = False
+        ForeColor = Color.White
         FormBorderStyle = FormBorderStyle.None
         Icon = CType(resources.GetObject("$this.Icon"), Icon)
         MaximizeBox = False
         MinimizeBox = False
         Name = "frmTutorialOverlay"
-        Opacity = 0.6R
+        Opacity = 0.8R
         ShowIcon = False
         ShowInTaskbar = False
+        StartPosition = FormStartPosition.Manual
         Text = "frmTutorialOverlay"
         TopMost = True
         ResumeLayout(False)

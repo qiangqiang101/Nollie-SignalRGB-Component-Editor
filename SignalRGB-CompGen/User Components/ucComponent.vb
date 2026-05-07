@@ -108,7 +108,7 @@ Public Class ucComponent
     End Function
 
     Public Function AddLeds(_leds As Integer, _pos As Point, Optional direction As eDirection = eDirection.Right,
-                            Optional spacing As Integer = 0, Optional updatefont As Boolean = True) As Point
+                            Optional spacing As Integer = 0, Optional updatefont As Boolean = True, Optional selected As Boolean = True) As Point
         Dim result As Point = Point.Empty
         If LedCount = 0 Then
             For i As Integer = 0 To _leds - 1
@@ -117,7 +117,7 @@ Public Class ucComponent
                 Dim pos = GetNextPointFrom(_pos, i, direction, spacing * i)
                 Dim led = AddLed(index, index, name, pos)
                 If i = _leds - 1 Then result = pos
-                SelectedItems.Add(led)
+                If selected Then SelectedItems.Add(led)
             Next i
         Else
             Dim lastLed As Led = LEDs.Last
@@ -127,7 +127,7 @@ Public Class ucComponent
                 Dim pos = GetNextPointFrom(_pos, i, direction, spacing * i)
                 Dim led = AddLed(index, index, name, pos)
                 If i = _leds - 1 Then result = pos
-                SelectedItems.Add(led)
+                If selected Then SelectedItems.Add(led)
             Next i
         End If
 
@@ -784,7 +784,7 @@ Public Class ucComponent
                 If IsPlaceLedDragging Then
                     Dim hovered = ItemOnHover()
                     If hovered Is Nothing Then
-                        AddLeds(1, _ledPos)
+                        AddLeds(1, _ledPos, selected:=False)
                         Invalidate()
                     End If
                 End If
