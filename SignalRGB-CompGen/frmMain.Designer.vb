@@ -52,12 +52,13 @@ Partial Class frmMain
         pbImage = New PictureBox()
         gbControls = New NSGroupBox()
         tlpControls = New TableLayoutPanel()
+        btnInsertGuideImage = New NSImgButton()
         btnGenRectangle = New NSImgButton()
         btnGenUShape = New NSImgButton()
         btnGenLShape = New NSImgButton()
         btnGenMatrix = New NSImgButton()
         btnGenLinear = New NSImgButton()
-        btnAutoResize = New NSButton()
+        btnAutoResize = New NSImgButton()
         btnFlipUpDown = New NSImgButton()
         btnFlipLeftRight = New NSImgButton()
         btnHideLed = New NSImgButton()
@@ -83,6 +84,9 @@ Partial Class frmMain
         tsmiExit = New ToolStripMenuItem()
         tsmiSettings = New ToolStripMenuItem()
         tsmiHelp = New ToolStripMenuItem()
+        tsmiShortcut = New ToolStripMenuItem()
+        tsmiRestartTutorial = New ToolStripMenuItem()
+        ToolStripSeparator4 = New ToolStripSeparator()
         tsmiSRGB = New ToolStripMenuItem()
         tsmiNollie = New ToolStripMenuItem()
         tsmiMentaL = New ToolStripMenuItem()
@@ -95,6 +99,7 @@ Partial Class frmMain
         btnMin = New NSControlButton()
         btnMax = New NSControlButton()
         btnClose = New NSControlButton()
+        ToolTip1 = New ToolTip(components)
         RightPanel.SuspendLayout()
         gbDetails.SuspendLayout()
         gbTools.SuspendLayout()
@@ -359,7 +364,7 @@ Partial Class frmMain
         gbTools.Location = New Point(6, 515)
         gbTools.Name = "gbTools"
         gbTools.Padding = New Padding(3, 31, 3, 3)
-        gbTools.Size = New Size(380, 144)
+        gbTools.Size = New Size(380, 158)
         gbTools.SubTitle = ""
         gbTools.TabIndex = 3
         gbTools.Text = "NsGroupBox1"
@@ -371,10 +376,10 @@ Partial Class frmMain
         rbToolResizeGI.BackgroundImage = My.Resources.Resources.image_area_custom
         rbToolResizeGI.Checked = False
         rbToolResizeGI.ImageOnTop = False
-        rbToolResizeGI.Location = New Point(6, 106)
+        rbToolResizeGI.Location = New Point(6, 116)
         rbToolResizeGI.Name = "rbToolResizeGI"
         rbToolResizeGI.Padding = New Padding(3)
-        rbToolResizeGI.Size = New Size(368, 30)
+        rbToolResizeGI.Size = New Size(368, 35)
         rbToolResizeGI.TabIndex = 2
         rbToolResizeGI.Text = "Resize Guide Image"
         ' 
@@ -384,10 +389,10 @@ Partial Class frmMain
         rbToolPlaceLED.BackgroundImage = My.Resources.Resources.led_variant_outline_custom
         rbToolPlaceLED.Checked = False
         rbToolPlaceLED.ImageOnTop = False
-        rbToolPlaceLED.Location = New Point(6, 70)
+        rbToolPlaceLED.Location = New Point(6, 75)
         rbToolPlaceLED.Name = "rbToolPlaceLED"
         rbToolPlaceLED.Padding = New Padding(3)
-        rbToolPlaceLED.Size = New Size(368, 30)
+        rbToolPlaceLED.Size = New Size(368, 35)
         rbToolPlaceLED.TabIndex = 1
         rbToolPlaceLED.Text = "Place LED Tool"
         ' 
@@ -400,7 +405,7 @@ Partial Class frmMain
         rbToolSelect.Location = New Point(6, 34)
         rbToolSelect.Name = "rbToolSelect"
         rbToolSelect.Padding = New Padding(3)
-        rbToolSelect.Size = New Size(368, 30)
+        rbToolSelect.Size = New Size(368, 35)
         rbToolSelect.TabIndex = 0
         rbToolSelect.Text = "Select Tool"
         ' 
@@ -415,7 +420,7 @@ Partial Class frmMain
         tlpImageControls.Location = New Point(3, 282)
         tlpImageControls.Name = "tlpImageControls"
         tlpImageControls.RowCount = 1
-        tlpImageControls.RowStyles.Add(New RowStyle(SizeType.Percent, 50F))
+        tlpImageControls.RowStyles.Add(New RowStyle(SizeType.Percent, 100F))
         tlpImageControls.Size = New Size(386, 224)
         tlpImageControls.TabIndex = 2
         ' 
@@ -487,6 +492,7 @@ Partial Class frmMain
         tlpControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
         tlpControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
         tlpControls.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 25F))
+        tlpControls.Controls.Add(btnInsertGuideImage, 1, 3)
         tlpControls.Controls.Add(btnGenRectangle, 2, 3)
         tlpControls.Controls.Add(btnGenUShape, 3, 3)
         tlpControls.Controls.Add(btnGenLShape, 3, 2)
@@ -512,6 +518,18 @@ Partial Class frmMain
         tlpControls.RowStyles.Add(New RowStyle(SizeType.Percent, 25F))
         tlpControls.Size = New Size(181, 184)
         tlpControls.TabIndex = 0
+        ' 
+        ' btnInsertGuideImage
+        ' 
+        btnInsertGuideImage.BackgroundImage = My.Resources.Resources.image_plus_outline_custom
+        btnInsertGuideImage.Dock = DockStyle.Fill
+        btnInsertGuideImage.Font = New Font("Segoe UI", 21F)
+        btnInsertGuideImage.Location = New Point(48, 141)
+        btnInsertGuideImage.Name = "btnInsertGuideImage"
+        btnInsertGuideImage.Padding = New Padding(10)
+        btnInsertGuideImage.Size = New Size(39, 40)
+        btnInsertGuideImage.TabIndex = 12
+        btnInsertGuideImage.Text = "↻"
         ' 
         ' btnGenRectangle
         ' 
@@ -575,11 +593,12 @@ Partial Class frmMain
         ' 
         ' btnAutoResize
         ' 
-        tlpControls.SetColumnSpan(btnAutoResize, 2)
+        btnAutoResize.BackgroundImage = My.Resources.Resources.resize_custom
         btnAutoResize.Dock = DockStyle.Fill
         btnAutoResize.Location = New Point(3, 141)
         btnAutoResize.Name = "btnAutoResize"
-        btnAutoResize.Size = New Size(84, 40)
+        btnAutoResize.Padding = New Padding(10)
+        btnAutoResize.Size = New Size(39, 40)
         btnAutoResize.TabIndex = 6
         btnAutoResize.Text = "Auto Resize"
         ' 
@@ -806,10 +825,29 @@ Partial Class frmMain
         ' 
         ' tsmiHelp
         ' 
-        tsmiHelp.DropDownItems.AddRange(New ToolStripItem() {tsmiSRGB, tsmiNollie, tsmiMentaL, ToolStripSeparator2, tsmiBuy})
+        tsmiHelp.DropDownItems.AddRange(New ToolStripItem() {tsmiShortcut, tsmiRestartTutorial, ToolStripSeparator4, tsmiSRGB, tsmiNollie, tsmiMentaL, ToolStripSeparator2, tsmiBuy})
         tsmiHelp.Name = "tsmiHelp"
         tsmiHelp.Size = New Size(44, 20)
         tsmiHelp.Text = "Help"
+        ' 
+        ' tsmiShortcut
+        ' 
+        tsmiShortcut.ForeColor = Color.White
+        tsmiShortcut.Name = "tsmiShortcut"
+        tsmiShortcut.Size = New Size(227, 22)
+        tsmiShortcut.Text = "Shortcut Keys"
+        ' 
+        ' tsmiRestartTutorial
+        ' 
+        tsmiRestartTutorial.ForeColor = Color.White
+        tsmiRestartTutorial.Name = "tsmiRestartTutorial"
+        tsmiRestartTutorial.Size = New Size(227, 22)
+        tsmiRestartTutorial.Text = "Restart Tutorial"
+        ' 
+        ' ToolStripSeparator4
+        ' 
+        ToolStripSeparator4.Name = "ToolStripSeparator4"
+        ToolStripSeparator4.Size = New Size(224, 6)
         ' 
         ' tsmiSRGB
         ' 
@@ -948,6 +986,11 @@ Partial Class frmMain
         btnClose.TabIndex = 4
         btnClose.Text = "NsControlButton1"
         ' 
+        ' ToolTip1
+        ' 
+        ToolTip1.BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
+        ToolTip1.ForeColor = Color.White
+        ' 
         ' frmMain
         ' 
         AllowDrop = True
@@ -1047,7 +1090,7 @@ Partial Class frmMain
     Friend WithEvents tsmiSaveAsNRGB As ToolStripMenuItem
     Friend WithEvents btnFlipLeftRight As NSImgButton
     Friend WithEvents btnFlipUpDown As NSImgButton
-    Friend WithEvents btnAutoResize As NSButton
+    Friend WithEvents btnAutoResize As NSImgButton
     Friend WithEvents tlpImage As TableLayoutPanel
     Friend WithEvents gbDetails As NSGroupBox
     Friend WithEvents btnGenMatrix As NSImgButton
@@ -1055,5 +1098,10 @@ Partial Class frmMain
     Friend WithEvents btnGenLShape As NSImgButton
     Friend WithEvents btnGenRectangle As NSImgButton
     Friend WithEvents btnGenUShape As NSImgButton
+    Friend WithEvents tsmiRestartTutorial As ToolStripMenuItem
+    Friend WithEvents ToolStripSeparator4 As ToolStripSeparator
+    Friend WithEvents ToolTip1 As ToolTip
+    Friend WithEvents btnInsertGuideImage As NSImgButton
+    Friend WithEvents tsmiShortcut As ToolStripMenuItem
 
 End Class

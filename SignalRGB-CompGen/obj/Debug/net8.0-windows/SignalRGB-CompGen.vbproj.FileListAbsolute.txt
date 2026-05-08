@@ -12,7 +12,6 @@ D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\ne
 D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB_CompGen.frmSettings.resources
 D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB_CompGen.Resources.resources
 D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB_CompGen.ucComponent.resources
-D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB_CompGen.ucDelete.resources
 D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB_CompGen.ucEdit.resources
 D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB_CompGen.ucLinear.resources
 D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB_CompGen.ucLShape.resources
@@ -31,3 +30,8 @@ D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\ne
 D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\compeditor.pdb
 D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB-CompGen.genruntimeconfig.cache
 D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\ref\compeditor.dll
+D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\bin\Debug\net8.0-windows\ExCSS.dll
+D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\bin\Debug\net8.0-windows\Svg.dll
+D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB_CompGen.frmFirst.resources
+D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB_CompGen.frmShortcutKeys.resources
+D:\Users\WePro\Documents\GitHub\SignalRGB-CompGen\SignalRGB-CompGen\obj\Debug\net8.0-windows\SignalRGB_CompGen.frmTutorialOverlay.resources

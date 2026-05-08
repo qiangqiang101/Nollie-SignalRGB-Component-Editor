@@ -24,7 +24,6 @@ Public Class frmMain
 
         If File.Exists(SettingFile) Then
             Setting = New MySettings().Load(SettingFile)
-            frmFirst.Show() ' Later remove
         Else
             frmFirst.Show()
         End If
@@ -50,6 +49,33 @@ Public Class frmMain
         If ofd.ShowDialog <> DialogResult.Cancel Then
             OpenFile(ofd.FileName)
         End If
+    End Sub
+
+    Private Sub NewFile()
+        If ucCompoment IsNot Nothing Then
+            Controls.Remove(ucCompoment)
+            ucCompoment.Dispose()
+        End If
+        FileName = Nothing
+        Text = String.Format(Translation.Localization.Title, Translation.Localization.Untitled)
+        NsTheme1.Text = Text
+
+        txtBrand.Clear
+        txtProduct.Clear
+        txtName.Clear
+        numWidth.Value = Setting.DefaultSize.Width
+        numHeight.Value = Setting.DefaultSize.Height
+        txtLedCount.Text = 0
+        cmbType.SelectedIndex = 0
+        pbImage.Image = My.Resources._1
+        txtWebImageUrl.Clear
+
+        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = Setting.DefaultSize.Width, ._Height = Setting.DefaultSize.Height, .ForeColor = Color.White,
+            .BorderStyle = BorderStyle.None, .Size = New Size(Setting.DefaultSize.Width * 50 + MarginAll, Setting.DefaultSize.Width * 50 + MarginAll), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
+        SplitContainer1.Panel1.Controls.Add(ucCompoment)
+        ucCompoment.Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
+        ucCompoment.BringToFront()
+        mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
     End Sub
 
     Private Sub OpenFile(open_file As String, Optional disposeUC As Boolean = True)
@@ -403,7 +429,7 @@ Public Class frmMain
             gbTools.Title = loc.Tools
             rbToolSelect.Text = loc.SelectTool
             rbToolPlaceLED.Text = loc.PlaceLEDTool
-            rbToolResizeGI.Text = loc.ResizeGuideImage
+            rbToolResizeGI.Text = loc.GuideImageTool
             tsmiSaveSRGB.Text = loc.SignalRGBComponent
             tsmiSaveNRGB.Text = loc.NollieRGBVMAP
             tsmiSaveAsSRGB.Text = loc.SignalRGBComponent
@@ -411,6 +437,8 @@ Public Class frmMain
 
             ' Added 06/05/2026
             gbDetails.Title = loc.ComponentDetails
+            tsmiRestartTutorial.Text = loc.RestartTutorial
+            tsmiShortcut.Text = loc.Controls
         End If
     End Sub
 
@@ -459,30 +487,7 @@ Public Class frmMain
     End Sub
 
     Private Sub tsmiNew_Click(sender As Object, e As EventArgs) Handles tsmiNew.Click
-        If ucCompoment IsNot Nothing Then
-            Controls.Remove(ucCompoment)
-            ucCompoment.Dispose()
-        End If
-        FileName = Nothing
-        Text = String.Format(Translation.Localization.Title, Translation.Localization.Untitled)
-        NsTheme1.Text = Text
-
-        txtBrand.Clear
-        txtProduct.Clear
-        txtName.Clear
-        numWidth.Value = Setting.DefaultSize.Width
-        numHeight.Value = Setting.DefaultSize.Height
-        txtLedCount.Text = 0
-        cmbType.SelectedIndex = 0
-        pbImage.Image = My.Resources._1
-        txtWebImageUrl.Clear
-
-        ucCompoment = New ucComponent With {.LEDs = New List(Of Led), ._Width = Setting.DefaultSize.Width, ._Height = Setting.DefaultSize.Height, .ForeColor = Color.White,
-            .BorderStyle = BorderStyle.None, .Size = New Size(Setting.DefaultSize.Width * 50 + MarginAll, Setting.DefaultSize.Width * 50 + MarginAll), .Anchor = AnchorStyles.Bottom And AnchorStyles.Left And AnchorStyles.Top And AnchorStyles.Right}
-        SplitContainer1.Panel1.Controls.Add(ucCompoment)
-        ucCompoment.Location = New Point(SplitContainer1.Panel1.Width / 2 - ucCompoment.Width / 2, SplitContainer1.Panel1.Height / 2 - ucCompoment.Height / 2)
-        ucCompoment.BringToFront()
-        mouseHandler = New MouseHandler(ucCompoment, MouseButtons.Middle)
+        NewFile()
     End Sub
 
     Private Sub tsmiControls_Click(sender As Object, e As EventArgs)
@@ -683,13 +688,24 @@ Public Class frmMain
         tutorialSteps.Enqueue((gbControls, loc.TutControls,
                               Sub()
                                   gbImage.Enabled = True
-                                  gbControls.Enabled = False
+                                  btnGenLinear.Enabled = False
+                                  btnGenMatrix.Enabled = False
+                                  btnGenLShape.Enabled = False
+                                  btnGenUShape.Enabled = False
+                                  btnGenRectangle.Enabled = False
+                                  btnInsertGuideImage.Enabled = False
                               End Sub))
         tutorialSteps.Enqueue((gbTools, loc.TutTools,
                               Sub()
-                                  gbControls.Enabled = True
+                                  btnGenLinear.Enabled = True
+                                  btnGenMatrix.Enabled = True
+                                  btnGenLShape.Enabled = True
+                                  btnGenUShape.Enabled = True
+                                  btnGenRectangle.Enabled = True
+                                  btnInsertGuideImage.Enabled = True
                               End Sub))
         tutorialSteps.Enqueue((ucCompoment, loc.TutUcComponent, Nothing))
+        tutorialSteps.Enqueue((ucCompoment, loc.TutUcComponentControls, Nothing))
 
         ShowNextStep()
     End Sub
@@ -707,6 +723,9 @@ Public Class frmMain
                                           overlay.Close()
                                           ShowNextStep()
                                       End Sub
+        Else
+            NewFile()
+            tsmiShortcut.PerformClick()
         End If
     End Sub
 
@@ -738,5 +757,62 @@ Public Class frmMain
         If ucCompoment IsNot Nothing Then
             ucCompoment.tsmiRectangle.PerformClick()
         End If
+    End Sub
+
+    Private Sub tsmiRestartTutorial_Click(sender As Object, e As EventArgs) Handles tsmiRestartTutorial.Click
+        StartTutorial()
+    End Sub
+
+    Private Sub Controls_MouseHover(sender As Object, e As EventArgs) Handles btnAutoResize.MouseHover, btnDown.MouseHover, btnLeft.MouseHover, btnRight.MouseHover, btnUp.MouseHover,
+        btnGenLinear.MouseHover, btnGenMatrix.MouseHover, btnGenLShape.MouseHover, btnGenUShape.MouseHover, btnGenRectangle.MouseHover, btnFlipLeftRight.MouseHover, btnFlipUpDown.MouseHover,
+        btnRotateLeft.MouseHover, btnRotateRight.MouseHover, btnHideLed.MouseHover, btnInsertGuideImage.MouseHover
+
+        Dim loc = Translation.Localization
+        Dim duration As Integer = 1000
+        Dim ctrl = DirectCast(sender, Control).Name
+        Select Case ctrl
+            Case "btnRotateLeft"
+                ToolTip1.ShowToolTip(loc.RotateCounterclockwise, btnRotateLeft, duration)
+            Case "btnUp"
+                ToolTip1.ShowToolTip(loc.MoveUp, btnUp, duration)
+            Case "btnRotateRight"
+                ToolTip1.ShowToolTip(loc.RotateClockwise, btnRotateRight, duration)
+            Case "btnGenLinear"
+                ToolTip1.ShowToolTip(loc.GenerateLinear, btnGenLinear, duration)
+            Case "btnLeft"
+                ToolTip1.ShowToolTip(loc.MoveLeft, btnLeft, duration)
+            Case "btnHideLed"
+                ToolTip1.ShowToolTip(loc.HideLEDs, btnHideLed, duration)
+            Case "btnRight"
+                ToolTip1.ShowToolTip(loc.MoveRight, btnRight, duration)
+            Case "btnGenMatrix"
+                ToolTip1.ShowToolTip(loc.GenerateMatrix, btnGenMatrix, duration)
+            Case "btnFlipLeftRight"
+                ToolTip1.ShowToolTip(loc.FlipHorizontal, btnFlipLeftRight, duration)
+            Case "btnDown"
+                ToolTip1.ShowToolTip(loc.MoveDown, btnDown, duration)
+            Case "btnFlipUpDown"
+                ToolTip1.ShowToolTip(loc.FlipVertical, btnFlipUpDown, duration)
+            Case "btnGenLShape"
+                ToolTip1.ShowToolTip(loc.GenerateLShape, btnGenLShape, duration)
+            Case "btnAutoResize"
+                ToolTip1.ShowToolTip(loc.AutoResize, btnAutoResize, duration)
+            Case "btnInsertGuideImage"
+                ToolTip1.ShowToolTip(loc.InsertGuideImage, btnInsertGuideImage, duration)
+            Case "btnGenRectangle"
+                ToolTip1.ShowToolTip(loc.GenerateRectangle, btnGenRectangle, duration)
+            Case "btnGenUShape"
+                ToolTip1.ShowToolTip(loc.GenerateUShape, btnGenUShape, duration)
+        End Select
+    End Sub
+
+    Private Sub btnInsertGuideImage_Click(sender As Object, e As EventArgs) Handles btnInsertGuideImage.Click
+        If ucCompoment IsNot Nothing Then
+            ucCompoment.tsmiInsertBgImage.PerformClick()
+        End If
+    End Sub
+
+    Private Sub tsmiShortcut_Click(sender As Object, e As EventArgs) Handles tsmiShortcut.Click
+        frmShortcutKeys.Show()
     End Sub
 End Class

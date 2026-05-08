@@ -1090,3 +1090,237 @@ Public Class NSImgRadioButton
     End Sub
 
 End Class
+
+Class NSImgLabel
+    Inherits Control
+
+    ' Enumeration for easier selection in the Property Grid
+    Public Enum Alignment
+        Left
+        Center
+    End Enum
+
+    Sub New()
+        SetStyle(ControlStyles.AllPaintingInWmPaint Or ControlStyles.UserPaint Or
+                 ControlStyles.OptimizedDoubleBuffer Or ControlStyles.ResizeRedraw, True)
+        SetStyle(ControlStyles.Selectable, False)
+    End Sub
+
+    ' New Property for Alignment
+    Private _TextAlign As Alignment = Alignment.Center
+    Public Property TextAlign() As Alignment
+        Get
+            Return _TextAlign
+        End Get
+        Set(value As Alignment)
+            _TextAlign = value
+            Invalidate() ' Redraw when changed
+        End Set
+    End Property
+
+    Private _ImgOnTop As Boolean
+    Public Property ImageOnTop() As Boolean
+        Get
+            Return _ImgOnTop
+        End Get
+        Set(value As Boolean)
+            _ImgOnTop = value
+            Invalidate()
+        End Set
+    End Property
+
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
+        Dim G As Graphics = e.Graphics
+        G.TextRenderingHint = TextRenderingHint.ClearTypeGridFit
+        G.SmoothingMode = SmoothingMode.AntiAlias
+        G.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
+        G.Clear(BackColor)
+
+        Dim spacing As Integer = 6
+        Dim SZ1 As SizeF = G.MeasureString(Text, Font)
+        Dim iconH As Integer = 0
+        Dim iconW As Integer = 0
+
+        If BackgroundImage IsNot Nothing Then
+            iconH = If(_ImgOnTop, CInt(Height * 0.45), Height - (Padding.Top + Padding.Bottom + 8))
+            Dim ratio As Single = CSng(BackgroundImage.Width) / CSng(BackgroundImage.Height)
+            iconW = CInt(iconH * ratio)
+        End If
+
+        Dim drawX, drawY, textX, textY As Single
+
+        If _ImgOnTop Then
+            ' VERTICAL LAYOUT
+            Dim totalH As Single = SZ1.Height + (If(BackgroundImage IsNot Nothing, iconH + spacing, 0))
+
+            ' Horizontal Logic
+            If _TextAlign = Alignment.Left Then
+                drawX = Padding.Left
+                textX = Padding.Left + (iconW / 2) - (SZ1.Width / 2)
+                ' Ensure text doesn't go off-screen to the left if icon is small
+                If textX < Padding.Left Then textX = Padding.Left
+            Else
+                drawX = (Width / 2) - (iconW / 2)
+                textX = (Width / 2) - (SZ1.Width / 2)
+            End If
+
+            drawY = (Height / 2) - (totalH / 2)
+            textY = drawY + (If(BackgroundImage IsNot Nothing, iconH + spacing, 0))
+        Else
+            ' HORIZONTAL LAYOUT
+            Dim totalW As Single = SZ1.Width + (If(BackgroundImage IsNot Nothing, iconW + spacing, 0))
+
+            ' Horizontal Logic
+            If _TextAlign = Alignment.Left Then
+                drawX = Padding.Left
+            Else
+                drawX = (Width / 2) - (totalW / 2)
+            End If
+
+            drawY = (Height / 2) - (iconH / 2)
+            textX = drawX + (If(BackgroundImage IsNot Nothing, iconW + spacing, 0))
+            textY = (Height / 2) - (SZ1.Height / 2)
+        End If
+
+        ' Final Draw
+        If BackgroundImage IsNot Nothing Then
+            G.DrawImage(BackgroundImage, New Rectangle(CInt(drawX), CInt(drawY), iconW, iconH))
+        End If
+
+        Using shadowBrush As New SolidBrush(Color.FromArgb(100, Color.Black))
+            G.DrawString(Text, Font, shadowBrush, textX + 1, textY + 1)
+        End Using
+        G.DrawString(Text, Font, Brushes.White, textX, textY)
+    End Sub
+End Class
+
+Class NSImgLabel2
+    Inherits Control
+
+    Public Enum Alignment
+        Left
+        Center
+    End Enum
+
+    Sub New()
+        ' Using the explicit flags for better stability
+        SetStyle(ControlStyles.AllPaintingInWmPaint Or ControlStyles.UserPaint Or
+                 ControlStyles.OptimizedDoubleBuffer Or ControlStyles.ResizeRedraw, True)
+        SetStyle(ControlStyles.Selectable, False)
+    End Sub
+
+    ' --- Properties ---
+    Private _SecondaryImage As Image
+    Public Property SecondaryImage() As Image
+        Get
+            Return _SecondaryImage
+        End Get
+        Set(value As Image)
+            _SecondaryImage = value
+            Invalidate()
+        End Set
+    End Property
+
+    Private _TextAlign As Alignment = Alignment.Center
+    Public Property TextAlign() As Alignment
+        Get
+            Return _TextAlign
+        End Get
+        Set(value As Alignment)
+            _TextAlign = value
+            Invalidate()
+        End Set
+    End Property
+
+    Private _ImgOnTop As Boolean
+    Public Property ImageOnTop() As Boolean
+        Get
+            Return _ImgOnTop
+        End Get
+        Set(value As Boolean)
+            _ImgOnTop = value
+            Invalidate()
+        End Set
+    End Property
+
+    Protected Overrides Sub OnPaint(e As PaintEventArgs)
+        Dim G As Graphics = e.Graphics
+        G.TextRenderingHint = TextRenderingHint.ClearTypeGridFit
+        G.SmoothingMode = SmoothingMode.AntiAlias
+        G.InterpolationMode = Drawing2D.InterpolationMode.HighQualityBicubic
+        G.Clear(BackColor)
+
+        Dim spacing As Integer = 6
+        Dim SZ1 As SizeF = G.MeasureString(Text, Font)
+
+        ' Icon 1 dimensions
+        Dim icon1W As Integer = 0, icon1H As Integer = 0
+        If BackgroundImage IsNot Nothing Then
+            icon1H = If(_ImgOnTop, CInt(Height * 0.45), Height - (Padding.Top + Padding.Bottom + 8))
+            icon1W = CInt(icon1H * (BackgroundImage.Width / BackgroundImage.Height))
+        End If
+
+        ' Icon 2 dimensions
+        Dim icon2W As Integer = 0, icon2H As Integer = 0
+        If _SecondaryImage IsNot Nothing Then
+            icon2H = If(_ImgOnTop, CInt(Height * 0.45), Height - (Padding.Top + Padding.Bottom + 8))
+            icon2W = CInt(icon2H * (_SecondaryImage.Width / _SecondaryImage.Height))
+        End If
+
+        Dim drawX1, drawY1, drawX2, drawY2, textX, textY As Single
+        Dim totalImgW As Integer = icon1W + (If(_SecondaryImage IsNot Nothing And BackgroundImage IsNot Nothing, spacing, 0)) + icon2W
+
+        If _ImgOnTop Then
+            ' --- VERTICAL LAYOUT ---
+            Dim totalH As Single = SZ1.Height + (If(totalImgW > 0, icon1H + spacing, 0))
+
+            ' Center images horizontally relative to each other
+            If _TextAlign = Alignment.Left Then
+                drawX1 = Padding.Left
+            Else
+                drawX1 = (Width / 2) - (totalImgW / 2)
+            End If
+
+            drawX2 = drawX1 + icon1W + (If(BackgroundImage IsNot Nothing, spacing, 0))
+            drawY1 = (Height / 2) - (totalH / 2)
+            drawY2 = drawY1 ' Same row
+
+            textX = (Width / 2) - (SZ1.Width / 2)
+            If _TextAlign = Alignment.Left Then textX = Padding.Left
+            textY = drawY1 + icon1H + spacing
+
+        Else
+            ' --- HORIZONTAL LAYOUT ---
+            ' Order: [Img1] [Img2] [Text]
+            Dim totalContentW As Single = totalImgW + (If(totalImgW > 0, spacing, 0)) + SZ1.Width
+
+            If _TextAlign = Alignment.Left Then
+                drawX1 = Padding.Left
+            Else
+                drawX1 = (Width / 2) - (totalContentW / 2)
+            End If
+
+            drawX2 = drawX1 + icon1W + (If(BackgroundImage IsNot Nothing And _SecondaryImage IsNot Nothing, spacing, 0))
+            textX = drawX1 + totalImgW + spacing
+
+            drawY1 = (Height / 2) - (icon1H / 2)
+            drawY2 = (Height / 2) - (icon2H / 2)
+            textY = (Height / 2) - (SZ1.Height / 2)
+        End If
+
+        ' --- Final Draw ---
+        If BackgroundImage IsNot Nothing Then
+            G.DrawImage(BackgroundImage, New Rectangle(CInt(drawX1), CInt(drawY1), icon1W, icon1H))
+        End If
+
+        If _SecondaryImage IsNot Nothing Then
+            G.DrawImage(_SecondaryImage, New Rectangle(CInt(drawX2), CInt(drawY2), icon2W, icon2H))
+        End If
+
+        ' Shadow and Text
+        Using shadowBrush As New SolidBrush(Color.FromArgb(100, Color.Black))
+            G.DrawString(Text, Font, shadowBrush, textX + 1, textY + 1)
+        End Using
+        G.DrawString(Text, Font, Brushes.White, textX, textY)
+    End Sub
+End Class

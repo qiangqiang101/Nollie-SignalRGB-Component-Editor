@@ -4,6 +4,7 @@ Imports System.IO
 Imports System.Runtime.CompilerServices
 Imports System.Runtime.InteropServices
 Imports System.Text.RegularExpressions
+Imports System.Windows.Forms.VisualStyles.VisualStyleElement
 
 Module Helper
 
@@ -195,6 +196,12 @@ Module Helper
             Return Char.ToUpper(input(0)) & input.Substring(1)
         End If
     End Function
+
+    <Extension>
+    Public Sub ShowToolTip(tooltip As System.Windows.Forms.ToolTip, text As String, control As Control, duration As Integer)
+        Dim xy As New Point(control.Width / 2, -20)
+        tooltip.Show(text, control, xy.X, xy.Y, duration)
+    End Sub
 
 End Module
 

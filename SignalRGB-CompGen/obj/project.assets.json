@@ -277,7 +277,7 @@
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
-    "version": "3.0.2",
+    "version": "3.1.0",
     "restore": {
       "projectUniqueName": "D:\\Users\\WePro\\Documents\\GitHub\\SignalRGB-CompGen\\SignalRGB-CompGen\\SignalRGB-CompGen.vbproj",
       "projectName": "compeditor",

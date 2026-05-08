@@ -24,7 +24,8 @@ Partial Class frmFirst
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(frmFirst))
         NsTheme1 = New NSTheme()
-        btnContinue = New NSButton()
+        btnSkip = New NSButton()
+        btnStart = New NSButton()
         btnClose = New NSControlButton()
         flpChooseLanguage = New FlowLayoutPanel()
         NsTheme1.SuspendLayout()
@@ -35,7 +36,8 @@ Partial Class frmFirst
         NsTheme1.AccentOffset = 42
         NsTheme1.BackColor = Color.FromArgb(CByte(50), CByte(50), CByte(50))
         NsTheme1.BorderStyle = FormBorderStyle.FixedSingle
-        NsTheme1.Controls.Add(btnContinue)
+        NsTheme1.Controls.Add(btnSkip)
+        NsTheme1.Controls.Add(btnStart)
         NsTheme1.Controls.Add(btnClose)
         NsTheme1.Controls.Add(flpChooseLanguage)
         NsTheme1.Customization = ""
@@ -56,14 +58,23 @@ Partial Class frmFirst
         NsTheme1.TransparencyKey = Color.Empty
         NsTheme1.Transparent = False
         ' 
-        ' btnContinue
+        ' btnSkip
         ' 
-        btnContinue.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnContinue.Location = New Point(667, 426)
-        btnContinue.Name = "btnContinue"
-        btnContinue.Size = New Size(75, 23)
-        btnContinue.TabIndex = 1
-        btnContinue.Text = "Continue"
+        btnSkip.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btnSkip.Location = New Point(592, 426)
+        btnSkip.Name = "btnSkip"
+        btnSkip.Size = New Size(150, 23)
+        btnSkip.TabIndex = 2
+        btnSkip.Text = "Skip Tutorial"
+        ' 
+        ' btnStart
+        ' 
+        btnStart.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
+        btnStart.Location = New Point(436, 426)
+        btnStart.Name = "btnStart"
+        btnStart.Size = New Size(150, 23)
+        btnStart.TabIndex = 1
+        btnStart.Text = "Start Tutorial"
         ' 
         ' btnClose
         ' 
@@ -107,5 +118,6 @@ Partial Class frmFirst
     Friend WithEvents NsTheme1 As NSTheme
     Friend WithEvents flpChooseLanguage As FlowLayoutPanel
     Friend WithEvents btnClose As NSControlButton
-    Friend WithEvents btnContinue As NSButton
+    Friend WithEvents btnStart As NSButton
+    Friend WithEvents btnSkip As NSButton
 End Class
